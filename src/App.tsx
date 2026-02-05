@@ -43,6 +43,9 @@ function App() {
       {/* 1. Hero Section */}
       <Hero />
 
+      {/* Features */}
+      <Features />
+
       {/* 2. Lead Capture Stream */}
       <LeadCaptureStream />
 
@@ -60,8 +63,7 @@ function App() {
         <EmailDraftAnimation />
       </section>
 
-      {/* 7. Features */}
-      <Features />
+
 
       {/* 8. Use Cases */}
       <UseCases />

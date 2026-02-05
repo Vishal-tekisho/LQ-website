@@ -56,15 +56,15 @@ const agents = [
     id: 6,
     title: 'Email Agent',
     description:
-      'Understands context from meetings, drafts custom emails based on the meeting content.',
+      'Understands context from meetings and knowledgebase, drafts custom emails based on the content.',
     icon: Mail,
     color: 'amber',
   },
   {
     id: 7,
-    title: 'Speaker Tracking',
+    title: 'Voice Agents',
     description:
-      'A diarizing agent identifies, separates, and labels different speakers in an audio stream or recording, determining who spoke when.',
+      'Outbound voice agent that replaces traditional robocalls with intelligent, conversational AI that automates customer engagement while mantaining natural, human-like interactions for support,scheduling,and lead qualification',
     icon: Mic,
     color: 'amber',
   },
@@ -114,8 +114,8 @@ export default function Agents() {
                   transition: { duration: 0.3 },
                 }}
                 className={`group relative glass rounded-2xl p-6 hover:glass-strong transition-all ${agent.highlight
-                    ? 'bg-gradient-to-br from-leadq-amber/5 to-leadq-amber-dark/10'
-                    : ''
+                  ? 'bg-gradient-to-br from-leadq-amber/5 to-leadq-amber-dark/10'
+                  : ''
                   }`}
                 style={{ transformStyle: 'preserve-3d' }}
               >

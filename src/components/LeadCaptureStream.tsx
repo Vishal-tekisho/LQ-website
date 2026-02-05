@@ -263,16 +263,7 @@ export default function LeadCaptureStream() {
 
   return (
     <section id="lead-capture" className="relative z-10 py-16 sm:py-20 md:py-24 px-4 overflow-hidden">
-      <style>{`
-        @keyframes scanLine {
-          0%, 100% { top: 0; opacity: 1; }
-          50% { top: 100%; opacity: 0.5; }
-        }
-        @keyframes scanPulse {
-          0%, 100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4); }
-          50% { box-shadow: 0 0 0 10px rgba(245, 158, 11, 0); }
-        }
-      `}</style>
+
 
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
@@ -295,10 +286,10 @@ export default function LeadCaptureStream() {
               transition-all duration-300 transform
               ${isScanning
                 ? 'bg-leadq-amber/20 text-leadq-amber/50 cursor-not-allowed scale-95'
-                : 'bg-gradient-to-r from-amber-500 to-amber-600 text-black hover:from-amber-400 hover:to-amber-500 hover:scale-105 shadow-lg shadow-amber-500/25'
+                : 'bg-gradient-to-r from-amber-500 to-amber-600 text-black hover:from-amber-400 hover:to-amber-500 hover:scale-105 shadow-lg shadow-amber-500/25 animate-pulse-glow-amber'
               }
             `}
-            style={isScanning ? {} : { animation: 'scanPulse 2s infinite' }}
+            style={isScanning ? {} : {}}
           >
             <Zap size={18} className={isScanning ? 'animate-spin' : ''} />
             {isScanning ? 'Scanning...' : 'Scan Now'}

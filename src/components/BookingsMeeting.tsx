@@ -260,7 +260,7 @@ export default function BookingsMeeting() {
                 <button
                   onClick={() => isPlaying ? null : runAnimation()}
                   disabled={isPlaying}
-                  className="p-1.5 rounded-lg hover:bg-white/10 transition-colors disabled:opacity-50"
+                  className={`p-1.5 rounded-lg hover:bg-white/10 transition-colors disabled:opacity-50 ${!isPlaying ? 'animate-pulse-glow-cyan' : ''}`}
                 >
                   {isPlaying ? (
                     <Pause className="w-4 h-4 text-gray-400" />

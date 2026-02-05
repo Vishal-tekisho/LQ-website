@@ -8,7 +8,7 @@ const Features = () => {
       title: 'The Offline-to-Online Bridge',
       highlight: 'Zero-Friction Entry',
       description: 'We bridge the gap between real-world handshakes and digital workflows. Instantly capture and digitize interactions so no lead is ever lost in the void.',
-      variant: 'glow'
+      variant: 'gradient'
     },
     {
       icon: BrainCircuit,
@@ -22,7 +22,7 @@ const Features = () => {
       title: 'The Unified Command',
       highlight: 'Real-Time Control',
       description: 'Control the chaos. Manage your physical interactions and digital agents from a single \'Living\' Dashboard that puts you in the pilot\'s seat.',
-      variant: 'glow'
+      variant: 'gradient'
     }
   ];
 
@@ -66,7 +66,7 @@ const Features = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-medium bg-leadq-amber/10 text-leadq-amber border border-leadq-amber/20 mb-6"
+            className="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-medium bg-leadq-amber/10 text-leadq-amber border border-leadq-amber/20 mb-4"
           >
             The Only CRM That Handshakes Back.
           </motion.span>
@@ -108,19 +108,9 @@ const Features = () => {
                   }
                 `}
               >
-                {/* Border glow effect */}
-                <div
-                  className={`
-                    absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500
-                    ${isGradient
-                      ? 'bg-gradient-to-br from-leadq-amber/25 via-transparent to-yellow-500/10'
-                      : 'shadow-[inset_0_0_0_1px_rgba(245,158,11,0.3)]'
-                    }
-                  `}
-                />
 
-                {/* Ambient glow on hover */}
-                <div className="absolute -inset-1 rounded-2xl bg-leadq-amber/20 blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-500" />
+
+
 
                 <div className="relative z-10">
                   {/* Icon */}
@@ -160,7 +150,7 @@ const Features = () => {
                 </div>
 
                 {/* Decorative corner accent */}
-                <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-leadq-amber/10 to-transparent rounded-bl-full opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-leadq-amber/10 to-transparent rounded-bl-full opacity-50 transition-opacity duration-500" />
               </motion.div>
             );
           })}

@@ -617,7 +617,7 @@ export default function ProfileResearch() {
           {stage === 'idle' ? (
             <motion.button
               onClick={startAnimation}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-amber-500 to-amber-600 text-white text-sm font-medium hover:from-amber-600 hover:to-amber-700 transition-all shadow-lg shadow-amber-500/25"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-amber-500 to-amber-600 text-white text-sm font-medium hover:from-amber-600 hover:to-amber-700 transition-all shadow-lg shadow-amber-500/25 animate-pulse-glow-amber"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
