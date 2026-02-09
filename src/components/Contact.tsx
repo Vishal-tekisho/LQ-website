@@ -81,9 +81,12 @@ export default function Contact() {
           className="text-center mb-12"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-4">
-            Get in Touch
+            Get in{' '}
+            <span className="bg-gradient-to-r from-leadq-silver to-slate-400 bg-clip-text text-transparent">
+              Touch
+            </span>
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-gray-300">
+          <p className="text-base sm:text-lg md:text-xl text-leadq-silver">
             Have questions? We'd love to hear from you.
           </p>
         </motion.div>
@@ -103,14 +106,14 @@ export default function Contact() {
             >
               <CheckCircle size={64} className="mx-auto mb-4 text-green-400" />
               <h3 className="text-2xl font-bold mb-2 text-white">Message Sent!</h3>
-              <p className="text-gray-300" role="status" aria-live="polite">
+              <p className="text-leadq-silver" role="status" aria-live="polite">
                 Thank you for reaching out. We'll get back to you within 24 hours.
               </p>
             </motion.div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
+                <label htmlFor="name" className="block text-sm font-medium text-leadq-silver mb-2">
                   Name <span className="text-red-400">*</span>
                 </label>
                 <input
@@ -118,9 +121,9 @@ export default function Contact() {
                   id="name"
                   value={formData.name}
                   onChange={(e) => handleChange('name', e.target.value)}
-                  className={`w-full glass px-4 py-3 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 transition-all ${errors.name
-                      ? 'ring-2 ring-red-400'
-                      : 'focus:ring-amber-500 focus:shadow-lg focus:shadow-amber-500/20'
+                  className={`w-full glass px-4 py-3 rounded-lg text-white placeholder-leadq-silver focus:outline-none focus:ring-2 transition-all ${errors.name
+                    ? 'ring-2 ring-red-400'
+                    : 'focus:ring-leadq-silver focus:shadow-lg focus:shadow-leadq-silver/20'
                     }`}
                   placeholder="John Doe"
                   disabled={formState === 'sending'}
@@ -135,7 +138,7 @@ export default function Contact() {
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
+                <label htmlFor="email" className="block text-sm font-medium text-leadq-silver mb-2">
                   Email <span className="text-red-400">*</span>
                 </label>
                 <input
@@ -143,9 +146,9 @@ export default function Contact() {
                   id="email"
                   value={formData.email}
                   onChange={(e) => handleChange('email', e.target.value)}
-                  className={`w-full glass px-4 py-3 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 transition-all ${errors.email
-                      ? 'ring-2 ring-red-400'
-                      : 'focus:ring-amber-500 focus:shadow-lg focus:shadow-amber-500/20'
+                  className={`w-full glass px-4 py-3 rounded-lg text-white placeholder-leadq-silver focus:outline-none focus:ring-2 transition-all ${errors.email
+                    ? 'ring-2 ring-red-400'
+                    : 'focus:ring-leadq-silver focus:shadow-lg focus:shadow-leadq-silver/20'
                     }`}
                   placeholder="john@company.com"
                   disabled={formState === 'sending'}
@@ -160,7 +163,7 @@ export default function Contact() {
               </div>
 
               <div>
-                <label htmlFor="company" className="block text-sm font-medium text-gray-300 mb-2">
+                <label htmlFor="company" className="block text-sm font-medium text-leadq-silver mb-2">
                   Company
                 </label>
                 <input
@@ -168,14 +171,14 @@ export default function Contact() {
                   id="company"
                   value={formData.company}
                   onChange={(e) => handleChange('company', e.target.value)}
-                  className="w-full glass px-4 py-3 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:shadow-lg focus:shadow-amber-500/20 transition-all"
+                  className="w-full glass px-4 py-3 rounded-lg text-white placeholder-leadq-silver focus:outline-none focus:ring-2 focus:ring-leadq-silver focus:shadow-lg focus:shadow-leadq-silver/20 transition-all"
                   placeholder="Acme Corp"
                   disabled={formState === 'sending'}
                 />
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
+                <label htmlFor="message" className="block text-sm font-medium text-leadq-silver mb-2">
                   Message <span className="text-red-400">*</span>
                 </label>
                 <textarea
@@ -183,9 +186,9 @@ export default function Contact() {
                   value={formData.message}
                   onChange={(e) => handleChange('message', e.target.value)}
                   rows={5}
-                  className={`w-full glass px-4 py-3 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 transition-all resize-none ${errors.message
-                      ? 'ring-2 ring-red-400'
-                      : 'focus:ring-amber-500 focus:shadow-lg focus:shadow-amber-500/20'
+                  className={`w-full glass px-4 py-3 rounded-lg text-white placeholder-leadq-silver focus:outline-none focus:ring-2 transition-all resize-none ${errors.message
+                    ? 'ring-2 ring-red-400'
+                    : 'focus:ring-leadq-silver focus:shadow-lg focus:shadow-leadq-silver/20'
                     }`}
                   placeholder="Tell us about your needs..."
                   disabled={formState === 'sending'}
@@ -205,8 +208,8 @@ export default function Contact() {
                 whileHover={formState === 'idle' ? { scale: 1.02 } : {}}
                 whileTap={formState === 'idle' ? { scale: 0.98 } : {}}
                 className={`w-full py-4 rounded-lg font-bold text-lg transition-all flex items-center justify-center gap-2 ${formState === 'sending'
-                    ? 'glass cursor-not-allowed text-gray-400'
-                    : 'bg-gradient-to-r from-black to-amber-600 text-white hover:shadow-xl hover:shadow-amber-600/50'
+                  ? 'glass cursor-not-allowed text-leadq-silver'
+                  : 'bg-gradient-to-r from-black to-leadq-silver text-white hover:shadow-xl hover:shadow-leadq-silver/50'
                   }`}
               >
                 {formState === 'sending' ? (
@@ -214,7 +217,7 @@ export default function Contact() {
                     <motion.div
                       animate={{ rotate: 360 }}
                       transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
-                      className="w-5 h-5 border-2 border-gray-400 border-t-transparent rounded-full"
+                      className="w-5 h-5 border-2 border-leadq-silver border-t-transparent rounded-full"
                     />
                     Sending...
                   </>
@@ -232,3 +235,4 @@ export default function Contact() {
     </section>
   );
 }
+

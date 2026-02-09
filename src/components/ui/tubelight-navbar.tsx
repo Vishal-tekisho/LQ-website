@@ -121,7 +121,7 @@ export function NavBar({ items, className }: NavBarProps) {
   const LampEffect = () => (
     <motion.div
       layoutId="navbar-lamp"
-      className="absolute inset-0 w-full bg-leadq-amber/5 rounded-full -z-10"
+      className="absolute inset-0 w-full bg-leadq-silver/5 rounded-full -z-10"
       initial={false}
       transition={{
         type: "spring",
@@ -129,10 +129,10 @@ export function NavBar({ items, className }: NavBarProps) {
         damping: 30,
       }}
     >
-      <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-1 bg-leadq-amber rounded-t-full">
-        <div className="absolute w-12 h-6 bg-leadq-amber/30 rounded-full blur-md -top-2 -left-2" />
-        <div className="absolute w-8 h-6 bg-leadq-amber/30 rounded-full blur-md -top-1" />
-        <div className="absolute w-4 h-4 bg-leadq-amber/30 rounded-full blur-sm top-0 left-2" />
+      <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-1 bg-leadq-silver rounded-t-full">
+        <div className="absolute w-12 h-6 bg-leadq-silver/30 rounded-full blur-md -top-2 -left-2" />
+        <div className="absolute w-8 h-6 bg-leadq-silver/30 rounded-full blur-md -top-1" />
+        <div className="absolute w-4 h-4 bg-leadq-silver/30 rounded-full blur-sm top-0 left-2" />
       </div>
     </motion.div>
   )
@@ -150,27 +150,46 @@ export function NavBar({ items, className }: NavBarProps) {
         className
       )}
     >
+      {/* Logo - Desktop (fixed top-left, same level as login/signup) */}
+      <div className="hidden md:flex items-center gap-2 fixed top-4 left-4 z-[101]">
+        <a href="#" className="flex items-center gap-2" aria-label="LeadQ.AI Home">
+          <img
+            src="/leadq-logo-v2.jpg"
+            alt="LeadQ.AI"
+            className="h-8 w-auto"
+          />
+          <span className="text-base font-bold text-white" style={{ fontFamily: "'Orbitron', sans-serif" }}>
+            LeadQ<span className="text-leadq-blue-400">.AI</span>
+          </span>
+        </a>
+      </div>
+
       {/* Login & Sign Up Buttons - Desktop */}
-      <div className="hidden lg:flex items-center gap-3 fixed top-4 right-4 z-[101]">
-        <button className="px-5 py-2.5 text-sm text-white underline underline-offset-4 hover:text-leadq-amber transition-colors rounded-lg focus:outline-none focus:ring-2 focus:ring-leadq-amber focus:ring-offset-2 focus:ring-offset-black whitespace-nowrap">
+      <div className="hidden md:flex items-center gap-3 fixed top-4 right-4 z-[101]">
+        <button className="px-5 py-2.5 text-sm text-white underline underline-offset-4 hover:text-leadq-silver transition-colors rounded-lg focus:outline-none focus:ring-2 focus:ring-leadq-silver focus:ring-offset-2 focus:ring-offset-black whitespace-nowrap">
           Login
         </button>
 
-        <button className="px-6 py-2.5 text-sm rounded-lg font-semibold bg-gradient-to-r from-black to-amber-600 text-white shadow-[0_0_20px_rgba(217,119,6,0.5)] hover:shadow-[0_0_30px_rgba(217,119,6,0.7)] hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 focus:ring-offset-black whitespace-nowrap">
+        <button className="px-6 py-2.5 text-sm rounded-lg font-semibold bg-gradient-to-r from-black to-leadq-silver text-white shadow-[0_0_20px_rgba(192,192,192,0.5)] hover:shadow-[0_0_30px_rgba(192,192,192,0.7)] hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-leadq-silver focus:ring-offset-2 focus:ring-offset-black whitespace-nowrap">
           Sign Up
         </button>
       </div>
 
       {/* Mobile Header with Hamburger */}
       <div className="md:hidden flex items-center justify-between">
-        <a href="#" className="text-xl font-display font-bold">
-          <span className="text-white">Lead</span>
-          <span className="text-leadq-amber">Q</span>
-          <span className="text-white">.AI</span>
+        <a href="#" className="flex items-center gap-2" aria-label="LeadQ.AI Home">
+          <img
+            src="/leadq-logo-v2.jpg"
+            alt="LeadQ.AI"
+            className="h-8 w-auto"
+          />
+          <span className="text-base font-bold text-white" style={{ fontFamily: "'Orbitron', sans-serif" }}>
+            LeadQ<span className="text-leadq-silver">.ai</span>
+          </span>
         </a>
         <button
           onClick={toggleMobileMenu}
-          className="p-3 text-white hover:text-leadq-amber transition-colors rounded-lg focus:outline-none focus:ring-2 focus:ring-leadq-amber"
+          className="p-3 text-white hover:text-leadq-silver transition-colors rounded-lg focus:outline-none focus:ring-2 focus:ring-leadq-silver"
           aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={mobileMenuOpen}
         >
@@ -201,13 +220,13 @@ export function NavBar({ items, className }: NavBarProps) {
                     className={cn(
                       "flex items-center gap-4 px-4 py-4 rounded-xl transition-all",
                       isActive
-                        ? "bg-leadq-amber/10 text-leadq-amber border border-leadq-amber/30"
-                        : "text-gray-300 hover:bg-white/5 hover:text-white"
+                        ? "bg-leadq-silver/10 text-leadq-silver border border-leadq-silver/30"
+                        : "text-leadq-silver hover:bg-white/5 hover:text-white"
                     )}
                   >
                     <div className={cn(
                       "w-10 h-10 rounded-lg flex items-center justify-center",
-                      isActive ? "bg-leadq-amber/20" : "bg-white/10"
+                      isActive ? "bg-leadq-silver/20" : "bg-white/10"
                     )}>
                       <Icon size={20} strokeWidth={2} />
                     </div>
@@ -218,10 +237,10 @@ export function NavBar({ items, className }: NavBarProps) {
 
               {/* Mobile Login & Sign Up */}
               <div className="pt-6 mt-6 border-t border-white/10 space-y-3">
-                <button className="w-full px-4 py-4 text-white hover:text-leadq-amber hover:bg-white/5 rounded-xl transition-colors text-base font-medium">
+                <button className="w-full px-4 py-4 text-white hover:text-leadq-silver hover:bg-white/5 rounded-xl transition-colors text-base font-medium">
                   Login
                 </button>
-                <button className="w-full px-4 py-4 rounded-xl font-semibold bg-gradient-to-r from-black to-amber-600 text-white shadow-[0_0_20px_rgba(217,119,6,0.5)] hover:shadow-[0_0_30px_rgba(217,119,6,0.7)] hover:scale-105 transition-all text-base">
+                <button className="w-full px-4 py-4 rounded-xl font-semibold bg-gradient-to-r from-black to-leadq-silver text-white shadow-[0_0_20px_rgba(192,192,192,0.5)] hover:shadow-[0_0_30px_rgba(192,192,192,0.7)] hover:scale-105 transition-all text-base">
                   Sign Up
                 </button>
               </div>
@@ -292,8 +311,8 @@ export function NavBar({ items, className }: NavBarProps) {
                   onClick={() => handleLinkClick(item.name)}
                   className={cn(
                     "relative cursor-pointer text-sm font-semibold px-4 py-2 rounded-full transition-colors whitespace-nowrap flex items-center gap-2",
-                    "text-gray-300 hover:text-leadq-amber",
-                    isActive && "text-leadq-amber"
+                    "text-leadq-silver hover:text-leadq-silver",
+                    isActive && "text-leadq-silver"
                   )}
                 >
                   <Icon size={18} strokeWidth={2} className="hidden md:block" />
@@ -308,3 +327,4 @@ export function NavBar({ items, className }: NavBarProps) {
     </div>
   )
 }
+

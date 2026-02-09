@@ -117,7 +117,7 @@ export const StardustButton: React.FC<StardustButtonProps> = ({
       >
         <div className="wrap" style={wrapStyle}>
           <p style={pStyle}>
-            <span style={{ color: 'rgba(245, 158, 11, 0.9)' }}>✧</span>
+            <span style={{ color: 'rgba(192, 192, 192, 0.9)' }}>✧</span>
             {children}
             <svg
               width="20"

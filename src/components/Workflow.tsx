@@ -20,7 +20,7 @@ export default function Workflow() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-2xl text-amber-500 font-medium"
+            className="text-2xl text-leadq-silver font-medium"
           >
             From Lead to Closed Deal – Zero Clicks.
           </motion.p>
@@ -40,7 +40,7 @@ export default function Workflow() {
               <div className="glass-strong rounded-2xl p-8 hover:scale-105 transition-transform">
                 <div className="flex justify-center mb-6">
                   <div className="relative">
-                    <div className="w-20 h-20 rounded-full bg-gradient-to-br from-black to-amber-600 flex items-center justify-center">
+                    <div className="w-20 h-20 rounded-full bg-gradient-to-br from-black to-leadq-silver flex items-center justify-center">
                       <Radio className="text-white" size={36} strokeWidth={2} />
                     </div>
                     <motion.div
@@ -53,14 +53,14 @@ export default function Workflow() {
                         repeat: Infinity,
                         ease: 'easeOut',
                       }}
-                      className="absolute inset-0 rounded-full bg-amber-500"
+                      className="absolute inset-0 rounded-full bg-leadq-silver"
                     />
                   </div>
                 </div>
                 <h3 className="text-2xl font-display font-bold mb-4 text-center">
                   The Lead
                 </h3>
-                <p className="text-gray-400 text-center leading-relaxed">
+                <p className="text-leadq-silver text-center leading-relaxed">
                   LeadQ detects a prospect via NFC tap, LinkedIn, or Inbound.
                 </p>
                 <div className="flex justify-center mt-6">
@@ -73,7 +73,7 @@ export default function Workflow() {
                       repeat: Infinity,
                       ease: 'easeInOut',
                     }}
-                    className="w-3 h-3 rounded-full bg-amber-500 shadow-[0_0_10px_rgba(217,119,6,0.8)]"
+                    className="w-3 h-3 rounded-full bg-leadq-silver shadow-[0_0_10px_rgba(192,192,192,0.8)]"
                   />
                 </div>
               </div>
@@ -86,10 +86,10 @@ export default function Workflow() {
                 whileInView={{ scaleX: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="h-full bg-gradient-to-r from-amber-500 to-amber-600 origin-left"
+                className="h-full bg-gradient-to-r from-leadq-silver to-leadq-silver origin-left"
                 style={{
                   backgroundImage:
-                    'repeating-linear-gradient(90deg, #f59e0b 0, #f59e0b 8px, transparent 8px, transparent 16px)',
+                    'repeating-linear-gradient(90deg, #C0C0C0 0, #C0C0C0 8px, transparent 8px, transparent 16px)',
                 }}
               />
               <motion.div
@@ -100,7 +100,7 @@ export default function Workflow() {
                   ease: 'easeInOut',
                   times: [0, 0.5, 1],
                 }}
-                className="absolute top-1/2 -mt-1.5 left-0 w-3 h-3 rounded-full bg-amber-500 shadow-[0_0_10px_rgba(217,119,6,0.8)]"
+                className="absolute top-1/2 -mt-1.5 left-0 w-3 h-3 rounded-full bg-leadq-silver shadow-[0_0_10px_rgba(192,192,192,0.8)]"
               />
             </div>
 
@@ -112,7 +112,7 @@ export default function Workflow() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="relative z-10"
             >
-              <div className="glass-strong rounded-2xl p-8 hover:scale-105 transition-transform bg-gradient-to-br from-amber-500/5 to-amber-600/10 border border-amber-500/20">
+              <div className="glass-strong rounded-2xl p-8 hover:scale-105 transition-transform bg-gradient-to-br from-leadq-silver/5 to-leadq-silver/10 border border-leadq-silver/20">
                 <h3 className="text-2xl font-display font-bold mb-6 text-center">
                   The Swarm
                 </h3>
@@ -127,7 +127,7 @@ export default function Workflow() {
                         repeat: Infinity,
                         ease: 'linear',
                       }}
-                      className="w-16 h-16 rounded-full bg-gradient-to-br from-black to-amber-600 shadow-[0_0_20px_rgba(217,119,6,0.6)] flex items-center justify-center"
+                      className="w-16 h-16 rounded-full bg-gradient-to-br from-black to-leadq-silver shadow-[0_0_20px_rgba(192,192,192,0.6)] flex items-center justify-center"
                     >
                       <div className="w-12 h-12 rounded-full bg-leadq-bg/90 backdrop-blur-sm" />
                     </motion.div>
@@ -135,14 +135,14 @@ export default function Workflow() {
 
                   {/* Orbiting Agents */}
                   {[
-                    { Icon: Search, angle: -90, delay: 0, color: 'amber' },
-                    { Icon: Mail, angle: 30, delay: 0.3, color: 'amber-dark' },
-                    { Icon: Calendar, angle: 150, delay: 0.6, color: 'amber' },
+                    { Icon: Search, angle: -90, delay: 0, color: 'silver' },
+                    { Icon: Mail, angle: 30, delay: 0.3, color: 'silver-alt' },
+                    { Icon: Calendar, angle: 150, delay: 0.6, color: 'silver' },
                   ].map(({ Icon, angle, delay, color }, index) => {
                     const radius = 90;
                     const x = Math.cos((angle * Math.PI) / 180) * radius;
                     const y = Math.sin((angle * Math.PI) / 180) * radius;
-                    const isAmber = color === 'amber';
+                    const isSilver = color === 'silver';
 
                     return (
                       <div key={index}>
@@ -175,7 +175,7 @@ export default function Workflow() {
                               y1="0"
                               x2={x}
                               y2={y}
-                              stroke={isAmber ? 'rgb(245, 158, 11)' : 'rgb(217, 119, 6)'}
+                              stroke={'rgb(192, 192, 192)'}
                               strokeWidth="2"
                               strokeDasharray="4 4"
                               initial={{ pathLength: 0 }}
@@ -201,9 +201,9 @@ export default function Workflow() {
                             animate={{
                               scale: [1, 1.1, 1],
                               boxShadow: [
-                                `0 0 0 0 rgba(${isAmber ? '245, 158, 11' : '217, 119, 6'}, 0.4)`,
-                                `0 0 0 8px rgba(${isAmber ? '245, 158, 11' : '217, 119, 6'}, 0)`,
-                                `0 0 0 0 rgba(${isAmber ? '245, 158, 11' : '217, 119, 6'}, 0)`,
+                                '0 0 0 0 rgba(192, 192, 192, 0.4)',
+                                '0 0 0 8px rgba(192, 192, 192, 0)',
+                                '0 0 0 0 rgba(192, 192, 192, 0)',
                               ],
                             }}
                             transition={{
@@ -211,13 +211,13 @@ export default function Workflow() {
                               repeat: Infinity,
                               delay: delay + 1,
                             }}
-                            className={isAmber
-                              ? "w-12 h-12 rounded-full bg-amber-500/20 backdrop-blur-sm border border-amber-500/40 flex items-center justify-center"
-                              : "w-12 h-12 rounded-full bg-amber-600/20 backdrop-blur-sm border border-amber-600/40 flex items-center justify-center"
+                            className={isSilver
+                              ? "w-12 h-12 rounded-full bg-leadq-silver/20 backdrop-blur-sm border border-leadq-silver/40 flex items-center justify-center"
+                              : "w-12 h-12 rounded-full bg-leadq-silver/15 backdrop-blur-sm border border-leadq-silver/30 flex items-center justify-center"
                             }
                           >
                             <Icon
-                              className={isAmber ? "text-amber-500" : "text-amber-600"}
+                              className={isSilver ? "text-leadq-silver" : "text-leadq-silver/70"}
                               size={20}
                               strokeWidth={2}
                             />
@@ -228,7 +228,7 @@ export default function Workflow() {
                   })}
                 </div>
 
-                <p className="text-gray-400 text-center leading-relaxed">
+                <p className="text-leadq-silver text-center leading-relaxed">
                   AI agents orchestrate research, outreach, and scheduling
                   automatically.
                 </p>
@@ -242,10 +242,10 @@ export default function Workflow() {
                 whileInView={{ scaleX: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.5 }}
-                className="h-full bg-gradient-to-r from-amber-600 to-amber-500 origin-left"
+                className="h-full bg-gradient-to-r from-leadq-silver to-leadq-silver origin-left"
                 style={{
                   backgroundImage:
-                    'repeating-linear-gradient(90deg, #d97706 0, #d97706 8px, transparent 8px, transparent 16px)',
+                    'repeating-linear-gradient(90deg, #C0C0C0 0, #C0C0C0 8px, transparent 8px, transparent 16px)',
                 }}
               />
               <motion.div
@@ -257,7 +257,7 @@ export default function Workflow() {
                   times: [0, 0.5, 1],
                   delay: 0.5,
                 }}
-                className="absolute top-1/2 -mt-1.5 left-0 w-3 h-3 rounded-full bg-amber-600 shadow-[0_0_10px_rgba(217,119,6,0.8)]"
+                className="absolute top-1/2 -mt-1.5 left-0 w-3 h-3 rounded-full bg-leadq-silver shadow-[0_0_10px_rgba(192,192,192,0.8)]"
               />
             </div>
 
@@ -271,14 +271,14 @@ export default function Workflow() {
             >
               <div className="glass-strong rounded-2xl p-8 hover:scale-105 transition-transform">
                 <div className="flex justify-center mb-6">
-                   <motion.div
+                  <motion.div
                     // animate={{ rotate: [0, 360] }}
                     transition={{
                       duration: 3,
                       repeat: Infinity,
                       ease: 'linear',
                     }}
-                    className="w-20 h-20 rounded-full bg-gradient-to-br from-black to-amber-600 flex items-center justify-center shadow-[0_0_20px_rgba(217,119,6,0.6)]"
+                    className="w-20 h-20 rounded-full bg-gradient-to-br from-black to-leadq-silver flex items-center justify-center shadow-[0_0_20px_rgba(192,192,192,0.6)]"
                   >
                     <CheckCircle
                       className="text-white"
@@ -290,7 +290,7 @@ export default function Workflow() {
                 <h3 className="text-2xl font-display font-bold mb-4 text-center">
                   The Result
                 </h3>
-                <p className="text-gray-400 text-center leading-relaxed mb-6">
+                <p className="text-leadq-silver text-center leading-relaxed mb-6">
                   Meeting booked & CRM updated automatically.
                 </p>
 
@@ -301,9 +301,9 @@ export default function Workflow() {
                     whileInView={{ x: 0, opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, delay: 1 }}
-                    className="absolute inset-2 glass rounded-lg flex items-center justify-center border border-amber-500/30"
+                    className="absolute inset-2 glass rounded-lg flex items-center justify-center border border-leadq-silver/30"
                   >
-                    <span className="text-sm font-medium text-amber-500">
+                    <span className="text-sm font-medium text-leadq-silver">
                       Deal Added to Pipeline
                     </span>
                   </motion.div>
@@ -325,7 +325,7 @@ export default function Workflow() {
               <div className="glass-strong rounded-2xl p-6">
                 <div className="flex items-center gap-4 mb-4">
                   <div className="relative flex-shrink-0">
-                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-black to-amber-600 flex items-center justify-center">
+                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-black to-leadq-silver flex items-center justify-center">
                       <Radio className="text-white" size={28} strokeWidth={2} />
                     </div>
                     <motion.div
@@ -338,14 +338,14 @@ export default function Workflow() {
                         repeat: Infinity,
                         ease: 'easeOut',
                       }}
-                      className="absolute inset-0 rounded-full bg-amber-500"
+                      className="absolute inset-0 rounded-full bg-leadq-silver"
                     />
                   </div>
                   <div>
                     <h3 className="text-xl font-display font-bold mb-2">
                       The Lead
                     </h3>
-                    <p className="text-gray-400 text-sm">
+                    <p className="text-leadq-silver text-sm">
                       LeadQ detects a prospect via NFC tap, LinkedIn, or
                       Inbound.
                     </p>
@@ -360,7 +360,7 @@ export default function Workflow() {
                   whileInView={{ scaleY: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6 }}
-                  className="w-0.5 h-12 bg-gradient-to-b from-amber-500 to-amber-600 origin-top"
+                  className="w-0.5 h-12 bg-gradient-to-b from-leadq-silver to-leadq-silver origin-top"
                 />
               </div>
             </motion.div>
@@ -373,28 +373,28 @@ export default function Workflow() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="relative"
             >
-              <div className="glass-strong rounded-2xl p-6 bg-gradient-to-br from-amber-500/5 to-amber-600/10 border border-amber-500/20">
+              <div className="glass-strong rounded-2xl p-6 bg-gradient-to-br from-leadq-silver/5 to-leadq-silver/10 border border-leadq-silver/20">
                 <h3 className="text-xl font-display font-bold mb-4 text-center">
                   The Swarm
                 </h3>
                 <div className="relative w-48 h-48 mx-auto mb-4">
                   {/* Central Hub */}
                   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-black to-amber-600 shadow-[0_0_20px_rgba(217,119,6,0.6)] flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-black to-leadq-silver shadow-[0_0_20px_rgba(192,192,192,0.6)] flex items-center justify-center">
                       <div className="w-8 h-8 rounded-full bg-leadq-bg/90" />
                     </div>
                   </div>
 
                   {/* Agents */}
                   {[
-                    { Icon: Search, angle: -90, color: 'amber' },
-                    { Icon: Mail, angle: 30, color: 'amber-dark' },
-                    { Icon: Calendar, angle: 150, color: 'amber' },
+                    { Icon: Search, angle: -90, color: 'silver' },
+                    { Icon: Mail, angle: 30, color: 'silver-alt' },
+                    { Icon: Calendar, angle: 150, color: 'silver' },
                   ].map(({ Icon, angle, color }, index) => {
                     const radius = 70;
                     const x = Math.cos((angle * Math.PI) / 180) * radius;
                     const y = Math.sin((angle * Math.PI) / 180) * radius;
-                    const isAmber = color === 'amber';
+                    const isSilver = color === 'silver';
 
                     return (
                       <div
@@ -405,13 +405,13 @@ export default function Workflow() {
                         }}
                       >
                         <div
-                          className={isAmber
-                            ? "w-10 h-10 rounded-full bg-amber-500/20 border border-amber-500/40 flex items-center justify-center"
-                            : "w-10 h-10 rounded-full bg-amber-600/20 border border-amber-600/40 flex items-center justify-center"
+                          className={isSilver
+                            ? "w-10 h-10 rounded-full bg-leadq-silver/20 border border-leadq-silver/40 flex items-center justify-center"
+                            : "w-10 h-10 rounded-full bg-leadq-silver/15 border border-leadq-silver/30 flex items-center justify-center"
                           }
                         >
                           <Icon
-                            className={isAmber ? "text-amber-500" : "text-amber-600"}
+                            className={isSilver ? "text-leadq-silver" : "text-leadq-silver/70"}
                             size={18}
                             strokeWidth={2}
                           />
@@ -420,7 +420,7 @@ export default function Workflow() {
                     );
                   })}
                 </div>
-                <p className="text-gray-400 text-center text-sm">
+                <p className="text-leadq-silver text-center text-sm">
                   AI agents orchestrate research, outreach, and scheduling.
                 </p>
               </div>
@@ -432,7 +432,7 @@ export default function Workflow() {
                   whileInView={{ scaleY: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.2 }}
-                  className="w-0.5 h-12 bg-gradient-to-b from-amber-600 to-amber-500 origin-top"
+                  className="w-0.5 h-12 bg-gradient-to-b from-leadq-silver to-leadq-silver origin-top"
                 />
               </div>
             </motion.div>
@@ -448,7 +448,7 @@ export default function Workflow() {
               <div className="glass-strong rounded-2xl p-6">
                 <div className="flex items-center gap-4 mb-4">
                   <div className="flex-shrink-0">
-                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-black to-amber-600 flex items-center justify-center shadow-[0_0_20px_rgba(217,119,6,0.6)]">
+                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-black to-leadq-silver flex items-center justify-center shadow-[0_0_20px_rgba(192,192,192,0.6)]">
                       <CheckCircle
                         className="text-white"
                         size={28}
@@ -460,13 +460,13 @@ export default function Workflow() {
                     <h3 className="text-xl font-display font-bold mb-2">
                       The Result
                     </h3>
-                    <p className="text-gray-400 text-sm">
+                    <p className="text-leadq-silver text-sm">
                       Meeting booked & CRM updated automatically.
                     </p>
                   </div>
                 </div>
                 <div className="mt-4 h-16 rounded-xl bg-white/5 flex items-center justify-center">
-                  <span className="text-sm font-medium text-amber-500">
+                  <span className="text-sm font-medium text-leadq-silver">
                     Deal Added to Pipeline
                   </span>
                 </div>
@@ -478,3 +478,5 @@ export default function Workflow() {
     </section>
   );
 }
+
+

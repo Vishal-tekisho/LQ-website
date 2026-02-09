@@ -48,7 +48,7 @@ const TypingIndicator = () => (
     {[0, 1, 2].map((i) => (
       <motion.div
         key={i}
-        className="w-1.5 h-1.5 bg-cyan-400 rounded-full"
+        className="w-1.5 h-1.5 bg-slate-400 rounded-full"
         animate={{ y: [0, -4, 0] }}
         transition={{
           duration: 0.6,
@@ -64,7 +64,7 @@ const TypingIndicator = () => (
 // Waveform bar component for transcription
 const WaveformBar = ({ index, isActive }: { index: number; isActive: boolean }) => (
   <motion.div
-    className="w-1 bg-gradient-to-t from-cyan-500 to-amber-400 rounded-full"
+    className="w-1 bg-gradient-to-t from-slate-400 to-slate-400 rounded-full"
     animate={isActive ? {
       height: [8, 24 + Math.random() * 16, 12, 32 + Math.random() * 8, 8],
     } : { height: 8 }}
@@ -78,10 +78,10 @@ const WaveformBar = ({ index, isActive }: { index: number; isActive: boolean }) 
 );
 
 // Pulsing connection dot
-const PulsingDot = ({ color = 'cyan' }: { color?: 'cyan' | 'amber' | 'green' }) => {
+const PulsingDot = ({ color = 'cyan' }: { color?: 'cyan' | 'blue' | 'green' }) => {
   const colorClasses = {
-    cyan: 'bg-cyan-400',
-    amber: 'bg-amber-400',
+    cyan: 'bg-slate-400',
+    blue: 'bg-slate-400',
     green: 'bg-green-400'
   };
 
@@ -99,7 +99,7 @@ const StageIndicator = ({ stages, currentStage }: { stages: string[]; currentSta
     {stages.map((_, index) => (
       <motion.div
         key={index}
-        className={`h-1.5 rounded-full transition-all duration-300 ${index <= currentStage ? 'bg-gradient-to-r from-cyan-400 to-amber-400' : 'bg-white/20'
+        className={`h-1.5 rounded-full transition-all duration-300 ${index <= currentStage ? 'bg-gradient-to-r from-slate-400 to-slate-400' : 'bg-white/20'
           }`}
         animate={{ width: index === currentStage ? 24 : 8 }}
         transition={{ duration: 0.3 }}
@@ -131,9 +131,9 @@ export default function BookingsMeeting() {
 
   const transcriptData = [
     { speaker: 'Sarah Chen', text: "Let's discuss the Q4 projections...", color: 'cyan' },
-    { speaker: 'Mark Johnson', text: "I've prepared the revenue forecasts.", color: 'amber' },
+    { speaker: 'Mark Johnson', text: "I've prepared the revenue forecasts.", color: 'blue' },
     { speaker: 'Sarah Chen', text: "Great, can you share the key metrics?", color: 'cyan' },
-    { speaker: 'Mark Johnson', text: "Year-over-year growth is at 34%.", color: 'amber' },
+    { speaker: 'Mark Johnson', text: "Year-over-year growth is at 34%.", color: 'blue' },
   ];
 
   const momData = [
@@ -205,8 +205,8 @@ export default function BookingsMeeting() {
     <section id="bookings-meeting" className="relative z-10 py-16 sm:py-20 md:py-24 px-4 bg-white/[0.02]">
       {/* Background ambient effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-slate-400/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-slate-400/10 rounded-full blur-3xl" />
       </div>
 
       <div className="max-w-7xl mx-auto relative">
@@ -217,21 +217,21 @@ export default function BookingsMeeting() {
           transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500/10 to-amber-500/10 border border-cyan-500/20 mb-6">
-            <Calendar className="w-4 h-4 text-cyan-400" />
-            <span className="text-sm bg-gradient-to-r from-cyan-400 to-amber-400 bg-clip-text text-transparent font-medium">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-slate-400/10 to-slate-400/10 border border-slate-400/20 mb-6">
+            <Calendar className="w-4 h-4 text-slate-400" />
+            <span className="text-sm bg-gradient-to-r from-slate-400 to-slate-400 bg-clip-text text-transparent font-medium">
               Intelligent Meeting Module
             </span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-4">
             Bookings & Meeting{' '}
-            <span className="bg-gradient-to-r from-cyan-400 to-amber-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-leadq-silver to-slate-400 bg-clip-text text-transparent">
               Intelligence
             </span>
           </h2>
 
-          <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-6 sm:mb-8">
+          <p className="text-base sm:text-lg md:text-xl text-slate-400 max-w-3xl mx-auto mb-6 sm:mb-8">
             Seamless scheduling, real-time transcription with speaker diarization, and AI-powered meeting summaries
           </p>
 
@@ -254,25 +254,25 @@ export default function BookingsMeeting() {
                 <div className="w-3 h-3 rounded-full bg-green-500/80" />
               </div>
               <div className="flex-1 flex items-center justify-center">
-                <span className="text-xs text-gray-500 font-mono">LeadQ Meeting Intelligence</span>
+                <span className="text-xs text-slate-500 font-mono">LeadQ Meeting Intelligence</span>
               </div>
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => isPlaying ? null : runAnimation()}
                   disabled={isPlaying}
-                  className={`p-1.5 rounded-lg hover:bg-white/10 transition-colors disabled:opacity-50 ${!isPlaying ? 'animate-pulse-glow-cyan' : ''}`}
+                  className={`p-1.5 rounded-lg hover:bg-white/10 transition-colors disabled:opacity-50 ${!isPlaying ? 'animate-btn-pulse' : ''}`}
                 >
                   {isPlaying ? (
-                    <Pause className="w-4 h-4 text-gray-400" />
+                    <Pause className="w-4 h-4 text-slate-400" />
                   ) : (
-                    <Play className="w-4 h-4 text-cyan-400" />
+                    <Play className="w-4 h-4 text-slate-400" />
                   )}
                 </button>
                 <button
                   onClick={runAnimation}
                   className="p-1.5 rounded-lg hover:bg-white/10 transition-colors"
                 >
-                  <RotateCcw className="w-4 h-4 text-gray-400" />
+                  <RotateCcw className="w-4 h-4 text-slate-400" />
                 </button>
               </div>
             </div>
@@ -294,9 +294,9 @@ export default function BookingsMeeting() {
                       transition={{ duration: 2, repeat: Infinity }}
                       className="mb-4"
                     >
-                      <Calendar className="w-16 h-16 text-cyan-400/50" />
+                      <Calendar className="w-16 h-16 text-slate-400/50" />
                     </motion.div>
-                    <p className="text-gray-500">Initializing Meeting Intelligence...</p>
+                    <p className="text-slate-500">Initializing Meeting Intelligence...</p>
                     <TypingIndicator />
                   </motion.div>
                 )}
@@ -311,12 +311,12 @@ export default function BookingsMeeting() {
                     className="space-y-6"
                   >
                     <div className="flex items-center gap-3 mb-4">
-                      <div className="p-2 rounded-lg bg-cyan-500/20">
-                        <Webhook className="w-5 h-5 text-cyan-400" />
+                      <div className="p-2 rounded-lg bg-slate-400/20">
+                        <Webhook className="w-5 h-5 text-slate-400" />
                       </div>
                       <div className="text-left">
                         <h3 className="text-white font-semibold">Webhook Sync Active</h3>
-                        <p className="text-sm text-gray-400">Receiving booking from Calendly</p>
+                        <p className="text-sm text-slate-400">Receiving booking from Calendly</p>
                       </div>
                       <PulsingDot color="green" />
                     </div>
@@ -325,15 +325,15 @@ export default function BookingsMeeting() {
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.3 }}
-                      className="bg-white/5 rounded-xl p-4 border border-cyan-500/20"
+                      className="bg-white/5 rounded-xl p-4 border border-slate-400/20"
                     >
                       <div className="flex items-center gap-3 mb-3">
-                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center text-white font-bold text-sm">
+                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-slate-400 to-slate-400 flex items-center justify-center text-white font-bold text-sm">
                           SC
                         </div>
                         <div className="text-left flex-1">
                           <p className="text-white font-medium">New Booking Received</p>
-                          <p className="text-sm text-gray-400">Sarah Chen - Product Demo</p>
+                          <p className="text-sm text-slate-400">Sarah Chen - Product Demo</p>
                         </div>
                         <motion.div
                           initial={{ scale: 0 }}
@@ -345,11 +345,11 @@ export default function BookingsMeeting() {
                       </div>
                       <div className="grid grid-cols-2 gap-2 text-sm">
                         <div className="bg-white/5 rounded-lg p-2">
-                          <span className="text-gray-500">Date:</span>
+                          <span className="text-slate-500">Date:</span>
                           <span className="text-white ml-2">Jan 29, 2026</span>
                         </div>
                         <div className="bg-white/5 rounded-lg p-2">
-                          <span className="text-gray-500">Time:</span>
+                          <span className="text-slate-500">Time:</span>
                           <span className="text-white ml-2">2:00 PM EST</span>
                         </div>
                       </div>
@@ -359,7 +359,7 @@ export default function BookingsMeeting() {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ delay: 0.8 }}
-                      className="flex items-center justify-center gap-2 text-sm text-gray-400"
+                      className="flex items-center justify-center gap-2 text-sm text-slate-400"
                     >
                       <Calendar className="w-4 h-4" />
                       <span>Automatically synced with your calendar</span>
@@ -377,12 +377,12 @@ export default function BookingsMeeting() {
                     className="space-y-6"
                   >
                     <div className="flex items-center gap-3 mb-4">
-                      <div className="p-2 rounded-lg bg-amber-500/20">
-                        <UserPlus className="w-5 h-5 text-amber-400" />
+                      <div className="p-2 rounded-lg bg-slate-400/20">
+                        <UserPlus className="w-5 h-5 text-slate-400" />
                       </div>
                       <div className="text-left">
                         <h3 className="text-white font-semibold">Offline Meeting Logged</h3>
-                        <p className="text-sm text-gray-400">Manual entry for networking event</p>
+                        <p className="text-sm text-slate-400">Manual entry for networking event</p>
                       </div>
                     </div>
 
@@ -390,7 +390,7 @@ export default function BookingsMeeting() {
                       initial={{ opacity: 0, scale: 0.95 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ delay: 0.2 }}
-                      className="bg-white/5 rounded-xl p-4 border border-amber-500/20"
+                      className="bg-white/5 rounded-xl p-4 border border-slate-400/20"
                     >
                       <div className="space-y-3">
                         <motion.div
@@ -399,7 +399,7 @@ export default function BookingsMeeting() {
                           transition={{ delay: 0.3 }}
                           className="flex items-center gap-3"
                         >
-                          <User className="w-4 h-4 text-gray-400" />
+                          <User className="w-4 h-4 text-slate-400" />
                           <input
                             type="text"
                             value="Alex Rivera"
@@ -413,7 +413,7 @@ export default function BookingsMeeting() {
                           transition={{ delay: 0.5 }}
                           className="flex items-center gap-3"
                         >
-                          <Building2 className="w-4 h-4 text-gray-400" />
+                          <Building2 className="w-4 h-4 text-slate-400" />
                           <input
                             type="text"
                             value="InnovateLabs Inc."
@@ -427,7 +427,7 @@ export default function BookingsMeeting() {
                           transition={{ delay: 0.7 }}
                           className="flex items-center gap-3"
                         >
-                          <Calendar className="w-4 h-4 text-gray-400" />
+                          <Calendar className="w-4 h-4 text-slate-400" />
                           <input
                             type="text"
                             value="Tech Conference 2026"
@@ -442,7 +442,7 @@ export default function BookingsMeeting() {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.9 }}
-                      className="px-6 py-2 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white font-medium flex items-center gap-2 mx-auto"
+                      className="px-6 py-2 rounded-lg bg-gradient-to-r from-slate-400 to-indigo-500 text-white font-medium flex items-center gap-2 mx-auto"
                     >
                       <CheckCircle2 className="w-4 h-4" />
                       Meeting Saved
@@ -460,12 +460,12 @@ export default function BookingsMeeting() {
                     className="space-y-6"
                   >
                     <div className="flex items-center gap-3 mb-4">
-                      <div className="p-2 rounded-lg bg-purple-500/20">
-                        <Link2 className="w-5 h-5 text-purple-400" />
+                      <div className="p-2 rounded-lg bg-slate-400/20">
+                        <Link2 className="w-5 h-5 text-slate-400" />
                       </div>
                       <div className="text-left">
                         <h3 className="text-white font-semibold">Smart Context Linking</h3>
-                        <p className="text-sm text-gray-400">Connecting to Contact & Company profiles</p>
+                        <p className="text-sm text-slate-400">Connecting to Contact & Company profiles</p>
                       </div>
                     </div>
 
@@ -478,11 +478,11 @@ export default function BookingsMeeting() {
                           transition={{ delay: 0.2 }}
                           className="flex flex-col items-center"
                         >
-                          <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center mb-2">
+                          <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-slate-400 to-slate-400 flex items-center justify-center mb-2">
                             <User className="w-8 h-8 text-white" />
                           </div>
                           <span className="text-sm text-white">Sarah Chen</span>
-                          <span className="text-xs text-gray-400">Contact</span>
+                          <span className="text-xs text-slate-400">Contact</span>
                         </motion.div>
 
                         {/* Animated connection lines */}
@@ -525,7 +525,7 @@ export default function BookingsMeeting() {
                           transition={{ delay: 0.6, type: "spring" }}
                           className="flex flex-col items-center relative z-10"
                         >
-                          <div className="w-20 h-20 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center mb-2 shadow-lg shadow-purple-500/30">
+                          <div className="w-20 h-20 rounded-full bg-gradient-to-br from-slate-400 to-pink-500 flex items-center justify-center mb-2 shadow-lg shadow-slate-400/30">
                             <Calendar className="w-10 h-10 text-white" />
                           </div>
                           <span className="text-sm text-white font-medium">Meeting</span>
@@ -537,11 +537,11 @@ export default function BookingsMeeting() {
                           transition={{ delay: 0.2 }}
                           className="flex flex-col items-center"
                         >
-                          <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center mb-2">
+                          <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-slate-400 to-indigo-500 flex items-center justify-center mb-2">
                             <Building2 className="w-8 h-8 text-white" />
                           </div>
                           <span className="text-sm text-white">TechCorp</span>
-                          <span className="text-xs text-gray-400">Company</span>
+                          <span className="text-xs text-slate-400">Company</span>
                         </motion.div>
                       </div>
                     </div>
@@ -550,11 +550,11 @@ export default function BookingsMeeting() {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ delay: 1.2 }}
-                      className="bg-white/5 rounded-lg p-3 border border-purple-500/20"
+                      className="bg-white/5 rounded-lg p-3 border border-slate-400/20"
                     >
                       <div className="flex items-center gap-2 text-sm">
                         <CheckCircle2 className="w-4 h-4 text-green-400" />
-                        <span className="text-gray-300">Historical context loaded: 5 previous meetings, 12 emails</span>
+                        <span className="text-slate-300">Historical context loaded: 5 previous meetings, 12 emails</span>
                       </div>
                     </motion.div>
                   </motion.div>
@@ -576,7 +576,7 @@ export default function BookingsMeeting() {
                         </div>
                         <div className="text-left">
                           <h3 className="text-white font-semibold">Live Transcription</h3>
-                          <p className="text-sm text-gray-400">Real-time speaker diarization</p>
+                          <p className="text-sm text-slate-400">Real-time speaker diarization</p>
                         </div>
                       </div>
                       <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-red-500/20 border border-red-500/30">
@@ -609,23 +609,23 @@ export default function BookingsMeeting() {
                           }}
                           className="flex items-start gap-3"
                         >
-                          <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold text-white ${line.color === 'cyan' ? 'bg-cyan-500' : 'bg-amber-500'
+                          <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold text-white ${line.color === 'cyan' ? 'bg-slate-400' : 'bg-slate-400'
                             }`}>
                             {line.speaker.split(' ').map(n => n[0]).join('')}
                           </div>
                           <div className="flex-1 text-left">
-                            <p className={`text-sm font-medium ${line.color === 'cyan' ? 'text-cyan-400' : 'text-amber-400'
+                            <p className={`text-sm font-medium ${line.color === 'cyan' ? 'text-slate-400' : 'text-slate-400'
                               }`}>
                               {line.speaker}
                             </p>
-                            <p className="text-gray-300">{line.text}</p>
+                            <p className="text-slate-300">{line.text}</p>
                           </div>
                         </motion.div>
                       ))}
                       {transcriptLines.length < transcriptData.length && (
                         <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center">
-                            <Mic className="w-4 h-4 text-gray-400" />
+                          <div className="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center">
+                            <Mic className="w-4 h-4 text-slate-400" />
                           </div>
                           <TypingIndicator />
                         </div>
@@ -649,7 +649,7 @@ export default function BookingsMeeting() {
                       </div>
                       <div className="text-left">
                         <h3 className="text-white font-semibold">Proof of Interaction</h3>
-                        <p className="text-sm text-gray-400">Capture meeting evidence & notes</p>
+                        <p className="text-sm text-slate-400">Capture meeting evidence & notes</p>
                       </div>
                     </div>
 
@@ -673,8 +673,8 @@ export default function BookingsMeeting() {
                             transition={{ delay: item.delay + 0.3 }}
                             className="absolute inset-0 flex flex-col items-center justify-center"
                           >
-                            <item.icon className="w-8 h-8 text-gray-400 mb-2" />
-                            <span className="text-xs text-gray-500">{item.label}</span>
+                            <item.icon className="w-8 h-8 text-slate-400 mb-2" />
+                            <span className="text-xs text-slate-500">{item.label}</span>
                           </motion.div>
                           {index === 0 && (
                             <motion.div
@@ -699,14 +699,14 @@ export default function BookingsMeeting() {
                     >
                       <div className="flex items-center justify-between mb-2">
                         <div className="flex items-center gap-2">
-                          <Upload className="w-4 h-4 text-cyan-400" />
-                          <span className="text-sm text-gray-300">Uploading evidence...</span>
+                          <Upload className="w-4 h-4 text-slate-400" />
+                          <span className="text-sm text-slate-300">Uploading evidence...</span>
                         </div>
-                        <span className="text-sm text-cyan-400 font-mono">{uploadProgress}%</span>
+                        <span className="text-sm text-slate-400 font-mono">{uploadProgress}%</span>
                       </div>
                       <div className="h-2 bg-white/10 rounded-full overflow-hidden">
                         <motion.div
-                          className="h-full bg-gradient-to-r from-cyan-400 to-amber-400 rounded-full"
+                          className="h-full bg-gradient-to-r from-slate-400 to-slate-400 rounded-full"
                           initial={{ width: 0 }}
                           animate={{ width: `${uploadProgress}%` }}
                           transition={{ duration: 0.3 }}
@@ -726,18 +726,18 @@ export default function BookingsMeeting() {
                     className="space-y-6"
                   >
                     <div className="flex items-center gap-3 mb-4">
-                      <div className="p-2 rounded-lg bg-amber-500/20">
-                        <Sparkles className="w-5 h-5 text-amber-400" />
+                      <div className="p-2 rounded-lg bg-slate-400/20">
+                        <Sparkles className="w-5 h-5 text-slate-400" />
                       </div>
                       <div className="text-left">
                         <h3 className="text-white font-semibold">AI Post-Processing</h3>
-                        <p className="text-sm text-gray-400">Generating Minutes of Meeting</p>
+                        <p className="text-sm text-slate-400">Generating Minutes of Meeting</p>
                       </div>
                       <motion.div
                         animate={{ rotate: 360 }}
                         transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
                       >
-                        <Sparkles className="w-4 h-4 text-amber-400" />
+                        <Sparkles className="w-4 h-4 text-slate-400" />
                       </motion.div>
                     </div>
 
@@ -745,10 +745,10 @@ export default function BookingsMeeting() {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ delay: 0.2 }}
-                      className="bg-white/5 rounded-xl p-4 border border-amber-500/20 text-left"
+                      className="bg-white/5 rounded-xl p-4 border border-slate-400/20 text-left"
                     >
                       <div className="flex items-center gap-2 mb-4 pb-2 border-b border-white/10">
-                        <FileText className="w-5 h-5 text-amber-400" />
+                        <FileText className="w-5 h-5 text-slate-400" />
                         <span className="text-white font-medium">Minutes of Meeting</span>
                       </div>
                       <div className="space-y-2 font-mono text-sm">
@@ -757,7 +757,7 @@ export default function BookingsMeeting() {
                             key={index}
                             initial={{ opacity: 0, x: -10 }}
                             animate={{ opacity: 1, x: 0 }}
-                            className="text-gray-300"
+                            className="text-slate-300"
                           >
                             {section}
                           </motion.p>
@@ -765,7 +765,7 @@ export default function BookingsMeeting() {
                         {momSections.length < momData.length && (
                           <div className="flex items-center gap-2">
                             <TypingIndicator />
-                            <span className="text-gray-500 text-xs">Generating...</span>
+                            <span className="text-slate-500 text-xs">Generating...</span>
                           </div>
                         )}
                       </div>
@@ -777,11 +777,11 @@ export default function BookingsMeeting() {
                         animate={{ opacity: 1, y: 0 }}
                         className="flex items-center justify-center gap-4"
                       >
-                        <button className="px-4 py-2 rounded-lg bg-amber-500/20 border border-amber-500/30 text-amber-400 text-sm flex items-center gap-2 hover:bg-amber-500/30 transition-colors">
+                        <button className="px-4 py-2 rounded-lg bg-slate-400/20 border border-slate-400/30 text-slate-400 text-sm flex items-center gap-2 hover:bg-slate-400/30 transition-colors">
                           <FileText className="w-4 h-4" />
                           Export PDF
                         </button>
-                        <button className="px-4 py-2 rounded-lg bg-cyan-500/20 border border-cyan-500/30 text-cyan-400 text-sm flex items-center gap-2 hover:bg-cyan-500/30 transition-colors">
+                        <button className="px-4 py-2 rounded-lg bg-slate-400/20 border border-slate-400/30 text-slate-400 text-sm flex items-center gap-2 hover:bg-slate-400/30 transition-colors">
                           <CheckCircle2 className="w-4 h-4" />
                           Approve & Save
                         </button>
@@ -801,12 +801,12 @@ export default function BookingsMeeting() {
                   >
                     <div className="flex items-center justify-between mb-4">
                       <div className="flex items-center gap-3">
-                        <div className="p-2 rounded-lg bg-blue-500/20">
-                          <Calendar className="w-5 h-5 text-blue-400" />
+                        <div className="p-2 rounded-lg bg-slate-400/20">
+                          <Calendar className="w-5 h-5 text-slate-400" />
                         </div>
                         <div className="text-left">
                           <h3 className="text-white font-semibold">Dynamic Dashboard</h3>
-                          <p className="text-sm text-gray-400">Smart meeting organization</p>
+                          <p className="text-sm text-slate-400">Smart meeting organization</p>
                         </div>
                       </div>
                     </div>
@@ -816,8 +816,8 @@ export default function BookingsMeeting() {
                       <button
                         onClick={() => setDashboardView('upcoming')}
                         className={`flex-1 px-4 py-2 rounded-md text-sm font-medium transition-all ${dashboardView === 'upcoming'
-                          ? 'bg-cyan-500 text-white'
-                          : 'text-gray-400 hover:text-white'
+                          ? 'bg-slate-400 text-white'
+                          : 'text-slate-400 hover:text-white'
                           }`}
                       >
                         <Clock className="w-4 h-4 inline mr-2" />
@@ -827,7 +827,7 @@ export default function BookingsMeeting() {
                         onClick={() => setDashboardView('completed')}
                         className={`flex-1 px-4 py-2 rounded-md text-sm font-medium transition-all ${dashboardView === 'completed'
                           ? 'bg-green-500 text-white'
-                          : 'text-gray-400 hover:text-white'
+                          : 'text-slate-400 hover:text-white'
                           }`}
                       >
                         <CheckCircle2 className="w-4 h-4 inline mr-2" />
@@ -858,19 +858,19 @@ export default function BookingsMeeting() {
                             >
                               <div className="flex items-center gap-3">
                                 <div className={`w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm ${meeting.status === 'upcoming'
-                                  ? 'bg-gradient-to-br from-cyan-400 to-blue-500'
+                                  ? 'bg-gradient-to-br from-slate-400 to-slate-400'
                                   : 'bg-gradient-to-br from-green-400 to-emerald-500'
                                   }`}>
                                   {meeting.avatar}
                                 </div>
                                 <div className="flex-1 text-left">
                                   <p className="text-white font-medium">{meeting.title}</p>
-                                  <p className="text-sm text-gray-400">
+                                  <p className="text-sm text-slate-400">
                                     {meeting.contact} • {meeting.company}
                                   </p>
                                 </div>
                                 <div className="text-right">
-                                  <p className="text-sm text-gray-400">{meeting.time}</p>
+                                  <p className="text-sm text-slate-400">{meeting.time}</p>
                                   <div className="flex items-center gap-1 justify-end mt-1">
                                     {meeting.status === 'completed' && (
                                       <span className="text-xs text-green-400 flex items-center gap-1">
@@ -880,7 +880,7 @@ export default function BookingsMeeting() {
                                     )}
                                   </div>
                                 </div>
-                                <ChevronRight className="w-5 h-5 text-gray-500" />
+                                <ChevronRight className="w-5 h-5 text-slate-500" />
                               </div>
                             </motion.div>
                           ))}
@@ -904,7 +904,7 @@ export default function BookingsMeeting() {
               { icon: Webhook, label: 'Webhook Sync', color: 'cyan' },
               { icon: Radio, label: 'Live Transcription', color: 'red' },
               { icon: Camera, label: 'Proof Capture', color: 'green' },
-              { icon: Sparkles, label: 'AI Summaries', color: 'amber' },
+              { icon: Sparkles, label: 'AI Summaries', color: 'blue' },
             ].map((feature, index) => (
               <motion.div
                 key={index}
@@ -912,7 +912,7 @@ export default function BookingsMeeting() {
                 className={`p-4 rounded-xl bg-white/5 border border-white/10 hover:border-${feature.color}-500/30 transition-all cursor-pointer`}
               >
                 <feature.icon className={`w-6 h-6 text-${feature.color}-400 mx-auto mb-2`} />
-                <p className="text-sm text-gray-400">{feature.label}</p>
+                <p className="text-sm text-slate-400">{feature.label}</p>
               </motion.div>
             ))}
           </motion.div>

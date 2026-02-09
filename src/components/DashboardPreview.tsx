@@ -25,10 +25,10 @@ export default function DashboardPreview() {
   ];
 
   const leadsList = [
-    { company: 'Acme Corp', stage: 'Proposal', amount: '$45,000', color: 'amber' },
-    { company: 'TechStart Inc', stage: 'Negotiation', amount: '$78,500', color: 'amber' },
-    { company: 'GlobalTech', stage: 'Discovery', amount: '$32,000', color: 'amber' },
-    { company: 'DataFlow Systems', stage: 'Closed Won', amount: '$125,000', color: 'amber' },
+    { company: 'Acme Corp', stage: 'Proposal', amount: '$45,000', color: 'blue' },
+    { company: 'TechStart Inc', stage: 'Negotiation', amount: '$78,500', color: 'blue' },
+    { company: 'GlobalTech', stage: 'Discovery', amount: '$32,000', color: 'blue' },
+    { company: 'DataFlow Systems', stage: 'Closed Won', amount: '$125,000', color: 'blue' },
   ];
 
   // Deals View Data
@@ -48,10 +48,10 @@ export default function DashboardPreview() {
   ];
 
   const dealsList = [
-    { company: 'Enterprise Solutions', stage: 'Contract Sent', amount: '$245,000', color: 'amber' },
-    { company: 'Quantum Labs', stage: 'Demo Scheduled', amount: '$89,000', color: 'amber' },
-    { company: 'NextGen Systems', stage: 'Closed Won', amount: '$156,000', color: 'amber' },
-    { company: 'CloudFirst Inc', stage: 'Proposal Review', amount: '$67,500', color: 'amber' },
+    { company: 'Enterprise Solutions', stage: 'Contract Sent', amount: '$245,000', color: 'blue' },
+    { company: 'Quantum Labs', stage: 'Demo Scheduled', amount: '$89,000', color: 'blue' },
+    { company: 'NextGen Systems', stage: 'Closed Won', amount: '$156,000', color: 'blue' },
+    { company: 'CloudFirst Inc', stage: 'Proposal Review', amount: '$67,500', color: 'blue' },
   ];
 
   // Agents View Data
@@ -149,7 +149,7 @@ export default function DashboardPreview() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.1 }}
-        className="text-base sm:text-lg md:text-xl text-gray-300"
+        className="text-base sm:text-lg md:text-xl text-leadq-silver"
       >
         Watch your pipeline fill up in real-time.
       </motion.p>
@@ -187,8 +187,8 @@ export default function DashboardPreview() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.4, delay: index * 0.1 }}
                         className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all cursor-pointer ${isActive
-                          ? 'bg-gradient-to-r from-leadq-amber/20 to-leadq-amber-dark/20 border border-leadq-amber/30 text-white'
-                          : 'text-gray-400 hover:bg-white/5 hover:text-gray-300'
+                          ? 'bg-gradient-to-r from-leadq-silver/20 to-leadq-silver/20 border border-leadq-silver/30 text-white'
+                          : 'text-leadq-silver hover:bg-white/5 hover:text-leadq-silver'
                           }`}
                       >
                         <Icon size={18} strokeWidth={2} />
@@ -214,11 +214,11 @@ export default function DashboardPreview() {
                       <div className="flex items-center gap-2">
                         {(() => {
                           const ViewIcon = getViewConfig().icon;
-                          return <ViewIcon className="text-leadq-amber" size={24} strokeWidth={2} />;
+                          return <ViewIcon className="text-leadq-silver" size={24} strokeWidth={2} />;
                         })()}
                         <h3 className="text-xl font-display font-bold text-white">{getViewConfig().title}</h3>
                       </div>
-                      <div className="flex items-center gap-2 glass px-3 py-2 rounded-lg border border-leadq-amber/30">
+                      <div className="flex items-center gap-2 glass px-3 py-2 rounded-lg border border-leadq-silver/30">
                         <motion.div
                           animate={{
                             scale: [1, 1.3, 1],
@@ -229,7 +229,7 @@ export default function DashboardPreview() {
                             repeat: Infinity,
                             ease: 'easeInOut',
                           }}
-                          className="w-2 h-2 rounded-full bg-leadq-amber glow-amber"
+                          className="w-2 h-2 rounded-full bg-leadq-silver glow-blue"
                         />
                         <span className="text-sm font-medium text-white">AI Agent Active</span>
                       </div>
@@ -248,14 +248,14 @@ export default function DashboardPreview() {
                             className="glass rounded-xl p-4 border border-white/10"
                           >
                             <div className="flex items-start justify-between mb-2">
-                              <Icon className="text-leadq-amber" size={20} strokeWidth={2} />
+                              <Icon className="text-leadq-silver" size={20} strokeWidth={2} />
                               <span className={`text-xs font-medium ${stat.trend.startsWith('+') ? 'text-green-400' : 'text-orange-400'
                                 }`}>
                                 {stat.trend}
                               </span>
                             </div>
                             <div className="text-3xl font-bold text-white mb-1">{stat.value}</div>
-                            <div className="text-sm text-gray-400">{stat.label}</div>
+                            <div className="text-sm text-leadq-silver">{stat.label}</div>
                           </motion.div>
                         );
                       })}
@@ -285,9 +285,9 @@ export default function DashboardPreview() {
                             preserveAspectRatio="xMidYMid slice"
                           >
                             <defs>
-                              <linearGradient id="amberArea" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="0%" stopColor="#f59e0b" stopOpacity="0.25" />
-                                <stop offset="100%" stopColor="#d97706" stopOpacity="0.05" />
+                              <linearGradient id="blueArea" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stopColor="#C0C0C0" stopOpacity="0.25" />
+                                <stop offset="100%" stopColor="#9CA3AF" stopOpacity="0.05" />
                               </linearGradient>
                             </defs>
 
@@ -307,8 +307,8 @@ export default function DashboardPreview() {
                               );
                             })}
 
-                            <path d={areaPath} fill="url(#amberArea)" />
-                            <path d={linePath} fill="none" stroke="currentColor" strokeWidth={2.5} className="text-leadq-amber" />
+                            <path d={areaPath} fill="url(#blueArea)" />
+                            <path d={linePath} fill="none" stroke="currentColor" strokeWidth={2.5} className="text-leadq-silver" />
                             {points.map((p, idx) => (
                               <circle
                                 key={idx}
@@ -318,7 +318,7 @@ export default function DashboardPreview() {
                                 fill="#ffffff"
                                 stroke="currentColor"
                                 strokeWidth={1.5}
-                                className="text-leadq-amber"
+                                className="text-leadq-silver"
                               />
                             ))}
                           </svg>
@@ -334,11 +334,11 @@ export default function DashboardPreview() {
                                     initial={{ height: 0 }}
                                     animate={{ height: `${heightPercent}%` }}
                                     transition={{ duration: 0.8, delay: index * 0.1, ease: 'easeOut' }}
-                                    className={`w-full rounded-t-lg relative overflow-hidden glow-amber`}
+                                    className={`w-full rounded-t-lg relative overflow-hidden glow-blue`}
                                     style={{
                                       background: isEven
-                                        ? 'linear-gradient(to top, #d97706, #f59e0b)'
-                                        : 'linear-gradient(to top, #f59e0b, #fbbf24)',
+                                        ? 'linear-gradient(to top, #6B7280, #9CA3AF)'
+                                        : 'linear-gradient(to top, #9CA3AF, #C0C0C0)',
                                     }}
                                   >
                                     <motion.div
@@ -352,7 +352,7 @@ export default function DashboardPreview() {
                                       className="absolute inset-0 bg-gradient-to-t from-transparent to-white/30"
                                     />
                                   </motion.div>
-                                  <span className="text-xs text-gray-400 font-medium">{item.month}</span>
+                                  <span className="text-xs text-leadq-silver font-medium">{item.month}</span>
                                 </div>
                               );
                             })}
@@ -381,7 +381,7 @@ export default function DashboardPreview() {
                             >
                               <div className="flex items-center justify-between mb-3">
                                 <div className="flex items-center gap-2">
-                                  <Bot className="text-leadq-amber" size={18} />
+                                  <Bot className="text-leadq-silver" size={18} />
                                   <span className="text-white font-medium">{agent.name}</span>
                                 </div>
                                 <span className={`text-xs px-2 py-1 rounded-full ${agent.status === 'Active'
@@ -392,8 +392,8 @@ export default function DashboardPreview() {
                                 </span>
                               </div>
                               <div className="flex items-center justify-between text-sm">
-                                <span className="text-gray-400">{agent.tasks}</span>
-                                <span className="text-leadq-amber font-medium">{agent.efficiency} efficiency</span>
+                                <span className="text-leadq-silver">{agent.tasks}</span>
+                                <span className="text-leadq-silver font-medium">{agent.efficiency} efficiency</span>
                               </div>
                             </motion.div>
                           ))}
@@ -424,10 +424,10 @@ export default function DashboardPreview() {
                             className="flex items-center justify-between p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-all border border-white/5 hover:border-white/10"
                           >
                             <div className="flex items-center gap-4 flex-1">
-                              <div className="w-1.5 h-12 rounded-full bg-gradient-to-b from-leadq-amber to-leadq-amber-dark/50 glow-amber" />
+                              <div className="w-1.5 h-12 rounded-full bg-gradient-to-b from-leadq-silver to-leadq-silver/50 glow-blue" />
                               <div className="flex-1">
                                 <div className="text-white font-medium mb-1">{deal.company}</div>
-                                <div className="text-sm text-gray-400">{deal.stage}</div>
+                                <div className="text-sm text-leadq-silver">{deal.stage}</div>
                               </div>
                             </div>
                             <div className="text-right">
@@ -448,7 +448,7 @@ export default function DashboardPreview() {
                               <div className="w-1.5 h-12 rounded-full bg-gradient-to-b from-green-400 to-green-600/50" />
                               <div className="flex-1">
                                 <div className="text-white font-medium mb-1">{deal.company}</div>
-                                <div className="text-sm text-gray-400">{deal.stage}</div>
+                                <div className="text-sm text-leadq-silver">{deal.stage}</div>
                               </div>
                             </div>
                             <div className="text-right">
@@ -471,16 +471,16 @@ export default function DashboardPreview() {
                             className="flex items-center justify-between p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-all border border-white/5 hover:border-white/10"
                           >
                             <div className="flex items-center gap-4 flex-1">
-                              <div className="w-8 h-8 rounded-full bg-leadq-amber/20 flex items-center justify-center">
-                                <CheckCircle className="text-leadq-amber" size={16} />
+                              <div className="w-8 h-8 rounded-full bg-leadq-silver/20 flex items-center justify-center">
+                                <CheckCircle className="text-leadq-silver" size={16} />
                               </div>
                               <div className="flex-1">
                                 <div className="text-white font-medium mb-1">{task.task}</div>
-                                <div className="text-sm text-gray-400">{task.agent}</div>
+                                <div className="text-sm text-leadq-silver">{task.agent}</div>
                               </div>
                             </div>
                             <div className="text-right">
-                              <div className="text-gray-400 text-sm">{task.time}</div>
+                              <div className="text-leadq-silver text-sm">{task.time}</div>
                             </div>
                           </motion.div>
                         ))}
@@ -494,12 +494,12 @@ export default function DashboardPreview() {
                             className="flex items-center justify-between p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-all border border-white/5 hover:border-white/10"
                           >
                             <div className="flex items-center gap-4 flex-1">
-                              <div className="w-8 h-8 rounded-full bg-leadq-amber/20 flex items-center justify-center">
-                                <ArrowUpRight className="text-leadq-amber" size={16} />
+                              <div className="w-8 h-8 rounded-full bg-leadq-silver/20 flex items-center justify-center">
+                                <ArrowUpRight className="text-leadq-silver" size={16} />
                               </div>
                               <div className="flex-1">
                                 <div className="text-white font-medium mb-1">{source.source}</div>
-                                <div className="text-sm text-gray-400">{source.leads} leads</div>
+                                <div className="text-sm text-leadq-silver">{source.leads} leads</div>
                               </div>
                             </div>
                             <div className="text-right">
@@ -520,3 +520,4 @@ export default function DashboardPreview() {
     </section>
   );
 }
+

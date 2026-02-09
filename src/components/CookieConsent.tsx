@@ -72,19 +72,19 @@ const CookieConsent = () => {
                   {/* Icon & Content */}
                   <div className="flex-1 flex items-start gap-4">
                     <div className="flex-shrink-0">
-                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-leadq-amber/20 to-leadq-cyan/20 flex items-center justify-center">
-                        <Cookie className="text-leadq-amber" size={24} />
+                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-leadq-silver/20 to-leadq-silver/20 flex items-center justify-center">
+                        <Cookie className="text-leadq-silver" size={24} />
                       </div>
                     </div>
-                    
+
                     <div className="flex-1">
                       <h3 className="text-lg md:text-xl font-display font-bold mb-2">
                         We Value Your Privacy
                       </h3>
-                      <p className="text-sm md:text-base text-gray-300 leading-relaxed">
-                        We use cookies to enhance your browsing experience, analyze site traffic, and personalize content. 
+                      <p className="text-sm md:text-base text-leadq-silver leading-relaxed">
+                        We use cookies to enhance your browsing experience, analyze site traffic, and personalize content.
                         By clicking "Accept All", you consent to our use of cookies. Read our{' '}
-                        <a href="/privacy-policy" className="text-leadq-amber hover:text-leadq-cyan transition-colors underline">
+                        <a href="/privacy-policy" className="text-leadq-silver hover:text-leadq-silver transition-colors underline">
                           Privacy Policy
                         </a>
                         {' '}to learn more.
@@ -101,18 +101,18 @@ const CookieConsent = () => {
                       <Settings size={18} />
                       <span>Preferences</span>
                     </button>
-                    
+
                     <button
                       onClick={handleDecline}
-                      className="glass px-6 py-3 rounded-xl border border-white/10 hover:glass-strong transition-all flex items-center justify-center gap-2 text-sm font-medium text-gray-300 hover:text-white"
+                      className="glass px-6 py-3 rounded-xl border border-white/10 hover:glass-strong transition-all flex items-center justify-center gap-2 text-sm font-medium text-leadq-silver hover:text-white"
                     >
                       <X size={18} />
                       <span>Decline</span>
                     </button>
-                    
+
                     <button
                       onClick={handleAcceptAll}
-                      className="bg-gradient-to-r from-leadq-amber to-leadq-cyan px-6 py-3 rounded-xl font-semibold text-white shadow-glow hover:shadow-glow-strong transition-all flex items-center justify-center gap-2 text-sm"
+                      className="bg-gradient-to-r from-leadq-silver to-leadq-silver px-6 py-3 rounded-xl font-semibold text-white shadow-glow hover:shadow-glow-strong transition-all flex items-center justify-center gap-2 text-sm"
                     >
                       <CheckCircle size={18} />
                       <span>Accept All</span>
@@ -194,7 +194,7 @@ const PreferencesModal = ({ onSave, onClose }: PreferencesModalProps) => {
         </button>
       </div>
 
-      <p className="text-gray-300 mb-6">
+      <p className="text-leadq-silver mb-6">
         Customize your cookie preferences below. You can change these settings at any time.
       </p>
 
@@ -204,9 +204,9 @@ const PreferencesModal = ({ onSave, onClose }: PreferencesModalProps) => {
             <div className="flex items-start justify-between gap-4">
               <div className="flex-1">
                 <h4 className="font-semibold mb-1">{cookie.title}</h4>
-                <p className="text-sm text-gray-400">{cookie.description}</p>
+                <p className="text-sm text-leadq-silver">{cookie.description}</p>
               </div>
-              
+
               <label className="relative inline-flex items-center cursor-pointer">
                 <input
                   type="checkbox"
@@ -215,7 +215,7 @@ const PreferencesModal = ({ onSave, onClose }: PreferencesModalProps) => {
                   disabled={cookie.locked}
                   className="sr-only peer"
                 />
-                <div className={`w-11 h-6 bg-gray-700 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-leadq-amber/50 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-gradient-to-r peer-checked:from-leadq-amber peer-checked:to-leadq-cyan ${cookie.locked ? 'opacity-50 cursor-not-allowed' : ''}`}></div>
+                <div className={`w-11 h-6 bg-leadq-silver/30 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-leadq-silver/50 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-gradient-to-r peer-checked:from-leadq-silver peer-checked:to-leadq-silver ${cookie.locked ? 'opacity-50 cursor-not-allowed' : ''}`}></div>
               </label>
             </div>
           </div>
@@ -231,7 +231,7 @@ const PreferencesModal = ({ onSave, onClose }: PreferencesModalProps) => {
         </button>
         <button
           onClick={() => onSave({ analytics, marketing })}
-          className="flex-1 bg-gradient-to-r from-leadq-amber to-leadq-cyan px-6 py-3 rounded-xl font-semibold text-white shadow-glow hover:shadow-glow-strong transition-all"
+          className="flex-1 bg-gradient-to-r from-leadq-silver to-leadq-silver px-6 py-3 rounded-xl font-semibold text-white shadow-glow hover:shadow-glow-strong transition-all"
         >
           Save Preferences
         </button>
@@ -241,3 +241,4 @@ const PreferencesModal = ({ onSave, onClose }: PreferencesModalProps) => {
 };
 
 export default CookieConsent;
+

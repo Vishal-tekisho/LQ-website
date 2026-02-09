@@ -66,14 +66,14 @@ const Features = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-medium bg-leadq-amber/10 text-leadq-amber border border-leadq-amber/20 mb-4"
+            className="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-medium bg-slate-400/10 text-slate-400 border border-slate-400/20 mb-4"
           >
             The Only CRM That Handshakes Back.
           </motion.span>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-4">
             Why Choose{' '}
-            <span className="bg-gradient-to-r from-leadq-amber via-yellow-400 to-leadq-amber bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-leadq-silver to-slate-400 bg-clip-text text-transparent">
               LeadQ
             </span>
             ?
@@ -103,7 +103,7 @@ const Features = () => {
                 className={`
                   relative p-6 sm:p-7 md:p-8 rounded-2xl overflow-hidden group cursor-pointer
                   ${isGradient
-                    ? 'bg-gradient-to-br from-leadq-amber/15 via-leadq-amber/5 to-transparent border border-leadq-amber/30'
+                    ? 'bg-gradient-to-br from-slate-400/15 via-slate-400/5 to-transparent border border-slate-400/30'
                     : 'glass border-white/10'
                   }
                 `}
@@ -121,10 +121,10 @@ const Features = () => {
                       className={`
                         w-14 h-14 sm:w-16 sm:h-16 rounded-xl flex items-center justify-center
                         ${isGradient
-                          ? 'bg-gradient-to-br from-leadq-amber/30 to-leadq-amber/10'
-                          : 'bg-leadq-amber/10'
+                          ? 'bg-gradient-to-br from-slate-400/30 to-slate-400/10'
+                          : 'bg-slate-400/10'
                         }
-                        border border-leadq-amber/20 text-leadq-amber
+                        border border-slate-400/20 text-slate-400
                       `}
                     >
                       <Icon className="w-7 h-7 sm:w-8 sm:h-8" />
@@ -133,24 +133,24 @@ const Features = () => {
 
                   {/* Highlight Badge */}
                   <div className="mb-4">
-                    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs sm:text-sm font-semibold bg-leadq-amber/15 text-leadq-amber border border-leadq-amber/25 shadow-sm shadow-leadq-amber/10">
+                    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs sm:text-sm font-semibold bg-slate-400/15 text-slate-400 border border-slate-400/25 shadow-sm shadow-slate-400/10">
                       {feature.highlight}
                     </span>
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-xl sm:text-2xl font-display font-bold mb-3 text-white group-hover:text-leadq-amber transition-colors duration-300">
+                  <h3 className="text-xl sm:text-2xl font-display font-bold mb-3 text-white group-hover:text-slate-400 transition-colors duration-300">
                     {feature.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-gray-400 leading-relaxed text-sm sm:text-base group-hover:text-gray-300 transition-colors duration-300">
+                  <p className="text-slate-400 leading-relaxed text-sm sm:text-base group-hover:text-slate-300 transition-colors duration-300">
                     {feature.description}
                   </p>
                 </div>
 
                 {/* Decorative corner accent */}
-                <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-leadq-amber/10 to-transparent rounded-bl-full opacity-50 transition-opacity duration-500" />
+                <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-slate-400/10 to-transparent rounded-bl-full opacity-50 transition-opacity duration-500" />
               </motion.div>
             );
           })}

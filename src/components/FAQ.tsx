@@ -62,7 +62,10 @@ export default function FAQ() {
           className="text-center mb-16"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-4">
-            Frequently Asked Questions
+            Frequently Asked{' '}
+            <span className="bg-gradient-to-r from-leadq-silver to-slate-400 bg-clip-text text-transparent">
+              Questions
+            </span>
           </h2>
         </motion.div>
 
@@ -90,7 +93,7 @@ export default function FAQ() {
                     toggleItem(index);
                   }
                 }}
-                className="w-full text-left px-6 py-5 flex items-center justify-between gap-4 focus:outline-none focus:ring-2 focus:ring-leadq-amber focus:ring-inset rounded-xl transition-all"
+                className="w-full text-left px-6 py-5 flex items-center justify-between gap-4 focus:outline-none focus:ring-2 focus:ring-leadq-silver focus:ring-inset rounded-xl transition-all"
                 aria-expanded={openIndex === index}
                 aria-controls={`faq-answer-${index}`}
               >
@@ -102,7 +105,7 @@ export default function FAQ() {
                   transition={{ duration: 0.3, ease: 'easeInOut' }}
                   className="flex-shrink-0"
                 >
-                  <ChevronDown size={24} className="text-leadq-amber" />
+                  <ChevronDown size={24} className="text-leadq-silver" />
                 </motion.div>
               </button>
 
@@ -130,7 +133,7 @@ export default function FAQ() {
                     className="overflow-hidden"
                   >
                     <div className="px-6 pb-5 pt-0">
-                      <p className="text-gray-300 leading-relaxed">
+                      <p className="text-leadq-silver leading-relaxed">
                         {faq.answer}
                       </p>
                     </div>
@@ -144,3 +147,4 @@ export default function FAQ() {
     </section>
   );
 }
+

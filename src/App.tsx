@@ -1,6 +1,7 @@
 import { Sparkles, Bot, DollarSign, Mail, Briefcase, LayoutDashboard, HelpCircle, PenLine, ScanLine, UserPlus, Calendar } from 'lucide-react';
 import { NavBar } from './components/ui/tubelight-navbar';
 import Hero from './components/Hero';
+import WhatLeadQDoes from './components/WhatLeadQDoes';
 import Features from './components/Features';
 import UseCases from './components/UseCases';
 import LeadCaptureStream from './components/LeadCaptureStream';
@@ -8,6 +9,7 @@ import ProfileEnrichment from './components/ProfileResearch';
 import DashboardPreview from './components/DashboardPreview';
 import BookingsMeeting from './components/BookingsMeeting';
 import EmailDraftAnimation from './components/EmailDraftAnimation';
+import OutboundVoiceAgent from './components/OutboundVoiceAgent';
 import Agents from './components/Agents';
 import Pricing from './components/Pricing';
 import FAQ from './components/FAQ';
@@ -16,6 +18,7 @@ import ScrollProgress from './components/ScrollProgress';
 import ScrollToTop from './components/ScrollToTop';
 import SkipToContent from './components/SkipToContent';
 import CookieConsent from './components/CookieConsent';
+import Footer from './components/Footer';
 
 function App() {
   const navItems = [
@@ -43,6 +46,9 @@ function App() {
       {/* 1. Hero Section */}
       <Hero />
 
+      {/* 2. What LeadQ Does */}
+      <WhatLeadQDoes />
+
       {/* Features */}
       <Features />
 
@@ -63,7 +69,8 @@ function App() {
         <EmailDraftAnimation />
       </section>
 
-
+      {/* 7. Outbound Voice Agent */}
+      <OutboundVoiceAgent />
 
       {/* 8. Use Cases */}
       <UseCases />
@@ -83,14 +90,10 @@ function App() {
       <ScrollToTop />
       <CookieConsent />
 
-      {/* Footer */}
-      <footer className="relative z-10 py-8 px-4">
-        <div className="max-w-7xl mx-auto text-center text-gray-300">
-          <p>&copy; 2026 LeadQ.AI. All rights reserved.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
 
 export default App;
+

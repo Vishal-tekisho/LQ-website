@@ -32,7 +32,7 @@ export default function ScrollToTop() {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={scrollToTop}
-          className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-40 w-12 h-12 rounded-full glass-strong border border-leadq-amber/30 flex items-center justify-center text-leadq-amber hover:border-leadq-amber/60 hover:shadow-lg hover:shadow-leadq-amber/20 transition-all focus:outline-none focus:ring-2 focus:ring-leadq-amber focus:ring-offset-2 focus:ring-offset-leadq-bg"
+          className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-40 w-12 h-12 rounded-full glass-strong border border-leadq-silver/30 flex items-center justify-center text-leadq-silver hover:border-leadq-silver/60 hover:shadow-lg hover:shadow-leadq-silver/20 transition-all focus:outline-none focus:ring-2 focus:ring-leadq-silver focus:ring-offset-2 focus:ring-offset-leadq-bg"
           aria-label="Scroll to top"
         >
           <ChevronUp size={24} strokeWidth={2} />
@@ -41,3 +41,4 @@ export default function ScrollToTop() {
     </AnimatePresence>
   );
 }
+

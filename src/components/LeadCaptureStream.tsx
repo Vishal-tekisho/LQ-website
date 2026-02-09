@@ -24,12 +24,12 @@ const fallbackCards: LeadCard[] = [
 
 function FallbackCard({ name, company, role }: { name: string; company: string; role: string }) {
   return (
-    <div className="flex-shrink-0 w-48 h-28 mx-4 rounded-xl glass p-4 flex flex-col justify-between hover:scale-105 transition-transform">
+    <div className="flex-shrink-0 w-48 h-28 mx-4 rounded-xl glass p-4 flex flex-col justify-between transition-transform">
       <div>
         <p className="font-semibold text-white text-sm">{name}</p>
-        <p className="text-xs text-gray-400">{role}</p>
+        <p className="text-xs text-leadq-silver">{role}</p>
       </div>
-      <p className="text-[10px] text-leadq-cyan">{company}</p>
+      <p className="text-[10px] text-leadq-silver">{company}</p>
     </div>
   );
 }
@@ -72,21 +72,21 @@ function PhoneScannerOverlay({
   return (
     <div className="absolute z-20 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
       <div className="relative w-64 md:w-72">
-        <div className="relative rounded-[2.5rem] border-4 border-gray-700 bg-black/80 backdrop-blur-sm p-2 shadow-2xl">
+        <div className="relative rounded-[2.5rem] border-4 border-slate-700 bg-black/80 backdrop-blur-sm p-2 shadow-2xl">
           <div className="absolute top-4 left-1/2 -translate-x-1/2 w-20 h-6 bg-black rounded-full z-10" />
 
           <div className="relative rounded-[2rem] bg-gradient-to-b from-gray-900/90 to-black/90 overflow-hidden min-h-[420px]">
-            <div className="flex items-center justify-between px-6 py-2 text-gray-400 text-xs">
+            <div className="flex items-center justify-between px-6 py-2 text-leadq-silver text-xs">
               <span>9:21</span>
               <div className="flex items-center gap-1">
                 <div className="flex gap-0.5">
-                  <div className="w-1 h-2 bg-gray-400 rounded-sm" />
-                  <div className="w-1 h-2.5 bg-gray-400 rounded-sm" />
-                  <div className="w-1 h-3 bg-gray-400 rounded-sm" />
-                  <div className="w-1 h-3.5 bg-gray-400 rounded-sm" />
+                  <div className="w-1 h-2 bg-leadq-silver rounded-sm" />
+                  <div className="w-1 h-2.5 bg-leadq-silver rounded-sm" />
+                  <div className="w-1 h-3 bg-leadq-silver rounded-sm" />
+                  <div className="w-1 h-3.5 bg-leadq-silver rounded-sm" />
                 </div>
-                <div className="w-5 h-2.5 border border-gray-400 rounded-sm ml-1">
-                  <div className="w-3/4 h-full bg-gray-400 rounded-sm" />
+                <div className="w-5 h-2.5 border border-leadq-silver rounded-sm ml-1">
+                  <div className="w-3/4 h-full bg-leadq-silver rounded-sm" />
                 </div>
               </div>
             </div>
@@ -95,30 +95,30 @@ function PhoneScannerOverlay({
               {/* Header with toggle */}
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2">
-                  <Scan className="w-5 h-5 text-leadq-amber" />
-                  <span className="text-leadq-amber font-semibold text-sm">Digitization Agent</span>
+                  <Scan className="w-5 h-5 text-leadq-silver" />
+                  <span className="text-leadq-silver font-semibold text-sm">Digitization Agent</span>
                 </div>
                 <button
                   onClick={onToggleView}
-                  className="text-[10px] bg-leadq-amber/20 text-leadq-amber px-2 py-1 rounded hover:bg-leadq-amber/30 transition-colors"
+                  className={`text-[10px] bg-leadq-silver/20 text-leadq-silver px-2 py-1 rounded hover:bg-leadq-silver/30 transition-colors ${showEnriched ? 'animate-btn-pulse' : ''}`}
                 >
                   {showEnriched ? 'Raw' : 'Enriched'}
                 </button>
               </div>
 
               {/* Scan area */}
-              <div className="relative border-2 border-dashed border-leadq-amber/50 rounded-xl p-4 mb-4">
-                <div className="absolute inset-0 bg-leadq-amber/5 rounded-xl" />
-                <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-leadq-amber rounded-tl-lg" />
-                <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-leadq-amber rounded-tr-lg" />
-                <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-leadq-amber rounded-bl-lg" />
-                <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-leadq-amber rounded-br-lg" />
+              <div className="relative border-2 border-dashed border-leadq-silver/50 rounded-xl p-4 mb-4">
+                <div className="absolute inset-0 bg-leadq-silver/5 rounded-xl" />
+                <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-leadq-silver rounded-tl-lg" />
+                <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-leadq-silver rounded-tr-lg" />
+                <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-leadq-silver rounded-bl-lg" />
+                <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-leadq-silver rounded-br-lg" />
 
                 <div className="relative z-10 text-center py-4">
-                  <div className={`w-12 h-12 mx-auto mb-2 rounded-full bg-leadq-amber/20 flex items-center justify-center ${isScanning ? 'animate-pulse' : ''}`}>
-                    <Scan className={`w-6 h-6 text-leadq-amber ${isScanning ? 'animate-spin' : ''}`} />
+                  <div className={`w-12 h-12 mx-auto mb-2 rounded-full bg-leadq-silver/20 flex items-center justify-center ${isScanning ? 'animate-pulse' : ''}`}>
+                    <Scan className={`w-6 h-6 text-leadq-silver ${isScanning ? 'animate-spin' : ''}`} />
                   </div>
-                  <p className="text-xs text-gray-400">
+                  <p className="text-xs text-leadq-silver">
                     {isScanning ? 'Scanning...' : 'Ready to scan'}
                   </p>
                 </div>
@@ -127,7 +127,7 @@ function PhoneScannerOverlay({
                 {isScanning && (
                   <div className="absolute inset-x-0 top-0 h-full overflow-hidden rounded-xl pointer-events-none">
                     <div
-                      className="absolute inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-leadq-amber to-transparent"
+                      className="absolute inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-leadq-silver to-transparent"
                       style={{ animation: 'scanLine 1s ease-in-out infinite' }}
                     />
                   </div>
@@ -139,43 +139,43 @@ function PhoneScannerOverlay({
                 {showEnriched ? (
                   <>
                     <div className="flex gap-3 mb-3">
-                      <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center">
+                      <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-leadq-silver to-leadq-silver flex items-center justify-center">
                         <span className="text-white font-bold text-sm">{lead.name.charAt(0)}</span>
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="font-semibold text-white text-sm truncate">{lead.name}</p>
-                        <p className="text-xs text-leadq-amber truncate">{lead.role}</p>
+                        <p className="text-xs text-leadq-silver truncate">{lead.role}</p>
                       </div>
                     </div>
 
                     <div className="space-y-1.5 text-xs">
-                      <div className="flex items-center gap-2 text-gray-400">
+                      <div className="flex items-center gap-2 text-leadq-silver">
                         <Mail size={10} className="flex-shrink-0" />
                         <span className="truncate">{lead.email}</span>
                       </div>
-                      <div className="flex items-center gap-2 text-gray-400">
+                      <div className="flex items-center gap-2 text-leadq-silver">
                         <Phone size={10} className="flex-shrink-0" />
                         <span>{lead.phone}</span>
                       </div>
-                      <div className="flex items-center gap-2 text-gray-400">
+                      <div className="flex items-center gap-2 text-leadq-silver">
                         <Linkedin size={10} className="flex-shrink-0" />
                         <span>{lead.linkedin}</span>
                       </div>
-                      <div className="flex items-center gap-2 text-gray-400">
+                      <div className="flex items-center gap-2 text-leadq-silver">
                         <Briefcase size={10} className="flex-shrink-0" />
                         <span>{lead.company}</span>
                       </div>
                     </div>
                   </>
                 ) : (
-                  <div className="text-[10px] text-gray-300 space-y-1 font-mono">
-                    <p className="text-leadq-amber">// Raw scan data</p>
+                  <div className="text-[10px] text-leadq-silver space-y-1 font-mono">
+                    <p className="text-leadq-silver">// Raw scan data</p>
                     <p>NAME: {lead.name}</p>
                     <p>ROLE: {lead.role}</p>
                     <p>COMPANY: {lead.company}</p>
-                    <p className="text-gray-500">// Enrichment pending...</p>
-                    <p className="text-gray-500">EMAIL: [extracting...]</p>
-                    <p className="text-gray-500">PHONE: [extracting...]</p>
+                    <p className="text-leadq-silver/70">// Enrichment pending...</p>
+                    <p className="text-leadq-silver/70">EMAIL: [extracting...]</p>
+                    <p className="text-leadq-silver/70">PHONE: [extracting...]</p>
                   </div>
                 )}
               </div>
@@ -184,17 +184,17 @@ function PhoneScannerOverlay({
               <div className="flex items-center justify-between mt-3">
                 <button
                   onClick={onPrevLead}
-                  className="flex items-center gap-1 text-gray-400 hover:text-leadq-amber transition-colors text-xs"
+                  className="flex items-center gap-1 text-leadq-silver hover:text-leadq-silver transition-colors text-xs"
                 >
                   <ChevronLeft size={14} />
                   <span>Prev</span>
                 </button>
-                <span className="text-[10px] text-gray-500">
+                <span className="text-[10px] text-leadq-silver/70">
                   {leadIndex + 1} / {totalLeads}
                 </span>
                 <button
                   onClick={onNextLead}
-                  className="flex items-center gap-1 text-gray-400 hover:text-leadq-amber transition-colors text-xs"
+                  className="flex items-center gap-1 text-leadq-silver hover:text-leadq-silver transition-colors text-xs"
                 >
                   <span>Next</span>
                   <ChevronRight size={14} />
@@ -267,13 +267,16 @@ export default function LeadCaptureStream() {
 
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <span className="glass px-4 py-2 rounded-full text-sm font-medium text-leadq-amber border border-leadq-amber/20 inline-block mb-6">
+          <span className="glass px-4 py-2 rounded-full text-sm font-medium text-leadq-silver border border-leadq-silver/20 inline-block mb-6">
             AI-Powered Universal Lead Capture
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-4">
-            Turn Every Scan Into Revenue
+            Turn Every Scan Into{' '}
+            <span className="bg-gradient-to-r from-leadq-silver to-slate-400 bg-clip-text text-transparent">
+              Revenue
+            </span>
           </h2>
-          <p className="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto mb-6 sm:mb-8">
+          <p className="text-base sm:text-lg text-leadq-silver max-w-2xl mx-auto mb-6 sm:mb-8">
             Scan conference badges, business cards, LinkedIn QR codes, and more - instantly validate, qualify, enrich, and sync.
           </p>
 
@@ -285,8 +288,8 @@ export default function LeadCaptureStream() {
               inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm
               transition-all duration-300 transform
               ${isScanning
-                ? 'bg-leadq-amber/20 text-leadq-amber/50 cursor-not-allowed scale-95'
-                : 'bg-gradient-to-r from-amber-500 to-amber-600 text-black hover:from-amber-400 hover:to-amber-500 hover:scale-105 shadow-lg shadow-amber-500/25 animate-pulse-glow-amber'
+                ? 'bg-white/10 text-slate-400 cursor-not-allowed scale-95'
+                : 'bg-gradient-to-r from-black to-leadq-silver text-white shadow-[0_0_20px_rgba(192,192,192,0.3)] hover:shadow-[0_0_30px_rgba(192,192,192,0.5)] hover:scale-105 animate-btn-pulse'
               }
             `}
             style={isScanning ? {} : {}}
@@ -333,3 +336,4 @@ export default function LeadCaptureStream() {
     </section>
   );
 }
+

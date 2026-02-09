@@ -35,7 +35,7 @@ export const MenuItem = ({
         >
             <motion.div
                 transition={{ duration: 0.3 }}
-                className="cursor-pointer text-gray-300 hover:text-leadq-amber flex items-center gap-2 px-4 py-2 text-sm font-semibold"
+                className="cursor-pointer text-leadq-silver hover:text-leadq-silver flex items-center gap-2 px-4 py-2 text-sm font-semibold"
             >
                 {Icon && <Icon size={18} strokeWidth={2} />}
                 <span>{item}</span>
@@ -94,11 +94,11 @@ export const MenuLink = ({
         <a
             href={href}
             onClick={onClick}
-            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-300 hover:text-white hover:bg-white/10 transition-all group"
+            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-leadq-silver hover:text-white hover:bg-white/10 transition-all group"
         >
             {Icon && (
-                <div className="w-7 h-7 rounded-md bg-leadq-amber/10 flex items-center justify-center group-hover:bg-leadq-amber/20 transition-colors flex-shrink-0">
-                    <Icon size={14} className="text-leadq-amber" />
+                <div className="w-7 h-7 rounded-md bg-leadq-silver/10 flex items-center justify-center group-hover:bg-leadq-silver/20 transition-colors flex-shrink-0">
+                    <Icon size={14} className="text-leadq-silver" />
                 </div>
             )}
             <span className="text-sm font-medium">{children}</span>
@@ -116,7 +116,7 @@ export const MenuSection = ({
     return (
         <div>
             {title && (
-                <p className="text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-2 px-3">
+                <p className="text-[10px] font-semibold text-leadq-silver/70 uppercase tracking-wider mb-2 px-3">
                     {title}
                 </p>
             )}
@@ -124,3 +124,4 @@ export const MenuSection = ({
         </div>
     );
 };
+

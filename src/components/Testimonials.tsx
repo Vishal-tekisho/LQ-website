@@ -74,26 +74,26 @@ const testimonials = [
 //                 borderImage: 'linear-gradient(135deg, rgba(6, 182, 212, 0.3), rgba(124, 58, 237, 0.3)) 1',
 //               }}
 //             >
-//               <div className="absolute inset-0 bg-gradient-to-br from-leadq-cyan/5 to-leadq-purple/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+//               <div className="absolute inset-0 bg-gradient-to-br from-leadq-silver/5 to-leadq-silver/5 opacity-0 group-hover:opacity-100 transition-opacity" />
 
 //               <div className="relative z-10">
 //                 <div className="flex gap-1 mb-4">
 //                   {[...Array(testimonial.rating)].map((_, i) => (
-//                     <Star key={i} size={18} className="fill-leadq-cyan text-leadq-cyan" />
+//                     <Star key={i} size={18} className="fill-leadq-silver text-leadq-silver" />
 //                   ))}
 //                 </div>
 
-//                 <blockquote className="text-gray-300 text-lg mb-6 leading-relaxed">
+//                 <blockquote className="text-leadq-silver text-lg mb-6 leading-relaxed">
 //                   "{testimonial.quote}"
 //                 </blockquote>
 
 //                 <div className="flex items-center gap-4">
-//                   <div className="w-12 h-12 rounded-full bg-gradient-to-br from-leadq-cyan to-leadq-purple flex items-center justify-center text-white font-bold">
+//                   <div className="w-12 h-12 rounded-full bg-gradient-to-br from-leadq-silver to-leadq-silver flex items-center justify-center text-white font-bold">
 //                     {testimonial.name.split(' ').map(n => n[0]).join('')}
 //                   </div>
 //                   <div>
 //                     <div className="font-semibold text-white">{testimonial.name}</div>
-//                     <div className="text-sm text-gray-400">{testimonial.title}</div>
+//                     <div className="text-sm text-leadq-silver">{testimonial.title}</div>
 //                   </div>
 //                 </div>
 //               </div>
@@ -104,3 +104,4 @@ const testimonials = [
 //     </section>
 //   );
  }
+
