@@ -4,6 +4,21 @@ import { CheckCircle2 } from 'lucide-react';
 const Pricing = () => {
   const plans = [
     {
+      name: 'Free',
+      price: '$0',
+      period: '/forever',
+      credits: '10 AI credits/month',
+      features: [
+        'Basic Email Agent',
+        'Standard analytics',
+        'Community support',
+
+      ],
+      cta: 'Start for Free',
+      ctaStyle: 'glass hover:glass-strong',
+      popular: false
+    },
+    {
       name: 'Starter',
       price: '$4.99',
       period: '/month',
@@ -12,7 +27,6 @@ const Pricing = () => {
         'Email Agent access',
         'Basic analytics',
         'Email support',
-        '1 team member',
         'Core integrations'
       ],
       cta: 'Get Started',
@@ -28,33 +42,14 @@ const Pricing = () => {
         'All Agents access',
         'Advanced analytics',
         'Priority support',
-        '5 team members',
         'NFC capability',
         'Custom workflows',
 
       ],
       cta: 'Get Pro',
-      ctaStyle: 'bg-gradient-to-r from-black to-leadq-silver text-white shadow-[0_0_20px_rgba(192,192,192,0.5)] hover:shadow-[0_0_30px_rgba(192,192,192,0.7)] hover:scale-105',
+      ctaStyle: 'bg-gradient-to-r from-leadq-deep-blue to-leadq-royal-blue text-white shadow-[0_0_20px_rgba(39,81,169,0.5)] hover:shadow-[0_0_30px_rgba(39,81,169,0.7)] hover:scale-105',
       popular: true
     },
-    {
-      name: 'Enterprise',
-      period: '',
-      credits: 'Unlimited AI credits',
-      features: [
-        'Unlimited agents',
-        '25,000+ credits/month',
-        'White-label options',
-        'Dedicated success manager',
-        'Unlimited team members',
-        'Custom integrations',
-        'SLA guarantee',
-        'On-premise option'
-      ],
-      cta: 'Contact Sales',
-      ctaStyle: 'border-2 border-white/20 hover:border-white/40 hover:bg-white/5',
-      popular: false
-    }
   ];
 
   const containerVariants = {
@@ -91,7 +86,7 @@ const Pricing = () => {
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-4">
             Choose Your{' '}
-            <span className="bg-gradient-to-r from-leadq-silver to-slate-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-leadq-cyan to-leadq-royal-blue bg-clip-text text-transparent">
               Plan
             </span>
           </h2>
@@ -105,19 +100,19 @@ const Pricing = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12"
+          className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto mb-12 px-4 pb-8"
         >
           {plans.map((plan, index) => (
             <motion.div
               key={index}
               variants={cardVariants}
-              whileHover={{ y: plan.popular ? 0 : -8, transition: { duration: 0.3 } }}
-              className={`glass rounded-2xl p-6 sm:p-8 relative flex flex-col ${plan.popular ? 'md:scale-105 border-2 border-leadq-silver/30 shadow-[0_0_30px_rgba(192,192,192,0.2)]' : ''
+              whileHover={{ y: -8, transition: { duration: 0.3 } }}
+              className={`glass rounded-2xl p-6 sm:p-8 relative flex flex-col transition-all duration-300 ${plan.popular ? 'md:scale-105 border-2 border-leadq-royal-blue/30 shadow-[0_0_30px_rgba(39,81,169,0.2)] z-20' : 'z-10'
                 }`}
             >
               {plan.popular && (
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                  <span className="bg-gradient-to-r from-black to-leadq-silver text-white text-sm font-bold px-4 py-1 rounded-full shadow-[0_0_15px_rgba(192,192,192,0.5)]">
+                  <span className="bg-gradient-to-r from-leadq-deep-blue to-leadq-royal-blue text-white text-sm font-bold px-4 py-1 rounded-full shadow-[0_0_15px_rgba(39,81,169,0.5)]">
                     Most Popular
                   </span>
                 </div>
@@ -135,14 +130,14 @@ const Pricing = () => {
               <ul className="space-y-4 mb-8">
                 {plan.features.map((feature, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-leadq-silver flex-shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-5 h-5 text-leadq-cyan flex-shrink-0 mt-0.5" />
                     <span className="text-leadq-silver">{feature}</span>
                   </li>
                 ))}
               </ul>
 
               <button
-                className={`w-full py-3 px-6 rounded-lg font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-leadq-silver focus:ring-offset-2 focus:ring-offset-leadq-bg active:scale-95 mt-auto ${plan.ctaStyle}`}
+                className={`w-full py-3 px-6 rounded-lg font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-leadq-royal-blue focus:ring-offset-2 focus:ring-offset-leadq-bg active:scale-95 mt-auto ${plan.ctaStyle}`}
               >
                 {plan.cta}
               </button>

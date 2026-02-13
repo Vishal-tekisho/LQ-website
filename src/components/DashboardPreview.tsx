@@ -142,7 +142,10 @@ export default function DashboardPreview() {
         transition={{ duration: 0.6 }}
         className="text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-4 sm:mb-6"
       >
-        A Living Dashboard
+        A Living{' '}
+        <span className="bg-gradient-to-r from-leadq-cyan to-leadq-royal-blue bg-clip-text text-transparent">
+          Dashboard
+        </span>
       </motion.h2>
       <motion.p
         initial={{ opacity: 0, y: 20 }}
@@ -185,10 +188,34 @@ export default function DashboardPreview() {
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.4, delay: index * 0.1 }}
-                        className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all cursor-pointer ${isActive
-                          ? 'bg-gradient-to-r from-leadq-silver/20 to-leadq-silver/20 border border-leadq-silver/30 text-white'
-                          : 'text-leadq-silver hover:bg-white/5 hover:text-leadq-silver'
+                        whileHover={{ scale: 1.02, x: 5, backgroundColor: "rgba(255, 255, 255, 0.1)" }}
+                        whileTap={{ scale: 0.98 }}
+                        animate={isActive ? {} : {
+                          backgroundColor: ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 0.03)", "rgba(255, 255, 255, 0)"],
+                          borderColor: ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 0.1)", "rgba(255, 255, 255, 0)"],
+                        }}
+                        transition={{
+                          duration: 0.4,
+                          delay: index * 0.1,
+                          // Continuous pulse for inactive buttons
+                          backgroundColor: {
+                            duration: 2,
+                            repeat: Infinity,
+                            repeatType: "reverse",
+                            delay: index * 0.5, // Stagger the pulse
+                            ease: "easeInOut"
+                          },
+                          borderColor: {
+                            duration: 2,
+                            repeat: Infinity,
+                            repeatType: "reverse",
+                            delay: index * 0.5,
+                            ease: "easeInOut"
+                          }
+                        }}
+                        className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all cursor-pointer border ${isActive
+                          ? 'bg-gradient-to-r from-leadq-royal-blue/20 to-leadq-royal-blue/20 border-leadq-royal-blue/30 text-leadq-cyan'
+                          : 'border-transparent text-leadq-silver'
                           }`}
                       >
                         <Icon size={18} strokeWidth={2} />
@@ -229,7 +256,7 @@ export default function DashboardPreview() {
                             repeat: Infinity,
                             ease: 'easeInOut',
                           }}
-                          className="w-2 h-2 rounded-full bg-leadq-silver glow-blue"
+                          className="w-2 h-2 rounded-full bg-leadq-cyan glow-blue"
                         />
                         <span className="text-sm font-medium text-white">AI Agent Active</span>
                       </div>

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Link2, BrainCircuit, Activity } from 'lucide-react';
+import { Link2, BrainCircuit, Activity, Mic } from 'lucide-react';
 
 const Features = () => {
   const features = [
@@ -22,6 +22,13 @@ const Features = () => {
       title: 'The Unified Command',
       highlight: 'Real-Time Control',
       description: 'Control the chaos. Manage your physical interactions and digital agents from a single \'Living\' Dashboard that puts you in the pilot\'s seat.',
+      variant: 'gradient'
+    },
+    {
+      icon: Mic,
+      title: 'The Conversational Edge',
+      highlight: 'Infinite Scalability',
+      description: 'Scale your outreach without scaling headcount. Deploy fully autonomous voice and text agents that nurture leads 24/7 with human-like empathy.',
       variant: 'gradient'
     }
   ];
@@ -73,7 +80,7 @@ const Features = () => {
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-4">
             Why Choose{' '}
-            <span className="bg-gradient-to-r from-leadq-silver to-slate-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-leadq-cyan to-leadq-royal-blue bg-clip-text text-transparent">
               LeadQ
             </span>
             ?
@@ -86,7 +93,7 @@ const Features = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 lg:gap-8"
         >
           {features.map((feature, index) => {
             const Icon = feature.icon;
@@ -103,7 +110,7 @@ const Features = () => {
                 className={`
                   relative p-6 sm:p-7 md:p-8 rounded-2xl overflow-hidden group cursor-pointer
                   ${isGradient
-                    ? 'bg-gradient-to-br from-slate-400/15 via-slate-400/5 to-transparent border border-slate-400/30'
+                    ? 'bg-zinc-900/50 border border-white/10 hover:border-white/20 transition-colors duration-300'
                     : 'glass border-white/10'
                   }
                 `}
@@ -121,10 +128,10 @@ const Features = () => {
                       className={`
                         w-14 h-14 sm:w-16 sm:h-16 rounded-xl flex items-center justify-center
                         ${isGradient
-                          ? 'bg-gradient-to-br from-slate-400/30 to-slate-400/10'
+                          ? 'bg-white/5 border border-white/10'
                           : 'bg-slate-400/10'
                         }
-                        border border-slate-400/20 text-slate-400
+                        text-slate-200
                       `}
                     >
                       <Icon className="w-7 h-7 sm:w-8 sm:h-8" />
@@ -133,18 +140,18 @@ const Features = () => {
 
                   {/* Highlight Badge */}
                   <div className="mb-4">
-                    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs sm:text-sm font-semibold bg-slate-400/15 text-slate-400 border border-slate-400/25 shadow-sm shadow-slate-400/10">
+                    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs sm:text-sm font-semibold bg-white/10 text-white border border-white/20">
                       {feature.highlight}
                     </span>
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-xl sm:text-2xl font-display font-bold mb-3 text-white group-hover:text-slate-400 transition-colors duration-300">
+                  <h3 className="text-xl sm:text-2xl font-display font-bold mb-3 text-white">
                     {feature.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-slate-400 leading-relaxed text-sm sm:text-base group-hover:text-slate-300 transition-colors duration-300">
+                  <p className="text-zinc-300 leading-relaxed text-sm sm:text-base">
                     {feature.description}
                   </p>
                 </div>

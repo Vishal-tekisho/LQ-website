@@ -389,7 +389,7 @@ export default function OutboundVoiceAgent() {
 
                     <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-4">
                         Voice{' '}
-                        <span className="bg-gradient-to-r from-leadq-silver to-slate-400 bg-clip-text text-transparent">
+                        <span className="bg-gradient-to-r from-leadq-cyan to-leadq-royal-blue bg-clip-text text-transparent">
                             Agent
                         </span>
                     </h2>
@@ -406,7 +406,7 @@ export default function OutboundVoiceAgent() {
                             disabled={isPlaying && stage !== 'ended'}
                             className={`flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all ${isPlaying && stage !== 'ended'
                                 ? 'bg-white/10 text-slate-400 cursor-not-allowed'
-                                : 'bg-gradient-to-r from-black to-leadq-silver text-white shadow-[0_0_20px_rgba(192,192,192,0.3)] hover:shadow-[0_0_30px_rgba(192,192,192,0.5)] animate-btn-pulse'
+                                : 'bg-gradient-to-r from-leadq-deep-blue to-leadq-royal-blue text-white shadow-[0_0_20px_rgba(39,81,169,0.3)] hover:shadow-[0_0_30px_rgba(39,81,169,0.5)] animate-btn-pulse'
                                 }`}
                             whileHover={isPlaying ? {} : { scale: 1.02 }}
                             whileTap={isPlaying ? {} : { scale: 0.98 }}

@@ -63,7 +63,7 @@ export default function FAQ() {
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-4">
             Frequently Asked{' '}
-            <span className="bg-gradient-to-r from-leadq-silver to-slate-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-leadq-cyan to-leadq-royal-blue bg-clip-text text-transparent">
               Questions
             </span>
           </h2>
@@ -93,7 +93,7 @@ export default function FAQ() {
                     toggleItem(index);
                   }
                 }}
-                className="w-full text-left px-6 py-5 flex items-center justify-between gap-4 focus:outline-none focus:ring-2 focus:ring-leadq-silver focus:ring-inset rounded-xl transition-all"
+                className="w-full text-left px-6 py-5 flex items-center justify-between gap-4 focus:outline-none focus:ring-2 focus:ring-leadq-royal-blue focus:ring-inset rounded-xl transition-all"
                 aria-expanded={openIndex === index}
                 aria-controls={`faq-answer-${index}`}
               >
@@ -105,7 +105,7 @@ export default function FAQ() {
                   transition={{ duration: 0.3, ease: 'easeInOut' }}
                   className="flex-shrink-0"
                 >
-                  <ChevronDown size={24} className="text-leadq-silver" />
+                  <ChevronDown size={24} className="text-leadq-cyan" />
                 </motion.div>
               </button>
 

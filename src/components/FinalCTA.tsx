@@ -12,7 +12,7 @@ export default function FinalCTA() {
           transition={{ duration: 0.7 }}
           className="relative max-w-4xl mx-auto rounded-3xl overflow-hidden shadow-2xl"
           style={{
-            background: 'linear-gradient(135deg, rgb(0, 0, 0) 0%, rgb(217, 119, 6) 50%, rgb(245, 158, 11) 100%)',
+            background: 'linear-gradient(135deg, rgb(5, 6, 14) 0%, rgb(39, 81, 169) 50%, rgb(79, 164, 196) 100%)',
           }}
         >
           <div className="absolute inset-0 opacity-20">
@@ -43,7 +43,7 @@ export default function FinalCTA() {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="text-xl md:text-2xl text-white/90 mb-10 max-w-2xl mx-auto"
             >
-              
+
             </motion.p>
 
             <motion.div
@@ -56,7 +56,7 @@ export default function FinalCTA() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.98 }}
-                className="group bg-white text-black px-10 py-4 rounded-lg font-bold text-lg shadow-xl hover:shadow-2xl transition-all focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black flex items-center gap-2"
+                className="group bg-white text-leadq-royal-blue px-10 py-4 rounded-lg font-bold text-lg shadow-xl hover:shadow-2xl transition-all focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-leadq-deep-blue flex items-center gap-2"
               >
                 Start Free Trial
                 <ArrowRight

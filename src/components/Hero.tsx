@@ -1,179 +1,75 @@
-import { useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
-import EnergyBeam from './ui/energy-beam';
+import { motion } from "framer-motion";
 
-// Toggle to enable/disable the energy beam animation
-const ENABLE_ENERGY_BEAM = true;
-
-// Word component with staggered animation
-function Word({ children, delay }: { children: React.ReactNode; delay: number }) {
-  return (
-    <span
-      className="word inline-block opacity-0"
-      data-delay={delay}
-      style={{ marginRight: '0.3em' }}
-    >
-      {children}
-    </span>
-  );
-}
-
-// Gradient Word component - uses transform instead of opacity for animation
-function GradientWord({ children, delay }: { children: React.ReactNode; delay: number }) {
-  return (
-    <span
-      className="gradient-word inline-block"
-      data-delay={delay}
-      style={{ marginRight: '0.3em' }}
-    >
-      {children}
-    </span>
-  );
-}
 
 export default function Hero() {
-  const gradientRef = useRef<HTMLDivElement>(null);
+    const words = "Where Leads Become Revenue".split(" ");
 
-  useEffect(() => {
-    // Animate regular words with staggered delays
-    const words = document.querySelectorAll<HTMLElement>('.word');
-    words.forEach((word) => {
-      const delay = parseInt(word.getAttribute('data-delay') || '0', 10);
-      setTimeout(() => {
-        word.style.animation = 'word-appear 0.8s ease-out forwards';
-      }, delay);
-    });
+    return (
+        <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden">
 
-    // Animate gradient words with staggered delays
-    const gradientWords = document.querySelectorAll<HTMLElement>('.gradient-word');
-    gradientWords.forEach((word) => {
-      const delay = parseInt(word.getAttribute('data-delay') || '0', 10);
-      setTimeout(() => {
-        word.style.animation = 'gradient-word-appear 0.8s ease-out forwards';
-      }, delay);
-    });
 
-    // Mouse gradient follow effect
-    const gradient = gradientRef.current;
-    function onMouseMove(e: MouseEvent) {
-      if (gradient) {
-        gradient.style.left = e.clientX - 192 + 'px';
-        gradient.style.top = e.clientY - 192 + 'px';
-        gradient.style.opacity = '1';
-      }
-    }
-    function onMouseLeave() {
-      if (gradient) gradient.style.opacity = '0';
-    }
-    document.addEventListener('mousemove', onMouseMove);
-    document.addEventListener('mouseleave', onMouseLeave);
+            <div className="relative z-10 container mx-auto px-4 md:px-6 text-center">
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 2 }}
+                    className="max-w-4xl mx-auto"
+                >
+                    <div
+                        className="inline-block bg-gradient-to-b from-black/10 to-white/10 
+                        dark:from-white/10 dark:to-black/10 p-px rounded-full backdrop-blur-lg 
+                        overflow-hidden shadow-lg mb-8"
+                    >
+                        <div
+                            className="rounded-full px-8 py-3 text-sm font-medium backdrop-blur-md 
+                            bg-gradient-to-r from-leadq-deep-blue/80 via-leadq-royal-blue/80 to-leadq-cyan/80
+                            text-white/90 border border-white/10"
+                        >
+                            ✨ Discover Excellence
+                        </div>
+                    </div>
 
-    // Word hover glow effects
-    words.forEach((word) => {
-      word.addEventListener('mouseenter', () => {
-        word.style.textShadow = '0 0 20px rgba(192, 192, 192, 0.5)';
-      });
-      word.addEventListener('mouseleave', () => {
-        word.style.textShadow = 'none';
-      });
-    });
 
-    return () => {
-      document.removeEventListener('mousemove', onMouseMove);
-      document.removeEventListener('mouseleave', onMouseLeave);
-    };
-  }, []);
+                    <h1 className="text-5xl sm:text-7xl md:text-8xl font-display font-bold mb-8 tracking-tighter">
+                        {words.map((word, wordIndex) => (
+                            <span
+                                key={wordIndex}
+                                className={`inline-block mr-4 last:mr-0 ${wordIndex >= 2 ? "bg-gradient-to-r from-leadq-cyan to-leadq-royal-blue bg-clip-text text-transparent" : "text-white"}`}
+                            >
+                                {word.split("").map((letter, letterIndex) => (
+                                    <motion.span
+                                        key={`${wordIndex}-${letterIndex}`}
+                                        initial={{ y: 100, opacity: 0 }}
+                                        animate={{ y: 0, opacity: 1 }}
+                                        transition={{
+                                            delay:
+                                                wordIndex * 0.1 +
+                                                letterIndex * 0.03,
+                                            type: "spring",
+                                            stiffness: 150,
+                                            damping: 25,
+                                        }}
+                                        className="inline-block"
+                                    >
+                                        {letter}
+                                    </motion.span>
+                                ))}
+                            </span>
+                        ))}
+                    </h1>
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.08,
-        delayChildren: 0.1,
-      },
-    },
-  };
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.8, duration: 0.8 }}
+                        className="text-lg sm:text-xl md:text-2xl text-leadq-silver font-medium max-w-2xl mx-auto mb-8 drop-shadow-md"
+                    >
+                        The AI Copilot That Automates Lead Management
+                    </motion.p>
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.2, ease: 'easeOut' as const },
-    },
-  };
 
-  return (
-    <section id="main-content" className="relative z-10 min-h-screen flex items-start justify-center overflow-hidden px-4 py-16 sm:py-20 pt-32 sm:pt-40">
-      {ENABLE_ENERGY_BEAM && (
-        <div className="absolute inset-0 z-0" style={{ filter: 'grayscale(100%) brightness(0.9) contrast(1.1)' }}>
-          <EnergyBeam className="opacity-50" />
-        </div>
-      )}
-
-      <div className="relative z-20 w-full max-w-4xl mx-auto text-center">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="flex flex-col items-center"
-        >
-
-          {/* Discover Excellence Badge */}
-          <motion.div
-            variants={itemVariants}
-            className="mb-6 sm:mb-8"
-          >
-            <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-black to-leadq-silver border border-leadq-silver/30 shadow-[0_0_20px_rgba(192,192,192,0.3)]">
-              <span className="text-sm sm:text-base font-bold tracking-widest uppercase text-white">
-                Discover Excellence
-              </span>
-            </span>
-          </motion.div>
-
-          {/* Main Headline with word-by-word animation */}
-          <motion.h1
-            variants={itemVariants}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold uppercase tracking-wide mb-4 sm:mb-6 leading-tight"
-          >
-            <div className="flex flex-wrap justify-center items-center gap-x-2">
-              <span className="text-white">
-                <Word delay={0}>Where</Word>
-                <Word delay={150}>Leads</Word>
-              </span>
-              <span>
-                <GradientWord delay={300}>Become</GradientWord>
-                <GradientWord delay={450}>Revenue</GradientWord>
-              </span>
+                </motion.div>
             </div>
-          </motion.h1>
-
-          {/* Subtitle with word-by-word animation */}
-          <motion.p
-            variants={itemVariants}
-            className="text-base sm:text-lg md:text-xl text-slate-400 max-w-2xl px-4 sm:px-0"
-          >
-            <Word delay={600}>The</Word>
-            <Word delay={700}>AI</Word>
-            <Word delay={800}>Copilot</Word>
-            <Word delay={900}>That</Word>
-            <Word delay={1000}>Automates</Word>
-            <Word delay={1100}>Lead</Word>
-            <Word delay={1200}>Management.</Word>
-          </motion.p>
-
-        </motion.div>
-      </div>
-
-      {/* Mouse follow gradient effect */}
-      <div
-        ref={gradientRef}
-        className="fixed pointer-events-none w-96 h-96 rounded-full blur-3xl transition-all duration-500 ease-out opacity-0 z-0"
-        style={{
-          background: 'radial-gradient(circle, rgba(192,192,192,0.1) 0%, transparent 100%)',
-        }}
-      />
-    </section>
-  );
+        </div>
+    );
 }

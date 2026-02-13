@@ -9,14 +9,25 @@ import {
   Mic,
 } from 'lucide-react';
 
-const agents = [
+interface Agent {
+  id: number;
+  title: string;
+  description: string;
+  icon: any;
+  color?: string;
+  highlight?: boolean;
+  badge?: string;
+  className?: string;
+}
+
+const agents: Agent[] = [
   {
     id: 1,
     title: 'Research Agent',
     description:
       'Enriches contacts from web signals and builds rich profiles.',
     icon: Search,
-    color: 'blue',
+    color: 'leadq-cyan',
   },
   {
     id: 2,
@@ -24,7 +35,7 @@ const agents = [
     description:
       'Negotiates meeting times and syncs calendars automatically.',
     icon: Calendar,
-    color: 'blue',
+    color: 'leadq-cyan',
   },
   {
     id: 3,
@@ -42,7 +53,7 @@ const agents = [
     description:
       'Both online and offline meetings can be scheduled from LeadQ base.',
     icon: Users,
-    color: 'blue',
+    color: 'leadq-cyan',
   },
   {
     id: 5,
@@ -50,7 +61,7 @@ const agents = [
     description:
       'Forecasts and highlights risks using pipeline signals.',
     icon: TrendingUp,
-    color: 'blue',
+    color: 'leadq-cyan',
   },
   {
     id: 6,
@@ -58,7 +69,7 @@ const agents = [
     description:
       'Understands context from meetings and knowledgebase, drafts custom emails based on the content.',
     icon: Mail,
-    color: 'blue',
+    color: 'leadq-cyan',
   },
   {
     id: 7,
@@ -66,13 +77,14 @@ const agents = [
     description:
       'Outbound voice agent that replaces traditional robocalls with intelligent, conversational AI that automates customer engagement while mantaining natural, human-like interactions for support,scheduling,and lead qualification',
     icon: Mic,
-    color: 'blue',
+    color: 'leadq-cyan',
+    className: 'sm:col-span-2 lg:col-span-3',
   },
 ];
 
 export default function Agents() {
   return (
-    <section id="agents" className="relative z-10 py-16 sm:py-20 md:py-24 px-4 bg-white/[0.02]">
+    <section id="agents" className="relative z-10 py-16 sm:py-20 md:py-24 px-4">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <motion.h2
@@ -82,7 +94,10 @@ export default function Agents() {
             transition={{ duration: 0.6 }}
             className="text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-6"
           >
-            Meet Your New Workforce
+            Meet Your{' '}
+            <span className="bg-gradient-to-r from-leadq-cyan to-leadq-royal-blue bg-clip-text text-transparent">
+              New Workforce
+            </span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -114,19 +129,19 @@ export default function Agents() {
                   transition: { duration: 0.3 },
                 }}
                 className={`group relative glass rounded-2xl p-6 hover:glass-strong transition-all ${agent.highlight
-                  ? 'bg-gradient-to-br from-leadq-silver/5 to-leadq-silver/10'
+                  ? 'bg-gradient-to-br from-leadq-royal-blue/10 to-leadq-cyan/5'
                   : ''
-                  }`}
+                  } ${agent.className || ''}`}
                 style={{ transformStyle: 'preserve-3d' }}
               >
                 <div
-                  className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-br from-leadq-silver/10 to-leadq-silver/10 border border-transparent group-hover:border-leadq-silver/30"
+                  className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-br from-leadq-royal-blue/10 to-leadq-cyan/5 border border-transparent group-hover:border-leadq-cyan/30"
                 />
 
                 <div className="relative">
                   <div className="flex items-start justify-between mb-4">
                     <div
-                      className={`w-12 h-12 rounded-xl bg-${colorClass}/10 flex items-center justify-center group-hover:scale-110 transition-transform`}
+                      className={`w-12 h-12 rounded-xl bg-leadq-royal-blue/10 flex items-center justify-center group-hover:scale-110 transition-transform`}
                     >
                       <Icon
                         className={`text-${colorClass}`}
@@ -141,16 +156,16 @@ export default function Agents() {
                     )}
                   </div>
 
-                  <h3 className="text-xl font-display font-semibold mb-3 group-hover:text-white transition-colors">
+                  <h3 className={`${agent.className?.includes('col-span') ? 'text-2xl md:text-3xl' : 'text-xl'} font-display font-semibold mb-3 group-hover:text-white transition-colors`}>
                     {agent.title}
                   </h3>
-                  <p className="text-leadq-silver leading-relaxed">
+                  <p className={`text-leadq-silver leading-relaxed ${agent.className?.includes('col-span') ? 'text-lg md:text-xl' : ''}`}>
                     {agent.description}
                   </p>
                 </div>
 
                 {agent.highlight && (
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-leadq-silver/20 to-transparent rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-leadq-royal-blue/20 to-transparent rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity" />
                 )}
               </motion.div>
             );

@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { LucideIcon, Sparkles, Briefcase, ScanLine, UserPlus, LayoutDashboard, Calendar, PenLine, Bot, DollarSign, HelpCircle, Mail, Menu as MenuIcon, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Menu, MenuItem, MenuLink, MenuSection } from "./navbar-menu"
+import { Link } from "react-router-dom"
 
 interface NavItem {
   name: string
@@ -121,7 +122,7 @@ export function NavBar({ items, className }: NavBarProps) {
   const LampEffect = () => (
     <motion.div
       layoutId="navbar-lamp"
-      className="absolute inset-0 w-full bg-leadq-silver/5 rounded-full -z-10"
+      className="absolute inset-0 w-full bg-leadq-royal-blue/5 rounded-full -z-10"
       initial={false}
       transition={{
         type: "spring",
@@ -129,10 +130,10 @@ export function NavBar({ items, className }: NavBarProps) {
         damping: 30,
       }}
     >
-      <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-1 bg-leadq-silver rounded-t-full">
-        <div className="absolute w-12 h-6 bg-leadq-silver/30 rounded-full blur-md -top-2 -left-2" />
-        <div className="absolute w-8 h-6 bg-leadq-silver/30 rounded-full blur-md -top-1" />
-        <div className="absolute w-4 h-4 bg-leadq-silver/30 rounded-full blur-sm top-0 left-2" />
+      <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-1 bg-leadq-royal-blue rounded-t-full">
+        <div className="absolute w-12 h-6 bg-leadq-royal-blue/30 rounded-full blur-md -top-2 -left-2" />
+        <div className="absolute w-8 h-6 bg-leadq-royal-blue/30 rounded-full blur-md -top-1" />
+        <div className="absolute w-4 h-4 bg-leadq-royal-blue/30 rounded-full blur-sm top-0 left-2" />
       </div>
     </motion.div>
   )
@@ -152,16 +153,16 @@ export function NavBar({ items, className }: NavBarProps) {
     >
       {/* Logo - Desktop (fixed top-left, same level as login/signup) */}
       <div className="hidden md:flex items-center gap-2 fixed top-4 left-4 z-[101]">
-        <a href="#" className="flex items-center gap-2" aria-label="LeadQ.AI Home">
+        <Link to="/" className="flex items-center gap-2" aria-label="LeadQ.AI Home">
           <img
             src="/leadq-logo-v2.jpg"
             alt="LeadQ.AI"
             className="h-8 w-auto"
           />
-          <span className="text-base font-bold text-white" style={{ fontFamily: "'Orbitron', sans-serif" }}>
-            LeadQ<span className="text-leadq-blue-400">.AI</span>
+          <span className="text-base font-bold font-display text-white">
+            LeadQ<span className="text-leadq-royal-blue">.AI</span>
           </span>
-        </a>
+        </Link>
       </div>
 
       {/* Login & Sign Up Buttons - Desktop */}
@@ -170,23 +171,23 @@ export function NavBar({ items, className }: NavBarProps) {
           Login
         </button>
 
-        <button className="px-6 py-2.5 text-sm rounded-lg font-semibold bg-gradient-to-r from-black to-leadq-silver text-white shadow-[0_0_20px_rgba(192,192,192,0.5)] hover:shadow-[0_0_30px_rgba(192,192,192,0.7)] hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-leadq-silver focus:ring-offset-2 focus:ring-offset-black whitespace-nowrap">
+        <button className="px-6 py-2.5 text-sm rounded-lg font-semibold bg-gradient-to-r from-leadq-deep-blue to-leadq-royal-blue text-white shadow-[0_0_20px_rgba(39,81,169,0.5)] hover:shadow-[0_0_30px_rgba(39,81,169,0.7)] hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-leadq-royal-blue focus:ring-offset-2 focus:ring-offset-black whitespace-nowrap">
           Sign Up
         </button>
       </div>
 
       {/* Mobile Header with Hamburger */}
       <div className="md:hidden flex items-center justify-between">
-        <a href="#" className="flex items-center gap-2" aria-label="LeadQ.AI Home">
+        <Link to="/" className="flex items-center gap-2" aria-label="LeadQ.AI Home">
           <img
             src="/leadq-logo-v2.jpg"
             alt="LeadQ.AI"
             className="h-8 w-auto"
           />
-          <span className="text-base font-bold text-white" style={{ fontFamily: "'Orbitron', sans-serif" }}>
+          <span className="text-base font-bold font-display text-white">
             LeadQ<span className="text-leadq-silver">.ai</span>
           </span>
-        </a>
+        </Link>
         <button
           onClick={toggleMobileMenu}
           className="p-3 text-white hover:text-leadq-silver transition-colors rounded-lg focus:outline-none focus:ring-2 focus:ring-leadq-silver"
@@ -220,7 +221,7 @@ export function NavBar({ items, className }: NavBarProps) {
                     className={cn(
                       "flex items-center gap-4 px-4 py-4 rounded-xl transition-all",
                       isActive
-                        ? "bg-leadq-silver/10 text-leadq-silver border border-leadq-silver/30"
+                        ? "bg-leadq-royal-blue/10 text-leadq-royal-blue border border-leadq-royal-blue/30"
                         : "text-leadq-silver hover:bg-white/5 hover:text-white"
                     )}
                   >
@@ -311,8 +312,8 @@ export function NavBar({ items, className }: NavBarProps) {
                   onClick={() => handleLinkClick(item.name)}
                   className={cn(
                     "relative cursor-pointer text-sm font-semibold px-4 py-2 rounded-full transition-colors whitespace-nowrap flex items-center gap-2",
-                    "text-leadq-silver hover:text-leadq-silver",
-                    isActive && "text-leadq-silver"
+                    "text-leadq-silver hover:text-leadq-royal-blue",
+                    isActive && "text-leadq-royal-blue"
                   )}
                 >
                   <Icon size={18} strokeWidth={2} className="hidden md:block" />

@@ -1,9 +1,25 @@
-import React from 'react';
-import { Twitter, Linkedin as LinkedIn, Github, ExternalLink } from 'lucide-react';
+import { useState } from 'react';
+import { Linkedin as LinkedIn } from 'lucide-react';
+import LegalModal from './ui/LegalModal';
+import { LegalDocument } from '../data/legal-content';
 
 const Footer = () => {
+    const [modalOpen, setModalOpen] = useState(false);
+    const [currentDoc, setCurrentDoc] = useState<LegalDocument | null>(null);
+
+    const openModal = (doc: LegalDocument) => {
+        setCurrentDoc(doc);
+        setModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setModalOpen(false);
+        setCurrentDoc(null);
+    };
+
     return (
-        <footer className="bg-[#000000] text-[#9CA3AF] py-16 px-6 relative z-10 border-t border-white/5">
+        <footer className="text-leadq-steel py-16 px-6 relative z-10 border-t border-white/5">
+            <LegalModal isOpen={modalOpen} onClose={closeModal} document={currentDoc} />
             <div className="max-w-7xl mx-auto">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
                     {/* Logo and Description Section */}
@@ -14,39 +30,24 @@ const Footer = () => {
                                 alt="LeadQ.AI Logo"
                                 className="h-10 w-auto rounded-lg shadow-[0_0_20px_rgba(255,255,255,0.1)]"
                             />
-                            <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#E5E7EB] to-[#9CA3AF]">
-                                LeadQ<span className="text-blue-400">.AI</span>
+                            <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-leadq-platinum to-leadq-steel">
+                                LeadQ<span className="text-leadq-cyan">.AI</span>
                             </span>
                         </div>
 
                         <p className="text-sm leading-relaxed max-w-xs">
-                            Building the world's most human-like voice agents to help businesses focus on human connections.
+                            Unifying leads, conversations, and workflows in one intelligent platform, LeadQ automates everything from first touch to closed deal so your team can focus on relationships, not busywork. It’s technology designed to scale revenue without ever sacrificing the human touch.
                         </p>
 
                         <div className="flex gap-4">
-                            <a href="#" className="p-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors group">
-                                <Twitter className="w-5 h-5 group-hover:text-blue-400 transition-colors" />
-                            </a>
-                            <a href="#" className="p-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors group">
+
+                            <a href="https://www.linkedin.com/company/tekisho/posts/?feedView=all" target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors group">
                                 <LinkedIn className="w-5 h-5 group-hover:text-blue-600 transition-colors" />
                             </a>
-                            <a href="#" className="p-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors group">
-                                <Github className="w-5 h-5 group-hover:text-white transition-colors" />
-                            </a>
+
                         </div>
 
-                        {/* Legal Section moved here to match layout in image */}
-                        <div className="pt-8">
-                            <h4 className="text-[#E5E7EB] font-semibold mb-6 flex items-center gap-2">
-                                Legal
-                            </h4>
-                            <ul className="space-y-4 text-sm">
-                                <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
-                                <li><a href="#" className="hover:text-white transition-colors">Terms of Service</a></li>
-                                <li><a href="#" className="hover:text-white transition-colors">Cookie Policy</a></li>
-                                <li><a href="#" className="hover:text-white transition-colors">Compliance</a></li>
-                            </ul>
-                        </div>
+
                     </div>
 
 
@@ -54,10 +55,48 @@ const Footer = () => {
                     <div className="md:col-span-1">
                         <h4 className="text-[#E5E7EB] font-semibold mb-8">Resources</h4>
                         <ul className="space-y-4 text-sm">
-                            <li><a href="#" className="hover:text-white transition-colors">Documentation</a></li>
-                            <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
-                            <li><a href="#" className="hover:text-white transition-colors">Community</a></li>
+                            <li><button onClick={() => openModal('documentation')} className="hover:text-white transition-colors text-left">Documentation</button></li>
                         </ul>
+                    </div>
+
+                    {/* Legal Section */}
+                    <div className="md:col-span-1">
+                        <h4 className="text-[#E5E7EB] font-semibold mb-8">Legal</h4>
+                        <ul className="space-y-4 text-sm">
+                            <li><button onClick={() => openModal('privacy')} className="hover:text-white transition-colors text-left">Privacy Policy</button></li>
+                            <li><button onClick={() => openModal('terms')} className="hover:text-white transition-colors text-left">Terms of Service</button></li>
+                            <li><button onClick={() => openModal('cookie')} className="hover:text-white transition-colors text-left">Cookie Policy</button></li>
+                            <li><button onClick={() => openModal('compliance')} className="hover:text-white transition-colors text-left">Compliance</button></li>
+                        </ul>
+                    </div>
+                    {/* Contact Section */}
+                    <div className="md:col-span-1">
+                        <h4 className="text-[#E5E7EB] font-semibold mb-8">Get In Touch</h4>
+                        <div className="space-y-6 text-sm">
+                            <div className="space-y-2">
+                                <p className="font-semibold text-white">USA Office</p>
+                                <div className="space-y-1">
+                                    <p>Tekisho Infotech Inc.</p>
+                                    <p>5005 W Royal Ln, Suite 288,</p>
+                                    <p>Irving, TX. 75063</p>
+                                </div>
+                            </div>
+
+                            <div className="space-y-2">
+                                <p className="font-semibold text-white">India Office</p>
+                                <div className="space-y-1">
+                                    <p>Tekisho Infotech Pvt. Ltd.</p>
+                                    <p>505 A, 5th Floor, Techno 1,</p>
+                                    <p>Gachibowli Road, Raidurg,</p>
+                                    <p>Hyderabad, Telangana - 500032</p>
+                                    <p>+91 7331104192</p>
+                                </div>
+                            </div>
+
+                            <div>
+                                <a href="mailto:contact@tekisho.ai" className="hover:text-white transition-colors">contact@tekisho.ai</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
 

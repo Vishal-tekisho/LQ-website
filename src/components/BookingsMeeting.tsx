@@ -202,7 +202,7 @@ export default function BookingsMeeting() {
   // No auto-start - animations are triggered on demand via play button
 
   return (
-    <section id="bookings-meeting" className="relative z-10 py-16 sm:py-20 md:py-24 px-4 bg-white/[0.02]">
+    <section id="bookings-meeting" className="relative z-10 py-16 sm:py-20 md:py-24 px-4">
       {/* Background ambient effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-slate-400/10 rounded-full blur-3xl" />
@@ -217,16 +217,16 @@ export default function BookingsMeeting() {
           transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-slate-400/10 to-slate-400/10 border border-slate-400/20 mb-6">
-            <Calendar className="w-4 h-4 text-slate-400" />
-            <span className="text-sm bg-gradient-to-r from-slate-400 to-slate-400 bg-clip-text text-transparent font-medium">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-leadq-cyan/10 to-leadq-royal-blue/10 border border-leadq-cyan/20 mb-6">
+            <Calendar className="w-4 h-4 text-leadq-cyan" />
+            <span className="text-sm bg-gradient-to-r from-leadq-cyan to-leadq-royal-blue bg-clip-text text-transparent font-medium">
               Intelligent Meeting Module
             </span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-4">
             Bookings & Meeting{' '}
-            <span className="bg-gradient-to-r from-leadq-silver to-slate-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-leadq-cyan to-leadq-royal-blue bg-clip-text text-transparent">
               Intelligence
             </span>
           </h2>
@@ -513,7 +513,7 @@ export default function BookingsMeeting() {
                           />
                           <defs>
                             <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
-                              <stop offset="0%" stopColor="#06b6d4" />
+                              <stop offset="0%" stopColor="#4fa4c4" />
                               <stop offset="100%" stopColor="#f59e0b" />
                             </linearGradient>
                           </defs>

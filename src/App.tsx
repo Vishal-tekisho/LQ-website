@@ -1,99 +1,31 @@
-import { Sparkles, Bot, DollarSign, Mail, Briefcase, LayoutDashboard, HelpCircle, PenLine, ScanLine, UserPlus, Calendar } from 'lucide-react';
-import { NavBar } from './components/ui/tubelight-navbar';
-import Hero from './components/Hero';
-import WhatLeadQDoes from './components/WhatLeadQDoes';
-import Features from './components/Features';
-import UseCases from './components/UseCases';
-import LeadCaptureStream from './components/LeadCaptureStream';
-import ProfileEnrichment from './components/ProfileResearch';
-import DashboardPreview from './components/DashboardPreview';
-import BookingsMeeting from './components/BookingsMeeting';
-import EmailDraftAnimation from './components/EmailDraftAnimation';
-import OutboundVoiceAgent from './components/OutboundVoiceAgent';
-import Agents from './components/Agents';
-import Pricing from './components/Pricing';
-import FAQ from './components/FAQ';
-import Contact from './components/Contact';
+import { BrowserRouter as Router } from 'react-router-dom';
+import MainContent from './components/MainContent';
 import ScrollProgress from './components/ScrollProgress';
 import ScrollToTop from './components/ScrollToTop';
 import SkipToContent from './components/SkipToContent';
 import CookieConsent from './components/CookieConsent';
-import Footer from './components/Footer';
+import AnoAI from './components/ui/animated-shader-background';
 
 function App() {
-  const navItems = [
-    { name: 'Features', url: '#features', icon: Sparkles },
-    { name: 'Use Cases', url: '#use-cases', icon: Briefcase },
-    { name: 'Lead Capture', url: '#lead-capture', icon: ScanLine },
-    { name: 'Enrichment', url: '#profile-enrichment', icon: UserPlus },
-    { name: 'Dashboard', url: '#dashboard', icon: LayoutDashboard },
-    { name: 'Bookings', url: '#bookings-meeting', icon: Calendar },
-    { name: 'Email Draft', url: '#email-draft', icon: PenLine },
-    { name: 'AI Agents', url: '#agents', icon: Bot },
-    { name: 'Pricing', url: '#pricing', icon: DollarSign },
-    { name: 'FAQ', url: '#faq', icon: HelpCircle },
-    { name: 'Contact', url: '#contact', icon: Mail }
-  ];
-
   return (
-    <div className="min-h-screen relative overflow-hidden">
-      <div className="fixed inset-0 noise pointer-events-none z-0" />
+    <Router>
+      <div className="min-h-screen relative overflow-hidden">
+        <AnoAI />
+        <div className="fixed inset-0 noise pointer-events-none z-0" />
+        <SkipToContent />
+        <ScrollProgress />
 
-      <SkipToContent />
-      <ScrollProgress />
-      <NavBar items={navItems} />
+        <div className="relative z-10">
+          <MainContent />
+        </div>
 
-      {/* 1. Hero Section */}
-      <Hero />
-
-      {/* 2. What LeadQ Does */}
-      <WhatLeadQDoes />
-
-      {/* Features */}
-      <Features />
-
-      {/* 2. Lead Capture Stream */}
-      <LeadCaptureStream />
-
-      {/* 3. Profile Research */}
-      <ProfileEnrichment />
-
-      {/* 4. Dashboard Preview */}
-      <DashboardPreview />
-
-      {/* 5. Bookings & Meetings */}
-      <BookingsMeeting />
-
-      {/* 6. Email Draft Animation */}
-      <section id="email-draft">
-        <EmailDraftAnimation />
-      </section>
-
-      {/* 7. Outbound Voice Agent */}
-      <OutboundVoiceAgent />
-
-      {/* 8. Use Cases */}
-      <UseCases />
-
-      {/* 9. AI Agents */}
-      <Agents />
-
-      {/* 10. Pricing */}
-      <Pricing />
-
-      {/* 11. FAQ */}
-      <FAQ />
-
-      {/* 12. Contact */}
-      <Contact />
-
-      <ScrollToTop />
-      <CookieConsent />
-
-      <Footer />
-    </div>
+        <ScrollToTop />
+        <CookieConsent />
+      </div>
+    </Router>
   );
 }
 
 export default App;
+
 

@@ -272,7 +272,7 @@ export default function LeadCaptureStream() {
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-4">
             Turn Every Scan Into{' '}
-            <span className="bg-gradient-to-r from-leadq-silver to-slate-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-leadq-cyan to-leadq-royal-blue bg-clip-text text-transparent">
               Revenue
             </span>
           </h2>
@@ -289,7 +289,7 @@ export default function LeadCaptureStream() {
               transition-all duration-300 transform
               ${isScanning
                 ? 'bg-white/10 text-slate-400 cursor-not-allowed scale-95'
-                : 'bg-gradient-to-r from-black to-leadq-silver text-white shadow-[0_0_20px_rgba(192,192,192,0.3)] hover:shadow-[0_0_30px_rgba(192,192,192,0.5)] hover:scale-105 animate-btn-pulse'
+                : 'bg-gradient-to-r from-leadq-deep-blue to-leadq-royal-blue text-white shadow-[0_0_20px_rgba(39,81,169,0.5)] hover:shadow-[0_0_30px_rgba(39,81,169,0.7)] hover:scale-105 animate-btn-pulse'
               }
             `}
             style={isScanning ? {} : {}}

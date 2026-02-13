@@ -193,7 +193,7 @@ const StageIndicator = ({
   return (
     <motion.div
       className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${isActive
-        ? 'bg-slate-400/20 text-slate-400 border border-slate-400/30'
+        ? 'bg-leadq-royal-blue/20 text-leadq-cyan border border-leadq-royal-blue/30'
         : isComplete
           ? 'bg-green-500/20 text-green-400 border border-green-500/30'
           : 'bg-white/5 text-slate-500 border border-white/10'
@@ -417,9 +417,9 @@ export default function EmailDraftAnimation() {
             <Mail className="w-4 h-4 text-slate-400" />
             <span className="text-sm text-slate-400 font-medium">AI Email Assistant</span>
           </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-white mb-4">
             Intelligent Email{' '}
-            <span className="bg-gradient-to-r from-leadq-silver to-slate-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-leadq-cyan to-leadq-royal-blue bg-clip-text text-transparent">
               Draft Generation
             </span>
           </h2>
@@ -442,7 +442,7 @@ export default function EmailDraftAnimation() {
             onClick={handlePlayPause}
             className={`flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all ${isPlaying
               ? 'bg-white/10 text-white border border-white/20'
-              : 'bg-gradient-to-r from-black to-leadq-silver text-white shadow-[0_0_20px_rgba(192,192,192,0.3)] hover:shadow-[0_0_30px_rgba(192,192,192,0.5)] animate-btn-pulse'
+              : 'bg-gradient-to-r from-leadq-deep-blue to-leadq-royal-blue text-white shadow-[0_0_20px_rgba(39,81,169,0.3)] hover:shadow-[0_0_30px_rgba(39,81,169,0.5)] animate-btn-pulse'
               }`}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
@@ -703,7 +703,7 @@ export default function EmailDraftAnimation() {
             </div>
 
             {/* Right Panel - Controls */}
-            <div className="p-4 md:p-6 bg-white/[0.02]">
+            <div className="p-4 md:p-6">
               <AnimatePresence mode="wait">
                 {currentStage === 'idle' ? (
                   <motion.div
@@ -849,25 +849,7 @@ export default function EmailDraftAnimation() {
             </div>
           </div>
 
-          {/* Notification Toast */}
-          <AnimatePresence>
-            {currentStage === 'complete' && (
-              <motion.div
-                initial={{ opacity: 0, y: 50, x: '-50%' }}
-                animate={{ opacity: 1, y: 0, x: '-50%' }}
-                exit={{ opacity: 0, y: 50 }}
-                className="absolute bottom-4 left-1/2 flex items-center gap-3 px-4 py-3 bg-green-500/20 border border-green-500/30 rounded-xl backdrop-blur-xl"
-              >
-                <CheckCircle2 className="w-5 h-5 text-green-400" />
-                <div>
-                  <div className="text-sm font-medium text-white">Email Sent!</div>
-                  <div className="text-xs text-slate-400">
-                    Notification sent to your inbox
-                  </div>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+
         </motion.div>
 
         {/* Feature Highlights */}

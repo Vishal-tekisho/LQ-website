@@ -93,9 +93,9 @@ function CardScanAnimation({ isActive }: { isActive: boolean }) {
             >
                 <div className="text-gray-900 font-bold text-sm">Sarah Chen</div>
                 <div className="text-slate-600 text-xs mt-1">VP of Sales</div>
-                <div className="text-leadq-silver/70 text-xs mt-2">TechCorp Inc.</div>
-                <div className="text-leadq-silver text-xs mt-3">sarah@techcorp.com</div>
-                <div className="text-leadq-silver text-xs">+1 555 123 4567</div>
+                <div className="text-slate-500 text-xs mt-2">TechCorp Inc.</div>
+                <div className="text-slate-600 text-xs mt-3">sarah@techcorp.com</div>
+                <div className="text-slate-600 text-xs">+1 555 123 4567</div>
 
                 {/* Scan line */}
                 {isActive && !prefersReducedMotion && (
@@ -165,18 +165,18 @@ function NotesToSummaryAnimation({ isActive }: { isActive: boolean }) {
             {/* Rough Notes */}
             <motion.div
                 initial={{ opacity: 0, x: -30 }}
-                animate={isActive ? { opacity: transformed ? 0.3 : 1, x: 0, scale: transformed ? 0.9 : 1 } : { opacity: 0 }}
+                animate={isActive ? { opacity: transformed ? 0.7 : 1, x: 0, scale: transformed ? 0.95 : 1 } : { opacity: 0 }}
                 transition={{ duration: 0.2 }}
                 className="absolute left-4 sm:left-8 w-44 sm:w-52 glass rounded-xl p-4 border border-white/20"
             >
-                <div className="text-xs text-leadq-silver mb-2">Raw Notes</div>
+                <div className="text-xs text-slate-300 font-semibold mb-2">My Notes</div>
                 {roughNotes.map((note, idx) => (
                     <motion.div
                         key={idx}
                         initial={{ opacity: 0 }}
                         animate={isActive ? { opacity: 1 } : {}}
                         transition={{ delay: idx * 0.08 }}
-                        className="text-leadq-silver text-xs font-mono mb-1"
+                        className="text-slate-200 text-xs font-mono mb-1"
                     >
                         {note}
                     </motion.div>
@@ -436,32 +436,27 @@ export default function WhatLeadQDoes() {
         >
             <div className="max-w-7xl mx-auto">
                 {/* Hero Sub-section */}
-                <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-20">
-                    {/* Left: Text Content */}
+                <div className="text-center max-w-3xl mx-auto mb-20">
+                    {/* Text Content */}
                     <motion.div
-                        initial={{ opacity: 0, x: -30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
                     >
-                        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+                        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-white mb-6">
                             What LeadQ Does{' '}
-                            <span className="bg-gradient-to-r from-leadq-silver to-slate-400 bg-clip-text text-transparent">
+                            <span className="bg-gradient-to-r from-leadq-cyan to-leadq-royal-blue bg-clip-text text-transparent">
                                 for You
                             </span>
                         </h2>
-                        <p className="text-lg sm:text-xl text-leadq-silver mb-4">
+                        <p className="text-lg sm:text-xl text-leadq-silver mb-8 leading-relaxed">
                             LeadQ captures people you meet, remembers every conversation, and nudges you to follow up at the right time.
-                        </p>
-                        <p className="text-leadq-silver mb-8">
+                            <br className="hidden sm:block" />
                             Think of it as a personal sales assistant that does the boring work for you.
                         </p>
-                        <button className="px-8 py-3 rounded-xl font-medium text-white bg-gradient-to-r from-black to-leadq-silver shadow-[0_0_20px_rgba(192,192,192,0.3)] hover:shadow-[0_0_30px_rgba(192,192,192,0.5)] hover:scale-105 transition-all duration-300">
-                            See how it works
-                        </button>
-                    </motion.div>
 
-                    {/* Right: Active Step Animation - Hidden since we show inline now */}
+                    </motion.div>
                 </div>
 
                 {/* Workflow Stepper */}
@@ -489,7 +484,7 @@ export default function WhatLeadQDoes() {
                                     {/* Step Indicator */}
                                     <motion.div
                                         className={`absolute left-4 w-8 h-8 rounded-full flex items-center justify-center transition-colors duration-300 ${activeStep >= step.id
-                                            ? 'bg-leadq-silver text-white'
+                                            ? 'bg-leadq-royal-blue text-white'
                                             : 'bg-white/10 text-leadq-silver'
                                             }`}
                                         whileHover={{ scale: 1.1 }}
@@ -505,7 +500,7 @@ export default function WhatLeadQDoes() {
                                         viewport={{ once: true }}
                                         transition={{ delay: idx * 0.1 }}
                                         className={`glass rounded-2xl p-6 border transition-all duration-300 cursor-pointer ${activeStep === step.id
-                                            ? 'border-leadq-silver/50 shadow-lg shadow-leadq-silver/10'
+                                            ? 'border-leadq-royal-blue/50 shadow-lg shadow-leadq-royal-blue/10'
                                             : 'border-white/10 hover:border-white/20'
                                             }`}
                                         onClick={() => setActiveStep(step.id)}
@@ -544,7 +539,7 @@ export default function WhatLeadQDoes() {
                                     key={step.id}
                                     onClick={() => setActiveStep(step.id)}
                                     className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${activeStep === step.id
-                                        ? 'bg-leadq-silver text-white scale-110'
+                                        ? 'bg-leadq-royal-blue text-white scale-110'
                                         : 'bg-white/10 text-leadq-silver'
                                         }`}
                                 >

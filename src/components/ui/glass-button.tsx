@@ -33,13 +33,13 @@ export const GlassButton: React.FC<GlassButtonProps> = ({
                 // Shadow
                 'shadow-[0_8px_32px_rgba(0,0,0,0.3)]',
                 // Hover effects
-                'hover:border-leadq-silver/40 hover:bg-white/10',
-                'hover:shadow-[0_8px_32px_rgba(192,192,192,0.2),0_0_20px_rgba(192,192,192,0.15)]',
+                'hover:border-leadq-royal-blue/40 hover:bg-leadq-royal-blue/10',
+                'hover:shadow-[0_8px_32px_rgba(39,81,169,0.2),0_0_20px_rgba(39,81,169,0.15)]',
                 'hover:scale-[1.02]',
                 // Active state
                 'active:scale-[0.98]',
                 // Focus
-                'focus:outline-none focus:ring-2 focus:ring-leadq-silver/50 focus:ring-offset-2 focus:ring-offset-transparent',
+                'focus:outline-none focus:ring-2 focus:ring-leadq-royal-blue/50 focus:ring-offset-2 focus:ring-offset-transparent',
                 className
             )}
             {...props}
@@ -51,7 +51,7 @@ export const GlassButton: React.FC<GlassButtonProps> = ({
             <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
 
             {/* Hover glow overlay */}
-            <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-leadq-silver/0 via-leadq-silver/5 to-leadq-silver/0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+            <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-leadq-royal-blue/0 via-leadq-royal-blue/10 to-leadq-royal-blue/0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
             {/* Content */}
             <div

@@ -95,14 +95,20 @@
 }
 
 :root {
-  --bg-dark: #000000;
+  --bg-dark: #05060e;
   --color-background: var(--bg-dark);
   --color-foreground: #E5E7EB;
   --color-platinum: #E5E7EB;
   --color-steel: #6B7280;
   --color-silver: #C0C0C0;
+  --color-royal-blue: #2751a9;
+  --color-cyan: #4fa4c4;
+  --color-purple: #bfa9c9;
+  --color-deep-blue: #152d63;
   --platinum-glow: 0 0 10px rgba(229, 231, 235, 0.5), 0 0 25px rgba(229, 231, 235, 0.3), 0 0 40px rgba(229, 231, 235, 0.15);
   --silver-glow: 0 0 10px rgba(192, 192, 192, 0.5), 0 0 25px rgba(192, 192, 192, 0.3), 0 0 40px rgba(192, 192, 192, 0.2);
+  --royal-blue-glow: 0 0 10px rgba(39, 81, 169, 0.5), 0 0 25px rgba(39, 81, 169, 0.3);
+  --cyan-glow: 0 0 10px rgba(79, 164, 196, 0.5), 0 0 25px rgba(79, 164, 196, 0.3);
 }
 
 /* Apply silver glow to slate text colors */
@@ -282,12 +288,12 @@
     0%,
     100% {
       opacity: 1;
-      filter: drop-shadow(0 0 60px rgba(6, 182, 212, 0.6)) drop-shadow(0 0 100px rgba(6, 182, 212, 0.4));
+      filter: drop-shadow(0 0 60px rgba(79, 164, 196, 0.6)) drop-shadow(0 0 100px rgba(79, 164, 196, 0.4));
     }
 
     50% {
       opacity: 0.85;
-      filter: drop-shadow(0 0 50px rgba(6, 182, 212, 0.5)) drop-shadow(0 0 80px rgba(6, 182, 212, 0.3));
+      filter: drop-shadow(0 0 50px rgba(79, 164, 196, 0.5)) drop-shadow(0 0 80px rgba(79, 164, 196, 0.3));
     }
   }
 

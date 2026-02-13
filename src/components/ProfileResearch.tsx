@@ -604,7 +604,7 @@ export default function ProfileResearch() {
 
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-4">
             Profile{' '}
-            <span className="bg-gradient-to-r from-leadq-silver to-slate-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-leadq-cyan to-leadq-royal-blue bg-clip-text text-transparent">
               Research
             </span>
           </h2>
@@ -617,7 +617,7 @@ export default function ProfileResearch() {
           {stage === 'idle' ? (
             <motion.button
               onClick={startAnimation}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-black to-leadq-silver text-white text-sm font-medium shadow-[0_0_20px_rgba(192,192,192,0.3)] hover:shadow-[0_0_30px_rgba(192,192,192,0.5)] transition-all animate-btn-pulse"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-leadq-deep-blue to-leadq-royal-blue text-white text-sm font-medium shadow-[0_0_20px_rgba(39,81,169,0.3)] hover:shadow-[0_0_30px_rgba(39,81,169,0.5)] transition-all animate-btn-pulse"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
