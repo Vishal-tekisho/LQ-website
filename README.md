@@ -1,1 +1,1 @@
-LeadQLandingPage.
+LeadQLandingPage
