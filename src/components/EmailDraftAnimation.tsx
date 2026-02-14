@@ -517,7 +517,7 @@ export default function EmailDraftAnimation() {
           </div>
 
           {/* Content */}
-          <div className="grid lg:grid-cols-[1fr,320px] min-h-[500px]">
+          <div className="grid lg:grid-cols-[1fr,280px] xl:grid-cols-[1fr,320px] min-h-[400px] sm:min-h-[450px] md:min-h-[500px]">
             {/* Left Panel - Email Editor */}
             <div className="p-4 md:p-6 border-b lg:border-b-0 lg:border-r border-white/10">
               <AnimatePresence mode="wait">
@@ -597,7 +597,7 @@ export default function EmailDraftAnimation() {
                     {/* Email Body */}
                     <motion.div
                       variants={itemVariants}
-                      className="p-4 bg-white/5 rounded-xl border border-white/10 min-h-[280px]"
+                      className="p-3 sm:p-4 bg-white/5 rounded-xl border border-white/10 min-h-[200px] sm:min-h-[240px] md:min-h-[280px]"
                     >
                       <div className="flex items-center justify-between mb-3">
                         <span className="text-xs text-slate-500 uppercase tracking-wider">

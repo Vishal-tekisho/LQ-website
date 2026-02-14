@@ -83,13 +83,13 @@ function CardScanAnimation({ isActive }: { isActive: boolean }) {
     }, [isActive, prefersReducedMotion]);
 
     return (
-        <div className="relative w-full h-64 sm:h-80 flex items-center justify-center">
+        <div className="relative w-full flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-0 py-4 sm:py-0 sm:h-80">
             {/* Business Card */}
             <motion.div
                 initial={{ opacity: 0, scale: 0.8, rotateY: -15 }}
                 animate={isActive ? { opacity: 1, scale: 1, rotateY: 0 } : { opacity: 0, scale: 0.8 }}
                 transition={{ duration: 0.5 }}
-                className="absolute left-4 sm:left-8 w-48 sm:w-56 bg-white rounded-xl p-4 shadow-2xl"
+                className="relative w-full max-w-[14rem] sm:absolute sm:left-8 sm:w-56 bg-white rounded-xl p-4 shadow-2xl"
             >
                 <div className="text-gray-900 font-bold text-sm">Sarah Chen</div>
                 <div className="text-slate-600 text-xs mt-1">VP of Sales</div>
@@ -108,12 +108,22 @@ function CardScanAnimation({ isActive }: { isActive: boolean }) {
                 )}
             </motion.div>
 
+            {/* Arrow indicator (visible on mobile between the cards) */}
+            <motion.div
+                initial={{ opacity: 0, scale: 0 }}
+                animate={isActive ? { opacity: 1, scale: 1 } : {}}
+                transition={{ delay: 0.3 }}
+                className="sm:hidden text-leadq-silver"
+            >
+                <ChevronRight className="w-6 h-6 rotate-90" />
+            </motion.div>
+
             {/* Auto-fill UI */}
             <motion.div
                 initial={{ opacity: 0, x: 50 }}
                 animate={scanned || prefersReducedMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="absolute right-4 sm:right-8 w-52 sm:w-64 glass rounded-xl p-4 border border-white/20"
+                className="relative w-full max-w-[16rem] sm:absolute sm:right-8 sm:w-64 glass rounded-xl p-4 border border-white/20"
             >
                 <div className="text-xs text-leadq-silver mb-3">Contact Details</div>
                 {[
@@ -131,7 +141,7 @@ function CardScanAnimation({ isActive }: { isActive: boolean }) {
                     >
                         <span className="text-leadq-silver">{field.icon}</span>
                         <span className="text-leadq-silver/70 text-xs w-14">{field.label}</span>
-                        <span className="text-white text-xs">{field.value}</span>
+                        <span className="text-white text-xs truncate">{field.value}</span>
                     </motion.div>
                 ))}
             </motion.div>
@@ -161,13 +171,13 @@ function NotesToSummaryAnimation({ isActive }: { isActive: boolean }) {
     ];
 
     return (
-        <div className="relative w-full h-64 sm:h-80 flex items-center justify-center">
+        <div className="relative w-full flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-0 py-4 sm:py-0 sm:h-80">
             {/* Rough Notes */}
             <motion.div
                 initial={{ opacity: 0, x: -30 }}
                 animate={isActive ? { opacity: transformed ? 0.7 : 1, x: 0, scale: transformed ? 0.95 : 1 } : { opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                className="absolute left-4 sm:left-8 w-44 sm:w-52 glass rounded-xl p-4 border border-white/20"
+                className="relative w-full max-w-[14rem] sm:absolute sm:left-8 sm:w-52 glass rounded-xl p-4 border border-white/20"
             >
                 <div className="text-xs text-slate-300 font-semibold mb-2">My Notes</div>
                 {roughNotes.map((note, idx) => (
@@ -188,9 +198,9 @@ function NotesToSummaryAnimation({ isActive }: { isActive: boolean }) {
                 initial={{ opacity: 0, scale: 0 }}
                 animate={isActive ? { opacity: 1, scale: 1 } : {}}
                 transition={{ delay: 0.25 }}
-                className="absolute left-1/2 -translate-x-1/2 text-leadq-silver"
+                className="text-leadq-silver sm:absolute sm:left-1/2 sm:-translate-x-1/2"
             >
-                <ChevronRight className="w-8 h-8" />
+                <ChevronRight className="w-6 h-6 rotate-90 sm:rotate-0 sm:w-8 sm:h-8" />
             </motion.div>
 
             {/* Structured Summary */}
@@ -198,7 +208,7 @@ function NotesToSummaryAnimation({ isActive }: { isActive: boolean }) {
                 initial={{ opacity: 0, x: 30 }}
                 animate={transformed || prefersReducedMotion ? { opacity: 1, x: 0 } : { opacity: 0.3, x: 30 }}
                 transition={{ duration: 0.2 }}
-                className="absolute right-4 sm:right-8 w-52 sm:w-64 glass rounded-xl p-4 border border-leadq-silver/30 shadow-lg shadow-leadq-silver/10"
+                className="relative w-full max-w-[16rem] sm:absolute sm:right-8 sm:w-64 glass rounded-xl p-4 border border-leadq-silver/30 shadow-lg shadow-leadq-silver/10"
             >
                 <div className="text-xs text-leadq-silver mb-3">Meeting Summary</div>
                 <div className="space-y-2">
@@ -236,13 +246,13 @@ function FollowUpsAnimation({ isActive }: { isActive: boolean }) {
     ];
 
     return (
-        <div className="relative w-full h-64 sm:h-80 flex items-center justify-center gap-4">
+        <div className="relative w-full flex flex-col sm:flex-row items-center justify-center gap-4 py-4 sm:py-0 sm:h-80">
             {/* Calendar */}
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                className="w-32 sm:w-40 glass rounded-xl p-3 border border-white/20"
+                className="w-full max-w-[10rem] sm:w-40 glass rounded-xl p-3 border border-white/20"
             >
                 <div className="text-xs text-leadq-silver mb-2">February 2026</div>
                 <div className="grid grid-cols-7 gap-1 text-xs text-center">
@@ -268,7 +278,7 @@ function FollowUpsAnimation({ isActive }: { isActive: boolean }) {
                 initial={{ opacity: 0, x: 20 }}
                 animate={isActive ? { opacity: 1, x: 0 } : { opacity: 0 }}
                 transition={{ duration: 0.2, delay: 0.1 }}
-                className="w-52 sm:w-64 glass rounded-xl p-4 border border-white/20"
+                className="w-full max-w-[16rem] sm:w-64 glass rounded-xl p-4 border border-white/20"
             >
                 <div className="text-xs text-leadq-silver mb-3">Today's Follow-ups</div>
                 {tasks.map((task, idx) => (
@@ -285,13 +295,13 @@ function FollowUpsAnimation({ isActive }: { isActive: boolean }) {
                             }`}>
                             {checkedTask === task.id && <Check className="w-3 h-3 text-white" />}
                         </div>
-                        <div>
-                            <div className={`text-sm text-white ${checkedTask === task.id ? 'line-through' : ''}`}>
+                        <div className="min-w-0">
+                            <div className={`text-sm text-white truncate ${checkedTask === task.id ? 'line-through' : ''}`}>
                                 {task.name}
                             </div>
-                            <div className="text-xs text-leadq-silver">{task.action}</div>
+                            <div className="text-xs text-leadq-silver truncate">{task.action}</div>
                         </div>
-                        <div className="ml-auto text-xs text-leadq-silver">{task.due}</div>
+                        <div className="ml-auto text-xs text-leadq-silver flex-shrink-0">{task.due}</div>
                     </motion.div>
                 ))}
             </motion.div>
@@ -311,12 +321,12 @@ function TimelineAnimation({ isActive }: { isActive: boolean }) {
     ];
 
     return (
-        <div className="relative w-full h-64 sm:h-80 flex items-center justify-center">
+        <div className="relative w-full flex items-center justify-center py-4 sm:py-0 sm:h-80">
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={isActive ? { opacity: 1 } : { opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                className="w-72 sm:w-96 glass rounded-xl p-4 border border-white/20"
+                className="w-full max-w-[18rem] sm:max-w-none sm:w-96 glass rounded-xl p-4 border border-white/20"
             >
                 {/* Contact Header */}
                 <div className="flex items-center gap-3 mb-4 pb-3 border-b border-white/10">
@@ -535,16 +545,26 @@ export default function WhatLeadQDoes() {
                         {/* Step Indicators */}
                         <div className="flex justify-center gap-2 mb-8">
                             {steps.map((step) => (
-                                <button
+                                <motion.button
                                     key={step.id}
                                     onClick={() => setActiveStep(step.id)}
+                                    animate={activeStep !== step.id ? {
+                                        scale: [1, 1.1, 1],
+                                        opacity: [0.7, 1, 0.7],
+                                    } : {}}
+                                    transition={{
+                                        duration: 2,
+                                        repeat: Infinity,
+                                        repeatType: "reverse",
+                                        delay: step.id * 0.2
+                                    }}
                                     className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${activeStep === step.id
-                                        ? 'bg-leadq-royal-blue text-white scale-110'
+                                        ? 'bg-leadq-royal-blue text-white scale-110 shadow-lg shadow-leadq-royal-blue/30'
                                         : 'bg-white/10 text-leadq-silver'
                                         }`}
                                 >
                                     {step.id}
-                                </button>
+                                </motion.button>
                             ))}
                         </div>
 
