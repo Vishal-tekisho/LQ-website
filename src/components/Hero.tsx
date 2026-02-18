@@ -5,7 +5,7 @@ export default function Hero() {
     const words = "Where Leads Become Revenue".split(" ");
 
     return (
-        <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden">
+        <div id="hero" className="relative min-h-[85vh] py-32 w-full flex items-center justify-center overflow-hidden">
 
 
             <div className="relative z-10 container mx-auto px-4 md:px-6 text-center">

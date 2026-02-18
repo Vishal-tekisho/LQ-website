@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { LucideIcon } from "lucide-react";
+import { LucideIcon, ChevronDown } from "lucide-react";
 
 const transition = {
     type: "spring" as const,
@@ -39,6 +39,13 @@ export const MenuItem = ({
             >
                 {Icon && <Icon size={18} strokeWidth={2} />}
                 <span>{item}</span>
+                {children && (
+                    <ChevronDown
+                        size={14}
+                        strokeWidth={2}
+                        className={`transition-transform duration-300 ${active === item ? "rotate-180" : "rotate-0"}`}
+                    />
+                )}
             </motion.div>
             <AnimatePresence>
                 {active === item && children && (
@@ -83,25 +90,34 @@ export const MenuLink = ({
     href,
     icon: Icon,
     children,
+    description,
     onClick,
 }: {
     href: string;
     icon?: LucideIcon;
     children: React.ReactNode;
-    onClick?: () => void;
+    description?: string;
+    onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
 }) => {
     return (
         <a
             href={href}
             onClick={onClick}
-            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-leadq-silver hover:text-white hover:bg-white/10 transition-all group"
+            className="flex items-start gap-3 p-3 rounded-lg text-leadq-silver hover:text-white hover:bg-white/10 transition-all group"
         >
             {Icon && (
-                <div className="w-7 h-7 rounded-md bg-leadq-silver/10 flex items-center justify-center group-hover:bg-leadq-silver/20 transition-colors flex-shrink-0">
-                    <Icon size={14} className="text-leadq-silver" />
+                <div className="w-8 h-8 rounded-md bg-leadq-silver/10 flex items-center justify-center group-hover:bg-leadq-silver/20 transition-colors flex-shrink-0 mt-0.5">
+                    <Icon size={16} className="text-leadq-silver" />
                 </div>
             )}
-            <span className="text-sm font-medium">{children}</span>
+            <div className="flex flex-col gap-1">
+                <span className="text-sm font-medium leading-none">{children}</span>
+                {description && (
+                    <span className="text-xs text-leadq-silver/60 group-hover:text-leadq-silver/80 transition-colors font-normal leading-snug">
+                        {description}
+                    </span>
+                )}
+            </div>
         </a>
     );
 };

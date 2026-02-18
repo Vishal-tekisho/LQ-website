@@ -155,6 +155,30 @@ const PreferencesModal = ({ onSave, onClose }: PreferencesModalProps) => {
   const [analytics, setAnalytics] = useState(true);
   const [marketing, setMarketing] = useState(true);
 
+  const cookieTable = [
+    {
+      name: 'leadq-cookie-consent',
+      provider: 'LeadQ',
+      purpose: 'Stores your cookie consent preferences.',
+      duration: '12 months',
+      type: 'Essential'
+    },
+    {
+      name: '[analytics_cookie_name]',
+      provider: '[Analytics Provider]',
+      purpose: 'Helps us understand site usage and improve performance.',
+      duration: '[e.g., 24 months]',
+      type: 'Analytics'
+    },
+    {
+      name: '[marketing_cookie_name]',
+      provider: '[Marketing Provider]',
+      purpose: 'Measures marketing effectiveness and ad performance.',
+      duration: '[e.g., 90 days]',
+      type: 'Marketing'
+    }
+  ];
+
   const cookieTypes = [
     {
       id: 'essential',
@@ -220,6 +244,44 @@ const PreferencesModal = ({ onSave, onClose }: PreferencesModalProps) => {
             </div>
           </div>
         ))}
+      </div>
+
+      <div className="mb-8">
+        <h4 className="text-xl font-semibold mb-3">Cookie Policy</h4>
+        <p className="text-sm text-leadq-silver leading-relaxed mb-4">
+          This Cookie Policy explains how LeadQ uses cookies and similar technologies on LeadQ.ai.
+          Essential cookies are required for the site to function. Analytics and marketing cookies
+          are optional and used to understand usage and improve our communications.
+        </p>
+
+        <div className="glass p-4 rounded-xl border border-white/10 overflow-x-auto">
+          <table className="min-w-full text-sm">
+            <thead>
+              <tr className="text-left text-leadq-silver">
+                <th className="py-2 pr-4 font-medium">Cookie</th>
+                <th className="py-2 pr-4 font-medium">Provider</th>
+                <th className="py-2 pr-4 font-medium">Purpose</th>
+                <th className="py-2 pr-4 font-medium">Duration</th>
+                <th className="py-2 font-medium">Type</th>
+              </tr>
+            </thead>
+            <tbody>
+              {cookieTable.map((row) => (
+                <tr key={row.name} className="border-t border-white/10">
+                  <td className="py-2 pr-4 whitespace-nowrap">{row.name}</td>
+                  <td className="py-2 pr-4 whitespace-nowrap">{row.provider}</td>
+                  <td className="py-2 pr-4">{row.purpose}</td>
+                  <td className="py-2 pr-4 whitespace-nowrap">{row.duration}</td>
+                  <td className="py-2 whitespace-nowrap">{row.type}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <p className="text-xs text-leadq-silver/80 mt-3">
+          Replace the bracketed values with your actual analytics and marketing tools once confirmed.
+        </p>
       </div>
 
       <div className="flex gap-3">

@@ -47,9 +47,9 @@ export default function Header() {
           <div className="flex-shrink-0">
             <a href="#" className="flex items-center focus:outline-none focus:ring-2 focus:ring-leadq-silver focus:ring-offset-2 focus:ring-offset-leadq-bg rounded-lg px-2 py-1" aria-label="LeadQ.AI Home">
               <img
-                src="/leadq-logo-v2.jpg"
+                src="/leadq-logo-main.png"
                 alt="LeadQ.AI - Where Leads Become Revenue"
-                className="h-10 w-auto"
+                className="h-20 w-auto bg-gradient-to-br from-slate-900 to-slate-950 p-2 rounded-lg shadow-[0_0_20px_rgba(96,165,250,0.3)] border border-blue-500/20"
               />
             </a>
           </div>

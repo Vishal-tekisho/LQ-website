@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import {
     CreditCard,
@@ -28,7 +28,7 @@ const steps: Step[] = [
         id: 1,
         title: 'Capture people you meet',
         description: 'Snap a card, we fill the details for you. No more stacks of cards or messy screenshots.',
-        icon: <CreditCard className="w-6 h-6" />,
+        icon: <CreditCard className="w-6 h-7" />,
     },
     {
         id: 2,
@@ -83,39 +83,106 @@ function CardScanAnimation({ isActive }: { isActive: boolean }) {
     }, [isActive, prefersReducedMotion]);
 
     return (
-        <div className="relative w-full flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-0 py-4 sm:py-0 sm:h-80">
-            {/* Business Card */}
+        <div className="relative w-full flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-0 py-4 lg:py-0 lg:h-80">
+            {/* Front Card */}
             <motion.div
-                initial={{ opacity: 0, scale: 0.8, rotateY: -15 }}
-                animate={isActive ? { opacity: 1, scale: 1, rotateY: 0 } : { opacity: 0, scale: 0.8 }}
+                initial={{ opacity: 0, scale: 0.8, rotateY: -15, x: -20 }}
+                animate={isActive ? { opacity: 1, scale: 1, rotateY: 0, x: 0 } : { opacity: 0, scale: 0.8 }}
                 transition={{ duration: 0.5 }}
-                className="relative w-full max-w-[14rem] sm:absolute sm:left-8 sm:w-56 bg-white rounded-xl p-4 shadow-2xl"
+                className="relative w-full max-w-[14rem] lg:absolute lg:left-4 lg:w-80 aspect-[1.586/1] bg-[#f8f9fa] rounded-xl p-6 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.3)] overflow-hidden border border-gray-100 z-20"
+                style={{
+                    backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E\")"
+                }}
             >
-                <div className="text-gray-900 font-bold text-sm">Sarah Chen</div>
-                <div className="text-slate-600 text-xs mt-1">VP of Sales</div>
-                <div className="text-slate-500 text-xs mt-2">TechCorp Inc.</div>
-                <div className="text-slate-600 text-xs mt-3">sarah@techcorp.com</div>
-                <div className="text-slate-600 text-xs">+1 555 123 4567</div>
+                {/* Card Content */}
+                <div className="relative z-10 h-full flex flex-col justify-between">
+                    {/* Top: Logo */}
+                    <div className="flex items-center gap-2">
+                        <div className="w-8 h-8 bg-gray-900 rounded-lg flex items-center justify-center">
+                            <div className="w-4 h-4 border-2 border-white rounded-sm transform rotate-45"></div>
+                        </div>
+                        <span className="font-bold text-gray-900 tracking-tight">TECHCORP</span>
+                    </div>
+
+                    {/* Middle: Name & Title */}
+                    <div className="mt-4">
+                        <div className="text-2xl font-bold text-gray-900 font-serif tracking-tight">Sarah Chen</div>
+                        <div className="text-sm font-medium text-leadq-royal-blue uppercase tracking-wider mt-1">VP of Sales</div>
+                    </div>
+
+                    {/* Decorative Bottom */}
+                    <div className="mt-auto h-1 w-12 bg-gray-900 rounded-full"></div>
+                </div>
+
+                {/* Decorative Accent */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-leadq-royal-blue/5 to-transparent rounded-bl-full -mr-10 -mt-10"></div>
 
                 {/* Scan line */}
                 {isActive && !prefersReducedMotion && (
                     <motion.div
                         initial={{ top: 0 }}
                         animate={{ top: '100%' }}
-                        transition={{ duration: 1.2, repeat: scanned ? 0 : Infinity }}
-                        className="absolute left-0 right-0 h-1 bg-gradient-to-r from-transparent via-leadq-silver to-transparent"
+                        transition={{ duration: 1.5, repeat: scanned ? 0 : Infinity, ease: "linear" }}
+                        className="absolute left-0 right-0 h-8 bg-gradient-to-b from-leadq-cyan/20 to-transparent pointer-events-none z-20 border-t border-leadq-cyan/50"
                     />
                 )}
             </motion.div>
 
-            {/* Arrow indicator (visible on mobile between the cards) */}
+            {/* Back Card */}
+            <motion.div
+                initial={{ opacity: 0, scale: 0.8, rotate: 5, x: 20 }}
+                animate={isActive ? { opacity: 1, scale: 1, rotate: 5, x: 0 } : { opacity: 0, scale: 0.8 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="relative w-full max-w-[14rem] lg:absolute lg:left-48 lg:top-6 lg:w-80 aspect-[1.586/1] bg-[#f8f9fa] rounded-xl p-6 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.2)] overflow-hidden border border-gray-100 z-10"
+                style={{
+                    backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E\")"
+                }}
+            >
+                <div className="relative z-10 h-full flex flex-col justify-center items-center text-center">
+                    <div className="opacity-10 absolute inset-0 flex items-center justify-center">
+                        <div className="w-32 h-32 border-4 border-gray-900 rounded-full flex items-center justify-center">
+                            <span className="font-bold text-gray-900 text-4xl">TC</span>
+                        </div>
+                    </div>
+
+                    <div className="space-y-2 relative z-20">
+                        <div className="flex flex-col items-center gap-0.5">
+                            <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600">
+                                <Mail size={14} />
+                            </div>
+                            <span className="text-gray-900 font-medium font-mono text-sm">sarah@techcorp.com</span>
+                        </div>
+
+                        <div className="w-full h-px bg-gray-200"></div>
+
+                        <div className="flex flex-col items-center gap-0.5">
+                            <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600">
+                                <Phone size={14} />
+                            </div>
+                            <span className="text-gray-900 font-medium font-mono text-sm">+1 555 123 4567</span>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Scan line */}
+                {isActive && !prefersReducedMotion && (
+                    <motion.div
+                        initial={{ top: 0 }}
+                        animate={{ top: '100%' }}
+                        transition={{ duration: 1.5, repeat: scanned ? 0 : Infinity, ease: "linear" }}
+                        className="absolute left-0 right-0 h-8 bg-gradient-to-b from-leadq-cyan/20 to-transparent pointer-events-none z-20 border-t border-leadq-cyan/50"
+                    />
+                )}
+            </motion.div>
+
+            {/* Arrow indicator */}
             <motion.div
                 initial={{ opacity: 0, scale: 0 }}
                 animate={isActive ? { opacity: 1, scale: 1 } : {}}
                 transition={{ delay: 0.3 }}
-                className="sm:hidden text-leadq-silver"
+                className="text-leadq-silver lg:absolute lg:left-1/2 lg:top-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2 lg:z-30"
             >
-                <ChevronRight className="w-6 h-6 rotate-90" />
+                <ChevronRight className="w-6 h-6 lg:w-8 lg:h-8 rotate-90 lg:rotate-0" />
             </motion.div>
 
             {/* Auto-fill UI */}
@@ -123,7 +190,7 @@ function CardScanAnimation({ isActive }: { isActive: boolean }) {
                 initial={{ opacity: 0, x: 50 }}
                 animate={scanned || prefersReducedMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="relative w-full max-w-[16rem] sm:absolute sm:right-8 sm:w-64 glass rounded-xl p-4 border border-white/20"
+                className="relative w-full max-w-[16rem] lg:absolute lg:right-8 lg:w-64 glass rounded-xl p-4 border border-white/20 z-30"
             >
                 <div className="text-xs text-leadq-silver mb-3">Contact Details</div>
                 {[
@@ -171,13 +238,13 @@ function NotesToSummaryAnimation({ isActive }: { isActive: boolean }) {
     ];
 
     return (
-        <div className="relative w-full flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-0 py-4 sm:py-0 sm:h-80">
+        <div className="relative w-full flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-0 py-4 lg:py-0 lg:h-80">
             {/* Rough Notes */}
             <motion.div
                 initial={{ opacity: 0, x: -30 }}
                 animate={isActive ? { opacity: transformed ? 0.7 : 1, x: 0, scale: transformed ? 0.95 : 1 } : { opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                className="relative w-full max-w-[14rem] sm:absolute sm:left-8 sm:w-52 glass rounded-xl p-4 border border-white/20"
+                className="relative w-full max-w-[14rem] lg:absolute lg:left-8 lg:w-52 glass rounded-xl p-4 border border-white/20"
             >
                 <div className="text-xs text-slate-300 font-semibold mb-2">My Notes</div>
                 {roughNotes.map((note, idx) => (
@@ -198,9 +265,9 @@ function NotesToSummaryAnimation({ isActive }: { isActive: boolean }) {
                 initial={{ opacity: 0, scale: 0 }}
                 animate={isActive ? { opacity: 1, scale: 1 } : {}}
                 transition={{ delay: 0.25 }}
-                className="text-leadq-silver sm:absolute sm:left-1/2 sm:-translate-x-1/2"
+                className="text-leadq-silver lg:absolute lg:left-1/2 lg:-translate-x-1/2"
             >
-                <ChevronRight className="w-6 h-6 rotate-90 sm:rotate-0 sm:w-8 sm:h-8" />
+                <ChevronRight className="w-6 h-6 rotate-90 lg:rotate-0 lg:w-8 lg:h-8" />
             </motion.div>
 
             {/* Structured Summary */}
@@ -208,7 +275,7 @@ function NotesToSummaryAnimation({ isActive }: { isActive: boolean }) {
                 initial={{ opacity: 0, x: 30 }}
                 animate={transformed || prefersReducedMotion ? { opacity: 1, x: 0 } : { opacity: 0.3, x: 30 }}
                 transition={{ duration: 0.2 }}
-                className="relative w-full max-w-[16rem] sm:absolute sm:right-8 sm:w-64 glass rounded-xl p-4 border border-leadq-silver/30 shadow-lg shadow-leadq-silver/10"
+                className="relative w-full max-w-[16rem] lg:absolute lg:right-8 lg:w-64 glass rounded-xl p-4 border border-leadq-silver/30 shadow-lg shadow-leadq-silver/10"
             >
                 <div className="text-xs text-leadq-silver mb-3">Meeting Summary</div>
                 <div className="space-y-2">
@@ -377,7 +444,7 @@ export default function WhatLeadQDoes() {
 
         const observerOptions = {
             root: null,
-            rootMargin: '-40% 0px -40% 0px',
+            rootMargin: '-15% 0px -15% 0px',
             threshold: 0,
         };
 
@@ -423,16 +490,17 @@ export default function WhatLeadQDoes() {
         return () => sectionObserver.disconnect();
     }, []);
 
-    const renderStepAnimation = (stepId: number) => {
+    const renderStepAnimation = (stepId: number, forceActive: boolean = false) => {
+        const isActive = forceActive || activeStep === stepId;
         switch (stepId) {
             case 1:
-                return <CardScanAnimation isActive={activeStep === 1} />;
+                return <CardScanAnimation isActive={isActive} />;
             case 2:
-                return <NotesToSummaryAnimation isActive={activeStep === 2} />;
+                return <NotesToSummaryAnimation isActive={isActive} />;
             case 3:
-                return <FollowUpsAnimation isActive={activeStep === 3} />;
+                return <FollowUpsAnimation isActive={isActive} />;
             case 4:
-                return <TimelineAnimation isActive={activeStep === 4} />;
+                return <TimelineAnimation isActive={isActive} />;
             default:
                 return null;
         }
@@ -442,7 +510,7 @@ export default function WhatLeadQDoes() {
         <section
             ref={sectionRef}
             id="what-leadq-does"
-            className="relative z-10 py-20 sm:py-28 px-4"
+            className="relative z-10 py-12 sm:py-16 px-4"
         >
             <div className="max-w-7xl mx-auto">
                 {/* Hero Sub-section */}
@@ -489,7 +557,7 @@ export default function WhatLeadQDoes() {
                                     key={step.id}
                                     ref={(el) => { stepRefs.current[idx] = el; }}
                                     data-step={step.id}
-                                    className="relative pl-20 pb-32 last:pb-0"
+                                    className="relative pl-20 pb-16 last:pb-0"
                                 >
                                     {/* Step Indicator */}
                                     <motion.div
@@ -540,51 +608,33 @@ export default function WhatLeadQDoes() {
                         </div>
                     </div>
 
-                    {/* Mobile: Horizontal Stepper */}
-                    <div className="lg:hidden">
-                        {/* Step Indicators */}
-                        <div className="flex justify-center gap-2 mb-8">
-                            {steps.map((step) => (
-                                <motion.button
-                                    key={step.id}
-                                    onClick={() => setActiveStep(step.id)}
-                                    animate={activeStep !== step.id ? {
-                                        scale: [1, 1.1, 1],
-                                        opacity: [0.7, 1, 0.7],
-                                    } : {}}
-                                    transition={{
-                                        duration: 2,
-                                        repeat: Infinity,
-                                        repeatType: "reverse",
-                                        delay: step.id * 0.2
-                                    }}
-                                    className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${activeStep === step.id
-                                        ? 'bg-leadq-royal-blue text-white scale-110 shadow-lg shadow-leadq-royal-blue/30'
-                                        : 'bg-white/10 text-leadq-silver'
-                                        }`}
-                                >
-                                    {step.id}
-                                </motion.button>
-                            ))}
-                        </div>
-
-                        {/* Active Step Content */}
-                        <AnimatePresence mode="wait">
+                    {/* Mobile & Tablet: Scroll-Reveal Cards */}
+                    <div className="lg:hidden flex flex-col gap-6">
+                        {steps.map((step, idx) => (
                             <motion.div
-                                key={activeStep}
-                                initial={{ opacity: 0, x: 50 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                exit={{ opacity: 0, x: -50 }}
-                                transition={{ duration: 0.3 }}
+                                key={step.id}
+                                initial={{ opacity: 0, y: 40 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, margin: "-100px" }}
+                                transition={{
+                                    duration: 0.6,
+                                    delay: idx * 0.15,
+                                    ease: [0.25, 0.46, 0.45, 0.94]
+                                }}
                                 className="glass rounded-2xl p-6 border border-leadq-silver/30"
                             >
-                                <h3 className="text-xl font-semibold text-white mb-2">
-                                    {steps[activeStep - 1].title}
-                                </h3>
-                                <p className="text-leadq-silver mb-6">{steps[activeStep - 1].description}</p>
-                                {renderStepAnimation(activeStep)}
+                                <div className="flex items-center gap-3 mb-4">
+                                    <div className="w-10 h-10 rounded-full bg-leadq-royal-blue/20 flex items-center justify-center text-leadq-royal-blue">
+                                        {step.icon}
+                                    </div>
+                                    <h3 className="text-lg font-semibold text-white">
+                                        {step.title}
+                                    </h3>
+                                </div>
+                                <p className="text-leadq-silver mb-6">{step.description}</p>
+                                {renderStepAnimation(step.id, true)}
                             </motion.div>
-                        </AnimatePresence>
+                        ))}
                     </div>
                 </div>
 

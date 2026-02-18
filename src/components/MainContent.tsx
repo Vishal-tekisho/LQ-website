@@ -1,5 +1,6 @@
 import { Sparkles, Bot, DollarSign, Mail, Briefcase, LayoutDashboard, HelpCircle, PenLine, ScanLine, UserPlus, Calendar } from 'lucide-react';
-import { NavBar } from './ui/tubelight-navbar';
+import { StandardNavbar } from './ui/StandardNavbar';
+
 import Hero from './Hero';
 import WhatLeadQDoes from './WhatLeadQDoes';
 import Features from './Features';
@@ -33,7 +34,8 @@ const MainContent = () => {
 
     return (
         <>
-            <NavBar items={navItems} />
+            <StandardNavbar items={navItems} />
+
 
             {/* Hero Section */}
             <Hero />

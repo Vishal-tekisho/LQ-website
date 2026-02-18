@@ -26,9 +26,9 @@ const Footer = () => {
                     <div className="md:col-span-1 space-y-6">
                         <div className="flex items-center gap-3">
                             <img
-                                src="/leadq-logo-v2.jpg"
+                                src="/leadq-logo-main.png"
                                 alt="LeadQ.AI Logo"
-                                className="h-10 w-auto rounded-lg shadow-[0_0_20px_rgba(255,255,255,0.1)]"
+                                className="h-20 w-auto"
                             />
                             <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-leadq-platinum to-leadq-steel">
                                 LeadQ<span className="text-leadq-cyan">.AI</span>

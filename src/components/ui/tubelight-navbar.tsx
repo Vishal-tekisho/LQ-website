@@ -241,7 +241,7 @@ export function NavBar({ items, className }: NavBarProps) {
                 <button className="w-full px-4 py-4 text-white hover:text-leadq-silver hover:bg-white/5 rounded-xl transition-colors text-base font-medium">
                   Login
                 </button>
-                <button className="w-full px-4 py-4 rounded-xl font-semibold bg-gradient-to-r from-black to-leadq-silver text-white shadow-[0_0_20px_rgba(192,192,192,0.5)] hover:shadow-[0_0_30px_rgba(192,192,192,0.7)] hover:scale-105 transition-all text-base">
+                <button className="w-full px-4 py-4 rounded-xl font-semibold bg-gradient-to-r from-leadq-deep-blue to-leadq-royal-blue text-white shadow-[0_0_20px_rgba(39,81,169,0.5)] hover:shadow-[0_0_30px_rgba(39,81,169,0.7)] hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-leadq-royal-blue focus:ring-offset-2 focus:ring-offset-black text-base">
                   Sign Up
                 </button>
               </div>

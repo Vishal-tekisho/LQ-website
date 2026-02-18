@@ -96,7 +96,7 @@ function PhoneScannerOverlay({
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2">
                   <Scan className="w-5 h-5 text-leadq-silver" />
-                  <span className="text-leadq-silver font-semibold text-sm">Digitization Agent</span>
+                  <span className="text-leadq-silver font-semibold text-sm">AI Scanner</span>
                 </div>
                 <button
                   onClick={onToggleView}

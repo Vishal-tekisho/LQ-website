@@ -520,7 +520,7 @@ export default function EmailDraftAnimation() {
           <div className="grid lg:grid-cols-[1fr,280px] xl:grid-cols-[1fr,320px] min-h-[400px] sm:min-h-[450px] md:min-h-[500px]">
             {/* Left Panel - Email Editor */}
             <div className="p-4 md:p-6 border-b lg:border-b-0 lg:border-r border-white/10">
-              <AnimatePresence mode="wait">
+              <AnimatePresence>
                 {currentStage === 'idle' ? (
                   <motion.div
                     key="idle"

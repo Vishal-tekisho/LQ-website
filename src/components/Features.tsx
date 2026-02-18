@@ -5,30 +5,30 @@ const Features = () => {
   const features = [
     {
       icon: Link2,
-      title: 'The Offline-to-Online Bridge',
+      title: 'Instant Contact Capture',
       highlight: 'Zero-Friction Entry',
-      description: 'We bridge the gap between real-world handshakes and digital workflows. Instantly capture and digitize interactions so no lead is ever lost in the void.',
+      description: 'We bridge the gap between real-world handshakes and digital workflows. Instantly capture and digitize interactions so no lead is ever lost.',
       variant: 'gradient'
     },
     {
       icon: BrainCircuit,
-      title: 'The Digital Brain',
+      title: 'Automated Workflows',
       highlight: 'Multi-Agent Swarm',
-      description: 'Hardware is just the trigger. The swarm is the engine. Our multi-agent system turns a simple tap into a complex, executed sales workflow.',
+      description: 'Hardware is just the trigger. The system is the engine. Our automation turns a simple tap into a complex, executed sales workflow.',
       variant: 'gradient'
     },
     {
       icon: Activity,
-      title: 'The Unified Command',
+      title: 'One Simple Dashboard',
       highlight: 'Real-Time Control',
-      description: 'Control the chaos. Manage your physical interactions and digital agents from a single \'Living\' Dashboard that puts you in the pilot\'s seat.',
+      description: 'Control the chaos. Manage your physical interactions and digital assistants from a single \'Living\' Dashboard that puts you in the pilot\'s seat.',
       variant: 'gradient'
     },
     {
       icon: Mic,
-      title: 'The Conversational Edge',
+      title: '24/7 AI Assistants',
       highlight: 'Infinite Scalability',
-      description: 'Scale your outreach without scaling headcount. Deploy fully autonomous voice and text agents that nurture leads 24/7 with human-like empathy.',
+      description: 'Scale your outreach without scaling headcount. Deploy fully autonomous voice and text assistants that nurture leads 24/7 with human-like empathy.',
       variant: 'gradient'
     }
   ];

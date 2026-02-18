@@ -80,7 +80,7 @@ const ENRICHED_PROFILE: EnrichedProfile = {
 const WEB_SOURCES = [
   { id: 'linkedin', name: 'LinkedIn', icon: Linkedin, color: 'text-slate-400' },
   { id: 'company', name: 'Company DB', icon: Building2, color: 'text-slate-400' },
-  { id: 'web', name: 'Web Signals', icon: Globe, color: 'text-slate-400' },
+  { id: 'web', name: 'Searching Web', icon: Globe, color: 'text-slate-400' },
 ];
 
 // Animation variants
@@ -250,8 +250,8 @@ const ResearchVisualization = ({ stage, activeSources }: { stage: Stage; activeS
         <p className="text-sm text-slate-400">
           {stage === 'idle' || stage === 'input' ? 'Ready to research' :
             stage === 'researching' ? 'Analyzing web signals...' :
-              stage === 'disambiguating' ? 'Disambiguating identity...' :
-                stage === 'enriching' ? 'Enriching profile...' :
+              stage === 'disambiguating' ? 'Verifying identity...' :
+                stage === 'enriching' ? 'Building full profile...' :
                   'Research complete'}
         </p>
       </div>
@@ -517,7 +517,7 @@ export default function ProfileResearch() {
   const stages: { key: Stage; label: string; icon: React.ElementType }[] = [
     { key: 'input', label: 'Input', icon: UserPlus },
     { key: 'researching', label: 'Research', icon: Search },
-    { key: 'disambiguating', label: 'Disambiguate', icon: Brain },
+    { key: 'disambiguating', label: 'Verify', icon: Brain },
     { key: 'enriching', label: 'Enrich', icon: Sparkles },
     { key: 'complete', label: 'Complete', icon: CheckCircle2 },
   ];

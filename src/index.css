@@ -412,3 +412,66 @@ button,
 a[role="button"] {
   touch-action: manipulation;
 }
+
+/* ========== SPOTLIGHT REVEAL BUTTON ========== */
+
+.spotlight-btn {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  isolation: isolate;
+}
+
+.spotlight-btn__base {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.625rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.spotlight-btn:hover .spotlight-btn__base {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.spotlight-btn__reveal {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.625rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  color: #ffffff;
+  background: linear-gradient(135deg, #152d63 0%, #2751a9 50%, #4fa4c4 100%);
+  text-shadow: 0 0 12px rgba(79, 164, 196, 0.6), 0 0 24px rgba(39, 81, 169, 0.4);
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+  z-index: 1;
+}
+
+.spotlight-btn__glow {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(79, 164, 196, 0.35) 0%, rgba(39, 81, 169, 0.15) 40%, transparent 70%);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+  z-index: 2;
+  filter: blur(8px);
+}
