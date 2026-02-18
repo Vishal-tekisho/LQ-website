@@ -3,7 +3,7 @@ import { ArrowRight } from 'lucide-react';
 
 export default function FinalCTA() {
   return (
-    <section className="relative z-10 py-24 px-4">
+    <section className="relative z-10 py-16 sm:py-20 md:py-24 px-4">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -24,14 +24,14 @@ export default function FinalCTA() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative z-10 px-8 py-16 md:px-16 md:py-20 text-center"
+            className="relative z-10 px-6 py-12 sm:px-10 sm:py-16 md:px-16 md:py-20 text-center"
           >
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-3xl md:text-5xl font-display font-bold mb-6 text-white"
+              className="text-2xl sm:text-3xl md:text-5xl font-display font-bold mb-6 text-white"
             >
               Ready to Deploy Your AI Workforce?
             </motion.h2>
@@ -41,7 +41,7 @@ export default function FinalCTA() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-xl md:text-2xl text-white/90 mb-10 max-w-2xl mx-auto"
+              className="text-lg sm:text-xl md:text-2xl text-white/90 mb-8 sm:mb-10 max-w-2xl mx-auto"
             >
 
             </motion.p>
@@ -56,7 +56,7 @@ export default function FinalCTA() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.98 }}
-                className="group bg-white text-leadq-royal-blue px-10 py-4 rounded-lg font-bold text-lg shadow-xl hover:shadow-2xl transition-all focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-leadq-deep-blue flex items-center gap-2"
+                className="group bg-white text-leadq-royal-blue px-6 sm:px-10 py-3 sm:py-4 rounded-lg font-bold text-base sm:text-lg shadow-xl hover:shadow-2xl transition-all focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-leadq-deep-blue flex items-center gap-2"
               >
                 Start Free Trial
                 <ArrowRight

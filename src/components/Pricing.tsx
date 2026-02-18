@@ -107,7 +107,7 @@ const Pricing = () => {
               key={index}
               variants={cardVariants}
               whileHover={{ y: -8, transition: { duration: 0.3 } }}
-              className={`glass rounded-2xl p-6 sm:p-8 relative flex flex-col transition-all duration-300 ${plan.popular ? 'md:scale-105 border-2 border-leadq-royal-blue/30 shadow-[0_0_30px_rgba(39,81,169,0.2)] z-20' : 'z-10'
+              className={`glass rounded-2xl p-6 sm:p-8 relative flex flex-col transition-all duration-300 ${plan.popular ? 'lg:scale-105 border-2 border-leadq-royal-blue/30 shadow-[0_0_30px_rgba(39,81,169,0.2)] z-20' : 'z-10'
                 }`}
             >
               {plan.popular && (

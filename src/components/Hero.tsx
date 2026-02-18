@@ -30,11 +30,11 @@ export default function Hero() {
                     </div>
 
 
-                    <h1 className="text-5xl sm:text-7xl md:text-8xl font-display font-bold mb-8 tracking-tighter">
+                    <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-bold mb-6 sm:mb-8 tracking-tighter">
                         {words.map((word, wordIndex) => (
                             <span
                                 key={wordIndex}
-                                className={`inline-block mr-4 last:mr-0 ${wordIndex >= 2 ? "bg-gradient-to-r from-leadq-cyan to-leadq-royal-blue bg-clip-text text-transparent" : "text-white"}`}
+                                className={`inline-block mr-2 sm:mr-3 md:mr-4 last:mr-0 ${wordIndex >= 2 ? "bg-gradient-to-r from-leadq-cyan to-leadq-royal-blue bg-clip-text text-transparent" : "text-white"}`}
                             >
                                 {word.split("").map((letter, letterIndex) => (
                                     <motion.span

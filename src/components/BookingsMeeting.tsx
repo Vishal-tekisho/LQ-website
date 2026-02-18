@@ -287,7 +287,7 @@ export default function BookingsMeeting() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="flex flex-col items-center justify-center h-96"
+                    className="flex flex-col items-center justify-center h-64 sm:h-80 md:h-96"
                   >
                     <motion.div
                       animate={{ scale: [1, 1.05, 1] }}
@@ -471,15 +471,15 @@ export default function BookingsMeeting() {
 
                     <div className="relative py-8">
                       {/* Connection visualization */}
-                      <div className="flex items-center justify-center gap-8 md:gap-16">
+                      <div className="flex items-center justify-center gap-4 sm:gap-8 md:gap-16">
                         <motion.div
                           initial={{ opacity: 0, x: -30 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: 0.2 }}
                           className="flex flex-col items-center"
                         >
-                          <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-slate-400 to-slate-400 flex items-center justify-center mb-2">
-                            <User className="w-8 h-8 text-white" />
+                          <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl bg-gradient-to-br from-slate-400 to-slate-400 flex items-center justify-center mb-2">
+                            <User className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
                           </div>
                           <span className="text-sm text-white">Sarah Chen</span>
                           <span className="text-xs text-slate-400">Contact</span>
@@ -525,8 +525,8 @@ export default function BookingsMeeting() {
                           transition={{ delay: 0.6, type: "spring" }}
                           className="flex flex-col items-center relative z-10"
                         >
-                          <div className="w-20 h-20 rounded-full bg-gradient-to-br from-slate-400 to-pink-500 flex items-center justify-center mb-2 shadow-lg shadow-slate-400/30">
-                            <Calendar className="w-10 h-10 text-white" />
+                          <div className="w-14 h-14 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-slate-400 to-pink-500 flex items-center justify-center mb-2 shadow-lg shadow-slate-400/30">
+                            <Calendar className="w-7 h-7 sm:w-10 sm:h-10 text-white" />
                           </div>
                           <span className="text-sm text-white font-medium">Meeting</span>
                         </motion.div>
@@ -537,8 +537,8 @@ export default function BookingsMeeting() {
                           transition={{ delay: 0.2 }}
                           className="flex flex-col items-center"
                         >
-                          <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-slate-400 to-indigo-500 flex items-center justify-center mb-2">
-                            <Building2 className="w-8 h-8 text-white" />
+                          <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl bg-gradient-to-br from-slate-400 to-indigo-500 flex items-center justify-center mb-2">
+                            <Building2 className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
                           </div>
                           <span className="text-sm text-white">TechCorp</span>
                           <span className="text-xs text-slate-400">Company</span>
@@ -653,7 +653,7 @@ export default function BookingsMeeting() {
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-3 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
                       {[
                         { icon: Camera, label: 'Selfie', delay: 0.2 },
                         { icon: Image, label: 'Whiteboard', delay: 0.4 },
@@ -664,7 +664,7 @@ export default function BookingsMeeting() {
                           initial={{ opacity: 0, scale: 0.8 }}
                           animate={{ opacity: 1, scale: 1 }}
                           transition={{ delay: item.delay, type: "spring" }}
-                          className="relative aspect-square rounded-xl bg-white/5 border border-white/10 overflow-hidden group cursor-pointer"
+                          className="relative aspect-video sm:aspect-square rounded-xl bg-white/5 border border-white/10 overflow-hidden group cursor-pointer"
                         >
                           <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                           <motion.div
@@ -856,20 +856,20 @@ export default function BookingsMeeting() {
                               whileHover={{ scale: 1.02, y: -2 }}
                               className="bg-white/5 rounded-lg p-4 border border-white/10 hover:border-white/20 transition-all cursor-pointer"
                             >
-                              <div className="flex items-center gap-3">
+                              <div className="flex items-center gap-2 sm:gap-3">
                                 <div className={`w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm ${meeting.status === 'upcoming'
                                   ? 'bg-gradient-to-br from-slate-400 to-slate-400'
                                   : 'bg-gradient-to-br from-green-400 to-emerald-500'
                                   }`}>
                                   {meeting.avatar}
                                 </div>
-                                <div className="flex-1 text-left">
-                                  <p className="text-white font-medium">{meeting.title}</p>
-                                  <p className="text-sm text-slate-400">
+                                <div className="flex-1 text-left min-w-0">
+                                  <p className="text-white font-medium text-sm sm:text-base truncate">{meeting.title}</p>
+                                  <p className="text-xs sm:text-sm text-slate-400 truncate">
                                     {meeting.contact} • {meeting.company}
                                   </p>
                                 </div>
-                                <div className="text-right">
+                                <div className="text-right hidden sm:block">
                                   <p className="text-sm text-slate-400">{meeting.time}</p>
                                   <div className="flex items-center gap-1 justify-end mt-1">
                                     {meeting.status === 'completed' && (

@@ -89,7 +89,7 @@ const PhoneVisualization = ({ stage, isMuted }: { stage: CallStage; isMuted: boo
         <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            className="relative w-48 h-48 mx-auto"
+            className="relative w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 mx-auto"
         >
             {/* Outer ring pulse when active */}
             {isActive && (
@@ -131,18 +131,18 @@ const PhoneVisualization = ({ stage, isMuted }: { stage: CallStage; isMuted: boo
                     transition={{ duration: 1, repeat: stage === 'dialing' ? Infinity : 0 }}
                     className="relative z-10"
                 >
-                    {stage === 'idle' && <Phone className="w-12 h-12 text-slate-400" />}
-                    {stage === 'dialing' && <PhoneCall className="w-12 h-12 text-yellow-400" />}
-                    {(stage === 'connected' || isAISpeaking) && <Bot className="w-12 h-12 text-leadq-silver" />}
-                    {isUserSpeaking && <User className="w-12 h-12 text-blue-400" />}
+                    {stage === 'idle' && <Phone className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-slate-400" />}
+                    {stage === 'dialing' && <PhoneCall className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-yellow-400" />}
+                    {(stage === 'connected' || isAISpeaking) && <Bot className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-leadq-silver" />}
+                    {isUserSpeaking && <User className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-blue-400" />}
                     {stage === 'ai-thinking' && (
                         <motion.div animate={{ rotate: 360 }} transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}>
-                            <Brain className="w-12 h-12 text-leadq-silver" />
+                            <Brain className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-leadq-silver" />
                         </motion.div>
                     )}
-                    {stage === 'scheduling' && <Calendar className="w-12 h-12 text-leadq-silver" />}
-                    {stage === 'confirmed' && <CheckCircle2 className="w-12 h-12 text-green-400" />}
-                    {stage === 'ended' && <PhoneOff className="w-12 h-12 text-red-400" />}
+                    {stage === 'scheduling' && <Calendar className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-leadq-silver" />}
+                    {stage === 'confirmed' && <CheckCircle2 className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-green-400" />}
+                    {stage === 'ended' && <PhoneOff className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-red-400" />}
                 </motion.div>
             </motion.div>
 
@@ -161,7 +161,7 @@ const PhoneVisualization = ({ stage, isMuted }: { stage: CallStage; isMuted: boo
 };
 
 // Conversation bubble component
-const ConversationBubble = ({ message, isLatest }: { message: ConversationMessage; isLatest: boolean }) => {
+const ConversationBubble = ({ message }: { message: ConversationMessage; isLatest: boolean }) => {
     const isAI = message.speaker === 'ai';
 
     return (
@@ -469,12 +469,12 @@ export default function OutboundVoiceAgent() {
                         </div>
 
                         {/* Feature highlights */}
-                        <div className="mt-6 grid grid-cols-3 gap-2">
+                        <div className="mt-6 grid grid-cols-3 gap-1.5 sm:gap-2">
                             {[
                                 { icon: Volume2, label: 'Natural Voice', active: stage === 'ai-speaking' || stage === 'ai-responding' },
                                 { icon: Brain, label: 'Context Aware', active: stage === 'ai-thinking' },
                                 { icon: Sparkles, label: 'Smart Scheduling', active: stage === 'scheduling' || stage === 'confirmed' },
-                            ].map((feature, i) => (
+                            ].map((feature) => (
                                 <motion.div
                                     key={feature.label}
                                     className={`p-3 rounded-lg text-center transition-colors ${feature.active ? 'bg-leadq-silver/20 border border-leadq-silver/30' : 'bg-white/5 border border-white/10'
@@ -482,8 +482,8 @@ export default function OutboundVoiceAgent() {
                                     animate={feature.active ? { scale: [1, 1.02, 1] } : {}}
                                     transition={{ duration: 1, repeat: feature.active ? Infinity : 0 }}
                                 >
-                                    <feature.icon className={`w-5 h-5 mx-auto mb-1 ${feature.active ? 'text-leadq-silver' : 'text-slate-500'}`} />
-                                    <span className={`text-[10px] ${feature.active ? 'text-leadq-silver' : 'text-slate-500'}`}>
+                                    <feature.icon className={`w-4 h-4 sm:w-5 sm:h-5 mx-auto mb-1 ${feature.active ? 'text-leadq-silver' : 'text-slate-500'}`} />
+                                    <span className={`text-[9px] sm:text-[10px] ${feature.active ? 'text-leadq-silver' : 'text-slate-500'}`}>
                                         {feature.label}
                                     </span>
                                 </motion.div>
@@ -505,7 +505,7 @@ export default function OutboundVoiceAgent() {
                             )}
                         </div>
 
-                        <div ref={transcriptRef} className="flex-1 overflow-y-auto max-h-[400px] pr-2 space-y-1">
+                        <div ref={transcriptRef} className="flex-1 overflow-y-auto max-h-[280px] sm:max-h-[350px] md:max-h-[400px] pr-2 space-y-1">
                             <AnimatePresence>
                                 {conversations.map((msg, index) => (
                                     <ConversationBubble

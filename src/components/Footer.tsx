@@ -18,10 +18,10 @@ const Footer = () => {
     };
 
     return (
-        <footer className="text-leadq-steel py-16 px-6 relative z-10 border-t border-white/5">
+        <footer className="text-leadq-steel py-10 sm:py-12 md:py-16 px-4 sm:px-6 relative z-10 border-t border-white/5">
             <LegalModal isOpen={modalOpen} onClose={closeModal} document={currentDoc} />
             <div className="max-w-7xl mx-auto">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 md:gap-12">
                     {/* Logo and Description Section */}
                     <div className="md:col-span-1 space-y-6">
                         <div className="flex items-center gap-3">
@@ -100,7 +100,7 @@ const Footer = () => {
                     </div>
                 </div>
 
-                <div className="mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-medium tracking-wider">
+                <div className="mt-12 sm:mt-16 md:mt-20 pt-6 sm:pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-medium tracking-wider">
                     <p>&copy; 2026 LeadQ.AI. All rights reserved.</p>
                     <div className="flex gap-8">
                         <span className="opacity-40">System Status: Operational</span>
