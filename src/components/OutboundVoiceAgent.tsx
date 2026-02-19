@@ -382,7 +382,7 @@ export default function OutboundVoiceAgent() {
                     transition={{ duration: 0.6 }}
                     className="text-center mb-12"
                 >
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-leadq-silver/10 border border-leadq-silver/20 mb-6">
+                    <div className="glass inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium text-leadq-silver border border-leadq-silver/20 mb-6">
                         <Mic className="w-4 h-4 text-leadq-silver" />
                         <span className="text-sm text-leadq-silver font-medium">Intelligent Voice AI</span>
                     </div>

@@ -73,7 +73,7 @@ const Features = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-medium bg-slate-400/10 text-slate-400 border border-slate-400/20 mb-4"
+            className="glass inline-flex items-center px-4 py-2 rounded-full text-sm font-medium text-leadq-silver border border-leadq-silver/20 mb-4"
           >
             The Only CRM That Handshakes Back.
           </motion.span>
@@ -140,7 +140,7 @@ const Features = () => {
 
                   {/* Highlight Badge */}
                   <div className="mb-4">
-                    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs sm:text-sm font-semibold bg-white/10 text-white border border-white/20">
+                    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs sm:text-sm font-semibold glass text-leadq-silver border border-leadq-silver/20">
                       {feature.highlight}
                     </span>
                   </div>

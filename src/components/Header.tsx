@@ -82,11 +82,21 @@ export default function Header() {
           </div>
 
           <div className="hidden md:flex items-center space-x-3">
-            <button className="px-5 py-2 text-white hover:text-leadq-silver transition-colors rounded-lg focus:outline-none focus:ring-2 focus:ring-leadq-silver focus:ring-offset-2 focus:ring-offset-leadq-bg">
+            <button className="
+  px-6 py-2 rounded-lg font-medium text-white
+  border border-white/30
+  bg-gradient-to-br from-black via-neutral-900 to-leadq-silver
+  hover:to-leadq-silver
+  shadow-md shadow-leadq-silver/25
+  hover:shadow-lg hover:shadow-leadq-silver/45
+  transition-all duration-300
+  focus:outline-none focus:ring-2 focus:ring-leadq-silver focus:ring-offset-2 focus:ring-offset-black
+">
               Login
             </button>
             <button className="
   px-6 py-2 rounded-lg font-medium text-white
+  border border-white/30
   bg-gradient-to-br from-black via-neutral-900 to-leadq-silver
   hover:to-leadq-silver
   shadow-md shadow-leadq-silver/25
@@ -147,7 +157,7 @@ export default function Header() {
                 Contact
               </a>
               <div className="pt-4 space-y-2 border-t border-white/10">
-                <button className="w-full px-4 py-3 text-white hover:text-leadq-silver hover:bg-white/5 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-leadq-silver focus:ring-offset-2 focus:ring-offset-leadq-bg">
+                <button className="w-full px-4 py-3 rounded-lg text-white font-medium bg-gradient-to-r from-black to-leadq-silver hover:shadow-lg hover:shadow-leadq-silver/50 transition-all focus:outline-none focus:ring-2 focus:ring-leadq-silver focus:ring-offset-2 focus:ring-offset-leadq-bg">
                   Login
                 </button>
                 <button className="w-full px-4 py-3 rounded-lg text-white font-medium bg-gradient-to-r from-black to-leadq-silver hover:shadow-lg hover:shadow-leadq-silver/50 transition-all focus:outline-none focus:ring-2 focus:ring-leadq-silver focus:ring-offset-2 focus:ring-offset-leadq-bg">

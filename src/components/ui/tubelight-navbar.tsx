@@ -22,14 +22,14 @@ const menuGroups = {
     label: "Solutions",
     icon: Briefcase,
     items: [
-      { name: "Features", url: "#features", icon: Sparkles },
-      { name: "Use Cases", url: "#use-cases", icon: Briefcase },
-      { name: "Lead Capture", url: "#lead-capture", icon: ScanLine },
-      { name: "Research", url: "#profile-research", icon: UserPlus },
-      { name: "Dashboard", url: "#dashboard", icon: LayoutDashboard },
-      { name: "Bookings", url: "#bookings-meeting", icon: Calendar },
-      { name: "Email Draft", url: "#email-draft", icon: PenLine },
-      { name: "AI Agents", url: "#agents", icon: Bot },
+      { name: "Features", url: "#features", icon: Sparkles, description: "Explore powerful AI tools." },
+      { name: "Use Cases", url: "#use-cases", icon: Briefcase, description: "Real-world sales scenarios." },
+      { name: "Lead Capture", url: "#lead-capture", icon: ScanLine, description: "Capture and qualify leads in real time." },
+      { name: "Research", url: "#profile-research", icon: UserPlus, description: "AI-driven prospect intelligence." },
+      { name: "Dashboard", url: "#dashboard", icon: LayoutDashboard, description: "Visualize your performance metrics." },
+      { name: "Bookings", url: "#bookings-meeting", icon: Calendar, description: "Manage appointments and schedules." },
+      { name: "Email Draft", url: "#email-draft", icon: PenLine, description: "AI-powered email composition." },
+      { name: "AI Agents", url: "#agents", icon: Bot, description: "Automate tasks with intelligent agents." },
     ]
   }
 }
@@ -274,6 +274,7 @@ export function NavBar({ items, className }: NavBarProps) {
                           key={item.name}
                           href={item.url}
                           icon={item.icon}
+                          description={item.description}
                           onClick={() => handleLinkClick(item.name)}
                         >
                           {item.name}
@@ -288,6 +289,7 @@ export function NavBar({ items, className }: NavBarProps) {
                           key={item.name}
                           href={item.url}
                           icon={item.icon}
+                          description={item.description}
                           onClick={() => handleLinkClick(item.name)}
                         >
                           {item.name}

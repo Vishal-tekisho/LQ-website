@@ -413,9 +413,9 @@ export default function EmailDraftAnimation() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-400/10 border border-slate-400/20 mb-6">
-            <Mail className="w-4 h-4 text-slate-400" />
-            <span className="text-sm text-slate-400 font-medium">AI Email Assistant</span>
+          <div className="glass inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium text-leadq-silver border border-leadq-silver/20 mb-6">
+            <Mail className="w-4 h-4 text-leadq-silver" />
+            <span className="text-sm text-leadq-silver font-medium">AI Email Assistant</span>
           </div>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-white mb-4">
             Intelligent Email{' '}

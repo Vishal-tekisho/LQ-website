@@ -119,7 +119,7 @@ function PhoneScannerOverlay({
                     <Scan className={`w-6 h-6 text-leadq-silver ${isScanning ? 'animate-spin' : ''}`} />
                   </div>
                   <p className="text-xs text-leadq-silver">
-                    {isScanning ? 'Scanning...' : 'Ready to scan'}
+                    {isScanning ? 'Scanning...' : 'Ready to scan business card'}
                   </p>
                 </div>
 

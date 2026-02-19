@@ -217,9 +217,9 @@ export default function BookingsMeeting() {
           transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-leadq-cyan/10 to-leadq-royal-blue/10 border border-leadq-cyan/20 mb-6">
-            <Calendar className="w-4 h-4 text-leadq-cyan" />
-            <span className="text-sm bg-gradient-to-r from-leadq-cyan to-leadq-royal-blue bg-clip-text text-transparent font-medium">
+          <div className="glass inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium text-leadq-silver border border-leadq-silver/20 mb-6">
+            <Calendar className="w-4 h-4 text-leadq-silver" />
+            <span className="text-sm text-leadq-silver font-medium">
               Intelligent Meeting Module
             </span>
           </div>
@@ -237,6 +237,44 @@ export default function BookingsMeeting() {
 
           {/* Stage Progress Indicator */}
           <StageIndicator stages={stages} currentStage={stageIndex} />
+
+          {/* Demo Controls */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.15 }}
+            className="flex items-center justify-center gap-4 mb-6"
+          >
+            <button
+              onClick={() => isPlaying ? null : runAnimation()}
+              disabled={isPlaying}
+              className={`inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-300 ${
+                isPlaying
+                  ? 'bg-white/5 text-slate-500 border border-white/10 cursor-not-allowed'
+                  : 'bg-gradient-to-r from-leadq-deep-blue to-leadq-royal-blue text-white shadow-[0_0_20px_rgba(39,81,169,0.4)] hover:shadow-[0_0_30px_rgba(39,81,169,0.6)] hover:scale-105 animate-btn-pulse'
+              }`}
+            >
+              {isPlaying ? (
+                <>
+                  <Pause className="w-4 h-4" />
+                  Running...
+                </>
+              ) : (
+                <>
+                  <Play className="w-4 h-4" />
+                  Start Demo
+                </>
+              )}
+            </button>
+            <button
+              onClick={runAnimation}
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm text-leadq-silver border border-white/10 bg-white/5 hover:bg-white/10 hover:text-white transition-all duration-300"
+            >
+              <RotateCcw className="w-4 h-4" />
+              Replay Demo
+            </button>
+          </motion.div>
 
           {/* Main Animation Container */}
           <motion.div
@@ -256,25 +294,7 @@ export default function BookingsMeeting() {
               <div className="flex-1 flex items-center justify-center">
                 <span className="text-xs text-slate-500 font-mono">LeadQ Meeting Intelligence</span>
               </div>
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={() => isPlaying ? null : runAnimation()}
-                  disabled={isPlaying}
-                  className={`p-1.5 rounded-lg hover:bg-white/10 transition-colors disabled:opacity-50 ${!isPlaying ? 'animate-btn-pulse' : ''}`}
-                >
-                  {isPlaying ? (
-                    <Pause className="w-4 h-4 text-slate-400" />
-                  ) : (
-                    <Play className="w-4 h-4 text-slate-400" />
-                  )}
-                </button>
-                <button
-                  onClick={runAnimation}
-                  className="p-1.5 rounded-lg hover:bg-white/10 transition-colors"
-                >
-                  <RotateCcw className="w-4 h-4 text-slate-400" />
-                </button>
-              </div>
+              <div className="w-20" />
             </div>
 
             {/* Animation Content */}

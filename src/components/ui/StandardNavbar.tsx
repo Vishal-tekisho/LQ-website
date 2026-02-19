@@ -168,7 +168,7 @@ export function StandardNavbar({ items, className }: NavBarProps) {
                                 icon={menuGroups.solutions.icon}
                                 wideDropdown={true}
                             >
-                                <div className="flex gap-6 min-w-[340px]">
+                                <div className="flex gap-6 min-w-[480px]">
                                     <div className="flex-1">
                                         <MenuSection>
                                             {menuGroups.solutions.items.slice(0, 4).map((item) => (
@@ -176,7 +176,8 @@ export function StandardNavbar({ items, className }: NavBarProps) {
                                                     key={item.name}
                                                     href={item.url}
                                                     icon={item.icon}
-                                                    onClick={() => handleLinkClick(item.name)}
+                                                    onClick={(e) => handleLinkClick(e, item.url, item.name)}
+                                                    description={item.description}
                                                 >
                                                     {item.name}
                                                 </MenuLink>

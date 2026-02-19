@@ -135,6 +135,16 @@ export default function DashboardPreview() {
 
   const titleComponent = (
     <>
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="glass inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium text-leadq-silver border border-leadq-silver/20 mb-6"
+      >
+        <LayoutDashboard className="w-4 h-4 text-leadq-silver" />
+        <span className="text-sm text-leadq-silver font-medium">Unified Command Centre</span>
+      </motion.div>
       <motion.h2
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}

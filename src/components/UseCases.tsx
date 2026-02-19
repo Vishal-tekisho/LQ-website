@@ -112,10 +112,10 @@ const UseCases = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-white/10 mb-6"
+            className="glass inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium text-leadq-silver border border-leadq-silver/20 mb-6"
           >
-            <span className="w-2 h-2 rounded-full bg-gradient-to-r from-slate-400 to-slate-400 animate-pulse" />
-            <span className="text-sm font-medium text-slate-300">Built for Every Industry</span>
+            <span className="w-2 h-2 rounded-full bg-gradient-to-r from-leadq-silver to-leadq-silver animate-pulse" />
+            <span className="text-sm font-medium text-leadq-silver">Built for Every Industry</span>
           </motion.div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6" style={{ textShadow: 'none' }}>
