@@ -1,6 +1,5 @@
 import { BrowserRouter as Router } from 'react-router-dom';
 import MainContent from './components/MainContent';
-import ScrollProgress from './components/ScrollProgress';
 import ScrollToTop from './components/ScrollToTop';
 import SkipToContent from './components/SkipToContent';
 import CookieConsent from './components/CookieConsent';
@@ -13,7 +12,6 @@ function App() {
         <AnoAI />
         <div className="fixed inset-0 noise pointer-events-none z-0" />
         <SkipToContent />
-        <ScrollProgress />
 
         <div className="relative z-10">
           <MainContent />

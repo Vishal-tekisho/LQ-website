@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import {
   Calendar,
   Mic,
@@ -115,6 +115,15 @@ export default function BookingsMeeting() {
   const [dashboardView, setDashboardView] = useState<'upcoming' | 'completed'>('upcoming');
   const [momSections, setMomSections] = useState<string[]>([]);
   const [uploadProgress, setUploadProgress] = useState(0);
+  const timeoutIds = useRef<ReturnType<typeof setTimeout>[]>([]);
+
+  const clearAllTimeouts = useCallback(() => {
+    timeoutIds.current.forEach(id => clearTimeout(id));
+    timeoutIds.current = [];
+  }, []);
+
+  // Clean up timeouts on unmount
+  useEffect(() => () => clearAllTimeouts(), [clearAllTimeouts]);
 
   const stages: AnimationStage[] = [
     'idle',
@@ -154,11 +163,18 @@ export default function BookingsMeeting() {
   ];
 
   const runAnimation = useCallback(() => {
+    // Cancel any in-flight timeouts from a previous run
+    clearAllTimeouts();
+
     setIsPlaying(true);
     setStage('idle');
     setTranscriptLines([]);
     setMomSections([]);
     setUploadProgress(0);
+
+    const schedule = (fn: () => void, delay: number) => {
+      timeoutIds.current.push(setTimeout(fn, delay));
+    };
 
     const timings = [
       { stage: 'booking-webhook' as AnimationStage, delay: 1200 },
@@ -171,33 +187,33 @@ export default function BookingsMeeting() {
     ];
 
     timings.forEach(({ stage: s, delay }) => {
-      setTimeout(() => setStage(s), delay);
+      schedule(() => setStage(s), delay);
     });
 
     // Transcript lines animation
     transcriptData.forEach((_, index) => {
-      setTimeout(() => {
+      schedule(() => {
         setTranscriptLines(prev => [...prev, transcriptData[index].text]);
       }, 10000 + index * 1200);
     });
 
     // Upload progress animation
     for (let i = 0; i <= 100; i += 10) {
-      setTimeout(() => setUploadProgress(i), 19200 + i * 25);
+      schedule(() => setUploadProgress(i), 19200 + i * 25);
     }
 
     // MoM sections animation
     momData.forEach((_, index) => {
-      setTimeout(() => {
+      schedule(() => {
         setMomSections(prev => [...prev, momData[index]]);
       }, 20500 + index * 500);
     });
 
     // Reset after complete
-    setTimeout(() => {
+    schedule(() => {
       setIsPlaying(false);
     }, 28000);
-  }, []);
+  }, [clearAllTimeouts]);
 
   // No auto-start - animations are triggered on demand via play button
 

@@ -206,64 +206,76 @@ export default function OutboundVoiceAgent() {
     const [callDuration, setCallDuration] = useState(0);
     const [isMuted, setIsMuted] = useState(false);
     const transcriptRef = useRef<HTMLDivElement>(null);
+    const timeoutIds = useRef<ReturnType<typeof setTimeout>[]>([]);
+
+    const clearAllTimeouts = useCallback(() => {
+        timeoutIds.current.forEach(id => clearTimeout(id));
+        timeoutIds.current = [];
+    }, []);
+
+    // Clean up timeouts on unmount
+    useEffect(() => () => clearAllTimeouts(), [clearAllTimeouts]);
 
     const resetDemo = useCallback(() => {
+        clearAllTimeouts();
         setStage('idle');
         setIsPlaying(false);
         setConversations([]);
         setCallDuration(0);
         setIsMuted(false);
-    }, []);
+    }, [clearAllTimeouts]);
 
     const startDemo = useCallback(() => {
         if (isPlaying) return;
         resetDemo();
         setIsPlaying(true);
 
-        const timeouts: NodeJS.Timeout[] = [];
+        const schedule = (fn: () => void, delay: number) => {
+            timeoutIds.current.push(setTimeout(fn, delay));
+        };
 
         // Dialing phase
-        timeouts.push(setTimeout(() => setStage('dialing'), 500));
+        schedule(() => setStage('dialing'), 500);
 
         // Connected
-        timeouts.push(setTimeout(() => setStage('connected'), 2500));
+        schedule(() => setStage('connected'), 2500);
 
         // AI greeting
-        timeouts.push(setTimeout(() => {
+        schedule(() => {
             setStage('ai-speaking');
             setConversations([{
                 id: 1,
                 speaker: 'ai',
                 text: "Hi, this is Sarah from LeadQ. I'm calling to schedule your product demo. Is now a good time?"
             }]);
-        }, 3500));
+        }, 3500);
 
         // User responds
-        timeouts.push(setTimeout(() => {
+        schedule(() => {
             setStage('user-speaking');
             setConversations(prev => [...prev, {
                 id: 2,
                 speaker: 'user',
                 text: "Yes, I have a few minutes. What's this about?"
             }]);
-        }, 7000));
+        }, 7000);
 
         // AI explains - demonstrating context awareness
-        timeouts.push(setTimeout(() => {
+        schedule(() => {
             setStage('ai-thinking');
-        }, 9500));
+        }, 9500);
 
-        timeouts.push(setTimeout(() => {
+        schedule(() => {
             setStage('ai-speaking');
             setConversations(prev => [...prev, {
                 id: 3,
                 speaker: 'ai',
                 text: "Great! Based on your recent inquiry about our AI-powered CRM, I'd love to show you how LeadQ can help automate your—"
             }]);
-        }, 10500));
+        }, 10500);
 
         // User interrupts - key feature demonstration
-        timeouts.push(setTimeout(() => {
+        schedule(() => {
             setStage('user-interrupting');
             setConversations(prev => [...prev, {
                 id: 4,
@@ -271,57 +283,55 @@ export default function OutboundVoiceAgent() {
                 text: "Actually, can we do this next Tuesday instead?",
                 isInterruption: true
             }]);
-        }, 13000));
+        }, 13000);
 
         // AI adapts instantly - showing interruption handling
-        timeouts.push(setTimeout(() => {
+        schedule(() => {
             setStage('ai-thinking');
-        }, 15000));
+        }, 15000);
 
-        timeouts.push(setTimeout(() => {
+        schedule(() => {
             setStage('scheduling');
-        }, 16000));
+        }, 16000);
 
-        timeouts.push(setTimeout(() => {
+        schedule(() => {
             setStage('ai-responding');
             setConversations(prev => [...prev, {
                 id: 5,
                 speaker: 'ai',
                 text: "Absolutely! I see you have availability on Tuesday at 2 PM or 4 PM. Which works better for you?"
             }]);
-        }, 17000));
+        }, 17000);
 
         // User confirms
-        timeouts.push(setTimeout(() => {
+        schedule(() => {
             setStage('user-speaking');
             setConversations(prev => [...prev, {
                 id: 6,
                 speaker: 'user',
                 text: "2 PM works perfectly."
             }]);
-        }, 20000));
+        }, 20000);
 
         // AI confirms and schedules
-        timeouts.push(setTimeout(() => {
+        schedule(() => {
             setStage('scheduling');
-        }, 22000));
+        }, 22000);
 
-        timeouts.push(setTimeout(() => {
+        schedule(() => {
             setStage('confirmed');
             setConversations(prev => [...prev, {
                 id: 7,
                 speaker: 'ai',
                 text: "Excellent! I've scheduled your demo for Tuesday at 2 PM. You'll receive a calendar invite shortly. Thank you!"
             }]);
-        }, 23500));
+        }, 23500);
 
         // Call ends
-        timeouts.push(setTimeout(() => {
+        schedule(() => {
             setStage('ended');
             setIsPlaying(false);
-        }, 27000));
-
-        return () => timeouts.forEach(clearTimeout);
+        }, 27000);
     }, [isPlaying, resetDemo]);
 
     // Call duration timer
