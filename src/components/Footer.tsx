@@ -18,7 +18,7 @@ const Footer = () => {
     };
 
     return (
-        <footer className="text-leadq-steel py-10 sm:py-12 md:py-16 px-4 sm:px-6 relative z-10 border-t border-white/5">
+        <footer className="bg-leadq-bg text-leadq-steel py-10 sm:py-12 md:py-16 px-4 sm:px-6 relative z-10 border-t border-white/5">
             <LegalModal isOpen={modalOpen} onClose={closeModal} document={currentDoc} />
             <div className="max-w-7xl mx-auto">
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 md:gap-12">

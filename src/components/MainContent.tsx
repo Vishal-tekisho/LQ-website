@@ -43,6 +43,9 @@ const MainContent = () => {
             {/* 2. What LeadQ Does */}
             <WhatLeadQDoes />
 
+            {/* Use Cases - Real Teams, Real Results */}
+            <UseCases />
+
             {/* Features */}
             <Features />
 
@@ -66,10 +69,7 @@ const MainContent = () => {
             {/* 7. Outbound Voice Agent */}
             <OutboundVoiceAgent />
 
-            {/* 8. Use Cases */}
-            <UseCases />
-
-            {/* 9. AI Agents */}
+            {/* AI Agents */}
             <Agents />
 
             {/* 10. Pricing */}

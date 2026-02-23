@@ -107,21 +107,10 @@ const UseCases = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="glass inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium text-leadq-silver border border-leadq-silver/20 mb-6"
-          >
-            <span className="w-2 h-2 rounded-full bg-gradient-to-r from-leadq-silver to-leadq-silver animate-pulse" />
-            <span className="text-sm font-medium text-leadq-silver">Built for Every Industry</span>
-          </motion.div>
-
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6" style={{ textShadow: 'none' }}>
-            Real Teams,{' '}
+            Built for{' '}
             <span className="bg-gradient-to-r from-leadq-cyan to-leadq-royal-blue bg-clip-text text-transparent" style={{ textShadow: 'none', filter: 'none' }}>
-              Real Results
+              every industry
             </span>
           </h2>
 

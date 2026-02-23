@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
+import { useEffect, useRef } from 'react';
 import { LegalDocument, legalContent } from '../../data/legal-content';
 
 interface LegalModalProps {
@@ -10,17 +11,22 @@ interface LegalModalProps {
 }
 
 const LegalModal = ({ isOpen, onClose, document }: LegalModalProps) => {
+    const previousOverflow = useRef<string | null>(null);
+
+    useEffect(() => {
+        if (!isOpen) return undefined;
+
+        previousOverflow.current = window.document.body.style.overflow;
+        window.document.body.style.overflow = 'hidden';
+
+        return () => {
+            window.document.body.style.overflow = previousOverflow.current ?? '';
+        };
+    }, [isOpen]);
+
     if (!document) return null;
 
     const content = legalContent[document];
-
-    // Prevent background scroll when modal is open
-    // Note: In a real app, you might want a more robust hook for this.
-    if (isOpen) {
-        window.document.body.style.overflow = 'hidden';
-    } else {
-        window.document.body.style.overflow = 'unset';
-    }
 
     return (
         <AnimatePresence>
