@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Cookie, X, CheckCircle, Settings } from 'lucide-react';
+import { Button } from './ui/button';
 
 const CookieConsent = () => {
   const [showBanner, setShowBanner] = useState(false);
   const [showPreferences, setShowPreferences] = useState(false);
+  const [showDetails, setShowDetails] = useState(false);
 
   useEffect(() => {
     const consent = localStorage.getItem('leadq-cookie-consent');
@@ -78,45 +80,92 @@ const CookieConsent = () => {
                     </div>
 
                     <div className="flex-1">
-                      <h3 className="text-lg md:text-xl font-display font-bold mb-2">
+                      <h3 className="text-xl sm:text-2xl font-display font-bold mb-2">
                         We Value Your Privacy
                       </h3>
-                      <p className="text-sm md:text-base text-leadq-silver leading-relaxed">
+                      <p className="text-base sm:text-lg text-leadq-silver leading-relaxed">
                         We use cookies to enhance your browsing experience, analyze site traffic, and personalize content.
-                        By clicking "Accept All", you consent to our use of cookies. Read our{' '}
-                        <a href="/privacy-policy" className="text-leadq-silver hover:text-leadq-silver transition-colors underline">
-                          Privacy Policy
-                        </a>
-                        {' '}to learn more.
+                        By clicking "Accept All", you consent to our use of cookies.
                       </p>
+                      
+                      {/* Expandable Privacy Details */}
+                      <AnimatePresence>
+                        {showDetails && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.3 }}
+                            className="mt-4 pt-4 border-t border-white/10 space-y-3"
+                          >
+                            <div>
+                              <h4 className="text-xl sm:text-2xl font-semibold mb-1">Information We Collect</h4>
+                              <p className="text-xs text-leadq-silver/90">
+                                We collect browsing data, device information, IP addresses, and usage patterns to improve our services and user experience.
+                              </p>
+                            </div>
+                            <div>
+                              <h4 className="text-xl sm:text-2xl font-semibold mb-1">How We Use Your Data</h4>
+                              <p className="text-xs text-leadq-silver/90">
+                                Your data helps us analyze website performance, personalize content, improve our services, and provide better customer support.
+                              </p>
+                            </div>
+                            <div>
+                              <h4 className="text-xl sm:text-2xl font-semibold mb-1">Your Rights</h4>
+                              <p className="text-xs text-leadq-silver/90">
+                                You have the right to access, correct, delete your data, withdraw consent, and request data portability at any time.
+                              </p>
+                            </div>
+                            <div>
+                              <h4 className="text-xl sm:text-2xl font-semibold mb-1">Data Retention</h4>
+                              <p className="text-xs text-leadq-silver/90">
+                                We retain your data for as long as necessary to provide our services (typically 12-24 months) or as required by law.
+                              </p>
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                      
+                      <button
+                        onClick={() => setShowDetails(!showDetails)}
+                        className="text-xs text-leadq-silver hover:text-white transition-colors underline mt-2 inline-flex items-center gap-1"
+                      >
+                        {showDetails ? 'Show Less' : 'Read Privacy Policy Details'}
+                      </button>
                     </div>
                   </div>
 
                   {/* Actions */}
                   <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
-                    <button
+                    <Button
                       onClick={() => setShowPreferences(true)}
-                      className="glass px-6 py-3 rounded-xl border border-white/10 hover:glass-strong transition-all flex items-center justify-center gap-2 text-sm font-medium"
+                      variant="glass-secondary"
+                      size="compact-lg"
+                      className="flex items-center justify-center gap-2"
                     >
                       <Settings size={18} />
                       <span>Preferences</span>
-                    </button>
+                    </Button>
 
-                    <button
+                    <Button
                       onClick={handleDecline}
-                      className="glass px-6 py-3 rounded-xl border border-white/10 hover:glass-strong transition-all flex items-center justify-center gap-2 text-sm font-medium text-leadq-silver hover:text-white"
+                      variant="glass-secondary"
+                      size="compact-lg"
+                      className="flex items-center justify-center gap-2"
                     >
                       <X size={18} />
                       <span>Decline</span>
-                    </button>
+                    </Button>
 
-                    <button
+                    <Button
                       onClick={handleAcceptAll}
-                      className="bg-gradient-to-r from-leadq-silver to-leadq-silver px-6 py-3 rounded-xl font-semibold text-white shadow-glow hover:shadow-glow-strong transition-all flex items-center justify-center gap-2 text-sm"
+                      variant="cookie-modal"
+                      size="compact-lg"
+                      className="flex items-center justify-center gap-2"
                     >
                       <CheckCircle size={18} />
                       <span>Accept All</span>
-                    </button>
+                    </Button>
                   </div>
                 </div>
               </div>
@@ -208,14 +257,15 @@ const PreferencesModal = ({ onSave, onClose }: PreferencesModalProps) => {
   return (
     <div className="glass-strong rounded-2xl border border-white/20 shadow-2xl p-6 md:p-8 max-h-[80vh] overflow-y-auto">
       <div className="flex items-center justify-between mb-6">
-        <h3 className="text-2xl font-display font-bold">Cookie Preferences</h3>
-        <button
+        <h3 className="text-xl sm:text-2xl font-display font-bold">Cookie Preferences</h3>
+        <Button
           onClick={onClose}
-          className="glass p-2 rounded-lg hover:glass-strong transition-all"
+          variant="glass-secondary"
+          size="icon"
           aria-label="Close preferences"
         >
           <X size={20} />
-        </button>
+        </Button>
       </div>
 
       <p className="text-leadq-silver mb-6">
@@ -227,7 +277,7 @@ const PreferencesModal = ({ onSave, onClose }: PreferencesModalProps) => {
           <div key={cookie.id} className="glass p-4 rounded-xl border border-white/10">
             <div className="flex items-start justify-between gap-4">
               <div className="flex-1">
-                <h4 className="font-semibold mb-1">{cookie.title}</h4>
+                <h4 className="text-xl sm:text-2xl font-semibold mb-1">{cookie.title}</h4>
                 <p className="text-sm text-leadq-silver">{cookie.description}</p>
               </div>
 
@@ -247,7 +297,107 @@ const PreferencesModal = ({ onSave, onClose }: PreferencesModalProps) => {
       </div>
 
       <div className="mb-8">
-        <h4 className="text-xl font-semibold mb-3">Cookie Policy</h4>
+        <div className="flex items-center justify-between mb-4">
+          <h4 className="text-xl sm:text-2xl font-semibold">Privacy Policy Summary</h4>
+          <span className="text-xs text-leadq-silver/70">Last Updated: February 2026</span>
+        </div>
+        
+        <div className="space-y-4 mb-4">
+          <div className="glass p-4 rounded-xl border border-white/10">
+            <h5 className="text-xl sm:text-2xl font-semibold mb-2">📊 Information We Collect</h5>
+            <ul className="text-xs text-leadq-silver space-y-1 list-disc list-inside">
+              <li>Browsing data and interaction patterns on our website</li>
+              <li>Device information (browser type, OS, screen resolution)</li>
+              <li>IP address and approximate geographic location</li>
+              <li>Referral sources and pages visited</li>
+              <li>Form submissions and contact information you provide</li>
+            </ul>
+          </div>
+
+          <div className="glass p-4 rounded-xl border border-white/10">
+            <h5 className="text-xl sm:text-2xl font-semibold mb-2">🔍 How We Use Your Data</h5>
+            <ul className="text-xs text-leadq-silver space-y-1 list-disc list-inside">
+              <li>Analyze website performance and user experience</li>
+              <li>Personalize content and recommendations</li>
+              <li>Improve our products and services</li>
+              <li>Provide customer support and respond to inquiries</li>
+              <li>Send marketing communications (with your consent)</li>
+              <li>Comply with legal obligations and prevent fraud</li>
+            </ul>
+          </div>
+
+          <div className="glass p-4 rounded-xl border border-white/10">
+            <h5 className="text-xl sm:text-2xl font-semibold mb-2">🔒 Data Security & Protection</h5>
+            <p className="text-xs text-leadq-silver leading-relaxed">
+              We implement industry-standard security measures including encryption, secure servers, 
+              and access controls to protect your personal data. We regularly audit our systems to 
+              ensure compliance with GDPR, CCPA, and other privacy regulations.
+            </p>
+          </div>
+
+          <div className="glass p-4 rounded-xl border border-white/10">
+            <h5 className="text-xl sm:text-2xl font-semibold mb-2">🤝 Third-Party Sharing</h5>
+            <p className="text-xs text-leadq-silver leading-relaxed mb-2">
+              We do not sell your personal data. We may share information with:
+            </p>
+            <ul className="text-xs text-leadq-silver space-y-1 list-disc list-inside">
+              <li>Service providers who help us operate our website (analytics, hosting)</li>
+              <li>Legal authorities when required by law</li>
+              <li>Business partners with your explicit consent</li>
+            </ul>
+          </div>
+
+          <div className="glass p-4 rounded-xl border border-white/10">
+            <h5 className="text-xl sm:text-2xl font-semibold mb-2">✅ Your Rights (GDPR & CCPA)</h5>
+            <ul className="text-xs text-leadq-silver space-y-1 list-disc list-inside">
+              <li><strong>Access:</strong> Request a copy of your personal data</li>
+              <li><strong>Correction:</strong> Update inaccurate or incomplete data</li>
+              <li><strong>Deletion:</strong> Request deletion of your data ("right to be forgotten")</li>
+              <li><strong>Portability:</strong> Receive your data in a machine-readable format</li>
+              <li><strong>Opt-Out:</strong> Withdraw consent for data processing at any time</li>
+              <li><strong>Objection:</strong> Object to processing for direct marketing purposes</li>
+            </ul>
+          </div>
+
+          <div className="glass p-4 rounded-xl border border-white/10">
+            <h5 className="text-xl sm:text-2xl font-semibold mb-2">⏰ Data Retention</h5>
+            <p className="text-xs text-leadq-silver leading-relaxed">
+              We retain personal data for as long as necessary to fulfill the purposes outlined in this 
+              policy, typically 12-24 months for analytics data and up to 36 months for customer records. 
+              Data is securely deleted when no longer needed.
+            </p>
+          </div>
+
+          <div className="glass p-4 rounded-xl border border-white/10">
+            <h5 className="text-xl sm:text-2xl font-semibold mb-2">🌍 International Data Transfers</h5>
+            <p className="text-xs text-leadq-silver leading-relaxed">
+              Your data may be transferred and processed in countries outside your residence. We ensure 
+              appropriate safeguards are in place through Standard Contractual Clauses (SCCs) and comply 
+              with international data protection frameworks.
+            </p>
+          </div>
+
+          <div className="glass p-4 rounded-xl border border-white/10">
+            <h5 className="text-xl sm:text-2xl font-semibold mb-2">👶 Children's Privacy</h5>
+            <p className="text-xs text-leadq-silver leading-relaxed">
+              Our services are not directed to children under 16. We do not knowingly collect personal 
+              information from children. If you believe we have collected data from a child, please contact us.
+            </p>
+          </div>
+
+          <div className="glass p-4 rounded-xl border border-white/10">
+            <h5 className="text-xl sm:text-2xl font-semibold mb-2">📧 Contact & Data Requests</h5>
+            <p className="text-xs text-leadq-silver leading-relaxed">
+              For privacy inquiries, data access requests, or to exercise your rights, contact us at:
+              <br />
+              <strong>Email:</strong> privacy@leadq.ai
+              <br />
+              <strong>Response Time:</strong> Within 30 days of your request
+            </p>
+          </div>
+        </div>
+
+        <h4 className="text-xl sm:text-2xl font-semibold mb-3 mt-6">Cookie Details</h4>
         <p className="text-sm text-leadq-silver leading-relaxed mb-4">
           This Cookie Policy explains how LeadQ uses cookies and similar technologies on LeadQ.ai.
           Essential cookies are required for the site to function. Analytics and marketing cookies
@@ -285,18 +435,20 @@ const PreferencesModal = ({ onSave, onClose }: PreferencesModalProps) => {
       </div>
 
       <div className="flex gap-3">
-        <button
+        <Button
           onClick={onClose}
-          className="flex-1 glass px-6 py-3 rounded-xl border border-white/10 hover:glass-strong transition-all font-medium"
+          variant="glass-secondary"
+          className="flex-1"
         >
           Cancel
-        </button>
-        <button
+        </Button>
+        <Button
           onClick={() => onSave({ analytics, marketing })}
-          className="flex-1 bg-gradient-to-r from-leadq-silver to-leadq-silver px-6 py-3 rounded-xl font-semibold text-white shadow-glow hover:shadow-glow-strong transition-all"
+          variant="cookie-modal"
+          className="flex-1"
         >
           Save Preferences
-        </button>
+        </Button>
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { MotionButton } from './ui/motion-button';
 import {
   Play,
   Pause,
@@ -417,13 +418,13 @@ export default function EmailDraftAnimation() {
             <Mail className="w-4 h-4 text-leadq-silver" />
             <span className="text-sm text-leadq-silver font-medium">AI Email Assistant</span>
           </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-white mb-4">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold text-white mb-4">
             Intelligent Email{' '}
             <span className="bg-gradient-to-r from-leadq-cyan to-leadq-royal-blue bg-clip-text text-transparent">
               Draft Generation
             </span>
           </h2>
-          <p className="text-slate-400 max-w-2xl mx-auto text-sm md:text-base">
+          <p className="text-slate-400 max-w-2xl mx-auto text-lg sm:text-xl md:text-2xl" style={{ textShadow: 'none' }}>
             Watch how AI transforms your meeting notes into personalized, professional emails
             ready to send in seconds.
           </p>
@@ -438,12 +439,11 @@ export default function EmailDraftAnimation() {
           transition={{ delay: 0.2, duration: 0.5 }}
         >
           {/* Play/Pause Button */}
-          <motion.button
+          <MotionButton
             onClick={handlePlayPause}
-            className={`flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all ${isPlaying
-              ? 'bg-white/10 text-white border border-white/20'
-              : 'bg-gradient-to-r from-leadq-deep-blue to-leadq-royal-blue text-white shadow-[0_0_20px_rgba(39,81,169,0.3)] hover:shadow-[0_0_30px_rgba(39,81,169,0.5)] animate-btn-pulse'
-              }`}
+            variant={isPlaying ? 'glass-secondary' : 'gradient-blue'}
+            size="compact-lg"
+            className="flex items-center gap-2"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
@@ -463,7 +463,7 @@ export default function EmailDraftAnimation() {
                 <span>Start Demo</span>
               </>
             )}
-          </motion.button>
+          </MotionButton>
 
           {/* Stage Indicators */}
           <div className="flex flex-wrap items-center gap-2">
@@ -536,8 +536,8 @@ export default function EmailDraftAnimation() {
                     >
                       <Mail className="w-10 h-10 text-slate-400" />
                     </motion.div>
-                    <h3 className="text-lg font-medium text-white mb-2">Ready to Compose</h3>
-                    <p className="text-sm text-slate-500 max-w-xs">
+                    <h3 className="text-xl sm:text-2xl font-medium text-white mb-2">Ready to Compose</h3>
+                    <p className="text-base sm:text-lg text-slate-500 max-w-xs">
                       Click "Start Demo" to watch AI generate a personalized email
                     </p>
                   </motion.div>

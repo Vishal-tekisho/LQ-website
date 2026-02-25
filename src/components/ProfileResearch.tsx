@@ -19,6 +19,7 @@ import {
   Filter,
   FileText,
 } from 'lucide-react';
+import { MotionButton } from './ui/motion-button';
 
 // Types
 type Stage = 'idle' | 'input' | 'researching' | 'disambiguating' | 'enriching' | 'complete';
@@ -602,42 +603,44 @@ export default function ProfileResearch() {
             <span className="text-sm text-leadq-silver font-medium">AI-Powered Research</span>
           </div>
 
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-4">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold mb-4">
             Profile{' '}
             <span className="bg-gradient-to-r from-leadq-cyan to-leadq-royal-blue bg-clip-text text-transparent">
               Research
             </span>
           </h2>
 
-          <p className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-6">
+          <p className="text-lg sm:text-xl md:text-2xl text-slate-400 max-w-2xl mx-auto mb-6" style={{ textShadow: 'none' }}>
             Transform minimal contact inputs into rich, verified professional profiles in seconds
           </p>
 
           {/* Action button */}
           {stage === 'idle' ? (
-            <motion.button
+            <MotionButton
               onClick={startAnimation}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-leadq-deep-blue to-leadq-royal-blue text-white text-sm font-medium shadow-[0_0_20px_rgba(39,81,169,0.3)] hover:shadow-[0_0_30px_rgba(39,81,169,0.5)] transition-all animate-btn-pulse"
+              variant="gradient-blue"
+              className="inline-flex items-center gap-2 animate-btn-pulse"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               <Search className="w-5 h-5" />
               <span>Start Research Demo</span>
-            </motion.button>
+            </MotionButton>
           ) : (
-            <motion.button
+            <MotionButton
               onClick={() => {
                 resetAnimation();
                 setTimeout(startAnimation, 100);
               }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-sm text-slate-400 hover:text-white hover:bg-white/10 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              variant="glass-secondary"
+              className="inline-flex items-center gap-2 text-sm"
               whileHover={{ scale: isAnimating ? 1 : 1.05 }}
               whileTap={{ scale: isAnimating ? 1 : 0.95 }}
               disabled={isAnimating}
             >
               <RefreshCw className={`w-4 h-4 ${isAnimating ? 'animate-spin' : ''}`} />
               <span>{isAnimating ? 'Researching...' : 'Replay Demo'}</span>
-            </motion.button>
+            </MotionButton>
           )}
         </motion.div>
 

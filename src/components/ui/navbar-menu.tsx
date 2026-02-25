@@ -33,9 +33,11 @@ export const MenuItem = ({
             onMouseLeave={() => setActive(null)}
             className="relative"
         >
-            <motion.div
+            <motion.button
+                type="button"
                 transition={{ duration: 0.3 }}
-                className="cursor-pointer text-leadq-silver hover:text-leadq-silver flex items-center gap-2 px-4 py-2 text-sm font-semibold"
+                onClick={() => setActive(active === item ? null : item)}
+                className="cursor-pointer text-leadq-silver hover:text-white flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-lg hover:bg-white/5 transition-colors"
             >
                 {Icon && <Icon size={18} strokeWidth={2} />}
                 <span>{item}</span>
@@ -46,7 +48,7 @@ export const MenuItem = ({
                         className={`transition-transform duration-300 ${active === item ? "rotate-180" : "rotate-0"}`}
                     />
                 )}
-            </motion.div>
+            </motion.button>
             <AnimatePresence>
                 {active === item && children && (
                     <motion.div
@@ -54,12 +56,14 @@ export const MenuItem = ({
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.95, y: 10 }}
                         transition={transition}
-                        className={`absolute top-[calc(100%_+_0.5rem)] z-50 ${wideDropdown
+                        className={`absolute top-[calc(100%_+_0.5rem)] z-50 pointer-events-auto ${wideDropdown
                             ? "left-0"
                             : "left-1/2 transform -translate-x-1/2"
                             }`}
+                        onMouseEnter={() => setActive(item)}
+                        onMouseLeave={() => setActive(null)}
                     >
-                        <div className="bg-black backdrop-blur-xl rounded-2xl border border-white/10 shadow-2xl shadow-black/50 p-4">
+                        <div className="bg-black/95 backdrop-blur-xl rounded-2xl border border-white/10 shadow-2xl shadow-black/50 p-4">
                             {children}
                         </div>
                     </motion.div>

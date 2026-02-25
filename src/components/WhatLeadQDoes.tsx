@@ -522,13 +522,13 @@ export default function WhatLeadQDoes() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
                     >
-                        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-white mb-6">
+                        <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold text-white mb-6">
                             What LeadQ Does{' '}
                             <span className="bg-gradient-to-r from-leadq-cyan to-leadq-royal-blue bg-clip-text text-transparent">
                                 for You
                             </span>
                         </h2>
-                        <p className="text-lg sm:text-xl text-leadq-silver mb-8 leading-relaxed">
+                        <p className="text-lg sm:text-xl md:text-2xl text-leadq-silver mb-8 leading-relaxed">
                             LeadQ captures people you meet, remembers every conversation, and nudges you to follow up at the right time.
                             <br className="hidden sm:block" />
                             Think of it as a personal sales assistant that does the boring work for you.
@@ -583,7 +583,7 @@ export default function WhatLeadQDoes() {
                                             }`}
                                         onClick={() => setActiveStep(step.id)}
                                     >
-                                        <h3 className="text-xl font-semibold text-white mb-2">
+                                        <h3 className="text-2xl sm:text-3xl font-semibold text-white mb-2">
                                             {step.title}
                                         </h3>
                                         <p className="text-leadq-silver">{step.description}</p>
@@ -627,7 +627,7 @@ export default function WhatLeadQDoes() {
                                     <div className="w-10 h-10 rounded-full bg-leadq-royal-blue/20 flex items-center justify-center text-leadq-royal-blue">
                                         {step.icon}
                                     </div>
-                                    <h3 className="text-lg font-semibold text-white">
+                                    <h3 className="text-2xl sm:text-3xl font-semibold text-white">
                                         {step.title}
                                     </h3>
                                 </div>
@@ -646,7 +646,7 @@ export default function WhatLeadQDoes() {
                     transition={{ duration: 0.6 }}
                     className="mt-24"
                 >
-                    <h3 className="text-2xl font-bold text-white text-center mb-12">
+                    <h3 className="text-2xl sm:text-3xl font-bold text-white text-center mb-12">
                         Built for real-world selling
                     </h3>
                     <div className="grid sm:grid-cols-3 gap-6">
@@ -662,8 +662,8 @@ export default function WhatLeadQDoes() {
                                 <div className="w-12 h-12 rounded-full bg-leadq-silver/20 flex items-center justify-center text-leadq-silver mx-auto mb-4">
                                     {feature.icon}
                                 </div>
-                                <h4 className="text-lg font-semibold text-white mb-2">{feature.title}</h4>
-                                <p className="text-leadq-silver text-sm">{feature.description}</p>
+                                <h4 className="text-2xl sm:text-3xl font-semibold text-white mb-2">{feature.title}</h4>
+                                <p className="text-leadq-silver text-base sm:text-lg">{feature.description}</p>
                             </motion.div>
                         ))}
                     </div>

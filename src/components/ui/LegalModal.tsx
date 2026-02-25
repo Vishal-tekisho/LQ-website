@@ -52,7 +52,7 @@ const LegalModal = ({ isOpen, onClose, document }: LegalModalProps) => {
                         >
                             {/* Header */}
                             <div className="flex items-center justify-between p-6 border-b border-white/10 shrink-0">
-                                <h2 className="text-xl md:text-2xl font-bold text-white font-display">
+                                <h2 className="text-xl sm:text-2xl font-bold text-white font-display">
                                     {content.title}
                                 </h2>
                                 <button

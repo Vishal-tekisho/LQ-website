@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Send, CheckCircle, AlertCircle } from 'lucide-react';
 import { useState, FormEvent } from 'react';
+import { MotionButton } from './ui/motion-button';
 
 type FormState = 'idle' | 'sending' | 'success' | 'error';
 
@@ -106,13 +107,13 @@ export default function Contact() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-4">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold mb-4">
             Get in{' '}
             <span className="bg-gradient-to-r from-leadq-cyan to-leadq-royal-blue bg-clip-text text-transparent">
               Touch
             </span>
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-leadq-silver">
+          <p className="text-lg sm:text-xl md:text-2xl text-leadq-silver">
             Have questions? We'd love to hear from you.
           </p>
         </motion.div>
@@ -131,7 +132,7 @@ export default function Contact() {
               className="text-center py-12"
             >
               <CheckCircle size={64} className="mx-auto mb-4 text-leadq-cyan" />
-              <h3 className="text-2xl font-bold mb-2 text-white">Message Sent!</h3>
+              <h3 className="text-2xl sm:text-3xl font-bold mb-2 text-white">Message Sent!</h3>
               <p className="text-leadq-silver" role="status" aria-live="polite">
                 Thank you for reaching out. We'll get back to you within 24 hours.
               </p>
@@ -234,15 +235,14 @@ export default function Contact() {
                 )}
               </div>
 
-              <motion.button
+              <MotionButton
                 type="submit"
                 disabled={formState === 'sending'}
                 whileHover={formState === 'idle' ? { scale: 1.02 } : {}}
                 whileTap={formState === 'idle' ? { scale: 0.98 } : {}}
-                className={`w-full py-4 rounded-lg font-bold text-lg transition-all flex items-center justify-center gap-2 ${formState === 'sending'
-                  ? 'glass cursor-not-allowed text-leadq-silver'
-                  : 'bg-gradient-to-r from-leadq-deep-blue to-leadq-royal-blue text-white hover:shadow-xl hover:shadow-leadq-royal-blue/30'
-                  }`}
+                variant={formState === 'sending' ? 'glass-secondary' : 'gradient-blue'}
+                size="contact-lg"
+                className="flex items-center justify-center gap-2"
               >
                 {formState === 'sending' ? (
                   <>
@@ -259,7 +259,7 @@ export default function Contact() {
                     <Send size={20} />
                   </>
                 )}
-              </motion.button>
+              </MotionButton>
             </form>
           )}
         </motion.div>

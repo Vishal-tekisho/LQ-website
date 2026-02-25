@@ -107,14 +107,14 @@ const UseCases = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6" style={{ textShadow: 'none' }}>
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold mb-6" style={{ textShadow: 'none' }}>
             Built for{' '}
             <span className="bg-gradient-to-r from-leadq-cyan to-leadq-royal-blue bg-clip-text text-transparent" style={{ textShadow: 'none', filter: 'none' }}>
               every industry
             </span>
           </h2>
 
-          <p className="text-base sm:text-lg md:text-xl text-slate-400 max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl md:text-2xl text-slate-400 max-w-3xl mx-auto" style={{ textShadow: 'none' }}>
             See how LeadQ transforms lead management across industries, from real estate to SaaS sales
           </p>
         </motion.div>
@@ -149,11 +149,11 @@ const UseCases = () => {
                   </div>
 
                   {/* Content */}
-                  <h3 className="text-xl font-display font-bold mb-3 transition-colors" style={{ textShadow: 'none' }}>
+                  <h3 className="text-2xl sm:text-3xl font-display font-bold mb-3 transition-colors" style={{ textShadow: 'none' }}>
                     {useCase.title}
                   </h3>
 
-                  <p className="text-slate-400 text-sm leading-relaxed mb-6 flex-grow" style={{ textShadow: 'none' }}>
+                  <p className="text-slate-400 text-base sm:text-lg leading-relaxed mb-6 flex-grow" style={{ textShadow: 'none' }}>
                     {useCase.description}
                   </p>
 

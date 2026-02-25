@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Player } from '@lottiefiles/react-lottie-player';
 import { Mail, Phone, Linkedin, Briefcase, Scan, ChevronLeft, ChevronRight, Zap } from 'lucide-react';
+import { Button } from './ui/button';
 
 const LOTTIE_URL = 'https://lottie.host/2e6e9c91-c9e7-4c14-b14d-3ac7e7e78c4a/fZQYSdIyEk.json';
 
@@ -98,12 +99,14 @@ function PhoneScannerOverlay({
                   <Scan className="w-5 h-5 text-leadq-silver" />
                   <span className="text-leadq-silver font-semibold text-sm">AI Scanner</span>
                 </div>
-                <button
+                <Button
                   onClick={onToggleView}
-                  className={`text-[10px] bg-leadq-silver/20 text-leadq-silver px-2 py-1 rounded hover:bg-leadq-silver/30 transition-colors ${showEnriched ? 'animate-btn-pulse' : ''}`}
+                  variant="toggle-sm"
+                  size="compact-sm"
+                  className={showEnriched ? 'animate-btn-pulse' : ''}
                 >
                   {showEnriched ? 'Raw' : 'Enriched'}
-                </button>
+                </Button>
               </div>
 
               {/* Scan area */}
@@ -182,23 +185,27 @@ function PhoneScannerOverlay({
 
               {/* Navigation */}
               <div className="flex items-center justify-between mt-3">
-                <button
+                <Button
                   onClick={onPrevLead}
-                  className="flex items-center gap-1 text-leadq-silver hover:text-leadq-silver transition-colors text-xs"
+                  variant="nav-small"
+                  size="compact-sm"
+                  className="flex items-center gap-1"
                 >
                   <ChevronLeft size={14} />
                   <span>Prev</span>
-                </button>
+                </Button>
                 <span className="text-[10px] text-leadq-silver/70">
                   {leadIndex + 1} / {totalLeads}
                 </span>
-                <button
+                <Button
                   onClick={onNextLead}
-                  className="flex items-center gap-1 text-leadq-silver hover:text-leadq-silver transition-colors text-xs"
+                  variant="nav-small"
+                  size="compact-sm"
+                  className="flex items-center gap-1"
                 >
                   <span>Next</span>
                   <ChevronRight size={14} />
-                </button>
+                </Button>
               </div>
             </div>
           </div>
@@ -270,33 +277,27 @@ export default function LeadCaptureStream() {
           <span className="glass px-4 py-2 rounded-full text-sm font-medium text-leadq-silver border border-leadq-silver/20 inline-block mb-6">
             AI-Powered Universal Lead Capture
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-4">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold mb-4">
             Turn Every Scan Into{' '}
             <span className="bg-gradient-to-r from-leadq-cyan to-leadq-royal-blue bg-clip-text text-transparent">
               Revenue
             </span>
           </h2>
-          <p className="text-base sm:text-lg text-leadq-silver max-w-2xl mx-auto mb-6 sm:mb-8">
+          <p className="text-lg sm:text-xl md:text-2xl text-leadq-silver max-w-2xl mx-auto mb-6 sm:mb-8">
             Scan conference badges, business cards, LinkedIn QR codes, and more - instantly validate, qualify, enrich, and sync.
           </p>
 
           {/* Scan Now Button */}
-          <button
+          <Button
             onClick={handleScanClick}
             disabled={isScanning}
-            className={`
-              inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm
-              transition-all duration-300 transform
-              ${isScanning
-                ? 'bg-white/10 text-slate-400 cursor-not-allowed scale-95'
-                : 'bg-gradient-to-r from-leadq-deep-blue to-leadq-royal-blue text-white shadow-[0_0_20px_rgba(39,81,169,0.5)] hover:shadow-[0_0_30px_rgba(39,81,169,0.7)] hover:scale-105 animate-btn-pulse'
-              }
-            `}
-            style={isScanning ? {} : {}}
+            variant={isScanning ? 'ghost' : 'gradient-blue'}
+            size="compact-lg"
+            className={isScanning ? 'scale-95 text-slate-400' : 'hover:scale-105 animate-btn-pulse'}
           >
             <Zap size={18} className={isScanning ? 'animate-spin' : ''} />
             {isScanning ? 'Scanning...' : 'Scan Now'}
-          </button>
+          </Button>
         </div>
 
         <div className="relative w-full h-[400px] sm:h-[450px] md:h-[500px] flex items-center justify-center">

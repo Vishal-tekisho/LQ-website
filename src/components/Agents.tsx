@@ -92,7 +92,7 @@ export default function Agents() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-6"
+            className="text-4xl sm:text-5xl md:text-6xl font-display font-bold mb-6"
           >
             Meet Your{' '}
             <span className="bg-gradient-to-r from-leadq-cyan to-leadq-royal-blue bg-clip-text text-transparent">
@@ -104,7 +104,7 @@ export default function Agents() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-base sm:text-lg md:text-xl text-leadq-silver max-w-3xl mx-auto"
+            className="text-lg sm:text-xl md:text-2xl text-leadq-silver max-w-3xl mx-auto"
           >
             Deploy specialized AI agents for every stage of your sales cycle.
           </motion.p>
@@ -122,26 +122,15 @@ export default function Agents() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{
-                  y: -8,
-                  rotateX: 5,
-                  rotateY: 5,
-                  transition: { duration: 0.3 },
-                }}
-                className={`group relative glass rounded-2xl p-6 hover:glass-strong transition-all ${agent.highlight
+                className={`group relative glass rounded-2xl p-6 ${agent.highlight
                   ? 'bg-gradient-to-br from-leadq-royal-blue/10 to-leadq-cyan/5'
                   : ''
                   } ${agent.className || ''}`}
-                style={{ transformStyle: 'preserve-3d' }}
               >
-                <div
-                  className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-br from-leadq-royal-blue/10 to-leadq-cyan/5 border border-transparent group-hover:border-leadq-cyan/30"
-                />
-
                 <div className="relative">
                   <div className="flex items-start justify-between mb-4">
                     <div
-                      className={`w-12 h-12 rounded-xl bg-leadq-royal-blue/10 flex items-center justify-center group-hover:scale-110 transition-transform`}
+                      className={`w-12 h-12 rounded-xl bg-leadq-royal-blue/10 flex items-center justify-center`}
                     >
                       <Icon
                         className={`text-${colorClass}`}
@@ -156,17 +145,13 @@ export default function Agents() {
                     )}
                   </div>
 
-                  <h3 className={`${agent.className?.includes('col-span') ? 'text-2xl md:text-3xl' : 'text-xl'} font-display font-semibold mb-3 group-hover:text-white transition-colors`}>
+                  <h3 className="text-2xl sm:text-3xl font-display font-semibold mb-3">
                     {agent.title}
                   </h3>
-                  <p className={`text-leadq-silver leading-relaxed ${agent.className?.includes('col-span') ? 'text-lg md:text-xl' : ''}`}>
+                  <p className="text-leadq-silver text-base sm:text-lg leading-relaxed">
                     {agent.description}
                   </p>
                 </div>
-
-                {agent.highlight && (
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-leadq-royal-blue/20 to-transparent rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                )}
               </motion.div>
             );
           })}

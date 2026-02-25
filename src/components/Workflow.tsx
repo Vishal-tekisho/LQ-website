@@ -11,7 +11,7 @@ export default function Workflow() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-4xl md:text-5xl font-display font-bold mb-6"
+            className="text-4xl sm:text-5xl md:text-6xl font-display font-bold mb-6"
           >
             How It Works
           </motion.h2>
@@ -20,7 +20,7 @@ export default function Workflow() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-2xl text-leadq-silver font-medium"
+            className="text-lg sm:text-xl md:text-2xl text-leadq-silver font-medium"
           >
             From Lead to Closed Deal – Zero Clicks.
           </motion.p>
@@ -57,10 +57,10 @@ export default function Workflow() {
                     />
                   </div>
                 </div>
-                <h3 className="text-2xl font-display font-bold mb-4 text-center">
+                <h3 className="text-2xl sm:text-3xl font-display font-bold mb-4 text-center">
                   The Lead
                 </h3>
-                <p className="text-leadq-silver text-center leading-relaxed">
+                <p className="text-leadq-silver text-base sm:text-lg text-center leading-relaxed">
                   LeadQ detects a prospect via NFC tap, LinkedIn, or Inbound.
                 </p>
                 <div className="flex justify-center mt-6">
@@ -113,7 +113,7 @@ export default function Workflow() {
               className="relative z-10"
             >
               <div className="glass-strong rounded-2xl p-8 hover:scale-105 transition-transform bg-gradient-to-br from-leadq-silver/5 to-leadq-silver/10 border border-leadq-silver/20">
-                <h3 className="text-2xl font-display font-bold mb-6 text-center">
+                <h3 className="text-2xl sm:text-3xl font-display font-bold mb-6 text-center">
                   The Swarm
                 </h3>
 
@@ -228,7 +228,7 @@ export default function Workflow() {
                   })}
                 </div>
 
-                <p className="text-leadq-silver text-center leading-relaxed">
+                <p className="text-leadq-silver text-base sm:text-lg text-center leading-relaxed">
                   AI agents orchestrate research, outreach, and scheduling
                   automatically.
                 </p>
@@ -287,10 +287,10 @@ export default function Workflow() {
                     />
                   </motion.div>
                 </div>
-                <h3 className="text-2xl font-display font-bold mb-4 text-center">
+                <h3 className="text-2xl sm:text-3xl font-display font-bold mb-4 text-center">
                   The Result
                 </h3>
-                <p className="text-leadq-silver text-center leading-relaxed mb-6">
+                <p className="text-leadq-silver text-base sm:text-lg text-center leading-relaxed mb-6">
                   Meeting booked & CRM updated automatically.
                 </p>
 
@@ -342,10 +342,10 @@ export default function Workflow() {
                     />
                   </div>
                   <div>
-                    <h3 className="text-xl font-display font-bold mb-2">
+                    <h3 className="text-2xl sm:text-3xl font-display font-bold mb-2">
                       The Lead
                     </h3>
-                    <p className="text-leadq-silver text-sm">
+                    <p className="text-leadq-silver text-base sm:text-lg">
                       LeadQ detects a prospect via NFC tap, LinkedIn, or
                       Inbound.
                     </p>
@@ -374,7 +374,7 @@ export default function Workflow() {
               className="relative"
             >
               <div className="glass-strong rounded-2xl p-6 bg-gradient-to-br from-leadq-silver/5 to-leadq-silver/10 border border-leadq-silver/20">
-                <h3 className="text-xl font-display font-bold mb-4 text-center">
+                <h3 className="text-2xl sm:text-3xl font-display font-bold mb-4 text-center">
                   The Swarm
                 </h3>
                 <div className="relative w-48 h-48 mx-auto mb-4">
@@ -420,7 +420,7 @@ export default function Workflow() {
                     );
                   })}
                 </div>
-                <p className="text-leadq-silver text-center text-sm">
+                <p className="text-leadq-silver text-center text-base sm:text-lg">
                   AI agents orchestrate research, outreach, and scheduling.
                 </p>
               </div>
@@ -457,10 +457,10 @@ export default function Workflow() {
                     </div>
                   </div>
                   <div>
-                    <h3 className="text-xl font-display font-bold mb-2">
+                    <h3 className="text-2xl sm:text-3xl font-display font-bold mb-2">
                       The Result
                     </h3>
-                    <p className="text-leadq-silver text-sm">
+                    <p className="text-leadq-silver text-base sm:text-lg">
                       Meeting booked & CRM updated automatically.
                     </p>
                   </div>

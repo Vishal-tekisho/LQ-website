@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { Button } from './ui/button';
 
 const faqs = [
   {
@@ -61,7 +62,7 @@ export default function FAQ() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-4">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold mb-4">
             Frequently Asked{' '}
             <span className="bg-gradient-to-r from-leadq-cyan to-leadq-royal-blue bg-clip-text text-transparent">
               Questions
@@ -85,7 +86,7 @@ export default function FAQ() {
               transition={{ duration: 0.4, delay: index * 0.05 }}
               className="glass rounded-xl overflow-hidden hover:glass-strong transition-all"
             >
-              <button
+              <Button
                 onClick={() => toggleItem(index)}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' || e.key === ' ') {
@@ -93,11 +94,12 @@ export default function FAQ() {
                     toggleItem(index);
                   }
                 }}
-                className="w-full text-left px-6 py-5 flex items-center justify-between gap-4 focus:outline-none focus:ring-2 focus:ring-leadq-royal-blue focus:ring-inset rounded-xl transition-all"
+                variant="ghost"
+                className="w-full text-left px-6 py-5 flex items-center justify-between gap-4 focus:ring-2 focus:ring-leadq-royal-blue focus:ring-inset rounded-xl transition-all"
                 aria-expanded={openIndex === index}
                 aria-controls={`faq-answer-${index}`}
               >
-                <span className="font-semibold text-white text-lg pr-4">
+                <span className="font-semibold text-white text-xl sm:text-2xl pr-4">
                   {faq.question}
                 </span>
                 <motion.div
@@ -107,7 +109,7 @@ export default function FAQ() {
                 >
                   <ChevronDown size={24} className="text-leadq-cyan" />
                 </motion.div>
-              </button>
+              </Button>
 
               <AnimatePresence initial={false}>
                 {openIndex === index && (

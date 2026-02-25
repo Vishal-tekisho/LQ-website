@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect, useCallback, useRef } from 'react';
+import { MotionButton } from './ui/motion-button';
 import {
     Phone,
     PhoneCall,
@@ -397,44 +398,45 @@ export default function OutboundVoiceAgent() {
                         <span className="text-sm text-leadq-silver font-medium">Intelligent Voice AI</span>
                     </div>
 
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-4">
+                    <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold mb-4">
                         Voice{' '}
                         <span className="bg-gradient-to-r from-leadq-cyan to-leadq-royal-blue bg-clip-text text-transparent">
                             Agent
                         </span>
                     </h2>
 
-                    <p className="text-slate-400 max-w-2xl mx-auto text-sm md:text-base mb-8">
+                    <p className="text-slate-400 max-w-2xl mx-auto text-lg sm:text-xl md:text-2xl mb-8" style={{ textShadow: 'none' }}>
                         Replace robocalls with intelligent conversations. Our AI handles interruptions naturally,
                         understands context in real-time, and schedules meetings seamlessly.
                     </p>
 
                     {/* Control buttons */}
                     <div className="flex items-center justify-center gap-4">
-                        <motion.button
+                        <MotionButton
                             onClick={startDemo}
                             disabled={isPlaying && stage !== 'ended'}
-                            className={`flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all ${isPlaying && stage !== 'ended'
-                                ? 'bg-white/10 text-slate-400 cursor-not-allowed'
-                                : 'bg-gradient-to-r from-leadq-deep-blue to-leadq-royal-blue text-white shadow-[0_0_20px_rgba(39,81,169,0.3)] hover:shadow-[0_0_30px_rgba(39,81,169,0.5)] animate-btn-pulse'
-                                }`}
+                            variant="gradient-blue"
+                            size="compact-lg"
+                            className="flex items-center gap-2"
                             whileHover={isPlaying ? {} : { scale: 1.02 }}
                             whileTap={isPlaying ? {} : { scale: 0.98 }}
                         >
                             <Play className="w-4 h-4" />
                             <span>{stage === 'ended' ? 'Replay Demo' : 'Start Demo Call'}</span>
-                        </motion.button>
+                        </MotionButton>
 
                         {stage !== 'idle' && (
-                            <motion.button
+                            <MotionButton
+                                variant="ghost"
+                                size="compact-lg"
+                                className="flex items-center gap-2"
                                 initial={{ opacity: 0, scale: 0.9 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 onClick={resetDemo}
-                                className="flex items-center gap-2 px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-slate-400 hover:bg-white/10 transition-colors"
                             >
                                 <RotateCcw className="w-4 h-4" />
                                 <span>Reset</span>
-                            </motion.button>
+                            </MotionButton>
                         )}
                     </div>
                 </motion.div>
@@ -504,7 +506,7 @@ export default function OutboundVoiceAgent() {
                     {/* Right: Conversation transcript */}
                     <div className="glass rounded-2xl p-6 md:p-8 border border-white/10 flex flex-col">
                         <div className="flex items-center justify-between mb-4">
-                            <h3 className="text-sm font-medium text-slate-400 uppercase tracking-wider">
+                            <h3 className="text-xl sm:text-2xl font-medium text-slate-400 uppercase tracking-wider">
                                 Live Transcript
                             </h3>
                             {isPlaying && stage !== 'ended' && (

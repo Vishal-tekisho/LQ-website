@@ -78,7 +78,7 @@ const Features = () => {
             The Only CRM That Handshakes Back.
           </motion.span>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-4">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold mb-4">
             Why Choose{' '}
             <span className="bg-gradient-to-r from-leadq-cyan to-leadq-royal-blue bg-clip-text text-transparent">
               LeadQ
@@ -103,14 +103,10 @@ const Features = () => {
               <motion.div
                 key={index}
                 variants={cardVariants}
-                whileHover={{
-                  y: -10,
-                  transition: { duration: 0.3, ease: "easeOut" }
-                }}
                 className={`
-                  relative p-6 sm:p-7 md:p-8 rounded-2xl overflow-hidden group cursor-pointer
+                  relative p-6 sm:p-7 md:p-8 rounded-2xl overflow-hidden group
                   ${isGradient
-                    ? 'bg-zinc-900/50 border border-white/10 hover:border-white/20 transition-colors duration-300'
+                    ? 'bg-zinc-900/50 border border-white/10'
                     : 'glass border-white/10'
                   }
                 `}
@@ -122,9 +118,7 @@ const Features = () => {
                 <div className="relative z-10">
                   {/* Icon */}
                   <div className="mb-6">
-                    <motion.div
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                    <div
                       className={`
                         w-14 h-14 sm:w-16 sm:h-16 rounded-xl flex items-center justify-center
                         ${isGradient
@@ -135,7 +129,7 @@ const Features = () => {
                       `}
                     >
                       <Icon className="w-7 h-7 sm:w-8 sm:h-8" />
-                    </motion.div>
+                    </div>
                   </div>
 
                   {/* Highlight Badge */}
@@ -146,12 +140,12 @@ const Features = () => {
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-xl sm:text-2xl font-display font-bold mb-3 text-white">
+                  <h3 className="text-2xl sm:text-3xl font-display font-bold mb-3 text-white">
                     {feature.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-zinc-300 leading-relaxed text-sm sm:text-base">
+                  <p className="text-zinc-300 leading-relaxed text-base sm:text-lg">
                     {feature.description}
                   </p>
                 </div>

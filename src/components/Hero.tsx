@@ -15,21 +15,7 @@ export default function Hero() {
                     transition={{ duration: 2 }}
                     className="max-w-4xl mx-auto"
                 >
-                    <div
-                        className="inline-block bg-gradient-to-b from-black/10 to-white/10 
-                        dark:from-white/10 dark:to-black/10 p-px rounded-full backdrop-blur-lg 
-                        overflow-hidden shadow-lg mb-8"
-                    >
-                        <div
-                            className="rounded-full px-8 py-3 text-sm font-medium backdrop-blur-md 
-                            bg-gradient-to-r from-leadq-deep-blue/80 via-leadq-royal-blue/80 to-leadq-cyan/80
-                            text-white/90 border border-white/10"
-                        >
-                            ✨ Discover Excellence
-                        </div>
-                    </div>
-
-
+        
                     <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-bold mb-6 sm:mb-8 tracking-tighter">
                         {words.map((word, wordIndex) => (
                             <span

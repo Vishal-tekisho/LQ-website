@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Linkedin as LinkedIn } from 'lucide-react';
 import LegalModal from './ui/LegalModal';
 import { LegalDocument } from '../data/legal-content';
+import { Button } from './ui/button';
 
 const Footer = () => {
     const [modalOpen, setModalOpen] = useState(false);
@@ -53,25 +54,25 @@ const Footer = () => {
 
                     {/* Resources Section */}
                     <div className="md:col-span-1">
-                        <h4 className="text-[#E5E7EB] font-semibold mb-8">Resources</h4>
+                        <h4 className="text-[#E5E7EB] text-xl sm:text-2xl font-semibold mb-8">Resources</h4>
                         <ul className="space-y-4 text-sm">
-                            <li><button onClick={() => openModal('documentation')} className="hover:text-white transition-colors text-left">Documentation</button></li>
+                            <li><Button variant="footer-link" size="footer-link" onClick={() => openModal('documentation')}>Documentation</Button></li>
                         </ul>
                     </div>
 
                     {/* Legal Section */}
                     <div className="md:col-span-1">
-                        <h4 className="text-[#E5E7EB] font-semibold mb-8">Legal</h4>
+                        <h4 className="text-[#E5E7EB] text-xl sm:text-2xl font-semibold mb-8">Legal</h4>
                         <ul className="space-y-4 text-sm">
-                            <li><button onClick={() => openModal('privacy')} className="hover:text-white transition-colors text-left">Privacy Policy</button></li>
-                            <li><button onClick={() => openModal('terms')} className="hover:text-white transition-colors text-left">Terms of Service</button></li>
-                            <li><button onClick={() => openModal('cookie')} className="hover:text-white transition-colors text-left">Cookie Policy</button></li>
-                            <li><button onClick={() => openModal('compliance')} className="hover:text-white transition-colors text-left">Compliance</button></li>
+                            <li><Button variant="footer-link" size="footer-link" onClick={() => openModal('privacy')}>Privacy Policy</Button></li>
+                            <li><Button variant="footer-link" size="footer-link" onClick={() => openModal('terms')}>Terms of Service</Button></li>
+                            <li><Button variant="footer-link" size="footer-link" onClick={() => openModal('cookie')}>Cookie Policy</Button></li>
+                            <li><Button variant="footer-link" size="footer-link" onClick={() => openModal('compliance')}>Compliance</Button></li>
                         </ul>
                     </div>
                     {/* Contact Section */}
                     <div className="md:col-span-1">
-                        <h4 className="text-[#E5E7EB] font-semibold mb-8">Get In Touch</h4>
+                        <h4 className="text-[#E5E7EB] text-xl sm:text-2xl font-semibold mb-8">Get In Touch</h4>
                         <div className="space-y-6 text-sm">
                             <div className="space-y-2">
                                 <p className="font-semibold text-white">USA Office</p>

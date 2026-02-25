@@ -21,6 +21,7 @@ import {
   Pause,
   RotateCcw
 } from 'lucide-react';
+import { Button } from './ui/button';
 
 type AnimationStage =
   | 'idle'
@@ -240,14 +241,14 @@ export default function BookingsMeeting() {
             </span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-4">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold mb-4">
             Bookings & Meeting{' '}
             <span className="bg-gradient-to-r from-leadq-cyan to-leadq-royal-blue bg-clip-text text-transparent">
               Intelligence
             </span>
           </h2>
 
-          <p className="text-base sm:text-lg md:text-xl text-slate-400 max-w-3xl mx-auto mb-6 sm:mb-8">
+          <p className="text-lg sm:text-xl md:text-2xl text-slate-400 max-w-3xl mx-auto mb-6 sm:mb-8" style={{ textShadow: 'none' }}>
             Seamless scheduling, real-time transcription with speaker diarization, and AI-powered meeting summaries
           </p>
 
@@ -262,13 +263,14 @@ export default function BookingsMeeting() {
             transition={{ duration: 0.4, delay: 0.15 }}
             className="flex items-center justify-center gap-4 mb-6"
           >
-            <button
+            <Button
               onClick={() => isPlaying ? null : runAnimation()}
               disabled={isPlaying}
-              className={`inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-300 ${
+              variant={isPlaying ? 'ghost' : 'gradient-blue'}
+              className={`inline-flex items-center gap-2 ${
                 isPlaying
-                  ? 'bg-white/5 text-slate-500 border border-white/10 cursor-not-allowed'
-                  : 'bg-gradient-to-r from-leadq-deep-blue to-leadq-royal-blue text-white shadow-[0_0_20px_rgba(39,81,169,0.4)] hover:shadow-[0_0_30px_rgba(39,81,169,0.6)] hover:scale-105 animate-btn-pulse'
+                  ? 'text-slate-500'
+                  : 'hover:scale-105 animate-btn-pulse'
               }`}
             >
               {isPlaying ? (
@@ -282,14 +284,15 @@ export default function BookingsMeeting() {
                   Start Demo
                 </>
               )}
-            </button>
-            <button
+            </Button>
+            <Button
               onClick={runAnimation}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm text-leadq-silver border border-white/10 bg-white/5 hover:bg-white/10 hover:text-white transition-all duration-300"
+              variant="glass-secondary"
+              className="inline-flex items-center gap-2"
             >
               <RotateCcw className="w-4 h-4" />
               Replay Demo
-            </button>
+            </Button>
           </motion.div>
 
           {/* Main Animation Container */}
@@ -351,7 +354,7 @@ export default function BookingsMeeting() {
                         <Webhook className="w-5 h-5 text-slate-400" />
                       </div>
                       <div className="text-left">
-                        <h3 className="text-white font-semibold">Webhook Sync Active</h3>
+                        <h3 className="text-white font-semibold text-xl sm:text-2xl">Webhook Sync Active</h3>
                         <p className="text-sm text-slate-400">Receiving booking from Calendly</p>
                       </div>
                       <PulsingDot color="green" />
@@ -417,7 +420,7 @@ export default function BookingsMeeting() {
                         <UserPlus className="w-5 h-5 text-slate-400" />
                       </div>
                       <div className="text-left">
-                        <h3 className="text-white font-semibold">Offline Meeting Logged</h3>
+                        <h3 className="text-white font-semibold text-xl sm:text-2xl">Offline Meeting Logged</h3>
                         <p className="text-sm text-slate-400">Manual entry for networking event</p>
                       </div>
                     </div>
@@ -500,7 +503,7 @@ export default function BookingsMeeting() {
                         <Link2 className="w-5 h-5 text-slate-400" />
                       </div>
                       <div className="text-left">
-                        <h3 className="text-white font-semibold">Smart Context Linking</h3>
+                        <h3 className="text-white font-semibold text-xl sm:text-2xl">Smart Context Linking</h3>
                         <p className="text-sm text-slate-400">Connecting to Contact & Company profiles</p>
                       </div>
                     </div>
@@ -611,7 +614,7 @@ export default function BookingsMeeting() {
                           <Radio className="w-5 h-5 text-red-400" />
                         </div>
                         <div className="text-left">
-                          <h3 className="text-white font-semibold">Live Transcription</h3>
+                          <h3 className="text-white font-semibold text-xl sm:text-2xl">Live Transcription</h3>
                           <p className="text-sm text-slate-400">Real-time speaker diarization</p>
                         </div>
                       </div>
@@ -684,7 +687,7 @@ export default function BookingsMeeting() {
                         <Camera className="w-5 h-5 text-green-400" />
                       </div>
                       <div className="text-left">
-                        <h3 className="text-white font-semibold">Proof of Interaction</h3>
+                        <h3 className="text-white font-semibold text-xl sm:text-2xl">Proof of Interaction</h3>
                         <p className="text-sm text-slate-400">Capture meeting evidence & notes</p>
                       </div>
                     </div>
@@ -766,7 +769,7 @@ export default function BookingsMeeting() {
                         <Sparkles className="w-5 h-5 text-slate-400" />
                       </div>
                       <div className="text-left">
-                        <h3 className="text-white font-semibold">AI Post-Processing</h3>
+                        <h3 className="text-white font-semibold text-xl sm:text-2xl">AI Post-Processing</h3>
                         <p className="text-sm text-slate-400">Generating Minutes of Meeting</p>
                       </div>
                       <motion.div
@@ -813,14 +816,14 @@ export default function BookingsMeeting() {
                         animate={{ opacity: 1, y: 0 }}
                         className="flex items-center justify-center gap-4"
                       >
-                        <button className="px-4 py-2 rounded-lg bg-slate-400/20 border border-slate-400/30 text-slate-400 text-sm flex items-center gap-2 hover:bg-slate-400/30 transition-colors">
+                        <Button variant="glass-secondary" size="compact-md" className="flex items-center gap-2 text-slate-400">
                           <FileText className="w-4 h-4" />
                           Export PDF
-                        </button>
-                        <button className="px-4 py-2 rounded-lg bg-slate-400/20 border border-slate-400/30 text-slate-400 text-sm flex items-center gap-2 hover:bg-slate-400/30 transition-colors">
+                        </Button>
+                        <Button variant="glass-secondary" size="compact-md" className="flex items-center gap-2 text-slate-400">
                           <CheckCircle2 className="w-4 h-4" />
                           Approve & Save
-                        </button>
+                        </Button>
                       </motion.div>
                     )}
                   </motion.div>
@@ -841,7 +844,7 @@ export default function BookingsMeeting() {
                           <Calendar className="w-5 h-5 text-slate-400" />
                         </div>
                         <div className="text-left">
-                          <h3 className="text-white font-semibold">Dynamic Dashboard</h3>
+                          <h3 className="text-white font-semibold text-xl sm:text-2xl">Dynamic Dashboard</h3>
                           <p className="text-sm text-slate-400">Smart meeting organization</p>
                         </div>
                       </div>
@@ -849,26 +852,22 @@ export default function BookingsMeeting() {
 
                     {/* Tab toggle */}
                     <div className="flex items-center justify-center gap-2 bg-white/5 rounded-lg p-1 max-w-md mx-auto">
-                      <button
+                      <Button
                         onClick={() => setDashboardView('upcoming')}
-                        className={`flex-1 px-4 py-2 rounded-md text-sm font-medium transition-all ${dashboardView === 'upcoming'
-                          ? 'bg-slate-400 text-white'
-                          : 'text-slate-400 hover:text-white'
-                          }`}
+                        variant={dashboardView === 'upcoming' ? 'default' : 'ghost'}
+                        className={`flex-1 ${dashboardView === 'upcoming' ? 'bg-slate-400 text-white' : 'text-slate-400'}`}
                       >
                         <Clock className="w-4 h-4 inline mr-2" />
                         Upcoming (3 Days)
-                      </button>
-                      <button
+                      </Button>
+                      <Button
                         onClick={() => setDashboardView('completed')}
-                        className={`flex-1 px-4 py-2 rounded-md text-sm font-medium transition-all ${dashboardView === 'completed'
-                          ? 'bg-green-500 text-white'
-                          : 'text-slate-400 hover:text-white'
-                          }`}
+                        variant={dashboardView === 'completed' ? 'default' : 'ghost'}
+                        className={`flex-1 ${dashboardView === 'completed' ? 'bg-green-500 text-white' : 'text-slate-400'}`}
                       >
                         <CheckCircle2 className="w-4 h-4 inline mr-2" />
                         Completed
-                      </button>
+                      </Button>
                     </div>
 
                     {/* Meeting cards */}

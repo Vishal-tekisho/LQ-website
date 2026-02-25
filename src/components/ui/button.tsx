@@ -5,7 +5,7 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-    "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+    "inline-flex items-center justify-center whitespace-nowrap font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
     {
         variants: {
             variant: {
@@ -18,11 +18,27 @@ const buttonVariants = cva(
                     "bg-secondary text-secondary-foreground hover:bg-secondary/80",
                 ghost: "hover:bg-accent hover:text-accent-foreground",
                 link: "text-primary underline-offset-4 hover:underline",
+                "footer-link": "text-leadq-steel hover:text-white transition-colors text-left",
+                "toggle-sm": "text-leadq-silver bg-leadq-silver/20 hover:bg-leadq-silver/30",
+                "nav-small": "text-leadq-silver hover:text-leadq-silver transition-colors",
+                "gradient-silver": "bg-gradient-to-br from-black via-neutral-900 to-leadq-silver text-white border border-white/30 shadow-md shadow-leadq-silver/25 hover:shadow-lg hover:shadow-leadq-silver/45 focus-visible:ring-leadq-silver focus-visible:ring-offset-black",
+                "gradient-blue": "bg-gradient-to-r from-leadq-deep-blue to-leadq-royal-blue text-white hover:shadow-xl hover:shadow-leadq-royal-blue/30 focus-visible:ring-leadq-royal-blue",
+                "white-primary": "bg-white text-leadq-royal-blue hover:bg-white/90 shadow-xl hover:shadow-2xl focus-visible:ring-white focus-visible:ring-offset-leadq-deep-blue",
+                "glass-secondary": "glass hover:bg-white/10 text-leadq-silver focus-visible:ring-leadq-silver",
+                "cookie-modal": "bg-gradient-to-r from-leadq-silver to-leadq-silver text-white font-semibold shadow-glow hover:shadow-glow-strong",
             },
             size: {
-                default: "h-10 px-4 py-2",
-                sm: "h-9 rounded-md px-3",
-                lg: "h-11 rounded-md px-8",
+                default: "h-10 px-4 py-2 rounded-md text-sm",
+                sm: "h-9 rounded-md px-3 text-sm",
+                lg: "h-11 rounded-md px-8 text-lg",
+                "header-sm": "h-10 px-6 py-2 rounded-lg",
+                "header-md": "h-auto px-6 py-3 rounded-lg",
+                "contact-lg": "w-full py-4 rounded-lg text-lg",
+                "cta-lg": "px-6 sm:px-10 py-3 sm:py-4 rounded-lg text-base sm:text-lg",
+                "footer-link": "h-auto p-0 text-sm",
+                "compact-sm": "inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs",
+                "compact-md": "inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs",
+                "compact-lg": "inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm",
                 icon: "h-10 w-10",
             },
         },

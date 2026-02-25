@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { LayoutDashboard, Target, Bot, BarChart3, TrendingUp, Calendar, DollarSign, Zap, CheckCircle, Clock, PieChart, ArrowUpRight } from 'lucide-react';
+import { MotionButton } from './ui/motion-button';
+import { Button } from './ui/button';
 import { ContainerScroll } from './ui/container-scroll';
 
 type ViewType = 'Leads' | 'Deals' | 'Agents' | 'Analytics';
@@ -192,9 +194,15 @@ export default function DashboardPreview() {
                     const Icon = item.icon;
                     const isActive = activeView === item.label;
                     return (
-                      <motion.button
+                      <MotionButton
                         key={item.label}
                         onClick={() => setActiveView(item.label)}
+                        variant="ghost"
+                        size="default"
+                        className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all cursor-pointer border justify-start ${isActive
+                          ? 'bg-gradient-to-r from-leadq-royal-blue/20 to-leadq-royal-blue/20 border-leadq-royal-blue/30 text-leadq-cyan'
+                          : 'border-transparent text-leadq-silver'
+                          }`}
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
@@ -207,12 +215,11 @@ export default function DashboardPreview() {
                         transition={{
                           duration: 0.4,
                           delay: index * 0.1,
-                          // Continuous pulse for inactive buttons
                           backgroundColor: {
                             duration: 2,
                             repeat: Infinity,
                             repeatType: "reverse",
-                            delay: index * 0.5, // Stagger the pulse
+                            delay: index * 0.5,
                             ease: "easeInOut"
                           },
                           borderColor: {
@@ -223,14 +230,10 @@ export default function DashboardPreview() {
                             ease: "easeInOut"
                           }
                         }}
-                        className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all cursor-pointer border ${isActive
-                          ? 'bg-gradient-to-r from-leadq-royal-blue/20 to-leadq-royal-blue/20 border-leadq-royal-blue/30 text-leadq-cyan'
-                          : 'border-transparent text-leadq-silver'
-                          }`}
                       >
                         <Icon size={18} strokeWidth={2} />
                         <span className="text-sm font-medium hidden lg:inline">{item.label}</span>
-                      </motion.button>
+                      </MotionButton>
                     );
                   })}
                 </div>
@@ -253,7 +256,7 @@ export default function DashboardPreview() {
                           const ViewIcon = getViewConfig().icon;
                           return <ViewIcon className="text-leadq-silver" size={24} strokeWidth={2} />;
                         })()}
-                        <h3 className="text-xl font-display font-bold text-white">{getViewConfig().title}</h3>
+                        <h3 className="text-2xl sm:text-3xl font-display font-bold text-white">{getViewConfig().title}</h3>
                       </div>
                       <div className="flex items-center gap-2 glass px-3 py-2 rounded-lg border border-leadq-silver/30">
                         <motion.div
@@ -307,7 +310,7 @@ export default function DashboardPreview() {
                         className="glass rounded-xl p-6 border border-white/10 mb-6"
                       >
                         <div className="flex items-center justify-between mb-6">
-                          <h4 className="text-lg font-display font-bold text-white">{getViewConfig().chartTitle}</h4>
+                          <h4 className="text-xl sm:text-2xl font-display font-bold text-white">{getViewConfig().chartTitle}</h4>
                           <div className="flex items-center gap-2 text-green-400">
                             <TrendingUp size={18} strokeWidth={2} />
                             <span className="text-sm font-medium">{getViewConfig().chartTrend}</span>
@@ -406,7 +409,7 @@ export default function DashboardPreview() {
                         transition={{ duration: 0.4, delay: 0.3 }}
                         className="glass rounded-xl p-6 border border-white/10 mb-6"
                       >
-                        <h4 className="text-lg font-display font-bold text-white mb-4">Agent Status</h4>
+                        <h4 className="text-xl sm:text-2xl font-display font-bold text-white mb-4">Agent Status</h4>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           {agentsList.map((agent, index) => (
                             <motion.div
@@ -445,7 +448,7 @@ export default function DashboardPreview() {
                       transition={{ duration: 0.4, delay: 0.5 }}
                       className="glass rounded-xl p-6 border border-white/10"
                     >
-                      <h4 className="text-lg font-display font-bold text-white mb-4">
+                      <h4 className="text-xl sm:text-2xl font-display font-bold text-white mb-4">
                         {activeView === 'Leads' && 'Active Deals'}
                         {activeView === 'Deals' && 'Deal Pipeline'}
                         {activeView === 'Agents' && 'Recent Tasks'}
