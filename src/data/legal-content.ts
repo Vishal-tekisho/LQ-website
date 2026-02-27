@@ -171,6 +171,18 @@ Following termination, data may be retained for up to 90 days for reactivation o
 
 THE SERVICE IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND.
 
+### 10.1.1 Financial Data and Revenue Information Accuracy
+
+Financial metrics, revenue data, and capital information displayed in the Service (including but not limited to sales figures, pipeline values, revenue forecasts, and any related calculations or summaries) are provided for informational and planning purposes only. Such data may not be completely or immediately accurate due to data synchronization delays, limitations imposed by third-party data sources, variations in user-provided information, integration delays, or other factors beyond our control.
+
+You acknowledge and agree that:
+- Financial data may be subject to delays in updating
+- Third-party data sources may have their own accuracy limitations
+- User-entered financial information depends on the accuracy of data provided by you or your team
+- LeadQ makes no warranty regarding the complete accuracy or timeliness of financial metrics
+
+You should not rely solely on this information for critical financial, business, or investment decisions. We recommend verifying important financial information through independent sources and consulting with qualified financial advisors or accountants before making material business decisions based on data displayed in the Service.
+
 ### 10.2 Limitation of Liability
 
 To the maximum extent permitted by law, Tekisho shall not be liable for indirect, incidental, consequential, or punitive damages.
@@ -345,6 +357,16 @@ We use information for the following purposes:
 - Sending essential service notices and, where permitted, marketing communications
 
 Tekisho does not sell personal data and does not use customer data for third-party advertising.
+
+### 4.1 Data Accuracy and Financial Information Limitations
+
+While we strive to maintain accurate data and analytics, users should be aware that:
+
+- **Financial Metrics:** Revenue calculations, pipeline values, and related financial data displayed in the Service may have inherent limitations due to data source reliability, synchronization delays, or user-provided information accuracy.
+- **Third-Party Data:** Information integrated from third-party data sources is subject to the accuracy standards and update frequencies of those providers.
+- **User Data:** The accuracy of analytics and calculations depends on the information provided by you and your team members. Incomplete or incorrect data entry can impact the reliability of reports and financial projections.
+
+LeadQ makes reasonable efforts to ensure data accuracy but does not guarantee that all financial metrics or analytical data will be completely accurate, current, or error-free. For material business decisions, we recommend verifying critical financial information through additional independent verification methods.
 
 ## 5. Legal Basis for Processing
 
