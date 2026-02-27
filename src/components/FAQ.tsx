@@ -5,32 +5,44 @@ import { Button } from './ui/button';
 
 const faqs = [
   {
-    question: "How does the credit system work?",
-    answer: "Credits are consumed based on agent actions. Lead research costs 1 credit, email sends cost 2 credits, and meeting scheduling costs 3 credits. All plans include monthly credit allocations that reset each billing cycle.",
+    question: "What exactly is LeadQ and who is it built for?",
+    answer: "LeadQ is an AI-powered CRM and business assistant that helps you capture contacts, record & summarize meetings, and send smart follow-up emails — all in one place. It's built for sales professionals, business development reps, entrepreneurs, account managers, and consultants who want to manage leads and relationships without the manual grind.",
   },
   {
-    question: "Can I integrate LeadQ with Salesforce/HubSpot?",
-    answer: "Yes! LeadQ offers native integrations with Salesforce, HubSpot, Pipedrive, and most major CRM platforms. Data syncs bi-directionally in real-time, ensuring your systems are always up to date.",
+    question: "Do I need any technical knowledge or CRM experience to use LeadQ?",
+    answer: "Not at all. LeadQ is designed to be intuitive from day one. You can start capturing contacts with your phone camera, record your first meeting, and send an AI-drafted follow-up email within minutes of signing up — no training or onboarding calls required.",
   },
   {
-    question: "Do I need to buy NFC cards separately?",
-    answer: "NFC cards are included with Pro and Enterprise plans. Starter plan users can purchase them separately at $2/card. Each card can be reprogrammed unlimited times through the dashboard.",
+    question: "How accurate is the business card scanner?",
+    answer: "The scanner uses OCR (Optical Character Recognition) and works best with good lighting, a steady hand, and standard card layouts. It captures both the front and back of a card. For unusual fonts or low-contrast designs, accuracy may vary — but you'll always get to review and correct the extracted data before saving.",
   },
   {
-    question: "Is my data secure and compliant?",
-    answer: "Absolutely. We're SOC 2 Type II certified and GDPR compliant. All data is encrypted in transit (TLS 1.3) and at rest (AES-256). We never share your data with third parties.",
+    question: "Can LeadQ record and transcribe my meetings automatically?",
+    answer: "Yes. For in-person meetings, LeadQ records audio live and transcribes it in real-time as the conversation happens. For virtual meetings on Zoom, Teams, or similar platforms, you enter the Meeting ID after the call and LeadQ fetches the transcript automatically. You can also take typed notes or dictate voice notes hands-free throughout the meeting.",
   },
   {
-    question: "What happens if I run out of credits?",
-    answer: "When you run out of credits, agents will pause operations. You'll receive notifications at 90%, 75%, and 50% remaining. You can purchase additional credit packs anytime or upgrade your plan for higher monthly allocations.",
+    question: "How does the AI-generated follow-up email work?",
+    answer: "LeadQ reads your meeting context — notes, transcript, and summary — and drafts a professional follow-up email with a tailored subject line and body. You choose what to include (meeting summary, action items, your profile, company info, or services), can regenerate any section you don't like, attach files or a meeting photo, and send when ready. You can even customize the AI's writing style using your own prompt instructions in Email Settings.",
   },
   {
-    question: "Can I cancel anytime?",
-    answer: "Yes, cancel anytime with no penalties. Your plan remains active until the end of your billing period. All your data will be available for export for 30 days after cancellation.",
+    question: "How does LeadQ help me track where each lead stands in my pipeline?",
+    answer: "Every contact can be assigned a status: HOT (very interested), WARM (interested), COLD (not yet engaged), WON (converted to customer), or LOST (did not convert). Your dashboard shows all leads with their current status at a glance, and KPI cards track Contacts Touched, Emails Drafted, Conversion Rate, and Meetings Completed — all filterable by day, week, or month.",
   },
   {
-    question: "Do you offer onboarding support?",
-    answer: "Pro and Enterprise plans include dedicated onboarding with a customer success manager. Starter plan users get access to our comprehensive knowledge base, video tutorials, and email support.",
+    question: "Can LeadQ help me research a contact or their company before a meeting?",
+    answer: "Yes. LeadQ's Company Research feature automatically generates an AI-powered profile of your contact's background and a summary of their company — including what they do, key business insights, and useful conversation starters. This loads automatically when you view a contact, so you can walk into every meeting well prepared.",
+  },
+  {
+    question: 'What are "credits" and what do they get used for?',
+    answer: "Credits are the in-app resource that powers premium features — specifically voice call minutes, email campaigns, and business card scans. Your subscription plan comes with a credit allocation you can track in real-time under Settings → Billing → Credits Usage. You can upgrade your plan or earn bonus credits through the referral program whenever you need more.",
+  },
+  {
+    question: "Can I export my contacts or take my data with me if I ever need to leave?",
+    answer: "Absolutely — you're never locked in. Individual contacts can be downloaded as VCF (vCard) files, a standard format compatible with virtually every contact manager, phone, or CRM. You can also export all your LeadQ data at once through Settings → Admin → Data Management.",
+  },
+  {
+    question: "What happens after a meeting ends — do I have to write up notes myself?",
+    answer: "No. Once you stop recording, tap \"Generate Summary\" and LeadQ's AI instantly creates a structured meeting recap with key points and action items. Review it, edit if needed, save it to the contact record — then jump straight into drafting your follow-up email, all without leaving the app.",
   },
 ];
 
@@ -99,7 +111,7 @@ export default function FAQ() {
                 aria-expanded={openIndex === index}
                 aria-controls={`faq-answer-${index}`}
               >
-                <span className="font-semibold text-white text-xl sm:text-2xl pr-4">
+                <span className="font-medium text-white text-lg sm:text-xl pr-4">
                   {faq.question}
                 </span>
                 <motion.div
@@ -135,7 +147,7 @@ export default function FAQ() {
                     className="overflow-hidden"
                   >
                     <div className="px-6 pb-5 pt-0">
-                      <p className="text-leadq-silver leading-relaxed">
+                      <p className="text-white text-base sm:text-lg leading-relaxed">
                         {faq.answer}
                       </p>
                     </div>
