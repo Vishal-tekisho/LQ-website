@@ -265,6 +265,7 @@ export function NavBar({ items, className }: NavBarProps) {
                 item="Solutions"
                 icon={menuGroups.solutions.icon}
                 wideDropdown={true}
+                buttonClassName="animate-pulse-glow-silver"
               >
                 <div className="flex gap-6">
                   <div className="w-[160px]">
