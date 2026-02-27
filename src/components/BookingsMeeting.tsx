@@ -62,6 +62,137 @@ const TypingIndicator = () => (
   </div>
 );
 
+// Orbital loading animation with glowing rings
+const OrbitalLoader = () => (
+  <div className="relative flex items-center justify-center w-44 h-44 sm:w-52 sm:h-52">
+    {/* Radial glow backdrop */}
+    <motion.div
+      className="absolute inset-0 rounded-full"
+      style={{
+        background: 'radial-gradient(circle, rgba(148,163,184,0.15) 0%, rgba(148,163,184,0.05) 40%, transparent 70%)',
+      }}
+      animate={{ opacity: [0.5, 1, 0.5] }}
+      transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+    />
+
+    {/* Outer ring — clockwise, slower */}
+    <motion.div
+      className="absolute rounded-full"
+      style={{
+        width: '100%',
+        height: '100%',
+        border: '2px solid transparent',
+        borderTopColor: 'rgba(148,163,184,0.6)',
+        borderRightColor: 'rgba(148,163,184,0.25)',
+        filter: 'drop-shadow(0 0 6px rgba(148,163,184,0.5))',
+      }}
+      animate={{ rotate: 360 }}
+      transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
+    />
+
+    {/* Outer ring spark dot */}
+    <motion.div
+      className="absolute w-1.5 h-1.5 rounded-full bg-slate-300"
+      style={{
+        top: 0,
+        left: '50%',
+        marginLeft: '-3px',
+        boxShadow: '0 0 8px 2px rgba(148,163,184,0.7)',
+      }}
+      animate={{ rotate: 360 }}
+      transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
+    />
+
+    {/* Inner ring — counter-clockwise, faster */}
+    <motion.div
+      className="absolute rounded-full"
+      style={{
+        width: '75%',
+        height: '75%',
+        border: '2px solid transparent',
+        borderTopColor: 'rgba(100,116,139,0.5)',
+        borderLeftColor: 'rgba(100,116,139,0.2)',
+        filter: 'drop-shadow(0 0 5px rgba(100,116,139,0.45))',
+      }}
+      animate={{ rotate: -360 }}
+      transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
+    />
+
+    {/* Inner ring spark dot */}
+    <motion.div
+      className="absolute rounded-full"
+      style={{
+        width: '75%',
+        height: '75%',
+      }}
+      animate={{ rotate: -360 }}
+      transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
+    >
+      <div
+        className="absolute w-1 h-1 rounded-full bg-slate-400"
+        style={{
+          top: 0,
+          left: '50%',
+          marginLeft: '-2px',
+          boxShadow: '0 0 6px 2px rgba(100,116,139,0.6)',
+        }}
+      />
+    </motion.div>
+
+    {/* Innermost faint ring — slow clockwise */}
+    <motion.div
+      className="absolute rounded-full"
+      style={{
+        width: '52%',
+        height: '52%',
+        border: '1px solid transparent',
+        borderBottomColor: 'rgba(148,163,184,0.2)',
+        borderRightColor: 'rgba(148,163,184,0.1)',
+      }}
+      animate={{ rotate: 360 }}
+      transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
+    />
+
+    {/* Calendar icon with glow */}
+    <motion.div
+      animate={{
+        scale: [1, 1.08, 1],
+        filter: [
+          'drop-shadow(0 0 4px rgba(148,163,184,0.3))',
+          'drop-shadow(0 0 12px rgba(148,163,184,0.6))',
+          'drop-shadow(0 0 4px rgba(148,163,184,0.3))',
+        ],
+      }}
+      transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+    >
+      <Calendar className="w-14 h-14 sm:w-16 sm:h-16 text-slate-300/70" />
+    </motion.div>
+  </div>
+);
+
+// Glowing loading dots
+const GlowDots = () => (
+  <div className="flex items-center gap-2 mt-3">
+    {[0, 1, 2].map((i) => (
+      <motion.div
+        key={i}
+        className="w-2 h-2 rounded-full bg-slate-300/80"
+        style={{ boxShadow: '0 0 6px 1px rgba(148,163,184,0.5)' }}
+        animate={{
+          opacity: [0.4, 1, 0.4],
+          scale: [0.8, 1.2, 0.8],
+        }}
+        transition={{
+          duration: 1.2,
+          repeat: Infinity,
+          delay: i * 0.25,
+          ease: 'easeInOut',
+        }}
+      />
+    ))}
+  </div>
+);
+
 // Waveform bar component for transcription
 const WaveformBar = ({ index, isActive }: { index: number; isActive: boolean }) => (
   <motion.div
@@ -285,14 +416,6 @@ export default function BookingsMeeting() {
                 </>
               )}
             </Button>
-            <Button
-              onClick={runAnimation}
-              variant="glass-secondary"
-              className="inline-flex items-center gap-2"
-            >
-              <RotateCcw className="w-4 h-4" />
-              Replay Demo
-            </Button>
           </motion.div>
 
           {/* Main Animation Container */}
@@ -328,15 +451,21 @@ export default function BookingsMeeting() {
                     exit={{ opacity: 0 }}
                     className="flex flex-col items-center justify-center h-64 sm:h-80 md:h-96"
                   >
-                    <motion.div
-                      animate={{ scale: [1, 1.05, 1] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                      className="mb-4"
+                    <OrbitalLoader />
+                    <p
+                      className="mt-4 text-sm sm:text-base font-medium tracking-wide"
+                      style={{
+                        background: 'linear-gradient(90deg, #94a3b8 0%, #e2e8f0 40%, #94a3b8 80%)',
+                        backgroundSize: '200% 100%',
+                        WebkitBackgroundClip: 'text',
+                        backgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        animation: 'shimmer 3s ease-in-out infinite',
+                      }}
                     >
-                      <Calendar className="w-16 h-16 text-slate-400/50" />
-                    </motion.div>
-                    <p className="text-slate-500">Initializing Meeting Intelligence...</p>
-                    <TypingIndicator />
+                      Initializing Meeting Intelligence...
+                    </p>
+                    <GlowDots />
                   </motion.div>
                 )}
 

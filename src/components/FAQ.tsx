@@ -96,7 +96,7 @@ export default function FAQ() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.05 }}
-              className="glass rounded-xl overflow-hidden hover:glass-strong transition-all"
+              className="glass rounded-xl overflow-hidden"
             >
               <Button
                 onClick={() => toggleItem(index)}
@@ -107,7 +107,7 @@ export default function FAQ() {
                   }
                 }}
                 variant="ghost"
-                className="w-full text-left px-6 py-5 flex items-center justify-between gap-4 focus:ring-2 focus:ring-leadq-royal-blue focus:ring-inset rounded-xl transition-all whitespace-normal h-auto"
+                className="w-full text-left px-6 py-5 flex items-center justify-between gap-4 focus:ring-2 focus:ring-leadq-royal-blue focus:ring-inset rounded-xl whitespace-normal h-auto"
                 aria-expanded={openIndex === index}
                 aria-controls={`faq-answer-${index}`}
               >
@@ -147,7 +147,7 @@ export default function FAQ() {
                     className="overflow-hidden"
                   >
                     <div className="px-6 pb-5 pt-0">
-                      <p className="text-leadq-silver text-base sm:text-lg leading-relaxed">
+                      <p className="text-slate-100 text-base sm:text-lg leading-relaxed">
                         {faq.answer}
                       </p>
                     </div>
