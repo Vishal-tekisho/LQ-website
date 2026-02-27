@@ -696,7 +696,7 @@ export default function ProfileResearch() {
               transition={{ duration: 0.4, delay: 0.1 * index }}
               className="text-center p-4 rounded-xl bg-white/5 border border-white/10"
             >
-              <feature.icon className="w-6 h-6 text-slate-400 mx-auto mb-2" />
+              <feature.icon className="w-6 h-6 text-white mx-auto mb-2" />
               <p className="text-sm font-medium text-white">{feature.label}</p>
               <p className="text-xs text-slate-500">{feature.desc}</p>
             </motion.div>

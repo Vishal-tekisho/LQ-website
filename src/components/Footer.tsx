@@ -1,26 +1,9 @@
-import { useState } from 'react';
 import { Linkedin as LinkedIn } from 'lucide-react';
-import LegalModal from './ui/LegalModal';
-import { LegalDocument } from '../data/legal-content';
 import { Button } from './ui/button';
 
 const Footer = () => {
-    const [modalOpen, setModalOpen] = useState(false);
-    const [currentDoc, setCurrentDoc] = useState<LegalDocument | null>(null);
-
-    const openModal = (doc: LegalDocument) => {
-        setCurrentDoc(doc);
-        setModalOpen(true);
-    };
-
-    const closeModal = () => {
-        setModalOpen(false);
-        setCurrentDoc(null);
-    };
-
     return (
         <footer className="bg-leadq-bg text-leadq-steel py-10 sm:py-12 md:py-16 px-4 sm:px-6 relative z-10 border-t border-white/5">
-            <LegalModal isOpen={modalOpen} onClose={closeModal} document={currentDoc} />
             <div className="max-w-7xl mx-auto">
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 md:gap-12">
                     {/* Logo and Description Section */}
@@ -56,7 +39,7 @@ const Footer = () => {
                     <div className="md:col-span-1">
                         <h4 className="text-[#E5E7EB] text-xl sm:text-2xl font-semibold mb-8">Resources</h4>
                         <ul className="space-y-4 text-sm">
-                            <li><Button variant="footer-link" size="footer-link" onClick={() => openModal('documentation')}>Documentation</Button></li>
+                            <li><Button asChild variant="footer-link" size="footer-link"><a href="/legal/documentation" target="_blank" rel="noopener noreferrer">Documentation</a></Button></li>
                         </ul>
                     </div>
 
@@ -64,10 +47,10 @@ const Footer = () => {
                     <div className="md:col-span-1">
                         <h4 className="text-[#E5E7EB] text-xl sm:text-2xl font-semibold mb-8">Legal</h4>
                         <ul className="space-y-4 text-sm">
-                            <li><Button variant="footer-link" size="footer-link" onClick={() => openModal('privacy')}>Privacy Policy</Button></li>
-                            <li><Button variant="footer-link" size="footer-link" onClick={() => openModal('terms')}>Terms of Service</Button></li>
-                            <li><Button variant="footer-link" size="footer-link" onClick={() => openModal('cookie')}>Cookie Policy</Button></li>
-                            <li><Button variant="footer-link" size="footer-link" onClick={() => openModal('compliance')}>Compliance</Button></li>
+                            <li><Button asChild variant="footer-link" size="footer-link"><a href="/legal/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a></Button></li>
+                            <li><Button asChild variant="footer-link" size="footer-link"><a href="/legal/terms" target="_blank" rel="noopener noreferrer">Terms of Service</a></Button></li>
+                            <li><Button asChild variant="footer-link" size="footer-link"><a href="/legal/cookie" target="_blank" rel="noopener noreferrer">Cookie Policy</a></Button></li>
+                            <li><Button asChild variant="footer-link" size="footer-link"><a href="/legal/compliance" target="_blank" rel="noopener noreferrer">Compliance</a></Button></li>
                         </ul>
                     </div>
                     {/* Contact Section */}

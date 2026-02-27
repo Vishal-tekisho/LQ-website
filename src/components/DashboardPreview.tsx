@@ -250,15 +250,15 @@ export default function DashboardPreview() {
                     transition={{ duration: 0.3 }}
                   >
                     {/* Header with AI Status */}
-                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0 mb-4 sm:mb-6">
-                      <div className="flex items-center gap-2">
+                    <div className="flex flex-row items-center justify-between gap-2 mb-2 sm:mb-6">
+                      <div className="flex items-center gap-1 sm:gap-2">
                         {(() => {
                           const ViewIcon = getViewConfig().icon;
-                          return <ViewIcon className="text-leadq-silver" size={24} strokeWidth={2} />;
+                          return <ViewIcon className="text-leadq-silver" size={18} strokeWidth={2} />;
                         })()}
-                        <h3 className="text-2xl sm:text-3xl font-display font-bold text-white">{getViewConfig().title}</h3>
+                        <h3 className="text-base sm:text-2xl md:text-3xl font-display font-bold text-white">{getViewConfig().title}</h3>
                       </div>
-                      <div className="flex items-center gap-2 glass px-3 py-2 rounded-lg border border-leadq-silver/30">
+                      <div className="flex items-center gap-1 sm:gap-2 glass px-2 py-1 sm:px-3 sm:py-2 rounded-lg border border-leadq-silver/30">
                         <motion.div
                           animate={{
                             scale: [1, 1.3, 1],
@@ -271,12 +271,12 @@ export default function DashboardPreview() {
                           }}
                           className="w-2 h-2 rounded-full bg-leadq-cyan glow-blue"
                         />
-                        <span className="text-sm font-medium text-white">AI Agent Active</span>
+                        <span className="text-xs sm:text-sm font-medium text-white">AI Agent Active</span>
                       </div>
                     </div>
 
                     {/* Stats Cards */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                    <div className="grid grid-cols-3 gap-1.5 sm:gap-4 mb-2 sm:mb-6">
                       {getCurrentStats().map((stat, index) => {
                         const Icon = stat.icon;
                         return (
@@ -285,17 +285,17 @@ export default function DashboardPreview() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.4, delay: index * 0.1 }}
-                            className="glass rounded-xl p-4 border border-white/10"
+                            className="glass rounded-xl p-1.5 sm:p-4 border border-white/10"
                           >
-                            <div className="flex items-start justify-between mb-2">
-                              <Icon className="text-leadq-silver" size={20} strokeWidth={2} />
-                              <span className={`text-xs font-medium ${stat.trend.startsWith('+') ? 'text-green-400' : 'text-orange-400'
+                            <div className="flex items-start justify-between mb-1 sm:mb-2">
+                              <Icon className="text-leadq-silver" size={14} strokeWidth={2} />
+                              <span className={`text-[10px] sm:text-xs font-medium ${stat.trend.startsWith('+') ? 'text-green-400' : 'text-orange-400'
                                 }`}>
                                 {stat.trend}
                               </span>
                             </div>
-                            <div className="text-3xl font-bold text-white mb-1">{stat.value}</div>
-                            <div className="text-sm text-leadq-silver">{stat.label}</div>
+                            <div className="text-base sm:text-3xl font-bold text-white mb-0.5 sm:mb-1 truncate">{stat.value}</div>
+                            <div className="text-[10px] sm:text-sm text-leadq-silver leading-tight">{stat.label}</div>
                           </motion.div>
                         );
                       })}
@@ -307,18 +307,18 @@ export default function DashboardPreview() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.4, delay: 0.3 }}
-                        className="glass rounded-xl p-6 border border-white/10 mb-6"
+                        className="glass rounded-xl p-3 sm:p-6 border border-white/10 mb-2 sm:mb-6"
                       >
-                        <div className="flex items-center justify-between mb-6">
-                          <h4 className="text-xl sm:text-2xl font-display font-bold text-white">{getViewConfig().chartTitle}</h4>
-                          <div className="flex items-center gap-2 text-green-400">
-                            <TrendingUp size={18} strokeWidth={2} />
-                            <span className="text-sm font-medium">{getViewConfig().chartTrend}</span>
+                        <div className="flex items-center justify-between mb-2 sm:mb-6">
+                          <h4 className="text-sm sm:text-xl md:text-2xl font-display font-bold text-white">{getViewConfig().chartTitle}</h4>
+                          <div className="flex items-center gap-1 sm:gap-2 text-green-400">
+                            <TrendingUp size={14} strokeWidth={2} />
+                            <span className="text-xs sm:text-sm font-medium">{getViewConfig().chartTrend}</span>
                           </div>
                         </div>
 
                         {/* Combined SVG line/area overlay + bars */}
-                        <div className="relative h-32 sm:h-40 md:h-48">
+                        <div className="relative h-20 sm:h-32 md:h-48">
                           <svg
                             className="absolute inset-0 w-full h-full z-10 pointer-events-none"
                             viewBox={`0 0 ${svgWidth} ${svgHeight}`}
@@ -363,7 +363,7 @@ export default function DashboardPreview() {
                             ))}
                           </svg>
 
-                          <div className="relative flex items-end justify-between gap-3 h-48">
+                          <div className="relative flex items-end justify-between gap-1 sm:gap-3 h-20 sm:h-32 md:h-48">
                             {currentChartData.map((item, index) => {
                               const heightPercent = (item.value / maxValue) * 100;
                               const isEven = index % 2 === 0;
@@ -407,22 +407,22 @@ export default function DashboardPreview() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.4, delay: 0.3 }}
-                        className="glass rounded-xl p-6 border border-white/10 mb-6"
+                        className="glass rounded-xl p-3 sm:p-6 border border-white/10 mb-2 sm:mb-6"
                       >
-                        <h4 className="text-xl sm:text-2xl font-display font-bold text-white mb-4">Agent Status</h4>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <h4 className="text-sm sm:text-xl md:text-2xl font-display font-bold text-white mb-2 sm:mb-4">Agent Status</h4>
+                        <div className="grid grid-cols-2 gap-2 sm:gap-4">
                           {agentsList.map((agent, index) => (
                             <motion.div
                               key={agent.name}
                               initial={{ opacity: 0, scale: 0.95 }}
                               animate={{ opacity: 1, scale: 1 }}
                               transition={{ duration: 0.3, delay: index * 0.1 }}
-                              className="p-4 rounded-lg bg-white/5 border border-white/10"
+                              className="p-2 sm:p-4 rounded-lg bg-white/5 border border-white/10"
                             >
-                              <div className="flex items-center justify-between mb-3">
-                                <div className="flex items-center gap-2">
-                                  <Bot className="text-leadq-silver" size={18} />
-                                  <span className="text-white font-medium">{agent.name}</span>
+                              <div className="flex items-center justify-between mb-1 sm:mb-3">
+                                <div className="flex items-center gap-1 sm:gap-2">
+                                  <Bot className="text-leadq-silver" size={14} />
+                                  <span className="text-white font-medium text-xs sm:text-sm">{agent.name}</span>
                                 </div>
                                 <span className={`text-xs px-2 py-1 rounded-full ${agent.status === 'Active'
                                   ? 'bg-green-500/20 text-green-400'
@@ -431,9 +431,9 @@ export default function DashboardPreview() {
                                   {agent.status}
                                 </span>
                               </div>
-                              <div className="flex items-center justify-between text-sm">
+                              <div className="flex items-center justify-between text-xs sm:text-sm">
                                 <span className="text-leadq-silver">{agent.tasks}</span>
-                                <span className="text-leadq-silver font-medium">{agent.efficiency} efficiency</span>
+                                <span className="text-leadq-silver font-medium hidden sm:inline">{agent.efficiency} efficiency</span>
                               </div>
                             </motion.div>
                           ))}
@@ -446,32 +446,32 @@ export default function DashboardPreview() {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.4, delay: 0.5 }}
-                      className="glass rounded-xl p-6 border border-white/10"
+                      className="glass rounded-xl p-3 sm:p-6 border border-white/10"
                     >
-                      <h4 className="text-xl sm:text-2xl font-display font-bold text-white mb-4">
+                      <h4 className="text-sm sm:text-xl md:text-2xl font-display font-bold text-white mb-2 sm:mb-4">
                         {activeView === 'Leads' && 'Active Deals'}
                         {activeView === 'Deals' && 'Deal Pipeline'}
                         {activeView === 'Agents' && 'Recent Tasks'}
                         {activeView === 'Analytics' && 'Lead Sources'}
                       </h4>
-                      <div className="space-y-3">
+                      <div className="space-y-1.5 sm:space-y-3">
                         {activeView === 'Leads' && leadsList.map((deal, index) => (
                           <motion.div
                             key={deal.company}
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.4, delay: index * 0.1 }}
-                            className="flex items-center justify-between p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-all border border-white/5 hover:border-white/10"
+                            className="flex items-center justify-between p-1.5 sm:p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-all border border-white/5 hover:border-white/10"
                           >
-                            <div className="flex items-center gap-4 flex-1">
-                              <div className="w-1.5 h-12 rounded-full bg-gradient-to-b from-leadq-silver to-leadq-silver/50 glow-blue" />
+                            <div className="flex items-center gap-2 sm:gap-4 flex-1">
+                              <div className="w-1.5 h-7 sm:h-12 rounded-full bg-gradient-to-b from-leadq-silver to-leadq-silver/50 glow-blue" />
                               <div className="flex-1">
-                                <div className="text-white font-medium mb-1">{deal.company}</div>
-                                <div className="text-sm text-leadq-silver">{deal.stage}</div>
+                                <div className="text-white font-medium text-xs sm:text-sm mb-0.5 sm:mb-1">{deal.company}</div>
+                                <div className="text-[10px] sm:text-sm text-leadq-silver">{deal.stage}</div>
                               </div>
                             </div>
                             <div className="text-right">
-                              <div className="text-white font-bold">{deal.amount}</div>
+                              <div className="text-white font-bold text-xs sm:text-sm">{deal.amount}</div>
                             </div>
                           </motion.div>
                         ))}
@@ -482,17 +482,17 @@ export default function DashboardPreview() {
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.4, delay: index * 0.1 }}
-                            className="flex items-center justify-between p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-all border border-white/5 hover:border-white/10"
+                            className="flex items-center justify-between p-1.5 sm:p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-all border border-white/5 hover:border-white/10"
                           >
-                            <div className="flex items-center gap-4 flex-1">
-                              <div className="w-1.5 h-12 rounded-full bg-gradient-to-b from-green-400 to-green-600/50" />
+                            <div className="flex items-center gap-2 sm:gap-4 flex-1">
+                              <div className="w-1.5 h-7 sm:h-12 rounded-full bg-gradient-to-b from-green-400 to-green-600/50" />
                               <div className="flex-1">
-                                <div className="text-white font-medium mb-1">{deal.company}</div>
-                                <div className="text-sm text-leadq-silver">{deal.stage}</div>
+                                <div className="text-white font-medium text-xs sm:text-sm mb-0.5 sm:mb-1">{deal.company}</div>
+                                <div className="text-[10px] sm:text-sm text-leadq-silver">{deal.stage}</div>
                               </div>
                             </div>
                             <div className="text-right">
-                              <div className="text-white font-bold">{deal.amount}</div>
+                              <div className="text-white font-bold text-xs sm:text-sm">{deal.amount}</div>
                             </div>
                           </motion.div>
                         ))}
@@ -508,19 +508,19 @@ export default function DashboardPreview() {
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.4, delay: index * 0.1 }}
-                            className="flex items-center justify-between p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-all border border-white/5 hover:border-white/10"
+                            className="flex items-center justify-between p-1.5 sm:p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-all border border-white/5 hover:border-white/10"
                           >
-                            <div className="flex items-center gap-4 flex-1">
-                              <div className="w-8 h-8 rounded-full bg-leadq-silver/20 flex items-center justify-center">
-                                <CheckCircle className="text-leadq-silver" size={16} />
+                            <div className="flex items-center gap-2 sm:gap-4 flex-1">
+                              <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-leadq-silver/20 flex items-center justify-center shrink-0">
+                                <CheckCircle className="text-leadq-silver" size={12} />
                               </div>
-                              <div className="flex-1">
-                                <div className="text-white font-medium mb-1">{task.task}</div>
-                                <div className="text-sm text-leadq-silver">{task.agent}</div>
+                              <div className="flex-1 min-w-0">
+                                <div className="text-white font-medium text-xs sm:text-sm mb-0.5 sm:mb-1 truncate">{task.task}</div>
+                                <div className="text-[10px] sm:text-sm text-leadq-silver">{task.agent}</div>
                               </div>
                             </div>
-                            <div className="text-right">
-                              <div className="text-leadq-silver text-sm">{task.time}</div>
+                            <div className="text-right shrink-0 ml-1">
+                              <div className="text-leadq-silver text-[10px] sm:text-sm">{task.time}</div>
                             </div>
                           </motion.div>
                         ))}
@@ -531,20 +531,20 @@ export default function DashboardPreview() {
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.4, delay: index * 0.1 }}
-                            className="flex items-center justify-between p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-all border border-white/5 hover:border-white/10"
+                            className="flex items-center justify-between p-1.5 sm:p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-all border border-white/5 hover:border-white/10"
                           >
-                            <div className="flex items-center gap-4 flex-1">
-                              <div className="w-8 h-8 rounded-full bg-leadq-silver/20 flex items-center justify-center">
-                                <ArrowUpRight className="text-leadq-silver" size={16} />
+                            <div className="flex items-center gap-2 sm:gap-4 flex-1">
+                              <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-leadq-silver/20 flex items-center justify-center shrink-0">
+                                <ArrowUpRight className="text-leadq-silver" size={12} />
                               </div>
-                              <div className="flex-1">
-                                <div className="text-white font-medium mb-1">{source.source}</div>
-                                <div className="text-sm text-leadq-silver">{source.leads} leads</div>
+                              <div className="flex-1 min-w-0">
+                                <div className="text-white font-medium text-xs sm:text-sm mb-0.5 sm:mb-1 truncate">{source.source}</div>
+                                <div className="text-[10px] sm:text-sm text-leadq-silver">{source.leads} leads</div>
                               </div>
                             </div>
-                            <div className="text-right">
-                              <div className="text-white font-bold">{source.conversion}</div>
-                              <div className="text-green-400 text-xs">{source.trend}</div>
+                            <div className="text-right shrink-0 ml-1">
+                              <div className="text-white font-bold text-xs sm:text-sm">{source.conversion}</div>
+                              <div className="text-green-400 text-[10px] sm:text-xs">{source.trend}</div>
                             </div>
                           </motion.div>
                         ))}

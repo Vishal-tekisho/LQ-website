@@ -943,10 +943,9 @@ export default function BookingsMeeting() {
             ].map((feature, index) => (
               <motion.div
                 key={index}
-                whileHover={{ scale: 1.05, y: -5 }}
-                className={`p-4 rounded-xl bg-white/5 border border-white/10 hover:border-${feature.color}-500/30 transition-all cursor-pointer`}
+                className="p-4 rounded-xl bg-white/5 border border-white/10"
               >
-                <feature.icon className={`w-6 h-6 text-${feature.color}-400 mx-auto mb-2`} />
+                <feature.icon className="w-6 h-6 text-white mx-auto mb-2" />
                 <p className="text-sm text-slate-400">{feature.label}</p>
               </motion.div>
             ))}
