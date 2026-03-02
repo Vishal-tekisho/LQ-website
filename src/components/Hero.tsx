@@ -69,7 +69,7 @@ export default function Hero() {
                             <div className="w-px h-8 bg-leadq-cyan/30" />
                             <div>
                                 <p className="text-2xl font-bold text-white">Instant</p>
-                                <p className="text-xs text-leadq-silver">AI Qualification</p>
+                                <p className="text-xs text-leadq-silver">AI Lead Qualification</p>
                             </div>
                             <div className="w-px h-8 bg-leadq-cyan/30" />
                             <div>

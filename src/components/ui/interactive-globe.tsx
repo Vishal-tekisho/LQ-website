@@ -161,7 +161,7 @@ function project(
   fov: number
 ): [number, number, number] {
   const scale = fov / (fov + z);
-  return [x * scale + cx, -y * scale + cy, z];
+  return [-x * scale + cx, -y * scale + cy, z];
 }
 
 // ── TopoJSON decoder & land-detection helpers ─────────────────────────────
@@ -190,6 +190,35 @@ function decodeTopology(topology: any): [number, number][][] {
     else if (geom.type === 'MultiPolygon') geom.arcs.forEach((p: number[][]) => p.forEach((r: number[]) => rings.push(resolveRing(r))));
   }
   extract(topology.objects.land);
+  return rings;
+}
+
+// ── Decode only India (ISO 3166-1 numeric 356) from countries TopoJSON ────
+function decodeCountryRings(topology: any, countryId = '356'): [number, number][][] {
+  const { arcs: rawArcs, transform } = topology;
+  const { scale: s, translate: t } = transform;
+  const decoded: [number, number][][] = rawArcs.map((arc: number[][]) => {
+    let x = 0, y = 0;
+    return arc.map(([dx, dy]: number[]) => {
+      x += dx; y += dy;
+      return [x * s[0] + t[0], y * s[1] + t[1]] as [number, number];
+    });
+  });
+  function resolveRing(indices: number[]): [number, number][] {
+    const coords: [number, number][] = [];
+    for (const idx of indices) {
+      const arc = idx >= 0 ? decoded[idx] : [...decoded[~idx]].reverse();
+      for (let i = coords.length > 0 ? 1 : 0; i < arc.length; i++) coords.push(arc[i]);
+    }
+    return coords;
+  }
+  const rings: [number, number][][] = [];
+  const geoms = topology.objects.countries?.geometries ?? [];
+  for (const geom of geoms) {
+    if (String(geom.id) !== countryId) continue;
+    if (geom.type === 'Polygon') geom.arcs.forEach((r: number[]) => rings.push(resolveRing(r)));
+    else if (geom.type === 'MultiPolygon') geom.arcs.forEach((p: number[][]) => p.forEach((r: number[]) => rings.push(resolveRing(r))));
+  }
   return rings;
 }
 
@@ -241,6 +270,7 @@ export function InteractiveGlobe({
   const dotsRef = useRef<[number, number, number][]>([]);
   const landMaskRef = useRef<boolean[]>([]);
   const coastlinesRef = useRef<[number, number][][]>([]);
+  const indiaRingsRef = useRef<[number, number][][]>([]);
 
   useEffect(() => {
     const dots: [number, number, number][] = [];
@@ -269,6 +299,14 @@ export function InteractiveGlobe({
         landMaskRef.current = mask;
       })
       .catch(() => { /* globe renders without land classification */ });
+
+    // Fetch country boundaries to highlight India
+    fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
+      .then(r => r.json())
+      .then(topo => {
+        indiaRingsRef.current = decodeCountryRings(topo, '356');
+      })
+      .catch(() => { /* India outline won't render — non-critical */ });
   }, []);
 
   const draw = useCallback(() => {
@@ -368,6 +406,77 @@ export function InteractiveGlobe({
       ctx.strokeStyle = "rgba(79, 164, 196, 0.35)";
       ctx.lineWidth = 0.8;
       for (const ring of coastRings) {
+        ctx.beginPath();
+        let first = true;
+        for (const [lng, lat] of ring) {
+          let [gx, gy, gz] = latLngToXYZ(lat, lng, radius);
+          [gx, gy, gz] = rotateX(gx, gy, gz, rx);
+          [gx, gy, gz] = rotateY(gx, gy, gz, ry);
+          if (gz > 0) { first = true; continue; }
+          const [gsx, gsy] = project(gx, gy, gz, cx, cy, fov);
+          if (first) { ctx.moveTo(gsx, gsy); first = false; }
+          else ctx.lineTo(gsx, gsy);
+        }
+        ctx.stroke();
+      }
+      ctx.restore();
+    }
+
+    // ── 3.6 India outline highlight ─────────────────────────────────────────
+    const indiaRings = indiaRingsRef.current;
+    if (indiaRings.length > 0) {
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+      ctx.clip();
+      const indiaPulse = 0.85 + Math.sin(time * 1.5) * 0.15;
+
+      // Pass 1 — wide outer glow
+      ctx.shadowColor = `rgba(255, 190, 50, 1)`;
+      ctx.shadowBlur = 28;
+      ctx.strokeStyle = `rgba(255, 190, 50, ${indiaPulse.toFixed(2)})`;
+      ctx.lineWidth = 3.5;
+      for (const ring of indiaRings) {
+        ctx.beginPath();
+        let first = true;
+        for (const [lng, lat] of ring) {
+          let [gx, gy, gz] = latLngToXYZ(lat, lng, radius);
+          [gx, gy, gz] = rotateX(gx, gy, gz, rx);
+          [gx, gy, gz] = rotateY(gx, gy, gz, ry);
+          if (gz > 0) { first = true; continue; }
+          const [gsx, gsy] = project(gx, gy, gz, cx, cy, fov);
+          if (first) { ctx.moveTo(gsx, gsy); first = false; }
+          else ctx.lineTo(gsx, gsy);
+        }
+        ctx.stroke();
+      }
+
+      // Pass 2 — medium glow pass
+      ctx.shadowColor = `rgba(255, 220, 100, 1)`;
+      ctx.shadowBlur = 14;
+      ctx.strokeStyle = `rgba(255, 220, 100, 1)`;
+      ctx.lineWidth = 2.0;
+      for (const ring of indiaRings) {
+        ctx.beginPath();
+        let first = true;
+        for (const [lng, lat] of ring) {
+          let [gx, gy, gz] = latLngToXYZ(lat, lng, radius);
+          [gx, gy, gz] = rotateX(gx, gy, gz, rx);
+          [gx, gy, gz] = rotateY(gx, gy, gz, ry);
+          if (gz > 0) { first = true; continue; }
+          const [gsx, gsy] = project(gx, gy, gz, cx, cy, fov);
+          if (first) { ctx.moveTo(gsx, gsy); first = false; }
+          else ctx.lineTo(gsx, gsy);
+        }
+        ctx.stroke();
+      }
+
+      // Pass 3 — crisp bright core line, no shadow
+      ctx.shadowColor = 'transparent';
+      ctx.shadowBlur = 0;
+      ctx.strokeStyle = `rgba(255, 245, 180, 1)`;
+      ctx.lineWidth = 1.0;
+      for (const ring of indiaRings) {
         ctx.beginPath();
         let first = true;
         for (const [lng, lat] of ring) {
@@ -582,7 +691,7 @@ export function InteractiveGlobe({
     (e: React.PointerEvent) => {
       if (!dragRef.current.active) return;
       const dx = e.clientX - dragRef.current.startX;
-      const newRotY = dragRef.current.startRotY + dx * 0.005;
+      const newRotY = dragRef.current.startRotY - dx * 0.005;
       // Clamp so Hyderabad never rotates out of the visible hemisphere
       rotYRef.current = Math.max(INITIAL_ROT_Y - HALF_SWING, Math.min(INITIAL_ROT_Y + HALF_SWING, newRotY));
     },
