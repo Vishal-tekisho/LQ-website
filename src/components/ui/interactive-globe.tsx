@@ -193,31 +193,27 @@ function decodeTopology(topology: any): [number, number][][] {
   return rings;
 }
 
-// ── Decode only India (ISO 3166-1 numeric 356) from countries TopoJSON ────
-function decodeCountryRings(topology: any, countryId = '356'): [number, number][][] {
-  const { arcs: rawArcs, transform } = topology;
-  const { scale: s, translate: t } = transform;
-  const decoded: [number, number][][] = rawArcs.map((arc: number[][]) => {
-    let x = 0, y = 0;
-    return arc.map(([dx, dy]: number[]) => {
-      x += dx; y += dy;
-      return [x * s[0] + t[0], y * s[1] + t[1]] as [number, number];
-    });
-  });
-  function resolveRing(indices: number[]): [number, number][] {
-    const coords: [number, number][] = [];
-    for (const idx of indices) {
-      const arc = idx >= 0 ? decoded[idx] : [...decoded[~idx]].reverse();
-      for (let i = coords.length > 0 ? 1 : 0; i < arc.length; i++) coords.push(arc[i]);
-    }
-    return coords;
-  }
+// ── Parse India's full-boundary GeoJSON (GoI claim, incl. J&K) ──────────
+function parseIndiaGeoJSON(geo: any): [number, number][][] {
   const rings: [number, number][][] = [];
-  const geoms = topology.objects.countries?.geometries ?? [];
-  for (const geom of geoms) {
-    if (String(geom.id) !== countryId) continue;
-    if (geom.type === 'Polygon') geom.arcs.forEach((r: number[]) => rings.push(resolveRing(r)));
-    else if (geom.type === 'MultiPolygon') geom.arcs.forEach((p: number[][]) => p.forEach((r: number[]) => rings.push(resolveRing(r))));
+  function addGeometry(geom: any) {
+    if (!geom) return;
+    if (geom.type === 'Polygon') {
+      geom.coordinates.forEach((ring: [number, number][]) => rings.push(ring));
+    } else if (geom.type === 'MultiPolygon') {
+      geom.coordinates.forEach((poly: [number, number][][]) =>
+        poly.forEach((ring: [number, number][]) => rings.push(ring))
+      );
+    }
+  }
+  if (geo.type === 'FeatureCollection') {
+    geo.features.forEach((f: any) => addGeometry(f.geometry));
+  } else if (geo.type === 'Feature') {
+    addGeometry(geo.geometry);
+  } else if (geo.type === 'GeometryCollection') {
+    geo.geometries.forEach(addGeometry);
+  } else {
+    addGeometry(geo);
   }
   return rings;
 }
@@ -300,11 +296,11 @@ export function InteractiveGlobe({
       })
       .catch(() => { /* globe renders without land classification */ });
 
-    // Fetch country boundaries to highlight India
-    fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
+    // Fetch India's full boundary (Government of India claim, incl. J&K)
+    fetch('/india-full.geojson')
       .then(r => r.json())
-      .then(topo => {
-        indiaRingsRef.current = decodeCountryRings(topo, '356');
+      .then(geo => {
+        indiaRingsRef.current = parseIndiaGeoJSON(geo);
       })
       .catch(() => { /* India outline won't render — non-critical */ });
   }, []);
