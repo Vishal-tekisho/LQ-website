@@ -407,19 +407,19 @@ export default function DashboardPreview() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.4, delay: 0.3 }}
-                        className="glass rounded-xl p-3 sm:p-6 border border-white/10 mb-2 sm:mb-6"
+                        className="glass rounded-xl p-2 sm:p-6 border border-white/10 mb-2 sm:mb-6"
                       >
-                        <h4 className="text-sm sm:text-xl md:text-2xl font-display font-bold text-white mb-2 sm:mb-4">Agent Status</h4>
-                        <div className="grid grid-cols-2 gap-2 sm:gap-4">
+                        <h4 className="text-xs sm:text-xl md:text-2xl font-display font-bold text-white mb-1.5 sm:mb-4">Agent Status</h4>
+                        <div className="grid grid-cols-2 gap-1.5 sm:gap-4">
                           {agentsList.map((agent, index) => (
                             <motion.div
                               key={agent.name}
                               initial={{ opacity: 0, scale: 0.95 }}
                               animate={{ opacity: 1, scale: 1 }}
                               transition={{ duration: 0.3, delay: index * 0.1 }}
-                              className="p-2 sm:p-4 rounded-lg bg-white/5 border border-white/10"
+                              className="p-1.5 sm:p-4 rounded-lg bg-white/5 border border-white/10"
                             >
-                              <div className="flex items-center justify-between mb-1 sm:mb-3">
+                              <div className="flex items-center justify-between mb-0.5 sm:mb-3">
                                 <div className="flex items-center gap-1 sm:gap-2">
                                   <Bot className="text-leadq-silver" size={14} />
                                   <span className="text-white font-medium text-xs sm:text-sm">{agent.name}</span>
@@ -446,9 +446,9 @@ export default function DashboardPreview() {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.4, delay: 0.5 }}
-                      className="glass rounded-xl p-3 sm:p-6 border border-white/10"
+                      className="glass rounded-xl p-2 sm:p-6 border border-white/10"
                     >
-                      <h4 className="text-sm sm:text-xl md:text-2xl font-display font-bold text-white mb-2 sm:mb-4">
+                      <h4 className="text-xs sm:text-xl md:text-2xl font-display font-bold text-white mb-1.5 sm:mb-4">
                         {activeView === 'Leads' && 'Active Deals'}
                         {activeView === 'Deals' && 'Deal Pipeline'}
                         {activeView === 'Agents' && 'Recent Tasks'}
@@ -508,11 +508,11 @@ export default function DashboardPreview() {
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.4, delay: index * 0.1 }}
-                            className="flex items-center justify-between p-1.5 sm:p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-all border border-white/5 hover:border-white/10"
+                            className="flex items-center justify-between p-1 sm:p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-all border border-white/5 hover:border-white/10"
                           >
-                            <div className="flex items-center gap-2 sm:gap-4 flex-1">
-                              <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-leadq-silver/20 flex items-center justify-center shrink-0">
-                                <CheckCircle className="text-leadq-silver" size={12} />
+                            <div className="flex items-center gap-1.5 sm:gap-4 flex-1">
+                              <div className="w-5 h-5 sm:w-8 sm:h-8 rounded-full bg-leadq-silver/20 flex items-center justify-center shrink-0">
+                                <CheckCircle className="text-leadq-silver" size={10} />
                               </div>
                               <div className="flex-1 min-w-0">
                                 <div className="text-white font-medium text-xs sm:text-sm mb-0.5 sm:mb-1 truncate">{task.task}</div>

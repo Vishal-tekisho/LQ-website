@@ -90,7 +90,7 @@ export const Card = ({
         "border-2 border-white/20 px-2 py-2 sm:p-4 md:p-6 rounded-[30px] shadow-2xl"
       )}
     >
-      <div className="h-auto sm:h-full w-full overflow-hidden rounded-2xl md:rounded-2xl md:p-4">
+      <div className="h-auto sm:h-full w-full overflow-y-auto sm:overflow-hidden rounded-2xl md:rounded-2xl md:p-4">
         {children}
       </div>
     </motion.div>
