@@ -6,7 +6,7 @@ A modern, interactive landing page for LeadQ - The AI Copilot That Automates Lea
 
 LeadQ is an AI-powered platform that transforms how businesses manage leads and convert them into revenue. This landing page showcases the platform's capabilities with stunning animations, interactive demonstrations, and comprehensive feature explanations.
 
-## Tech Stack
+## Tech-Stack
 
 - **Framework**: React 18.3.1 with TypeScript
 - **Build Tool**: Vite 5.4.2
