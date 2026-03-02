@@ -71,7 +71,7 @@ function PhoneScannerOverlay({
   onToggleView,
 }: PhoneScannerOverlayProps) {
   return (
-    <div className="absolute z-20 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+    <div className="absolute z-40 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
       <div className="relative w-64 md:w-72">
         <div className="relative rounded-[2.5rem] border-4 border-slate-700 bg-black/80 backdrop-blur-sm p-2 shadow-2xl">
           <div className="absolute top-4 left-1/2 -translate-x-1/2 w-20 h-6 bg-black rounded-full z-10" />
