@@ -1,4 +1,4 @@
-import { Linkedin as LinkedIn } from 'lucide-react';
+import { Linkedin as LinkedIn, Instagram, Twitter } from 'lucide-react';
 import { Button } from './ui/button';
 
 const Footer = () => {
@@ -27,6 +27,14 @@ const Footer = () => {
 
                             <a href="https://www.linkedin.com/company/tekisho/posts/?feedView=all" target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors group">
                                 <LinkedIn className="w-5 h-5 group-hover:text-blue-600 transition-colors" />
+                            </a>
+
+                            <a href="https://www.instagram.com/contact.tekisho/" target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors group">
+                                <Instagram className="w-5 h-5 group-hover:text-pink-500 transition-colors" />
+                            </a>
+
+                            <a href="https://x.com/tekisho_ai" target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors group">
+                                <Twitter className="w-5 h-5 group-hover:text-sky-400 transition-colors" />
                             </a>
 
                         </div>
@@ -86,6 +94,7 @@ const Footer = () => {
 
                 <div className="mt-12 sm:mt-16 md:mt-20 pt-6 sm:pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-medium tracking-wider">
                     <p>&copy; 2026 LeadQ.AI. All rights reserved.</p>
+                    <span className="opacity-70 flex items-center gap-1.5">Proudly made in India <img src="https://flagcdn.com/w20/in.png" alt="Indian flag" className="w-5 h-auto inline-block" /></span>
                     <div className="flex gap-8">
                         <span className="opacity-40">System Status: Operational</span>
                         <span className="opacity-40">v1.2.4</span>
