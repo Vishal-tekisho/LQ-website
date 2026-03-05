@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { Cookie, X, CheckCircle, Settings } from 'lucide-react';
 import { Button } from './ui/button';
 
@@ -52,7 +52,7 @@ const CookieConsent = () => {
       {showBanner && (
         <>
           {/* Backdrop */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -61,7 +61,7 @@ const CookieConsent = () => {
           />
 
           {/* Main Banner */}
-          <motion.div
+          <m.div
             initial={{ y: 100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 100, opacity: 0 }}
@@ -91,7 +91,7 @@ const CookieConsent = () => {
                       {/* Expandable Privacy Details */}
                       <AnimatePresence>
                         {showDetails && (
-                          <motion.div
+                          <m.div
                             initial={{ height: 0, opacity: 0 }}
                             animate={{ height: 'auto', opacity: 1 }}
                             exit={{ height: 0, opacity: 0 }}
@@ -122,7 +122,7 @@ const CookieConsent = () => {
                                 We retain your data for as long as necessary to provide our services (typically 12-24 months) or as required by law.
                               </p>
                             </div>
-                          </motion.div>
+                          </m.div>
                         )}
                       </AnimatePresence>
                       
@@ -170,12 +170,12 @@ const CookieConsent = () => {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Preferences Modal */}
           <AnimatePresence>
             {showPreferences && (
-              <motion.div
+              <m.div
                 initial={{ scale: 0.9, opacity: 0, y: 20 }}
                 animate={{ scale: 1, opacity: 1, y: 0 }}
                 exit={{ scale: 0.9, opacity: 0, y: 20 }}
@@ -186,7 +186,7 @@ const CookieConsent = () => {
                   onSave={handleSavePreferences}
                   onClose={() => setShowPreferences(false)}
                 />
-              </motion.div>
+              </m.div>
             )}
           </AnimatePresence>
         </>
@@ -207,7 +207,7 @@ const PreferencesModal = ({ onSave, onClose }: PreferencesModalProps) => {
   const cookieTable = [
     {
       name: 'leadq-cookie-consent',
-      provider: 'LeadQ',
+      provider: 'LeadQ.AI',
       purpose: 'Stores your cookie consent preferences.',
       duration: '12 months',
       type: 'Essential'
@@ -399,7 +399,7 @@ const PreferencesModal = ({ onSave, onClose }: PreferencesModalProps) => {
 
         <h4 className="text-xl sm:text-2xl font-semibold mb-3 mt-6">Cookie Details</h4>
         <p className="text-sm text-leadq-silver leading-relaxed mb-4">
-          This Cookie Policy explains how LeadQ uses cookies and similar technologies on LeadQ.ai.
+          This Cookie Policy explains how LeadQ.AI uses cookies and similar technologies on LeadQ.ai.
           Essential cookies are required for the site to function. Analytics and marketing cookies
           are optional and used to understand usage and improve our communications.
         </p>

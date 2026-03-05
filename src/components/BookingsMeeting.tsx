@@ -1,9 +1,10 @@
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { useState, useEffect, useCallback, useRef } from 'react';
+import { useInViewPause, InViewContext, useIsInView } from '@/lib/useInViewPause';
 import {
   Calendar,
   Mic,
-  Webhook,
+  Send,
   UserPlus,
   Building2,
   User,
@@ -44,39 +45,44 @@ interface Meeting {
 }
 
 // Typing indicator component
-const TypingIndicator = () => (
+const TypingIndicator = () => {
+  const isInView = useIsInView();
+  return (
   <div className="flex items-center gap-1">
     {[0, 1, 2].map((i) => (
-      <motion.div
+      <m.div
         key={i}
         className="w-1.5 h-1.5 bg-slate-400 rounded-full"
         animate={{ y: [0, -4, 0] }}
         transition={{
           duration: 0.6,
-          repeat: Infinity,
+          repeat: isInView ? Infinity : 0,
           delay: i * 0.15,
           ease: "easeInOut"
         }}
       />
     ))}
   </div>
-);
+  );
+};
 
 // Orbital loading animation with glowing rings
-const OrbitalLoader = () => (
+const OrbitalLoader = () => {
+  const isInView = useIsInView();
+  return (
   <div className="relative flex items-center justify-center w-44 h-44 sm:w-52 sm:h-52">
     {/* Radial glow backdrop */}
-    <motion.div
+    <m.div
       className="absolute inset-0 rounded-full"
       style={{
         background: 'radial-gradient(circle, rgba(148,163,184,0.15) 0%, rgba(148,163,184,0.05) 40%, transparent 70%)',
       }}
       animate={{ opacity: [0.5, 1, 0.5] }}
-      transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+      transition={{ duration: 3, repeat: isInView ? Infinity : 0, ease: 'easeInOut' }}
     />
 
     {/* Outer ring — clockwise, slower */}
-    <motion.div
+    <m.div
       className="absolute rounded-full"
       style={{
         width: '100%',
@@ -87,11 +93,11 @@ const OrbitalLoader = () => (
         filter: 'drop-shadow(0 0 6px rgba(148,163,184,0.5))',
       }}
       animate={{ rotate: 360 }}
-      transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
+      transition={{ duration: 6, repeat: isInView ? Infinity : 0, ease: 'linear' }}
     />
 
     {/* Outer ring spark dot */}
-    <motion.div
+    <m.div
       className="absolute w-1.5 h-1.5 rounded-full bg-slate-300"
       style={{
         top: 0,
@@ -100,11 +106,11 @@ const OrbitalLoader = () => (
         boxShadow: '0 0 8px 2px rgba(148,163,184,0.7)',
       }}
       animate={{ rotate: 360 }}
-      transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
+      transition={{ duration: 6, repeat: isInView ? Infinity : 0, ease: 'linear' }}
     />
 
     {/* Inner ring — counter-clockwise, faster */}
-    <motion.div
+    <m.div
       className="absolute rounded-full"
       style={{
         width: '75%',
@@ -115,18 +121,18 @@ const OrbitalLoader = () => (
         filter: 'drop-shadow(0 0 5px rgba(100,116,139,0.45))',
       }}
       animate={{ rotate: -360 }}
-      transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
+      transition={{ duration: 4, repeat: isInView ? Infinity : 0, ease: 'linear' }}
     />
 
     {/* Inner ring spark dot */}
-    <motion.div
+    <m.div
       className="absolute rounded-full"
       style={{
         width: '75%',
         height: '75%',
       }}
       animate={{ rotate: -360 }}
-      transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
+      transition={{ duration: 4, repeat: isInView ? Infinity : 0, ease: 'linear' }}
     >
       <div
         className="absolute w-1 h-1 rounded-full bg-slate-400"
@@ -137,10 +143,10 @@ const OrbitalLoader = () => (
           boxShadow: '0 0 6px 2px rgba(100,116,139,0.6)',
         }}
       />
-    </motion.div>
+    </m.div>
 
     {/* Innermost faint ring — slow clockwise */}
-    <motion.div
+    <m.div
       className="absolute rounded-full"
       style={{
         width: '52%',
@@ -150,11 +156,11 @@ const OrbitalLoader = () => (
         borderRightColor: 'rgba(148,163,184,0.1)',
       }}
       animate={{ rotate: 360 }}
-      transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
+      transition={{ duration: 8, repeat: isInView ? Infinity : 0, ease: 'linear' }}
     />
 
     {/* Calendar icon with glow */}
-    <motion.div
+    <m.div
       animate={{
         scale: [1, 1.08, 1],
         filter: [
@@ -163,18 +169,21 @@ const OrbitalLoader = () => (
           'drop-shadow(0 0 4px rgba(148,163,184,0.3))',
         ],
       }}
-      transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+      transition={{ duration: 3, repeat: isInView ? Infinity : 0, ease: 'easeInOut' }}
     >
       <Calendar className="w-14 h-14 sm:w-16 sm:h-16 text-slate-300/70" />
-    </motion.div>
+    </m.div>
   </div>
-);
+  );
+};
 
 // Glowing loading dots
-const GlowDots = () => (
+const GlowDots = () => {
+  const isInView = useIsInView();
+  return (
   <div className="flex items-center gap-2 mt-3">
     {[0, 1, 2].map((i) => (
-      <motion.div
+      <m.div
         key={i}
         className="w-2 h-2 rounded-full bg-slate-300/80"
         style={{ boxShadow: '0 0 6px 1px rgba(148,163,184,0.5)' }}
@@ -184,18 +193,19 @@ const GlowDots = () => (
         }}
         transition={{
           duration: 1.2,
-          repeat: Infinity,
+          repeat: isInView ? Infinity : 0,
           delay: i * 0.25,
           ease: 'easeInOut',
         }}
       />
     ))}
   </div>
-);
+  );
+};
 
 // Waveform bar component for transcription
 const WaveformBar = ({ index, isActive }: { index: number; isActive: boolean }) => (
-  <motion.div
+  <m.div
     className="w-1 bg-gradient-to-t from-slate-400 to-slate-400 rounded-full"
     animate={isActive ? {
       height: [8, 24 + Math.random() * 16, 12, 32 + Math.random() * 8, 8],
@@ -229,7 +239,7 @@ const PulsingDot = ({ color = 'cyan' }: { color?: 'cyan' | 'blue' | 'green' }) =
 const StageIndicator = ({ stages, currentStage }: { stages: string[]; currentStage: number }) => (
   <div className="flex items-center justify-center gap-2 mb-6">
     {stages.map((_, index) => (
-      <motion.div
+      <m.div
         key={index}
         className={`h-1.5 rounded-full transition-all duration-300 ${index <= currentStage ? 'bg-gradient-to-r from-slate-400 to-slate-400' : 'bg-white/20'
           }`}
@@ -248,6 +258,9 @@ export default function BookingsMeeting() {
   const [momSections, setMomSections] = useState<string[]>([]);
   const [uploadProgress, setUploadProgress] = useState(0);
   const timeoutIds = useRef<ReturnType<typeof setTimeout>[]>([]);
+  const { ref, isInView } = useInViewPause();
+  const reducedMotion = useReducedMotion();
+  const shouldAnimate = isInView && !reducedMotion;
 
   const clearAllTimeouts = useCallback(() => {
     timeoutIds.current.forEach(id => clearTimeout(id));
@@ -350,6 +363,7 @@ export default function BookingsMeeting() {
   // No auto-start - animations are triggered on demand via play button
 
   return (
+    <InViewContext.Provider value={shouldAnimate ?? false}>
     <section id="bookings-meeting" className="relative z-10 py-16 sm:py-20 md:py-24 px-4">
       {/* Background ambient effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -358,20 +372,13 @@ export default function BookingsMeeting() {
       </div>
 
       <div className="max-w-7xl mx-auto relative">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <div className="glass inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium text-leadq-silver border border-leadq-silver/20 mb-6">
-            <Calendar className="w-4 h-4 text-leadq-silver" />
-            <span className="text-sm text-leadq-silver font-medium">
-              Intelligent Meeting Module
-            </span>
-          </div>
-
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold mb-4">
             Bookings & Meeting{' '}
             <span className="bg-gradient-to-r from-leadq-cyan to-leadq-royal-blue bg-clip-text text-transparent">
@@ -387,7 +394,7 @@ export default function BookingsMeeting() {
           <StageIndicator stages={stages} currentStage={stageIndex} />
 
           {/* Demo Controls */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -416,10 +423,10 @@ export default function BookingsMeeting() {
                 </>
               )}
             </Button>
-          </motion.div>
+          </m.div>
 
           {/* Main Animation Container */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -434,7 +441,7 @@ export default function BookingsMeeting() {
                 <div className="w-3 h-3 rounded-full bg-green-500/80" />
               </div>
               <div className="flex-1 flex items-center justify-center">
-                <span className="text-xs text-slate-500 font-mono">LeadQ Meeting Intelligence</span>
+                <span className="text-xs text-slate-500 font-mono">LeadQ.AI Meeting Intelligence</span>
               </div>
               <div className="w-20" />
             </div>
@@ -444,7 +451,7 @@ export default function BookingsMeeting() {
               <AnimatePresence mode="wait">
                 {/* IDLE STATE */}
                 {stage === 'idle' && (
-                  <motion.div
+                  <m.div
                     key="idle"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -466,12 +473,12 @@ export default function BookingsMeeting() {
                       Initializing Meeting Intelligence...
                     </p>
                     <GlowDots />
-                  </motion.div>
+                  </m.div>
                 )}
 
                 {/* BOOKING WEBHOOK */}
                 {stage === 'booking-webhook' && (
-                  <motion.div
+                  <m.div
                     key="booking-webhook"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -480,16 +487,16 @@ export default function BookingsMeeting() {
                   >
                     <div className="flex items-center gap-3 mb-4">
                       <div className="p-2 rounded-lg bg-slate-400/20">
-                        <Webhook className="w-5 h-5 text-slate-400" />
+                        <Send className="w-5 h-5 text-slate-400" />
                       </div>
                       <div className="text-left">
-                        <h3 className="text-white font-semibold text-xl sm:text-2xl">Webhook Sync Active</h3>
-                        <p className="text-sm text-slate-400">Receiving booking from Calendly</p>
+                        <h3 className="text-white font-semibold text-xl sm:text-2xl">Auto Follow-Up Ready</h3>
+                        <p className="text-sm text-slate-400">Follow-up email queued for after the meeting</p>
                       </div>
                       <PulsingDot color="green" />
                     </div>
 
-                    <motion.div
+                    <m.div
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.3 }}
@@ -503,13 +510,13 @@ export default function BookingsMeeting() {
                           <p className="text-white font-medium">New Booking Received</p>
                           <p className="text-sm text-slate-400">Sarah Chen - Product Demo</p>
                         </div>
-                        <motion.div
+                        <m.div
                           initial={{ scale: 0 }}
                           animate={{ scale: 1 }}
                           transition={{ delay: 0.5, type: "spring" }}
                         >
                           <CheckCircle2 className="w-6 h-6 text-green-400" />
-                        </motion.div>
+                        </m.div>
                       </div>
                       <div className="grid grid-cols-2 gap-2 text-sm">
                         <div className="bg-white/5 rounded-lg p-2">
@@ -521,9 +528,9 @@ export default function BookingsMeeting() {
                           <span className="text-white ml-2">2:00 PM EST</span>
                         </div>
                       </div>
-                    </motion.div>
+                    </m.div>
 
-                    <motion.div
+                    <m.div
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ delay: 0.8 }}
@@ -531,13 +538,13 @@ export default function BookingsMeeting() {
                     >
                       <Calendar className="w-4 h-4" />
                       <span>Automatically synced with your calendar</span>
-                    </motion.div>
-                  </motion.div>
+                    </m.div>
+                  </m.div>
                 )}
 
                 {/* BOOKING OFFLINE */}
                 {stage === 'booking-offline' && (
-                  <motion.div
+                  <m.div
                     key="booking-offline"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -554,14 +561,14 @@ export default function BookingsMeeting() {
                       </div>
                     </div>
 
-                    <motion.div
+                    <m.div
                       initial={{ opacity: 0, scale: 0.95 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ delay: 0.2 }}
                       className="bg-white/5 rounded-xl p-4 border border-slate-400/20"
                     >
                       <div className="space-y-3">
-                        <motion.div
+                        <m.div
                           initial={{ opacity: 0, x: -10 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: 0.3 }}
@@ -574,8 +581,8 @@ export default function BookingsMeeting() {
                             readOnly
                             className="flex-1 bg-white/5 rounded-lg px-3 py-2 text-white text-sm border border-white/10"
                           />
-                        </motion.div>
-                        <motion.div
+                        </m.div>
+                        <m.div
                           initial={{ opacity: 0, x: -10 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: 0.5 }}
@@ -588,8 +595,8 @@ export default function BookingsMeeting() {
                             readOnly
                             className="flex-1 bg-white/5 rounded-lg px-3 py-2 text-white text-sm border border-white/10"
                           />
-                        </motion.div>
-                        <motion.div
+                        </m.div>
+                        <m.div
                           initial={{ opacity: 0, x: -10 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: 0.7 }}
@@ -602,11 +609,11 @@ export default function BookingsMeeting() {
                             readOnly
                             className="flex-1 bg-white/5 rounded-lg px-3 py-2 text-white text-sm border border-white/10"
                           />
-                        </motion.div>
+                        </m.div>
                       </div>
-                    </motion.div>
+                    </m.div>
 
-                    <motion.button
+                    <m.button
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.9 }}
@@ -614,13 +621,13 @@ export default function BookingsMeeting() {
                     >
                       <CheckCircle2 className="w-4 h-4" />
                       Meeting Saved
-                    </motion.button>
-                  </motion.div>
+                    </m.button>
+                  </m.div>
                 )}
 
                 {/* CONTEXT LINKING */}
                 {stage === 'context-linking' && (
-                  <motion.div
+                  <m.div
                     key="context-linking"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -640,7 +647,7 @@ export default function BookingsMeeting() {
                     <div className="relative py-8">
                       {/* Connection visualization */}
                       <div className="flex items-center justify-center gap-4 sm:gap-8 md:gap-16">
-                        <motion.div
+                        <m.div
                           initial={{ opacity: 0, x: -30 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: 0.2 }}
@@ -651,11 +658,11 @@ export default function BookingsMeeting() {
                           </div>
                           <span className="text-sm text-white">Sarah Chen</span>
                           <span className="text-xs text-slate-400">Contact</span>
-                        </motion.div>
+                        </m.div>
 
                         {/* Animated connection lines */}
                         <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 0 }}>
-                          <motion.line
+                          <m.line
                             x1="30%"
                             y1="50%"
                             x2="50%"
@@ -667,7 +674,7 @@ export default function BookingsMeeting() {
                             animate={{ pathLength: 1 }}
                             transition={{ delay: 0.5, duration: 0.5 }}
                           />
-                          <motion.line
+                          <m.line
                             x1="50%"
                             y1="50%"
                             x2="70%"
@@ -687,7 +694,7 @@ export default function BookingsMeeting() {
                           </defs>
                         </svg>
 
-                        <motion.div
+                        <m.div
                           initial={{ opacity: 0, scale: 0 }}
                           animate={{ opacity: 1, scale: 1 }}
                           transition={{ delay: 0.6, type: "spring" }}
@@ -697,9 +704,9 @@ export default function BookingsMeeting() {
                             <Calendar className="w-7 h-7 sm:w-10 sm:h-10 text-white" />
                           </div>
                           <span className="text-sm text-white font-medium">Meeting</span>
-                        </motion.div>
+                        </m.div>
 
-                        <motion.div
+                        <m.div
                           initial={{ opacity: 0, x: 30 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: 0.2 }}
@@ -710,11 +717,11 @@ export default function BookingsMeeting() {
                           </div>
                           <span className="text-sm text-white">TechCorp</span>
                           <span className="text-xs text-slate-400">Company</span>
-                        </motion.div>
+                        </m.div>
                       </div>
                     </div>
 
-                    <motion.div
+                    <m.div
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ delay: 1.2 }}
@@ -724,13 +731,13 @@ export default function BookingsMeeting() {
                         <CheckCircle2 className="w-4 h-4 text-green-400" />
                         <span className="text-slate-300">Historical context loaded: 5 previous meetings, 12 emails</span>
                       </div>
-                    </motion.div>
-                  </motion.div>
+                    </m.div>
+                  </m.div>
                 )}
 
                 {/* LIVE TRANSCRIPTION */}
                 {stage === 'live-transcription' && (
-                  <motion.div
+                  <m.div
                     key="live-transcription"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -754,7 +761,7 @@ export default function BookingsMeeting() {
                     </div>
 
                     {/* Waveform visualizer */}
-                    <motion.div
+                    <m.div
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ delay: 0.3 }}
@@ -763,12 +770,12 @@ export default function BookingsMeeting() {
                       {Array.from({ length: 24 }).map((_, i) => (
                         <WaveformBar key={i} index={i} isActive={true} />
                       ))}
-                    </motion.div>
+                    </m.div>
 
                     {/* Transcript lines */}
                     <div className="space-y-3 max-h-64 overflow-y-auto">
                       {transcriptData.map((line, index) => (
-                        <motion.div
+                        <m.div
                           key={index}
                           initial={{ opacity: 0, x: -20 }}
                           animate={{
@@ -788,7 +795,7 @@ export default function BookingsMeeting() {
                             </p>
                             <p className="text-slate-300">{line.text}</p>
                           </div>
-                        </motion.div>
+                        </m.div>
                       ))}
                       {transcriptLines.length < transcriptData.length && (
                         <div className="flex items-center gap-3">
@@ -799,12 +806,12 @@ export default function BookingsMeeting() {
                         </div>
                       )}
                     </div>
-                  </motion.div>
+                  </m.div>
                 )}
 
                 {/* PROOF UPLOAD */}
                 {stage === 'proof-upload' && (
-                  <motion.div
+                  <m.div
                     key="proof-upload"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -827,7 +834,7 @@ export default function BookingsMeeting() {
                         { icon: Image, label: 'Whiteboard', delay: 0.4 },
                         { icon: FileText, label: 'Notes', delay: 0.6 },
                       ].map((item, index) => (
-                        <motion.div
+                        <m.div
                           key={index}
                           initial={{ opacity: 0, scale: 0.8 }}
                           animate={{ opacity: 1, scale: 1 }}
@@ -835,7 +842,7 @@ export default function BookingsMeeting() {
                           className="relative aspect-video sm:aspect-square rounded-xl bg-white/5 border border-white/10 overflow-hidden group cursor-pointer"
                         >
                           <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                          <motion.div
+                          <m.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: item.delay + 0.3 }}
@@ -843,23 +850,23 @@ export default function BookingsMeeting() {
                           >
                             <item.icon className="w-8 h-8 text-slate-400 mb-2" />
                             <span className="text-xs text-slate-500">{item.label}</span>
-                          </motion.div>
+                          </m.div>
                           {index === 0 && (
-                            <motion.div
+                            <m.div
                               initial={{ scale: 0 }}
                               animate={{ scale: 1 }}
                               transition={{ delay: 0.8, type: "spring" }}
                               className="absolute top-2 right-2"
                             >
                               <CheckCircle2 className="w-5 h-5 text-green-400" />
-                            </motion.div>
+                            </m.div>
                           )}
-                        </motion.div>
+                        </m.div>
                       ))}
                     </div>
 
                     {/* Upload progress */}
-                    <motion.div
+                    <m.div
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ delay: 0.8 }}
@@ -873,20 +880,20 @@ export default function BookingsMeeting() {
                         <span className="text-sm text-slate-400 font-mono">{uploadProgress}%</span>
                       </div>
                       <div className="h-2 bg-white/10 rounded-full overflow-hidden">
-                        <motion.div
+                        <m.div
                           className="h-full bg-gradient-to-r from-slate-400 to-slate-400 rounded-full"
                           initial={{ width: 0 }}
                           animate={{ width: `${uploadProgress}%` }}
                           transition={{ duration: 0.3 }}
                         />
                       </div>
-                    </motion.div>
-                  </motion.div>
+                    </m.div>
+                  </m.div>
                 )}
 
                 {/* AI SUMMARY */}
                 {stage === 'ai-summary' && (
-                  <motion.div
+                  <m.div
                     key="ai-summary"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -901,15 +908,15 @@ export default function BookingsMeeting() {
                         <h3 className="text-white font-semibold text-xl sm:text-2xl">AI Post-Processing</h3>
                         <p className="text-sm text-slate-400">Generating Minutes of Meeting</p>
                       </div>
-                      <motion.div
+                      <m.div
                         animate={{ rotate: 360 }}
-                        transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                        transition={{ duration: 2, repeat: isInView ? Infinity : 0, ease: "linear" }}
                       >
                         <Sparkles className="w-4 h-4 text-slate-400" />
-                      </motion.div>
+                      </m.div>
                     </div>
 
-                    <motion.div
+                    <m.div
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ delay: 0.2 }}
@@ -921,14 +928,14 @@ export default function BookingsMeeting() {
                       </div>
                       <div className="space-y-2 font-mono text-sm">
                         {momSections.map((section, index) => (
-                          <motion.p
+                          <m.p
                             key={index}
                             initial={{ opacity: 0, x: -10 }}
                             animate={{ opacity: 1, x: 0 }}
                             className="text-slate-300"
                           >
                             {section}
-                          </motion.p>
+                          </m.p>
                         ))}
                         {momSections.length < momData.length && (
                           <div className="flex items-center gap-2">
@@ -937,10 +944,10 @@ export default function BookingsMeeting() {
                           </div>
                         )}
                       </div>
-                    </motion.div>
+                    </m.div>
 
                     {momSections.length === momData.length && (
-                      <motion.div
+                      <m.div
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         className="flex items-center justify-center gap-4"
@@ -953,14 +960,14 @@ export default function BookingsMeeting() {
                           <CheckCircle2 className="w-4 h-4" />
                           Approve & Save
                         </Button>
-                      </motion.div>
+                      </m.div>
                     )}
-                  </motion.div>
+                  </m.div>
                 )}
 
                 {/* DASHBOARD VIEW */}
                 {stage === 'dashboard' && (
-                  <motion.div
+                  <m.div
                     key="dashboard"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -1001,7 +1008,7 @@ export default function BookingsMeeting() {
 
                     {/* Meeting cards */}
                     <AnimatePresence mode="wait">
-                      <motion.div
+                      <m.div
                         key={dashboardView}
                         initial={{ opacity: 0, x: dashboardView === 'upcoming' ? -20 : 20 }}
                         animate={{ opacity: 1, x: 0 }}
@@ -1012,7 +1019,7 @@ export default function BookingsMeeting() {
                         {meetings
                           .filter(m => m.status === dashboardView)
                           .map((meeting, index) => (
-                            <motion.div
+                            <m.div
                               key={meeting.id}
                               initial={{ opacity: 0, y: 10 }}
                               animate={{ opacity: 1, y: 0 }}
@@ -1046,18 +1053,18 @@ export default function BookingsMeeting() {
                                 </div>
                                 <ChevronRight className="w-5 h-5 text-slate-500" />
                               </div>
-                            </motion.div>
+                            </m.div>
                           ))}
-                      </motion.div>
+                      </m.div>
                     </AnimatePresence>
-                  </motion.div>
+                  </m.div>
                 )}
               </AnimatePresence>
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Feature highlights */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -1065,22 +1072,23 @@ export default function BookingsMeeting() {
             className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12 max-w-4xl mx-auto"
           >
             {[
-              { icon: Webhook, label: 'Webhook Sync', color: 'cyan' },
+              { icon: Send, label: 'Auto Follow-Up', color: 'cyan' },
               { icon: Radio, label: 'Live Transcription', color: 'red' },
               { icon: Camera, label: 'Proof Capture', color: 'green' },
               { icon: Sparkles, label: 'AI Summaries', color: 'blue' },
             ].map((feature, index) => (
-              <motion.div
+              <m.div
                 key={index}
                 className="p-4 rounded-xl bg-white/5 border border-white/10"
               >
                 <feature.icon className="w-6 h-6 text-white mx-auto mb-2" />
                 <p className="text-sm text-slate-400">{feature.label}</p>
-              </motion.div>
+              </m.div>
             ))}
-          </motion.div>
-        </motion.div>
+          </m.div>
+        </m.div>
       </div>
     </section>
+    </InViewContext.Provider>
   );
 }

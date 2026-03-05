@@ -261,6 +261,7 @@ export function InteractiveGlobe({
   }>({ active: false, startX: 0, startY: 0, startRotY: 0, startRotX: 0 });
   const animRef = useRef<number>(0);
   const timeRef = useRef(0);
+  const isVisibleRef = useRef(true);
 
   // Generate globe dots + fetch real-world land data
   const dotsRef = useRef<[number, number, number][]>([]);
@@ -308,12 +309,26 @@ export function InteractiveGlobe({
   const draw = useCallback(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
+
+    // Skip expensive draw when globe is off-screen
+    if (!isVisibleRef.current) {
+      animRef.current = requestAnimationFrame(draw);
+      return;
+    }
+
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
     const dpr = window.devicePixelRatio || 1;
-    const w = canvas.clientWidth;
-    const h = canvas.clientHeight;
+    const w = canvas.clientWidth || size;
+    const h = canvas.clientHeight || size;
+    
+    // Skip if canvas not properly sized (prevents issues on mobile load)
+    if (w === 0 || h === 0) {
+      animRef.current = requestAnimationFrame(draw);
+      return;
+    }
+    
     canvas.width = w * dpr;
     canvas.height = h * dpr;
     ctx.scale(dpr, dpr);
@@ -663,9 +678,42 @@ export function InteractiveGlobe({
     animRef.current = requestAnimationFrame(draw);
   }, [dotColor, arcColor, markerColor, autoRotateSpeed, connections, markers]);
 
+  // Pause rAF when globe is scrolled out of view
   useEffect(() => {
-    animRef.current = requestAnimationFrame(draw);
-    return () => cancelAnimationFrame(animRef.current);
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { isVisibleRef.current = entry.isIntersecting; },
+      { rootMargin: '200px' }
+    );
+    observer.observe(canvas);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    // Ensure animation starts immediately, even on mobile
+    const startAnimation = () => {
+      if (animRef.current) {
+        cancelAnimationFrame(animRef.current);
+      }
+      animRef.current = requestAnimationFrame(draw);
+    };
+    
+    startAnimation();
+    
+    // Restart animation on visibility change (mobile browsers often pause RAF)
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible' && !animRef.current) {
+        startAnimation();
+      }
+    };
+    
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    
+    return () => {
+      cancelAnimationFrame(animRef.current);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
   }, [draw]);
 
   // Mouse drag handlers
@@ -700,16 +748,22 @@ export function InteractiveGlobe({
     const clamped = Math.max(-1, Math.min(1, normalised));
     timeRef.current = Math.asin(clamped) / 0.30;
     dragRef.current.active = false;
-  }, []);
+    
+    // Ensure animation continues on mobile after touch release
+    if (!animRef.current) {
+      animRef.current = requestAnimationFrame(draw);
+    }
+  }, [draw]);
 
   return (
     <canvas
       ref={canvasRef}
       className={cn("w-full h-full cursor-grab active:cursor-grabbing", className)}
-      style={{ width: size, height: size, maxWidth: '100%', maxHeight: '100%' }}
+      style={{ width: size, height: size, maxWidth: '100%', maxHeight: '100%', touchAction: 'none' }}
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
       onPointerUp={onPointerUp}
+      onPointerCancel={onPointerUp}
     />
   );
 }

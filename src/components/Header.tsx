@@ -83,7 +83,7 @@ export default function Header() {
           </div>
 
           <div className="hidden md:flex items-center space-x-3">
-            <Button variant="gradient-silver" size="header-sm">
+            <Button variant="gradient-blue" size="header-sm">
               Login
             </Button>
             <Button variant="gradient-silver" size="header-sm">
@@ -139,7 +139,7 @@ export default function Header() {
                 Contact
               </a>
               <div className="pt-4 space-y-2 border-t border-white/10">
-                <Button variant="gradient-silver" size="header-md" className="w-full">
+                <Button variant="gradient-blue" size="header-md" className="w-full">
                   Login
                 </Button>
                 <Button variant="gradient-silver" size="header-md" className="w-full">

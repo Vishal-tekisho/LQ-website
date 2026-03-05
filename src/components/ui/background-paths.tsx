@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 import { Link } from "react-router-dom";
 
@@ -25,7 +25,7 @@ function FloatingPaths({ position }: { position: number }) {
             >
                 <title>Background Paths</title>
                 {paths.map((path) => (
-                    <motion.path
+                    <m.path
                         key={path.id}
                         d={path.d}
                         stroke="currentColor"
@@ -64,14 +64,14 @@ export function BackgroundPaths({
             </div>
 
             <div className="relative z-10 container mx-auto px-4 md:px-6 text-center">
-                <motion.div
+                <m.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 2 }}
                     className="max-w-4xl mx-auto"
                 >
                     <Link to="/discover">
-                        <motion.div
+                        <m.div
                             animate={{
                                 scale: [1, 1.05, 1],
                                 boxShadow: [
@@ -105,7 +105,7 @@ export function BackgroundPaths({
                                     →
                                 </span>
                             </div>
-                        </motion.div>
+                        </m.div>
                     </Link>
 
                     <h1 className="text-5xl sm:text-7xl md:text-8xl font-display font-bold mb-8 tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-leadq-royal-blue/50">
@@ -115,7 +115,7 @@ export function BackgroundPaths({
                                 className="inline-block mr-4 last:mr-0"
                             >
                                 {word.split("").map((letter, letterIndex) => (
-                                    <motion.span
+                                    <m.span
                                         key={`${wordIndex}-${letterIndex}`}
                                         initial={{ y: 100, opacity: 0 }}
                                         animate={{ y: 0, opacity: 1 }}
@@ -130,23 +130,23 @@ export function BackgroundPaths({
                                         className="inline-block"
                                     >
                                         {letter}
-                                    </motion.span>
+                                    </m.span>
                                 ))}
                             </span>
                         ))}
                     </h1>
 
-                    <motion.p
+                    <m.p
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.8, duration: 0.8 }}
                         className="text-lg sm:text-xl md:text-2xl text-leadq-silver font-medium max-w-2xl mx-auto mb-8 drop-shadow-md"
                     >
                         The AI Copilot That Automates Lead Management
-                    </motion.p>
+                    </m.p>
 
 
-                </motion.div>
+                </m.div>
             </div>
         </div>
     );

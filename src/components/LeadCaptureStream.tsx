@@ -274,9 +274,6 @@ export default function LeadCaptureStream() {
 
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <span className="glass px-4 py-2 rounded-full text-sm font-medium text-leadq-silver border border-leadq-silver/20 inline-block mb-6">
-            AI-Powered Universal Lead Capture
-          </span>
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold mb-4">
             Turn Every Scan Into{' '}
             <span className="bg-gradient-to-r from-leadq-cyan to-leadq-royal-blue bg-clip-text text-transparent">

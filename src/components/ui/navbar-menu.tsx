@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { LucideIcon, ChevronDown } from "lucide-react";
 
 const transition = {
@@ -35,7 +35,7 @@ export const MenuItem = ({
             onMouseLeave={() => setActive(null)}
             className="relative"
         >
-            <motion.button
+            <m.button
                 type="button"
                 transition={{ duration: 0.3 }}
                 onClick={() => setActive(active === item ? null : item)}
@@ -50,10 +50,10 @@ export const MenuItem = ({
                         className={`transition-transform duration-300 ${active === item ? "rotate-180" : "rotate-0"}`}
                     />
                 )}
-            </motion.button>
+            </m.button>
             <AnimatePresence>
                 {active === item && children && (
-                    <motion.div
+                    <m.div
                         initial={{ opacity: 0, scale: 0.95, y: 10 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.95, y: 10 }}
@@ -68,7 +68,7 @@ export const MenuItem = ({
                         <div className="bg-black/95 backdrop-blur-xl rounded-2xl border border-white/10 shadow-2xl shadow-black/50 p-4">
                             {children}
                         </div>
-                    </motion.div>
+                    </m.div>
                 )}
             </AnimatePresence>
         </div>

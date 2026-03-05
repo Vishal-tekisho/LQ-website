@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
+import { m, AnimatePresence, useReducedMotion } from 'framer-motion';
 import {
     CreditCard,
     StickyNote,
@@ -33,13 +33,13 @@ const steps: Step[] = [
     {
         id: 2,
         title: 'Remember every meeting',
-        description: 'Talk or type a few points. LeadQ turns them into clear, searchable notes.',
+        description: 'Talk or type a few points. LeadQ.AI turns them into clear, searchable notes.',
         icon: <StickyNote className="w-6 h-6" />,
     },
     {
         id: 3,
         title: 'Never forget follow-ups',
-        description: "LeadQ suggests who to follow up with each day so deals don't quietly die.",
+        description: "LeadQ.AI suggests who to follow up with each day so deals don't quietly die.",
         icon: <CalendarCheck className="w-6 h-6" />,
     },
     {
@@ -59,7 +59,7 @@ const features = [
     {
         icon: <Heart className="w-6 h-6" />,
         title: 'Human-friendly',
-        description: 'Plain language, no CRM jargon.',
+        description: 'Plain language, no CRM jargons.',
     },
     {
         icon: <TrendingUp className="w-6 h-6" />,
@@ -85,7 +85,7 @@ function CardScanAnimation({ isActive }: { isActive: boolean }) {
     return (
         <div className="relative w-full flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-0 py-4 lg:py-0 lg:h-80">
             {/* Front Card */}
-            <motion.div
+            <m.div
                 initial={{ opacity: 0, scale: 0.8, rotateY: -15, x: -20 }}
                 animate={isActive ? { opacity: 1, scale: 1, rotateY: 0, x: 0 } : { opacity: 0, scale: 0.8 }}
                 transition={{ duration: 0.5 }}
@@ -119,17 +119,17 @@ function CardScanAnimation({ isActive }: { isActive: boolean }) {
 
                 {/* Scan line */}
                 {isActive && !prefersReducedMotion && (
-                    <motion.div
-                        initial={{ top: 0 }}
-                        animate={{ top: '100%' }}
+                    <m.div
+                        initial={{ y: 0 }}
+                        animate={{ y: '100%' }}
                         transition={{ duration: 1.5, repeat: scanned ? 0 : Infinity, ease: "linear" }}
-                        className="absolute left-0 right-0 h-8 bg-gradient-to-b from-leadq-cyan/20 to-transparent pointer-events-none z-20 border-t border-leadq-cyan/50"
+                        className="absolute top-0 left-0 right-0 h-8 bg-gradient-to-b from-leadq-cyan/20 to-transparent pointer-events-none z-20 border-t border-leadq-cyan/50"
                     />
                 )}
-            </motion.div>
+            </m.div>
 
             {/* Back Card */}
-            <motion.div
+            <m.div
                 initial={{ opacity: 0, scale: 0.8, rotate: 5, x: 20 }}
                 animate={isActive ? { opacity: 1, scale: 1, rotate: 5, x: 0 } : { opacity: 0, scale: 0.8 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
@@ -150,7 +150,7 @@ function CardScanAnimation({ isActive }: { isActive: boolean }) {
                             <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600">
                                 <Mail size={14} />
                             </div>
-                            <span className="text-gray-900 font-medium font-mono text-sm">sarah@techcorp.com</span>
+                            <span className="text-gray-900 font-medium font-mono text-sm">sarah.chen@techflow.io</span>
                         </div>
 
                         <div className="w-full h-px bg-gray-200"></div>
@@ -166,27 +166,27 @@ function CardScanAnimation({ isActive }: { isActive: boolean }) {
 
                 {/* Scan line */}
                 {isActive && !prefersReducedMotion && (
-                    <motion.div
-                        initial={{ top: 0 }}
-                        animate={{ top: '100%' }}
+                    <m.div
+                        initial={{ y: 0 }}
+                        animate={{ y: '100%' }}
                         transition={{ duration: 1.5, repeat: scanned ? 0 : Infinity, ease: "linear" }}
-                        className="absolute left-0 right-0 h-8 bg-gradient-to-b from-leadq-cyan/20 to-transparent pointer-events-none z-20 border-t border-leadq-cyan/50"
+                        className="absolute top-0 left-0 right-0 h-8 bg-gradient-to-b from-leadq-cyan/20 to-transparent pointer-events-none z-20 border-t border-leadq-cyan/50"
                     />
                 )}
-            </motion.div>
+            </m.div>
 
             {/* Arrow indicator */}
-            <motion.div
+            <m.div
                 initial={{ opacity: 0, scale: 0 }}
                 animate={isActive ? { opacity: 1, scale: 1 } : {}}
                 transition={{ delay: 0.3 }}
                 className="text-leadq-silver lg:absolute lg:left-1/2 lg:top-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2 lg:z-30"
             >
                 <ChevronRight className="w-6 h-6 lg:w-8 lg:h-8 rotate-90 lg:rotate-0" />
-            </motion.div>
+            </m.div>
 
             {/* Auto-fill UI */}
-            <motion.div
+            <m.div
                 initial={{ opacity: 0, x: 50 }}
                 animate={scanned || prefersReducedMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
@@ -196,10 +196,10 @@ function CardScanAnimation({ isActive }: { isActive: boolean }) {
                 {[
                     { icon: <User className="w-3 h-3" />, label: 'Name', value: 'Sarah Chen' },
                     { icon: <Building2 className="w-3 h-3" />, label: 'Company', value: 'TechCorp Inc.' },
-                    { icon: <Mail className="w-3 h-3" />, label: 'Email', value: 'sarah@techcorp.com' },
+                    { icon: <Mail className="w-3 h-3" />, label: 'Email', value: 'sarah.chen@techflow.io' },
                     { icon: <Phone className="w-3 h-3" />, label: 'Phone', value: '+1 555 123 4567' },
                 ].map((field, idx) => (
-                    <motion.div
+                    <m.div
                         key={field.label}
                         initial={{ opacity: 0, x: 20 }}
                         animate={scanned || prefersReducedMotion ? { opacity: 1, x: 0 } : {}}
@@ -209,9 +209,9 @@ function CardScanAnimation({ isActive }: { isActive: boolean }) {
                         <span className="text-leadq-silver">{field.icon}</span>
                         <span className="text-leadq-silver/70 text-xs w-14">{field.label}</span>
                         <span className="text-white text-xs truncate">{field.value}</span>
-                    </motion.div>
+                    </m.div>
                 ))}
-            </motion.div>
+            </m.div>
         </div>
     );
 }
@@ -240,7 +240,7 @@ function NotesToSummaryAnimation({ isActive }: { isActive: boolean }) {
     return (
         <div className="relative w-full flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-0 py-4 lg:py-0 lg:h-80">
             {/* Rough Notes */}
-            <motion.div
+            <m.div
                 initial={{ opacity: 0, x: -30 }}
                 animate={isActive ? { opacity: transformed ? 0.7 : 1, x: 0, scale: transformed ? 0.95 : 1 } : { opacity: 0 }}
                 transition={{ duration: 0.2 }}
@@ -248,7 +248,7 @@ function NotesToSummaryAnimation({ isActive }: { isActive: boolean }) {
             >
                 <div className="text-xs text-slate-300 font-semibold mb-2">My Notes</div>
                 {roughNotes.map((note, idx) => (
-                    <motion.div
+                    <m.div
                         key={idx}
                         initial={{ opacity: 0 }}
                         animate={isActive ? { opacity: 1 } : {}}
@@ -256,22 +256,22 @@ function NotesToSummaryAnimation({ isActive }: { isActive: boolean }) {
                         className="text-slate-200 text-xs font-mono mb-1"
                     >
                         {note}
-                    </motion.div>
+                    </m.div>
                 ))}
-            </motion.div>
+            </m.div>
 
             {/* Arrow */}
-            <motion.div
+            <m.div
                 initial={{ opacity: 0, scale: 0 }}
                 animate={isActive ? { opacity: 1, scale: 1 } : {}}
                 transition={{ delay: 0.25 }}
                 className="text-leadq-silver lg:absolute lg:left-1/2 lg:-translate-x-1/2"
             >
                 <ChevronRight className="w-6 h-6 rotate-90 lg:rotate-0 lg:w-8 lg:h-8" />
-            </motion.div>
+            </m.div>
 
             {/* Structured Summary */}
-            <motion.div
+            <m.div
                 initial={{ opacity: 0, x: 30 }}
                 animate={transformed || prefersReducedMotion ? { opacity: 1, x: 0 } : { opacity: 0.3, x: 30 }}
                 transition={{ duration: 0.2 }}
@@ -292,7 +292,7 @@ function NotesToSummaryAnimation({ isActive }: { isActive: boolean }) {
                         <div className="text-white text-sm">Schedule demo next week</div>
                     </div>
                 </div>
-            </motion.div>
+            </m.div>
         </div>
     );
 }
@@ -315,7 +315,7 @@ function FollowUpsAnimation({ isActive }: { isActive: boolean }) {
     return (
         <div className="relative w-full flex flex-col sm:flex-row items-center justify-center gap-4 py-4 sm:py-0 sm:h-80">
             {/* Calendar */}
-            <motion.div
+            <m.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0 }}
                 transition={{ duration: 0.2 }}
@@ -327,7 +327,7 @@ function FollowUpsAnimation({ isActive }: { isActive: boolean }) {
                         <div key={i} className="text-leadq-silver/70">{d}</div>
                     ))}
                     {Array.from({ length: 6 }, (_, i) => (
-                        <motion.div
+                        <m.div
                             key={i}
                             initial={{ opacity: 0 }}
                             animate={isActive ? { opacity: 1 } : {}}
@@ -335,13 +335,13 @@ function FollowUpsAnimation({ isActive }: { isActive: boolean }) {
                             className={`p-1 rounded ${i === 5 ? 'bg-leadq-silver text-white' : 'text-leadq-silver'}`}
                         >
                             {i + 1}
-                        </motion.div>
+                        </m.div>
                     ))}
                 </div>
-            </motion.div>
+            </m.div>
 
             {/* Task List */}
-            <motion.div
+            <m.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={isActive ? { opacity: 1, x: 0 } : { opacity: 0 }}
                 transition={{ duration: 0.2, delay: 0.1 }}
@@ -349,7 +349,7 @@ function FollowUpsAnimation({ isActive }: { isActive: boolean }) {
             >
                 <div className="text-xs text-leadq-silver mb-3">Today's Follow-ups</div>
                 {tasks.map((task, idx) => (
-                    <motion.div
+                    <m.div
                         key={task.id}
                         initial={{ opacity: 0, x: 20 }}
                         animate={isActive ? { opacity: 1, x: 0 } : {}}
@@ -369,9 +369,9 @@ function FollowUpsAnimation({ isActive }: { isActive: boolean }) {
                             <div className="text-xs text-leadq-silver truncate">{task.action}</div>
                         </div>
                         <div className="ml-auto text-xs text-leadq-silver flex-shrink-0">{task.due}</div>
-                    </motion.div>
+                    </m.div>
                 ))}
-            </motion.div>
+            </m.div>
         </div>
     );
 }
@@ -389,7 +389,7 @@ function TimelineAnimation({ isActive }: { isActive: boolean }) {
 
     return (
         <div className="relative w-full flex items-center justify-center py-4 sm:py-0 sm:h-80">
-            <motion.div
+            <m.div
                 initial={{ opacity: 0 }}
                 animate={isActive ? { opacity: 1 } : { opacity: 0 }}
                 transition={{ duration: 0.2 }}
@@ -410,7 +410,7 @@ function TimelineAnimation({ isActive }: { isActive: boolean }) {
                 <div className="relative">
                     <div className="absolute left-[11px] top-2 bottom-2 w-0.5 bg-white/10" />
                     {timelineItems.map((item, idx) => (
-                        <motion.div
+                        <m.div
                             key={idx}
                             initial={{ opacity: 0, x: -20 }}
                             animate={isActive ? { opacity: 1, x: 0 } : {}}
@@ -424,10 +424,10 @@ function TimelineAnimation({ isActive }: { isActive: boolean }) {
                                 <div className="text-white text-sm">{item.event}</div>
                             </div>
                             <div className="text-leadq-silver/70 text-xs">{item.date}</div>
-                        </motion.div>
+                        </m.div>
                     ))}
                 </div>
-            </motion.div>
+            </m.div>
         </div>
     );
 }
@@ -516,25 +516,25 @@ export default function WhatLeadQDoes() {
                 {/* Hero Sub-section */}
                 <div className="text-center max-w-3xl mx-auto mb-20">
                     {/* Text Content */}
-                    <motion.div
+                    <m.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
                     >
                         <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold text-white mb-6">
-                            What LeadQ Does{' '}
+                            What LeadQ.AI Does{' '}
                             <span className="bg-gradient-to-r from-leadq-cyan to-leadq-royal-blue bg-clip-text text-transparent">
                                 for You
                             </span>
                         </h2>
                         <p className="text-lg sm:text-xl md:text-2xl text-leadq-silver mb-8 leading-relaxed">
-                            LeadQ captures people you meet, remembers every conversation, and nudges you to follow up at the right time.
+                            LeadQ.AI captures people you meet, remembers every conversation, and nudges you to follow up at the right time.
                             <br className="hidden sm:block" />
                             Think of it as a personal sales assistant that does the boring work for you.
                         </p>
 
-                    </motion.div>
+                    </m.div>
                 </div>
 
                 {/* Workflow Stepper */}
@@ -544,7 +544,7 @@ export default function WhatLeadQDoes() {
                         <div className="relative">
                             {/* Progress Line */}
                             <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-white/10" />
-                            <motion.div
+                            <m.div
                                 className="absolute left-8 top-0 w-0.5 bg-gradient-to-b from-leadq-silver to-leadq-silver"
                                 initial={{ height: 0 }}
                                 animate={{ height: `${((activeStep - 1) / (steps.length - 1)) * 100}%` }}
@@ -560,7 +560,7 @@ export default function WhatLeadQDoes() {
                                     className="relative pl-20 pb-16 last:pb-0"
                                 >
                                     {/* Step Indicator */}
-                                    <motion.div
+                                    <m.div
                                         className={`absolute left-4 w-8 h-8 rounded-full flex items-center justify-center transition-colors duration-300 ${activeStep >= step.id
                                             ? 'bg-leadq-royal-blue text-white'
                                             : 'bg-white/10 text-leadq-silver'
@@ -569,10 +569,10 @@ export default function WhatLeadQDoes() {
                                         onClick={() => setActiveStep(step.id)}
                                     >
                                         {step.icon}
-                                    </motion.div>
+                                    </m.div>
 
                                     {/* Step Content */}
-                                    <motion.div
+                                    <m.div
                                         initial={{ opacity: 0, x: 20 }}
                                         whileInView={{ opacity: 1, x: 0 }}
                                         viewport={{ once: true }}
@@ -583,7 +583,7 @@ export default function WhatLeadQDoes() {
                                             }`}
                                         onClick={() => setActiveStep(step.id)}
                                     >
-                                        <h3 className="text-2xl sm:text-3xl font-semibold text-white mb-2">
+                                        <h3 className="text-2xl sm:text-3xl font-display font-semibold text-white mb-2">
                                             {step.title}
                                         </h3>
                                         <p className="text-leadq-silver">{step.description}</p>
@@ -591,7 +591,7 @@ export default function WhatLeadQDoes() {
                                         {/* Show animation inline for active step */}
                                         <AnimatePresence mode="wait">
                                             {activeStep === step.id && (
-                                                <motion.div
+                                                <m.div
                                                     initial={{ opacity: 0, height: 0 }}
                                                     animate={{ opacity: 1, height: 'auto' }}
                                                     exit={{ opacity: 0, height: 0 }}
@@ -599,10 +599,10 @@ export default function WhatLeadQDoes() {
                                                     className="mt-4 overflow-hidden"
                                                 >
                                                     {renderStepAnimation(step.id)}
-                                                </motion.div>
+                                                </m.div>
                                             )}
                                         </AnimatePresence>
-                                    </motion.div>
+                                    </m.div>
                                 </div>
                             ))}
                         </div>
@@ -611,7 +611,7 @@ export default function WhatLeadQDoes() {
                     {/* Mobile & Tablet: Scroll-Reveal Cards */}
                     <div className="lg:hidden flex flex-col gap-6">
                         {steps.map((step, idx) => (
-                            <motion.div
+                            <m.div
                                 key={step.id}
                                 initial={{ opacity: 0, y: 40 }}
                                 whileInView={{ opacity: 1, y: 0 }}
@@ -627,31 +627,31 @@ export default function WhatLeadQDoes() {
                                     <div className="w-10 h-10 rounded-full bg-leadq-royal-blue/20 flex items-center justify-center text-leadq-royal-blue">
                                         {step.icon}
                                     </div>
-                                    <h3 className="text-2xl sm:text-3xl font-semibold text-white">
+                                    <h3 className="text-2xl sm:text-3xl font-display font-semibold text-white">
                                         {step.title}
                                     </h3>
                                 </div>
                                 <p className="text-leadq-silver mb-6">{step.description}</p>
                                 {renderStepAnimation(step.id, true)}
-                            </motion.div>
+                            </m.div>
                         ))}
                     </div>
                 </div>
 
                 {/* Supporting Features */}
-                <motion.div
+                <m.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
                     className="mt-24"
                 >
-                    <h3 className="text-2xl sm:text-3xl font-bold text-white text-center mb-12">
+                    <h3 className="text-2xl sm:text-3xl font-display font-bold text-white text-center mb-12">
                         Built for real-world selling
                     </h3>
                     <div className="grid sm:grid-cols-3 gap-6">
                         {features.map((feature, idx) => (
-                            <motion.div
+                            <m.div
                                 key={feature.title}
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
@@ -664,10 +664,10 @@ export default function WhatLeadQDoes() {
                                 </div>
                                 <h4 className="text-2xl sm:text-3xl font-semibold text-white mb-2">{feature.title}</h4>
                                 <p className="text-leadq-silver text-base sm:text-lg">{feature.description}</p>
-                            </motion.div>
+                            </m.div>
                         ))}
                     </div>
-                </motion.div>
+                </m.div>
             </div>
         </section>
     );

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { m, AnimatePresence } from "framer-motion"
 import { LucideIcon, Sparkles, Briefcase, ScanLine, UserPlus, LayoutDashboard, Calendar, PenLine, Bot, DollarSign, HelpCircle, Mail, Menu as MenuIcon, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Menu, MenuItem, MenuLink, MenuSection } from "./navbar-menu"
@@ -24,8 +24,8 @@ const menuGroups = {
         label: "Solutions",
         icon: Briefcase,
         items: [
-            { name: "Features", url: "#features", icon: Sparkles, description: "Explore the core capabilities of LeadQ." },
-            { name: "Use Cases", url: "#use-cases", icon: Briefcase, description: "See how LeadQ solves real-world problems." },
+            { name: "Features", url: "#features", icon: Sparkles, description: "Explore the core capabilities of LeadQ.AI." },
+            { name: "Use Cases", url: "#use-cases", icon: Briefcase, description: "See how LeadQ.AI solves real-world problems." },
             { name: "Lead Capture", url: "#lead-capture", icon: ScanLine, description: "Capture and manage leads efficiently." },
             { name: "Research", url: "#profile-research", icon: UserPlus, description: "Deep dive into prospect data." },
             { name: "Dashboard", url: "#dashboard", icon: LayoutDashboard, description: "Visualize your performance metrics." },
@@ -137,8 +137,8 @@ export function StandardNavbar({ items, className }: NavBarProps) {
     return (
         <div
             className={cn(
-                "fixed top-0 left-0 w-full z-[100] transition-all duration-300",
-                isScrolled || mobileMenuOpen ? "bg-black/80 backdrop-blur-md" : "bg-transparent",
+                "fixed top-0 left-0 w-full z-[100] transition-all duration-300 backdrop-blur-xl border-b border-white/10",
+                isScrolled || mobileMenuOpen ? "bg-black/30" : "bg-black/5",
                 className
             )}
         >
@@ -153,7 +153,7 @@ export function StandardNavbar({ items, className }: NavBarProps) {
                             className="h-14 w-auto"
                         />
                         <span className="text-lg font-bold font-display text-white">
-                            LeadQ
+                            LeadQ.AI
                         </span>
                     </Link>
 
@@ -225,7 +225,7 @@ export function StandardNavbar({ items, className }: NavBarProps) {
 
                     {/* Desktop Actions */}
                     <div className="hidden md:flex items-center gap-4">
-                        <button className="text-sm font-medium text-leadq-silver hover:text-white transition-colors">
+                        <button className="px-6 py-2.5 text-sm rounded-lg font-semibold bg-gradient-to-r from-leadq-deep-blue to-leadq-royal-blue text-white shadow-[0_0_20px_rgba(39,81,169,0.5)] hover:shadow-[0_0_30px_rgba(39,81,169,0.7)] hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-leadq-royal-blue focus:ring-offset-2 focus:ring-offset-black whitespace-nowrap">
                             Login
                         </button>
                         <SpotlightButton>
@@ -247,7 +247,7 @@ export function StandardNavbar({ items, className }: NavBarProps) {
             {/* Mobile Menu Overlay */}
             <AnimatePresence>
                 {mobileMenuOpen && (
-                    <motion.div
+                    <m.div
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "100vh" }}
                         exit={{ opacity: 0, height: 0 }}
@@ -280,7 +280,7 @@ export function StandardNavbar({ items, className }: NavBarProps) {
                             </div>
 
                             <div className="pt-6 border-t border-white/10 space-y-4">
-                                <button className="w-full py-4 text-leadq-silver hover:text-white font-medium border border-white/10 rounded-xl hover:bg-white/5 transition-all">
+                                <button className="w-full py-4 font-bold bg-gradient-to-r from-leadq-deep-blue to-leadq-royal-blue text-white rounded-xl shadow-lg shadow-leadq-royal-blue/20">
                                     Login
                                 </button>
                                 <button className="w-full py-4 font-bold bg-gradient-to-r from-leadq-deep-blue to-leadq-royal-blue text-white rounded-xl shadow-lg shadow-leadq-royal-blue/20">
@@ -288,7 +288,7 @@ export function StandardNavbar({ items, className }: NavBarProps) {
                                 </button>
                             </div>
                         </div>
-                    </motion.div>
+                    </m.div>
                 )}
             </AnimatePresence>
         </div>

@@ -1,21 +1,24 @@
+import { lazy, Suspense } from 'react';
 import { Sparkles, Bot, DollarSign, Mail, Briefcase, LayoutDashboard, HelpCircle, PenLine, ScanLine, UserPlus, Calendar } from 'lucide-react';
 import { StandardNavbar } from './ui/StandardNavbar';
 
 import Hero from './Hero';
-import WhatLeadQDoes from './WhatLeadQDoes';
-import Features from './Features';
-import UseCases from './UseCases';
-import LeadCaptureStream from './LeadCaptureStream';
-import ProfileEnrichment from './ProfileResearch';
-import DashboardPreview from './DashboardPreview';
-import BookingsMeeting from './BookingsMeeting';
-import EmailDraftAnimation from './EmailDraftAnimation';
-import OutboundVoiceAgent from './OutboundVoiceAgent';
-import Agents from './Agents';
-import Pricing from './Pricing';
-import FAQ from './FAQ';
-import Contact from './Contact';
-import Footer from './Footer';
+
+// Lazy-load all below-the-fold sections for faster initial load
+const WhatLeadQDoes = lazy(() => import('./WhatLeadQDoes'));
+const Features = lazy(() => import('./Features'));
+const UseCases = lazy(() => import('./UseCases'));
+const LeadCaptureStream = lazy(() => import('./LeadCaptureStream'));
+const ProfileEnrichment = lazy(() => import('./ProfileResearch'));
+const DashboardPreview = lazy(() => import('./DashboardPreview'));
+const BookingsMeeting = lazy(() => import('./BookingsMeeting'));
+const EmailDraftAnimation = lazy(() => import('./EmailDraftAnimation'));
+const OutboundVoiceAgent = lazy(() => import('./OutboundVoiceAgent'));
+const Agents = lazy(() => import('./Agents'));
+const Pricing = lazy(() => import('./Pricing'));
+const FAQ = lazy(() => import('./FAQ'));
+const Contact = lazy(() => import('./Contact'));
+const Footer = lazy(() => import('./Footer'));
 
 const MainContent = () => {
     const navItems = [
@@ -40,48 +43,51 @@ const MainContent = () => {
             {/* Hero Section */}
             <Hero />
 
-            {/* 2. What LeadQ Does */}
-            <WhatLeadQDoes />
+            {/* Lazy-loaded sections with lightweight placeholders */}
+            <Suspense fallback={<div className="min-h-[400px]" />}>
+                {/* 2. What LeadQ.AI Does */}
+                <WhatLeadQDoes />
 
-            {/* Use Cases - Real Teams, Real Results */}
-            <UseCases />
+                {/* Use Cases - Real Teams, Real Results */}
+                <UseCases />
 
-            {/* Features */}
-            <Features />
+                {/* Features */}
+                <Features />
 
-            {/* 2. Lead Capture Stream */}
-            <LeadCaptureStream />
+                {/* 2. Lead Capture Stream */}
+                <LeadCaptureStream />
 
-            {/* 3. Profile Research */}
-            <ProfileEnrichment />
+                {/* 3. Profile Research */}
+                <ProfileEnrichment />
 
-            {/* 4. Dashboard Preview */}
-            <DashboardPreview />
+                {/* 4. Dashboard Preview */}
+                <DashboardPreview />
 
-            {/* 5. Bookings & Meetings */}
-            <BookingsMeeting />
+                {/* 5. Bookings & Meetings */}
+                <BookingsMeeting />
 
-            {/* 6. Email Draft Animation */}
-            <section id="email-draft">
-                <EmailDraftAnimation />
-            </section>
+                {/* 6. Email Draft Animation */}
+                <section id="email-draft">
+                    <EmailDraftAnimation />
+                </section>
 
-            {/* 7. Outbound Voice Agent */}
-            <OutboundVoiceAgent />
+                {/* 7. Outbound Voice Agent */}
+                <OutboundVoiceAgent />
 
-            {/* AI Agents */}
-            <Agents />
+                {/* AI Agents */}
+                <Agents />
 
-            {/* 10. Pricing */}
-            <Pricing />
+                {/* 10. Pricing */}
+                <Pricing />
 
-            {/* 11. FAQ */}
-            <FAQ />
+                {/* 11. FAQ */}
+                <FAQ />
 
-            {/* 12. Contact */}
-            <Contact />
+                {/* 12. Contact */}
+                <Contact />
 
-            <Footer />
+                <Footer />
+            </Suspense>
         </>
     );
 };

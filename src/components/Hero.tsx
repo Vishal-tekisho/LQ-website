@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { InteractiveGlobe } from "@/components/ui/interactive-globe";
 
 export default function Hero() {
@@ -8,16 +8,12 @@ export default function Hero() {
         <div id="hero" className="relative min-h-screen w-full flex items-center justify-center overflow-hidden pt-24 pb-10 lg:py-0">
             <div className="relative z-10 container mx-auto px-4 md:px-6 flex items-center w-full">
                 <div className="flex flex-col lg:flex-row items-center justify-between gap-4 lg:gap-8 w-full">
-                    <motion.div
+                    <m.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 2 }}
                         className="max-w-2xl text-center lg:text-left flex-1"
                     >
-                        <div className="inline-flex items-center gap-2 rounded-full border border-leadq-cyan/30 bg-leadq-cyan/10 px-3 py-1 text-xs text-leadq-cyan mb-4 w-fit">
-                            <span className="size-1.5 rounded-full bg-leadq-cyan animate-pulse" />
-                            AI-Powered Lead Management
-                        </div>
 
                         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold mb-4 tracking-tighter">
                             {words.map((word, wordIndex) => (
@@ -26,7 +22,7 @@ export default function Hero() {
                                     className={`inline-block mr-2 sm:mr-3 last:mr-0 ${wordIndex >= 2 ? "bg-gradient-to-r from-leadq-cyan to-leadq-royal-blue bg-clip-text text-transparent" : "text-white"}`}
                                 >
                                     {word.split("").map((letter, letterIndex) => (
-                                        <motion.span
+                                        <m.span
                                             key={`${wordIndex}-${letterIndex}`}
                                             initial={{ y: 100, opacity: 0 }}
                                             animate={{ y: 0, opacity: 1 }}
@@ -41,30 +37,30 @@ export default function Hero() {
                                             className="inline-block"
                                         >
                                             {letter}
-                                        </motion.span>
+                                        </m.span>
                                     ))}
                                 </span>
                             ))}
                         </h1>
 
-                        <motion.p
+                        <m.p
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.8, duration: 0.8 }}
                             className="text-base sm:text-lg md:text-xl text-leadq-silver font-medium max-w-xl mb-6 drop-shadow-md"
                         >
                             The AI Copilot That Automates Lead Management
-                        </motion.p>
+                        </m.p>
 
-                        <motion.div
+                        <m.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 1, duration: 0.8 }}
                             className="flex items-center justify-center lg:justify-start gap-6"
                         >
                             <div>
-                                <p className="text-2xl font-bold text-white">360°</p>
-                                <p className="text-xs text-leadq-silver">Lead Scoring</p>
+                                <p className="text-2xl font-bold text-white">90%</p>
+                                <p className="text-xs text-leadq-silver">Match Accuracy</p>
                             </div>
                             <div className="w-px h-8 bg-leadq-cyan/30" />
                             <div>
@@ -76,10 +72,10 @@ export default function Hero() {
                                 <p className="text-2xl font-bold text-white">3x</p>
                                 <p className="text-xs text-leadq-silver">Conversion Rate</p>
                             </div>
-                        </motion.div>
-                    </motion.div>
+                        </m.div>
+                    </m.div>
 
-                    <motion.div 
+                    <m.div 
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 0.5, duration: 1.5 }}
@@ -94,7 +90,7 @@ export default function Hero() {
                             arcColor="rgba(79, 164, 196, 0.5)"
                             markerColor="rgba(39, 81, 169, 1)"
                         />
-                    </motion.div>
+                    </m.div>
                 </div>
             </div>
         </div>

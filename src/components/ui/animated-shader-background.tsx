@@ -95,12 +95,22 @@ const AnoAI = () => {
     scene.add(mesh);
 
     let frameId: number;
+    let isPaused = false;
+
     const animate = () => {
-      material.uniforms.iTime.value += 0.025;
-      renderer.render(scene, camera);
+      if (!isPaused) {
+        material.uniforms.iTime.value += 0.025;
+        renderer.render(scene, camera);
+      }
       frameId = requestAnimationFrame(animate);
     };
     animate();
+
+    // Pause when tab is hidden
+    const handleVisibility = () => {
+      isPaused = document.visibilityState === 'hidden';
+    };
+    document.addEventListener('visibilitychange', handleVisibility);
 
     const handleResize = () => {
       renderer.setSize(window.innerWidth, window.innerHeight);
@@ -110,6 +120,7 @@ const AnoAI = () => {
 
     return () => {
       cancelAnimationFrame(frameId);
+      document.removeEventListener('visibilitychange', handleVisibility);
       window.removeEventListener('resize', handleResize);
       if (container.contains(renderer.domElement)) {
         container.removeChild(renderer.domElement);

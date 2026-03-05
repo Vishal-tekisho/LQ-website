@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { Send, CheckCircle, AlertCircle } from 'lucide-react';
 import { useState, FormEvent } from 'react';
 import { MotionButton } from './ui/motion-button';
@@ -100,7 +100,7 @@ export default function Contact() {
   return (
     <section id="contact" className="relative z-10 py-16 sm:py-20 md:py-24 px-4">
       <div className="max-w-3xl mx-auto">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -116,9 +116,9 @@ export default function Contact() {
           <p className="text-lg sm:text-xl md:text-2xl text-leadq-silver">
             Have questions? We'd love to hear from you.
           </p>
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -126,7 +126,7 @@ export default function Contact() {
           className="glass rounded-2xl p-6 sm:p-8 md:p-10"
         >
           {formState === 'success' ? (
-            <motion.div
+            <m.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               className="text-center py-12"
@@ -136,7 +136,7 @@ export default function Contact() {
               <p className="text-leadq-silver" role="status" aria-live="polite">
                 Thank you for reaching out. We'll get back to you within 24 hours.
               </p>
-            </motion.div>
+            </m.div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6">
               {errors.submit && (
@@ -246,7 +246,7 @@ export default function Contact() {
               >
                 {formState === 'sending' ? (
                   <>
-                    <motion.div
+                    <m.div
                       animate={{ rotate: 360 }}
                       transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
                       className="w-5 h-5 border-2 border-leadq-silver border-t-transparent rounded-full"
@@ -262,7 +262,7 @@ export default function Contact() {
               </MotionButton>
             </form>
           )}
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

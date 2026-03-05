@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useEffect, useState } from "react"
-import { motion } from "framer-motion"
+import { m } from "framer-motion"
 import { cn } from "@/lib/utils"
 
 interface Section {
@@ -11,7 +11,7 @@ interface Section {
 
 const sections: Section[] = [
     { id: "hero", label: "Home" },
-    { id: "what-leadq-does", label: "What LeadQ Does" },
+    { id: "what-leadq-does", label: "What LeadQ.AI Does" },
     { id: "features", label: "Solutions" },
     { id: "pricing", label: "Pricing" },
     { id: "faq", label: "FAQ" },
@@ -74,7 +74,7 @@ export function SideNavigation() {
                                 >
                                     {/* Indicator Line/Dot */}
                                     <div className="w-6 h-6 flex items-center justify-center">
-                                        <motion.div
+                                        <m.div
                                             className={cn(
                                                 "transition-all duration-300 rounded-full",
                                                 isActive

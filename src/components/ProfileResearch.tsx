@@ -1,5 +1,6 @@
-import { motion, AnimatePresence, Variants } from 'framer-motion';
+import { m, AnimatePresence, Variants, useReducedMotion } from 'framer-motion';
 import { useState, useEffect, useCallback, useRef } from 'react';
+import { useInViewPause, InViewContext, useIsInView } from '@/lib/useInViewPause';
 import {
   UserPlus,
   Sparkles,
@@ -18,6 +19,8 @@ import {
   MapPin,
   Filter,
   FileText,
+  ArrowRight,
+  ArrowDown,
 } from 'lucide-react';
 import { MotionButton } from './ui/motion-button';
 
@@ -80,7 +83,7 @@ const ENRICHED_PROFILE: EnrichedProfile = {
 
 const WEB_SOURCES = [
   { id: 'linkedin', name: 'LinkedIn', icon: Linkedin, color: 'text-slate-400' },
-  { id: 'company', name: 'Company DB', icon: Building2, color: 'text-slate-400' },
+  { id: 'company', name: 'Company research', icon: Building2, color: 'text-slate-400' },
   { id: 'web', name: 'Searching Web', icon: Globe, color: 'text-slate-400' },
 ];
 
@@ -113,28 +116,31 @@ const slideInRight: Variants = {
 };
 
 // Sub-components
-const TypingIndicator = () => (
+const TypingIndicator = () => {
+  const isInView = useIsInView();
+  return (
   <div className="flex items-center gap-1 px-3 py-2">
     {[0, 1, 2].map((i) => (
-      <motion.div
+      <m.div
         key={i}
         className="w-2 h-2 rounded-full bg-slate-400"
         animate={{ y: [0, -6, 0], opacity: [0.5, 1, 0.5] }}
-        transition={{ duration: 0.6, repeat: Infinity, delay: i * 0.15 }}
+        transition={{ duration: 0.6, repeat: isInView ? Infinity : 0, delay: i * 0.15 }}
       />
     ))}
   </div>
-);
+  );
+};
 
 // AISparkle removed - stars at top-right of cards no longer used
 // const AISparkle = ({ className = '' }: { className?: string }) => (
-//   <motion.div
+//   <m.div
 //     className={`absolute ${className}`}
 //     animate={{ rotate: [0, 180, 360], scale: [1, 1.2, 1] }}
-//     transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
+//     transition={{ duration: 3, repeat: isInView ? Infinity : 0, ease: 'linear' }}
 //   >
 //     <Sparkles className="w-4 h-4 text-slate-400" />
-//   </motion.div>
+//   </m.div>
 // );
 
 const PulsingDot = ({ color = 'bg-green-500' }: { color?: string }) => (
@@ -144,14 +150,17 @@ const PulsingDot = ({ color = 'bg-green-500' }: { color?: string }) => (
   </span>
 );
 
-const ScanLine = () => (
-  <motion.div
-    className="absolute left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-slate-400 to-transparent"
-    initial={{ top: 0, opacity: 0 }}
-    animate={{ top: ['0%', '100%', '0%'], opacity: [0, 1, 0] }}
-    transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
+const ScanLine = () => {
+  const isInView = useIsInView();
+  return (
+  <m.div
+    className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-slate-400 to-transparent"
+    initial={{ y: 0, opacity: 0 }}
+    animate={{ y: ['0%', '1000%', '0%'], opacity: [0, 1, 0] }}
+    transition={{ duration: 2, repeat: isInView ? Infinity : 0, ease: 'linear' }}
   />
-);
+  );
+};
 
 // Stage indicator component
 const StageIndicator = ({ currentStage, stages }: { currentStage: Stage; stages: { key: Stage; label: string; icon: React.ElementType }[] }) => {
@@ -166,7 +175,7 @@ const StageIndicator = ({ currentStage, stages }: { currentStage: Stage; stages:
 
         return (
           <div key={stage.key} className="flex items-center gap-2">
-            <motion.div
+            <m.div
               className={`flex items-center gap-1.5 px-2 md:px-3 py-1.5 rounded-full text-xs font-medium transition-all ${isActive
                 ? 'bg-slate-400/20 text-slate-400 border border-slate-400/40'
                 : isComplete
@@ -178,7 +187,7 @@ const StageIndicator = ({ currentStage, stages }: { currentStage: Stage; stages:
             >
               <Icon className="w-3 h-3" />
               <span className="hidden sm:inline">{stage.label}</span>
-            </motion.div>
+            </m.div>
             {index < stages.length - 1 && (
               <div className={`w-4 md:w-8 h-0.5 ${isComplete ? 'bg-green-500/50' : 'bg-white/10'}`} />
             )}
@@ -190,64 +199,69 @@ const StageIndicator = ({ currentStage, stages }: { currentStage: Stage; stages:
 };
 
 // Input card component
-const InputCard = ({ profile, isActive }: { profile: ProfileData; isActive: boolean }) => (
-  <motion.div
+const InputCard = ({ profile, isActive }: { profile: ProfileData; isActive: boolean }) => {
+  const isInView = useIsInView();
+  return (
+  <m.div
     variants={slideInLeft}
-    className="glass rounded-xl p-4 md:p-6 relative overflow-hidden"
+    className="relative rounded-2xl p-6 md:p-8 bg-gradient-to-br from-slate-100 to-slate-200 shadow-2xl mx-auto w-full max-w-[360px] overflow-hidden"
+    style={{ aspectRatio: '1.586 / 1' }}
   >
-    {isActive && <ScanLine />}
-    <div className="flex items-center gap-2 mb-4">
-      <div className="flex gap-1.5">
-        <div className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
-        <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
-        <div className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
-      </div>
-      <span className="text-xs text-slate-500 ml-2">Input Profile</span>
+    {isActive && (
+      <m.div
+        className="absolute top-0 left-0 right-0 h-1 bg-leadq-cyan shadow-[0_0_15px_rgba(45,212,191,0.5)] z-20"
+        initial={{ y: 0, opacity: 0 }}
+        animate={{ y: ['0%', '1000%', '0%'], opacity: [0, 1, 0] }}
+        transition={{ duration: 2, repeat: isInView ? Infinity : 0, ease: 'linear' }}
+      />
+    )}
+    
+    {/* Visiting card decorative element */}
+    <div className="absolute -right-6 -bottom-6 opacity-5 pointer-events-none">
+      <Briefcase className="w-48 h-48 text-slate-900" />
     </div>
-
-    <div className="space-y-3">
-      <div className="flex items-center gap-3">
-        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-slate-400 to-slate-500 flex items-center justify-center">
-          <span className="text-white font-bold text-lg">{profile.name.charAt(0)}</span>
-        </div>
+    
+    <div className="flex flex-col h-full justify-between relative z-10">
+      <div className="flex justify-between items-start">
         <div>
-          <p className="font-semibold text-white">{profile.name}</p>
-          <p className="text-xs text-slate-400">Basic contact info</p>
+          <h3 className="text-2xl font-bold text-slate-900 tracking-tight">{profile.name}</h3>
+          <p className="text-sm font-bold text-leadq-royal-blue mt-1 uppercase tracking-widest">{profile.role}</p>
+        </div>
+        <div className="w-12 h-12 rounded-full bg-slate-900/5 flex items-center justify-center shrink-0">
+          <Building2 className="w-6 h-6 text-slate-800" />
         </div>
       </div>
-
-      <div className="space-y-2 text-sm">
-        <div className="flex items-center gap-2 text-slate-400">
-          <Building2 className="w-4 h-4 text-slate-400/60" />
-          <span>{profile.company}</span>
+      
+      <div className="space-y-3 mt-auto">
+        <div className="flex items-center gap-2">
+          <Building2 className="w-4 h-4 text-slate-500" />
+          <p className="font-bold text-slate-800 tracking-wide text-lg">{profile.company}</p>
         </div>
-        <div className="flex items-center gap-2 text-slate-400">
-          <Briefcase className="w-4 h-4 text-slate-400/60" />
-          <span>{profile.role}</span>
-        </div>
+        <div className="w-12 h-1 bg-leadq-royal-blue/30 rounded-full" />
       </div>
     </div>
-  </motion.div>
-);
+  </m.div>
+  );
+};
 
 // Research visualization component
 const ResearchVisualization = ({ stage, activeSources }: { stage: Stage; activeSources: string[] }) => {
   const isResearching = stage === 'researching';
 
   return (
-    <motion.div
+    <m.div
       variants={itemVariants}
-      className="glass rounded-xl p-4 md:p-6 relative overflow-hidden min-h-[200px] flex flex-col items-center justify-center"
+      className="glass rounded-xl p-4 md:p-6 relative overflow-hidden h-[220px] flex flex-col items-center justify-center w-full"
     >
 
       <div className="text-center mb-4">
-        <motion.div
+        <m.div
 
           transition={{ duration: 2, repeat: isResearching ? Infinity : 0, ease: 'linear' }}
           className="inline-block mb-2"
         >
           <Search className="w-8 h-8 text-slate-400" />
-        </motion.div>
+        </m.div>
         <p className="text-sm text-slate-400">
           {stage === 'idle' || stage === 'input' ? 'Ready to research' :
             stage === 'researching' ? 'Analyzing web signals...' :
@@ -257,51 +271,49 @@ const ResearchVisualization = ({ stage, activeSources }: { stage: Stage; activeS
         </p>
       </div>
 
-      <div className="flex items-center justify-center gap-4 md:gap-6">
+      <div className="flex items-center justify-center gap-3 w-full">
         {WEB_SOURCES.map((source, index) => {
           const Icon = source.icon;
           const isActive = activeSources.includes(source.id);
 
           return (
-            <motion.div
+            <m.div
               key={source.id}
-              className={`flex flex-col items-center gap-2 p-3 rounded-lg transition-all ${isActive ? 'bg-white/10' : 'bg-white/5'
+              className={`flex flex-col items-center justify-center gap-2 p-2 rounded-lg transition-all w-[88px] h-[84px] text-center ${isActive ? 'bg-white/10' : 'bg-white/5'
                 }`}
-              animate={isActive ? { scale: [1, 1.1, 1] } : {}}
+              animate={isActive ? { scale: [1, 1.05, 1] } : {}}
               transition={{ duration: 0.5, repeat: isActive ? Infinity : 0, delay: index * 0.2 }}
             >
               <div className={`relative ${isActive ? 'opacity-100' : 'opacity-40'}`}>
-                <Icon className={`w-6 h-6 ${source.color}`} />
+                <Icon className={`w-6 h-6 mx-auto ${source.color}`} />
                 {isActive && (
-                  <motion.div
+                  <m.div
                     className="absolute -top-1 -right-1"
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                   >
                     <PulsingDot color="bg-green-500" />
-                  </motion.div>
+                  </m.div>
                 )}
               </div>
-              <span className={`text-xs ${isActive ? 'text-white' : 'text-slate-500'}`}>
+              <span className={`text-[10px] sm:text-[11px] leading-tight w-full ${isActive ? 'text-white' : 'text-slate-500'}`}>
                 {source.name}
               </span>
-            </motion.div>
+            </m.div>
           );
         })}
       </div>
 
-      {isResearching && (
-        <div className="mt-4">
-          <TypingIndicator />
-        </div>
-      )}
-    </motion.div>
+      <div className={`mt-4 ${isResearching ? 'visible' : 'invisible'}`}>
+        <TypingIndicator />
+      </div>
+    </m.div>
   );
 };
 
 // Reserved for future disambiguation feature
 // const DisambiguationPanel = ({ candidates, selectedId }: { candidates: CandidateProfile[]; selectedId: number | null }) => (
-//   <motion.div
+//   <m.div
 //     variants={itemVariants}
 //     className="glass rounded-xl p-4 md:p-6 relative overflow-hidden"
 //   >
@@ -317,7 +329,7 @@ const ResearchVisualization = ({ stage, activeSources }: { stage: Stage; activeS
 //           const isRejected = selectedId !== null && !isSelected;
 
 //           return (
-//             <motion.div
+//             <m.div
 //               key={candidate.id}
 //               initial={{ opacity: 0, x: -20 }}
 //               animate={{
@@ -357,7 +369,7 @@ const ResearchVisualization = ({ stage, activeSources }: { stage: Stage; activeS
 //               </div>
 
 //               {isSelected && (
-//                 <motion.div
+//                 <m.div
 //                   initial={{ opacity: 0, height: 0 }}
 //                   animate={{ opacity: 1, height: 'auto' }}
 //                   className="mt-2 pt-2 border-t border-green-500/20"
@@ -366,14 +378,14 @@ const ResearchVisualization = ({ stage, activeSources }: { stage: Stage; activeS
 //                     <CheckCircle2 className="w-3 h-3" />
 //                     <span>Identity confirmed via company + role match</span>
 //                   </div>
-//                 </motion.div>
+//                 </m.div>
 //               )}
-//             </motion.div>
+//             </m.div>
 //           );
 //         })}
 //       </AnimatePresence>
 //     </div>
-//   </motion.div>
+//   </m.div>
 // );
 
 // Enriched profile card
@@ -397,10 +409,9 @@ const EnrichedCard = ({ profile, visibleFields }: { profile: EnrichedProfile; vi
   ];
 
   return (
-    <motion.div
+    <m.div
       variants={slideInRight}
-      layout
-      className="glass-strong rounded-xl p-4 md:p-6 relative overflow-hidden"
+      className="glass-strong rounded-xl p-4 md:p-6 relative overflow-hidden flex flex-col h-full"
     >
 
       <div className="flex items-center gap-2 mb-4">
@@ -411,22 +422,22 @@ const EnrichedCard = ({ profile, visibleFields }: { profile: EnrichedProfile; vi
         </div>
         <span className="text-xs text-slate-500 ml-2">Enriched Profile</span>
         {profile.verified && visibleFields.length === fields.length && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
             className="ml-auto flex items-center gap-1 text-xs text-green-400"
           >
             <Shield className="w-3 h-3" />
             <span>Verified</span>
-          </motion.div>
+          </m.div>
         )}
       </div>
 
-      <div className="space-y-3">
+      <div className="space-y-3 flex-1 overflow-y-auto overflow-x-hidden">
         {/* Show compact placeholder fields when idle */}
         <AnimatePresence mode="wait">
           {isIdle && (
-            <motion.div
+            <m.div
               key="placeholder"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -455,7 +466,7 @@ const EnrichedCard = ({ profile, visibleFields }: { profile: EnrichedProfile; vi
               <div className="mt-2 p-2 rounded-lg bg-white/5 border border-dashed border-white/10 opacity-50 text-center">
                 <p className="text-xs text-slate-500">Start research to enrich profile...</p>
               </div>
-            </motion.div>
+            </m.div>
           )}
         </AnimatePresence>
 
@@ -468,10 +479,10 @@ const EnrichedCard = ({ profile, visibleFields }: { profile: EnrichedProfile; vi
             if (!isVisible) return null;
 
             return (
-              <motion.div
+              <m.div
                 key={field.id}
-                initial={{ opacity: 0, x: 20, height: 0 }}
-                animate={{ opacity: 1, x: 0, height: 'auto' }}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.3 }}
                 className="flex items-start gap-3 p-2 rounded-lg bg-white/5"
@@ -483,13 +494,13 @@ const EnrichedCard = ({ profile, visibleFields }: { profile: EnrichedProfile; vi
                   <p className="text-xs text-slate-500">{field.label}</p>
                   <p className="text-sm text-white truncate">{field.value}</p>
                 </div>
-              </motion.div>
+              </m.div>
             );
           })}
         </AnimatePresence>
 
         {visibleFields.includes('summary') && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="mt-4 p-3 rounded-lg bg-gradient-to-br from-slate-400/10 to-slate-400/10 border border-slate-400/20"
@@ -499,10 +510,10 @@ const EnrichedCard = ({ profile, visibleFields }: { profile: EnrichedProfile; vi
               <span className="text-xs font-medium text-slate-400">AI-Generated Summary</span>
             </div>
             <p className="text-sm text-slate-300 leading-relaxed">{profile.summary}</p>
-          </motion.div>
+          </m.div>
         )}
       </div>
-    </motion.div>
+    </m.div>
   );
 };
 
@@ -514,6 +525,9 @@ export default function ProfileResearch() {
   const [visibleFields, setVisibleFields] = useState<string[]>([]);
   const [isAnimating, setIsAnimating] = useState(false);
   const timeoutsRef = useRef<NodeJS.Timeout[]>([]);
+  const { ref, isInView } = useInViewPause();
+  const reducedMotion = useReducedMotion();
+  const shouldAnimate = isInView && !reducedMotion;
 
   const stages: { key: Stage; label: string; icon: React.ElementType }[] = [
     { key: 'input', label: 'Input', icon: UserPlus },
@@ -583,7 +597,8 @@ export default function ProfileResearch() {
   }, [clearTimeouts]);
 
   return (
-    <section id="profile-research" className="relative z-10 py-16 md:py-24 px-4 overflow-hidden">
+    <InViewContext.Provider value={shouldAnimate ?? false}>
+    <section ref={ref} id="profile-research" className="relative z-10 py-16 md:py-24 px-4 overflow-hidden">
       {/* Background effects */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-slate-400/10 rounded-full blur-[120px]" />
@@ -591,18 +606,13 @@ export default function ProfileResearch() {
       </div>
 
       <div className="max-w-7xl mx-auto relative">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           className="text-center mb-8 md:mb-12"
         >
-          <div className="glass inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium text-leadq-silver border border-leadq-silver/20 mb-6">
-            <UserPlus className="w-4 h-4 text-leadq-silver" />
-            <span className="text-sm text-leadq-silver font-medium">AI-Powered Research</span>
-          </div>
-
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold mb-4">
             Profile{' '}
             <span className="bg-gradient-to-r from-leadq-cyan to-leadq-royal-blue bg-clip-text text-transparent">
@@ -642,40 +652,94 @@ export default function ProfileResearch() {
               <span>{isAnimating ? 'Researching...' : 'Replay Demo'}</span>
             </MotionButton>
           )}
-        </motion.div>
+        </m.div>
 
-        {/* Stage indicator */}
-        <StageIndicator currentStage={stage} stages={stages} />
+        {/* Stage indicator - only visible after demo starts */}
+        {stage !== 'idle' && <StageIndicator currentStage={stage} stages={stages} />}
 
         {/* Main animation container */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6"
-        >
-          {/* Left: Input Card */}
-          <div className="lg:col-span-1">
+        <div className="flex flex-col lg:flex-row gap-4 md:gap-8 items-center justify-center w-full">
+
+          {/* Input Card — always visible, starts centred, shifts left when demo begins */}
+          <m.div
+            className="flex flex-col justify-center"
+            animate={stage === 'idle'
+              ? { flex: '0 0 auto', maxWidth: '420px', width: '100%' }
+              : { flex: '1 1 0%', maxWidth: '100%', width: '100%' }
+            }
+            transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+          >
             <InputCard profile={INPUT_PROFILE} isActive={stage === 'input' || stage === 'researching'} />
-          </div>
+          </m.div>
 
-          {/* Center: Research Visualization (always visible) */}
-          <div className="lg:col-span-1">
-            <ResearchVisualization
-              stage={stage}
-              activeSources={activeSources}
-            />
-          </div>
+          {/* Everything else animates in once demo starts */}
+          <AnimatePresence>
+            {stage !== 'idle' && (
+              <>
+                {/* Arrow 1 */}
+                <m.div
+                  key="arrow1"
+                  initial={{ opacity: 0, x: -12 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -12 }}
+                  transition={{ duration: 0.4 }}
+                  className="text-leadq-royal-blue/40 flex justify-center items-center shrink-0"
+                >
+                  <m.div animate={{ x: [0, 5, 0] }} transition={{ duration: 1.5, repeat: isInView ? Infinity : 0, ease: 'easeInOut' }}>
+                    <ArrowRight className="hidden lg:block w-8 h-8" />
+                  </m.div>
+                  <m.div animate={{ y: [0, 5, 0] }} transition={{ duration: 1.5, repeat: isInView ? Infinity : 0, ease: 'easeInOut' }}>
+                    <ArrowDown className="block lg:hidden w-8 h-8" />
+                  </m.div>
+                </m.div>
 
-          {/* Right: Enriched Profile */}
-          <div className="lg:col-span-1">
-            <EnrichedCard profile={ENRICHED_PROFILE} visibleFields={visibleFields} />
-          </div>
-        </motion.div>
+                {/* Center: Research Visualization */}
+                <m.div
+                  key="center"
+                  initial={{ opacity: 0, scale: 0.92 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.92 }}
+                  transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+                  className="w-full lg:flex-1 flex flex-col mx-auto max-w-[320px]"
+                >
+                  <ResearchVisualization stage={stage} activeSources={activeSources} />
+                </m.div>
+
+                {/* Arrow 2 */}
+                <m.div
+                  key="arrow2"
+                  initial={{ opacity: 0, x: -12 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -12 }}
+                  transition={{ duration: 0.4, delay: 0.1 }}
+                  className="text-leadq-royal-blue/40 flex justify-center items-center shrink-0"
+                >
+                  <m.div animate={{ x: [0, 5, 0] }} transition={{ duration: 1.5, repeat: isInView ? Infinity : 0, ease: 'easeInOut', delay: 0.2 }}>
+                    <ArrowRight className="hidden lg:block w-8 h-8" />
+                  </m.div>
+                  <m.div animate={{ y: [0, 5, 0] }} transition={{ duration: 1.5, repeat: isInView ? Infinity : 0, ease: 'easeInOut', delay: 0.2 }}>
+                    <ArrowDown className="block lg:hidden w-8 h-8" />
+                  </m.div>
+                </m.div>
+
+                {/* Right: Enriched Profile */}
+                <m.div
+                  key="right"
+                  initial={{ opacity: 0, x: 40 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 40 }}
+                  transition={{ duration: 0.5, delay: 0.15, ease: [0.25, 0.1, 0.25, 1] }}
+                  className="w-full lg:flex-1 flex flex-col h-[500px]"
+                >
+                  <EnrichedCard profile={ENRICHED_PROFILE} visibleFields={visibleFields} />
+                </m.div>
+              </>
+            )}
+          </AnimatePresence>
+        </div>
 
         {/* Feature highlights */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -688,7 +752,7 @@ export default function ProfileResearch() {
             { icon: Brain, label: 'AI Summary', desc: 'Outreach-ready' },
             { icon: Zap, label: 'Fast Enrichment', desc: 'Seconds, not hours' },
           ].map((feature, index) => (
-            <motion.div
+            <m.div
               key={feature.label}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -699,10 +763,11 @@ export default function ProfileResearch() {
               <feature.icon className="w-6 h-6 text-white mx-auto mb-2" />
               <p className="text-sm font-medium text-white">{feature.label}</p>
               <p className="text-xs text-slate-500">{feature.desc}</p>
-            </motion.div>
+            </m.div>
           ))}
-        </motion.div>
+        </m.div>
       </div>
     </section>
+    </InViewContext.Provider>
   );
 }

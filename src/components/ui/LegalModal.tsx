@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { useEffect, useRef } from 'react';
@@ -33,7 +33,7 @@ const LegalModal = ({ isOpen, onClose, document }: LegalModalProps) => {
             {isOpen && (
                 <>
                     {/* Backdrop */}
-                    <motion.div
+                    <m.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
@@ -44,7 +44,7 @@ const LegalModal = ({ isOpen, onClose, document }: LegalModalProps) => {
 
                     {/* Modal Container */}
                     <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ zIndex: 101, pointerEvents: 'none' }}>
-                        <motion.div
+                        <m.div
                             initial={{ opacity: 0, scale: 0.95, y: 20 }}
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             exit={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -79,7 +79,7 @@ const LegalModal = ({ isOpen, onClose, document }: LegalModalProps) => {
                                     Close
                                 </button>
                             </div>
-                        </motion.div>
+                        </m.div>
                     </div>
                 </>
             )}

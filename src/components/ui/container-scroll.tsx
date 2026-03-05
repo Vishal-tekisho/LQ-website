@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { useScroll, useTransform, motion, MotionValue } from "framer-motion";
+import { useScroll, useTransform, m, MotionValue } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export const ContainerScroll = ({
@@ -56,14 +56,14 @@ export const ContainerScroll = ({
 
 export const Header = ({ translate, titleComponent }: any) => {
   return (
-    <motion.div
+    <m.div
       style={{
         translateY: translate,
       }}
       className="div max-w-5xl mx-auto text-center"
     >
       {titleComponent}
-    </motion.div>
+    </m.div>
   );
 };
 
@@ -78,7 +78,7 @@ export const Card = ({
   children: React.ReactNode;
 }) => {
   return (
-    <motion.div
+    <m.div
       style={{
         rotateX: rotate,
         scale,
@@ -93,6 +93,6 @@ export const Card = ({
       <div className="h-auto sm:h-full w-full overflow-y-auto sm:overflow-hidden rounded-2xl md:rounded-2xl md:p-4">
         {children}
       </div>
-    </motion.div>
+    </m.div>
   );
 };

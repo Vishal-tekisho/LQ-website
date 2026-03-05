@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { Link2, BrainCircuit, Activity, Mic } from 'lucide-react';
 
 const Features = () => {
@@ -12,9 +12,9 @@ const Features = () => {
     },
     {
       icon: BrainCircuit,
-      title: 'Automated Workflows',
+      title: 'Instant Lead Response',
       highlight: 'Multi-Agent Swarm',
-      description: 'Hardware is just the trigger. The system is the engine. Our automation turns a simple tap into a complex, executed sales workflow.',
+      description: 'Engage every new lead within seconds across calls, emails and web. LeadQ answers questions, and keeps the conversation alive before interest drops.',
       variant: 'gradient'
     },
     {
@@ -60,35 +60,24 @@ const Features = () => {
     <section id="features" className="relative z-10 py-20 sm:py-24 md:py-32 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           className="text-center mb-16 sm:mb-20"
         >
-          {/* Badge */}
-          <motion.span
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="glass inline-flex items-center px-4 py-2 rounded-full text-sm font-medium text-leadq-silver border border-leadq-silver/20 mb-4"
-          >
-            The Only CRM That Handshakes Back.
-          </motion.span>
-
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold mb-4">
             Why Choose{' '}
             <span className="bg-gradient-to-r from-leadq-cyan to-leadq-royal-blue bg-clip-text text-transparent">
-              LeadQ
+              LeadQ.AI
             </span>
             ?
           </h2>
-        </motion.div>
+        </m.div>
 
         {/* Cards Grid */}
-        <motion.div
+        <m.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -100,7 +89,7 @@ const Features = () => {
             const isGradient = feature.variant === 'gradient';
 
             return (
-              <motion.div
+              <m.div
                 key={index}
                 variants={cardVariants}
                 className={`
@@ -132,30 +121,23 @@ const Features = () => {
                     </div>
                   </div>
 
-                  {/* Highlight Badge */}
-                  <div className="mb-4">
-                    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs sm:text-sm font-semibold glass text-leadq-silver border border-leadq-silver/20">
-                      {feature.highlight}
-                    </span>
-                  </div>
-
                   {/* Title */}
-                  <h3 className="text-2xl sm:text-3xl font-display font-bold mb-3 text-white">
+                  <h3 className="text-2xl font-display font-bold mb-3 text-white">
                     {feature.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-zinc-300 leading-relaxed text-base sm:text-lg">
+                  <p className="text-zinc-300 leading-relaxed text-base">
                     {feature.description}
                   </p>
                 </div>
 
                 {/* Decorative corner accent */}
                 <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-slate-400/10 to-transparent rounded-bl-full opacity-50 transition-opacity duration-500" />
-              </motion.div>
+              </m.div>
             );
           })}
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

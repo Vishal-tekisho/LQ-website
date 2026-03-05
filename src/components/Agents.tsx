@@ -1,10 +1,9 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import {
   Search,
   Calendar,
   Smartphone,
   Users,
-  TrendingUp,
   Mail,
   Mic,
 } from 'lucide-react';
@@ -51,16 +50,8 @@ const agents: Agent[] = [
     id: 4,
     title: 'Meeting Agent',
     description:
-      'Both online and offline meetings can be scheduled from LeadQ base.',
+      'Both online and offline meetings can be scheduled from LeadQ.AI base.',
     icon: Users,
-    color: 'leadq-cyan',
-  },
-  {
-    id: 5,
-    title: 'Analytics Core',
-    description:
-      'Forecasts and highlights risks using pipeline signals.',
-    icon: TrendingUp,
     color: 'leadq-cyan',
   },
   {
@@ -75,10 +66,9 @@ const agents: Agent[] = [
     id: 7,
     title: 'Voice Agents',
     description:
-      'Outbound voice agent that replaces traditional robocalls with intelligent, conversational AI that automates customer engagement while mantaining natural, human-like interactions for support,scheduling,and lead qualification',
+      'Replaces robocalls with intelligent, conversational AI for support, scheduling, and lead qualification.',
     icon: Mic,
     color: 'leadq-cyan',
-    className: 'sm:col-span-2 lg:col-span-3',
   },
 ];
 
@@ -87,7 +77,7 @@ export default function Agents() {
     <section id="agents" className="relative z-10 py-16 sm:py-20 md:py-24 px-4">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <motion.h2
+          <m.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -98,8 +88,8 @@ export default function Agents() {
             <span className="bg-gradient-to-r from-leadq-cyan to-leadq-royal-blue bg-clip-text text-transparent">
               New Workforce
             </span>
-          </motion.h2>
-          <motion.p
+          </m.h2>
+          <m.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -107,7 +97,7 @@ export default function Agents() {
             className="text-lg sm:text-xl md:text-2xl text-leadq-silver max-w-3xl mx-auto"
           >
             Deploy specialized AI agents for every stage of your sales cycle.
-          </motion.p>
+          </m.p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
@@ -116,7 +106,7 @@ export default function Agents() {
             const colorClass = 'leadq-silver';
 
             return (
-              <motion.div
+              <m.div
                 key={agent.id}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -152,7 +142,7 @@ export default function Agents() {
                     {agent.description}
                   </p>
                 </div>
-              </motion.div>
+              </m.div>
             );
           })}
         </div>

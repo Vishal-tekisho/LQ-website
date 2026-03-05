@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { motion, useScroll, useSpring } from 'framer-motion';
+import { m, useScroll, useSpring } from 'framer-motion';
 
 export default function ScrollProgress() {
   const { scrollYProgress } = useScroll();
@@ -10,7 +10,7 @@ export default function ScrollProgress() {
   });
 
   return (
-    <motion.div
+    <m.div
       className="fixed top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-black via-leadq-silver to-leadq-silver origin-left z-50"
       style={{ scaleX }}
     />

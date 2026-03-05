@@ -1,5 +1,5 @@
 import * as React from "react"
-import { motion } from "framer-motion"
+import { m } from "framer-motion"
 import { buttonVariants, type ButtonProps } from "./button"
 import { cn } from "@/lib/utils"
 
@@ -28,7 +28,7 @@ const MotionButton = React.forwardRef<HTMLButtonElement, MotionButtonProps>(
     const buttonClass = cn(buttonVariants({ variant, size, className }))
 
     return (
-      <motion.button
+      <m.button
         ref={ref}
         whileHover={whileHover}
         whileTap={whileTap}
@@ -39,7 +39,7 @@ const MotionButton = React.forwardRef<HTMLButtonElement, MotionButtonProps>(
         {...props}
       >
         {children}
-      </motion.button>
+      </m.button>
     )
   },
 )

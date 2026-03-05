@@ -1,36 +1,36 @@
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { Button } from './ui/button';
 
 const faqs = [
   {
-    question: "What exactly is LeadQ and who is it built for?",
-    answer: "LeadQ is an AI-powered CRM and business assistant that helps you capture contacts, record & summarize meetings, and send smart follow-up emails, all in one place. It's built for sales professionals, business development reps, entrepreneurs, account managers, and consultants who want to manage leads and relationships without the manual grind.",
+    question: "What exactly is LeadQ.AI and who is it built for?",
+    answer: "LeadQ.AI is an AI-powered CRM and business assistant that helps you capture contacts, record & summarize meetings, and send smart follow-up emails, all in one place. It's built for sales professionals, business development reps, entrepreneurs, account managers, and consultants who want to manage leads and relationships without the manual grind.",
   },
   {
-    question: "Do I need any technical knowledge or CRM experience to use LeadQ?",
-    answer: "Not at all. LeadQ is designed to be intuitive from day one. You can start capturing contacts with your phone camera, record your first meeting, and send an AI-drafted follow-up email within minutes of signing up no training required.",
+    question: "Do I need any technical knowledge or CRM experience to use LeadQ.AI?",
+    answer: "Not at all. LeadQ.AI is designed to be intuitive from day one. You can start capturing contacts with your phone camera, record your first meeting, and send an AI-drafted follow-up email within minutes of signing up no training required.",
   },
   {
     question: "How accurate is the business card scanner?",
     answer: "The scanner uses OCR and works best with good lighting, a steady hand, and standard business card layouts. It captures both the front and back of a card. For unusual fonts or low-contrast designs, accuracy may vary but you'll always get to review and correct the extracted data before saving.",
   },
   {
-    question: "Can LeadQ record and transcribe my meetings automatically?",
-    answer: "Yes. For in-person meetings, LeadQ records audio live and transcribes it in real-time as the conversation happens. For virtual meetings on Zoom, or similar platforms, you can fetch the transcript from the platform and upload it to LeadQ. You can also take typed notes or dictate voice notes hands-free throughout the meeting.",
+    question: "Can LeadQ.AI record and transcribe my meetings automatically?",
+    answer: "Yes. For in-person meetings, LeadQ.AI records audio live and transcribes it in real-time as the conversation happens. For virtual meetings on Zoom, or similar platforms, you can fetch the transcript from the platform and upload it to LeadQ.AI. You can also take typed notes or dictate voice notes hands-free throughout the meeting.",
   },
   {
     question: "How does the AI-generated follow-up email work?",
-    answer: "LeadQ reads your meeting context notes, transcript, and summary — and drafts a professional follow-up email with a tailored subject line and body. You choose what to include (meeting summary, action items, your profile) can regenerate any section you don't like, attach files or a meeting photo, and send when ready. You can even customize the AI's writing style using your own prompt instructions.",
+    answer: "LeadQ.AI reads your meeting context notes, transcript, and summary — and drafts a professional follow-up email with a tailored subject line and body. You choose what to include (meeting summary, action items, your profile) can regenerate any section you don't like, attach files or a meeting photo, and send when ready. You can even customize the AI's writing style using your own prompt instructions.",
   },
   {
-    question: "How does LeadQ help me track where each lead stands in my pipeline?",
+    question: "How does LeadQ.AI help me track where each lead stands in my pipeline?",
     answer: "Every contact can be assigned a status: HOT (very interested), WARM (interested), COLD (not yet engaged). Your dashboard shows all leads with their current status at a glance, and KPI cards track Contacts Touched, Emails Drafted, Conversion Rate, and Meetings Completed all filterable by day, week, or month.",
   },
   {
-    question: "Can LeadQ help me research a contact or their company before a meeting?",
-    answer: "Yes. LeadQ's Company Research feature automatically generates an AI-powered profile of your contact's background and a summary of their company including what they do, key business insights, and useful conversation starters. This loads automatically when you view a contact, so you can walk into every meeting well prepared.",
+    question: "Can LeadQ.AI help me research a contact or their company before a meeting?",
+    answer: "Yes. LeadQ.AI's Company Research feature automatically generates an AI-powered profile of your contact's background and a summary of their company including what they do, key business insights, and useful conversation starters. This loads automatically when you view a contact, so you can walk into every meeting well prepared.",
   },
   {
     question: 'What are "credits" and what do they get used for?',
@@ -42,7 +42,7 @@ const faqs = [
   },
   {
     question: "What happens after a meeting ends do I have to write up notes myself?",
-    answer: "No. Once you stop recording, tap \"Generate Summary\" and LeadQ's AI instantly creates a structured meeting recap with key points and action items. Review it, edit if needed, save it to the contact record then jump straight into drafting your follow-up email, all without leaving the app.",
+    answer: "No. Once you stop recording, tap \"Generate Summary\" and LeadQ.AI's AI instantly creates a structured meeting recap with key points and action items. Review it, edit if needed, save it to the contact record then jump straight into drafting your follow-up email, all without leaving the app.",
   },
 ];
 
@@ -67,7 +67,7 @@ export default function FAQ() {
   return (
     <section id="faq" className="relative z-10 py-16 sm:py-20 md:py-24 px-4">
       <div className="max-w-4xl mx-auto">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -80,9 +80,9 @@ export default function FAQ() {
               Questions
             </span>
           </h2>
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -90,7 +90,7 @@ export default function FAQ() {
           className="space-y-4"
         >
           {faqs.map((faq, index) => (
-            <motion.div
+            <m.div
               key={index}
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -114,18 +114,18 @@ export default function FAQ() {
                 <span className="font-medium text-white text-lg sm:text-xl pr-4 min-w-0">
                   {faq.question}
                 </span>
-                <motion.div
+                <m.div
                   animate={{ rotate: openIndex === index ? 180 : 0 }}
                   transition={{ duration: 0.3, ease: 'easeInOut' }}
                   className="flex-shrink-0"
                 >
                   <ChevronDown size={24} className="text-leadq-cyan" />
-                </motion.div>
+                </m.div>
               </Button>
 
               <AnimatePresence initial={false}>
                 {openIndex === index && (
-                  <motion.div
+                  <m.div
                     id={`faq-answer-${index}`}
                     initial={{ height: 0, opacity: 0 }}
                     animate={{
@@ -151,12 +151,12 @@ export default function FAQ() {
                         {faq.answer}
                       </p>
                     </div>
-                  </motion.div>
+                  </m.div>
                 )}
               </AnimatePresence>
-            </motion.div>
+            </m.div>
           ))}
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

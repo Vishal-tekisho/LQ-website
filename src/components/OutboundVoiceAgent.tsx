@@ -1,11 +1,11 @@
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { MotionButton } from './ui/motion-button';
+import { useInViewPause, InViewContext, useIsInView } from '@/lib/useInViewPause';
 import {
     Phone,
     PhoneCall,
     PhoneOff,
-    Mic,
     MicOff,
     User,
     Bot,
@@ -44,7 +44,7 @@ interface ConversationMessage {
 
 // Waveform bar component
 const WaveformBar = ({ index, isActive, color = 'bg-leadq-silver' }: { index: number; isActive: boolean; color?: string }) => (
-    <motion.div
+    <m.div
         className={`w-1 ${color} rounded-full`}
         animate={isActive ? {
             height: [8, 20 + Math.random() * 16, 10, 28 + Math.random() * 8, 8],
@@ -67,42 +67,46 @@ const PulsingDot = ({ color = 'bg-green-500' }: { color?: string }) => (
 );
 
 // Typing indicator
-const TypingIndicator = () => (
+const TypingIndicator = () => {
+    const isInView = useIsInView();
+    return (
     <div className="flex items-center gap-1 px-2 py-1">
         {[0, 1, 2].map((i) => (
-            <motion.div
+            <m.div
                 key={i}
                 className="w-1.5 h-1.5 bg-leadq-silver rounded-full"
                 animate={{ y: [0, -4, 0], opacity: [0.5, 1, 0.5] }}
-                transition={{ duration: 0.5, repeat: Infinity, delay: i * 0.12 }}
+                transition={{ duration: 0.5, repeat: isInView ? Infinity : 0, delay: i * 0.12 }}
             />
         ))}
     </div>
-);
+    );
+};
 
 // Phone visualization component
 const PhoneVisualization = ({ stage, isMuted }: { stage: CallStage; isMuted: boolean }) => {
+    const isInView = useIsInView();
     const isActive = stage !== 'idle' && stage !== 'ended';
     const isAISpeaking = stage === 'ai-speaking' || stage === 'ai-responding';
     const isUserSpeaking = stage === 'user-speaking' || stage === 'user-interrupting';
 
     return (
-        <motion.div
+        <m.div
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             className="relative w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 mx-auto"
         >
             {/* Outer ring pulse when active */}
             {isActive && (
-                <motion.div
+                <m.div
                     className="absolute inset-0 rounded-full border-2 border-leadq-silver/30"
                     animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0, 0.5] }}
-                    transition={{ duration: 2, repeat: Infinity }}
+                    transition={{ duration: 2, repeat: isInView ? Infinity : 0 }}
                 />
             )}
 
             {/* Main circle */}
-            <motion.div
+            <m.div
                 className={`absolute inset-4 rounded-full flex items-center justify-center ${stage === 'dialing' ? 'bg-yellow-500/20 border-yellow-500/50' :
                     stage === 'connected' || isAISpeaking || isUserSpeaking ? 'bg-green-500/20 border-green-500/50' :
                         stage === 'confirmed' ? 'bg-leadq-silver/20 border-leadq-silver/50' :
@@ -127,7 +131,7 @@ const PhoneVisualization = ({ stage, isMuted }: { stage: CallStage; isMuted: boo
                 )}
 
                 {/* Center icon */}
-                <motion.div
+                <m.div
                     animate={stage === 'dialing' ? { scale: [1, 1.1, 1] } : {}}
                     transition={{ duration: 1, repeat: stage === 'dialing' ? Infinity : 0 }}
                     className="relative z-10"
@@ -137,27 +141,27 @@ const PhoneVisualization = ({ stage, isMuted }: { stage: CallStage; isMuted: boo
                     {(stage === 'connected' || isAISpeaking) && <Bot className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-leadq-silver" />}
                     {isUserSpeaking && <User className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-blue-400" />}
                     {stage === 'ai-thinking' && (
-                        <motion.div animate={{ rotate: 360 }} transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}>
+                        <m.div animate={{ rotate: 360 }} transition={{ duration: 2, repeat: isInView ? Infinity : 0, ease: 'linear' }}>
                             <Brain className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-leadq-silver" />
-                        </motion.div>
+                        </m.div>
                     )}
                     {stage === 'scheduling' && <Calendar className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-leadq-silver" />}
                     {stage === 'confirmed' && <CheckCircle2 className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-green-400" />}
                     {stage === 'ended' && <PhoneOff className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-red-400" />}
-                </motion.div>
-            </motion.div>
+                </m.div>
+            </m.div>
 
             {/* Mute indicator */}
             {isMuted && (
-                <motion.div
+                <m.div
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     className="absolute bottom-2 right-2 p-2 bg-red-500/20 rounded-full"
                 >
                     <MicOff className="w-4 h-4 text-red-400" />
-                </motion.div>
+                </m.div>
             )}
-        </motion.div>
+        </m.div>
     );
 };
 
@@ -166,7 +170,7 @@ const ConversationBubble = ({ message }: { message: ConversationMessage; isLates
     const isAI = message.speaker === 'ai';
 
     return (
-        <motion.div
+        <m.div
             initial={{ opacity: 0, x: isAI ? -20 : 20, y: 10 }}
             animate={{ opacity: 1, x: 0, y: 0 }}
             className={`flex ${isAI ? 'justify-start' : 'justify-end'} mb-3`}
@@ -196,7 +200,7 @@ const ConversationBubble = ({ message }: { message: ConversationMessage; isLates
                 </div>
                 <p className="text-sm text-slate-300 leading-relaxed">{message.text}</p>
             </div>
-        </motion.div>
+        </m.div>
     );
 };
 
@@ -208,6 +212,9 @@ export default function OutboundVoiceAgent() {
     const [isMuted, setIsMuted] = useState(false);
     const transcriptRef = useRef<HTMLDivElement>(null);
     const timeoutIds = useRef<ReturnType<typeof setTimeout>[]>([]);
+    const { ref, isInView } = useInViewPause();
+    const reducedMotion = useReducedMotion();
+    const shouldAnimate = isInView && !reducedMotion;
 
     const clearAllTimeouts = useCallback(() => {
         timeoutIds.current.forEach(id => clearTimeout(id));
@@ -247,7 +254,7 @@ export default function OutboundVoiceAgent() {
             setConversations([{
                 id: 1,
                 speaker: 'ai',
-                text: "Hi, this is Sarah from LeadQ. I'm calling to schedule your product demo. Is now a good time?"
+                text: "Hi, this is Sarah from LeadQ.AI. I'm calling to schedule your product demo. Is now a good time?"
             }]);
         }, 3500);
 
@@ -271,7 +278,7 @@ export default function OutboundVoiceAgent() {
             setConversations(prev => [...prev, {
                 id: 3,
                 speaker: 'ai',
-                text: "Great! Based on your recent inquiry about our AI-powered CRM, I'd love to show you how LeadQ can help automate your—"
+                text: "Great! Based on your recent inquiry about our AI-powered CRM, I'd love to show you how LeadQ.AI can help automate your—"
             }]);
         }, 10500);
 
@@ -377,7 +384,8 @@ export default function OutboundVoiceAgent() {
     };
 
     return (
-        <section id="voice-agent" className="relative z-10 py-16 sm:py-20 md:py-24 px-4">
+        <InViewContext.Provider value={shouldAnimate ?? false}>
+        <section ref={ref} id="voice-agent" className="relative z-10 py-16 sm:py-20 md:py-24 px-4">
             {/* Background effects */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden">
                 <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-leadq-silver/5 rounded-full blur-3xl" />
@@ -386,18 +394,13 @@ export default function OutboundVoiceAgent() {
 
             <div className="max-w-6xl mx-auto relative">
                 {/* Header */}
-                <motion.div
+                <m.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
                     className="text-center mb-12"
                 >
-                    <div className="glass inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium text-leadq-silver border border-leadq-silver/20 mb-6">
-                        <Mic className="w-4 h-4 text-leadq-silver" />
-                        <span className="text-sm text-leadq-silver font-medium">Intelligent Voice AI</span>
-                    </div>
-
                     <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold mb-4">
                         Voice{' '}
                         <span className="bg-gradient-to-r from-leadq-cyan to-leadq-royal-blue bg-clip-text text-transparent">
@@ -406,8 +409,8 @@ export default function OutboundVoiceAgent() {
                     </h2>
 
                     <p className="text-slate-400 max-w-2xl mx-auto text-lg sm:text-xl md:text-2xl mb-8" style={{ textShadow: 'none' }}>
-                        Replace robocalls with intelligent conversations. Our AI handles interruptions naturally,
-                        understands context in real-time, and schedules meetings seamlessly.
+                        Replace robocalls with intelligent conversations. Our AI handles interruptions naturally
+                        and understands context in real-time.
                     </p>
 
                     {/* Control buttons */}
@@ -439,10 +442,10 @@ export default function OutboundVoiceAgent() {
                             </MotionButton>
                         )}
                     </div>
-                </motion.div>
+                </m.div>
 
                 {/* Main demo container */}
-                <motion.div
+                <m.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -476,18 +479,17 @@ export default function OutboundVoiceAgent() {
                         {/* Call info */}
                         <div className="mt-6 text-center">
                             <p className="text-sm text-slate-500">Calling</p>
-                            <p className="text-lg font-medium text-white">John Smith</p>
+                            <p className="text-lg font-medium text-white">Sarah Chen</p>
                             <p className="text-sm text-slate-400">TechCorp Industries</p>
                         </div>
 
                         {/* Feature highlights */}
-                        <div className="mt-6 grid grid-cols-3 gap-1.5 sm:gap-2">
+                        <div className="mt-6 grid grid-cols-2 gap-1.5 sm:gap-2">
                             {[
                                 { icon: Volume2, label: 'Natural Voice', active: stage === 'ai-speaking' || stage === 'ai-responding' },
                                 { icon: Brain, label: 'Context Aware', active: stage === 'ai-thinking' },
-                                { icon: Sparkles, label: 'Smart Scheduling', active: stage === 'scheduling' || stage === 'confirmed' },
                             ].map((feature) => (
-                                <motion.div
+                                <m.div
                                     key={feature.label}
                                     className={`p-3 rounded-lg text-center transition-colors ${feature.active ? 'bg-leadq-silver/20 border border-leadq-silver/30' : 'bg-white/5 border border-white/10'
                                         }`}
@@ -498,7 +500,7 @@ export default function OutboundVoiceAgent() {
                                     <span className={`text-[9px] sm:text-[10px] ${feature.active ? 'text-leadq-silver' : 'text-slate-500'}`}>
                                         {feature.label}
                                     </span>
-                                </motion.div>
+                                </m.div>
                             ))}
                         </div>
                     </div>
@@ -506,8 +508,8 @@ export default function OutboundVoiceAgent() {
                     {/* Right: Conversation transcript */}
                     <div className="glass rounded-2xl p-6 md:p-8 border border-white/10 flex flex-col">
                         <div className="flex items-center justify-between mb-4">
-                            <h3 className="text-xl sm:text-2xl font-medium text-slate-400 uppercase tracking-wider">
-                                Live Transcript
+                            <h3 className="text-xl sm:text-2xl font-display font-medium text-slate-400 uppercase tracking-wider">
+                                Call Transcripts
                             </h3>
                             {isPlaying && stage !== 'ended' && (
                                 <div className="flex items-center gap-2">
@@ -530,7 +532,7 @@ export default function OutboundVoiceAgent() {
 
                             {/* Typing indicator */}
                             {(stage === 'ai-thinking' || stage === 'scheduling') && (
-                                <motion.div
+                                <m.div
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     className="flex justify-start"
@@ -541,7 +543,7 @@ export default function OutboundVoiceAgent() {
                                             <TypingIndicator />
                                         </div>
                                     </div>
-                                </motion.div>
+                                </m.div>
                             )}
 
                             {/* Empty state */}
@@ -557,7 +559,7 @@ export default function OutboundVoiceAgent() {
 
                         {/* Key moments indicator */}
                         {stage === 'user-interrupting' && (
-                            <motion.div
+                            <m.div
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 className="mt-4 p-3 rounded-lg bg-orange-500/10 border border-orange-500/20"
@@ -568,11 +570,11 @@ export default function OutboundVoiceAgent() {
                                         AI instantly stops speaking when interrupted — just like a human
                                     </span>
                                 </div>
-                            </motion.div>
+                            </m.div>
                         )}
 
                         {stage === 'confirmed' && (
-                            <motion.div
+                            <m.div
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 className="mt-4 p-3 rounded-lg bg-green-500/10 border border-green-500/20"
@@ -583,13 +585,13 @@ export default function OutboundVoiceAgent() {
                                         Meeting scheduled and synced to CRM automatically
                                     </span>
                                 </div>
-                            </motion.div>
+                            </m.div>
                         )}
                     </div>
-                </motion.div>
+                </m.div>
 
                 {/* Feature highlights below */}
-                <motion.div
+                <m.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -602,7 +604,7 @@ export default function OutboundVoiceAgent() {
                         { icon: XCircle, label: 'Cancellation Calls', desc: 'Handle changes gracefully' },
                         { icon: PhoneForwarded, label: 'Follow-up Calls', desc: 'Nurture relationships' },
                     ].map((feature, i) => (
-                        <motion.div
+                        <m.div
                             key={feature.label}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
@@ -616,10 +618,11 @@ export default function OutboundVoiceAgent() {
                             </div>
                             <div className="text-sm font-medium text-white">{feature.label}</div>
                             <div className="text-xs text-slate-500">{feature.desc}</div>
-                        </motion.div>
+                        </m.div>
                     ))}
-                </motion.div>
+                </m.div>
             </div>
         </section>
+        </InViewContext.Provider>
     );
 }

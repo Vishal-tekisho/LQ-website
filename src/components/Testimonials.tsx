@@ -1,9 +1,9 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { Star } from 'lucide-react';
 
 const testimonials = [
   {
-    quote: "LeadQ cut our manual data entry by 70%. Our team can finally focus on closing.",
+    quote: "LeadQ.AI cut our manual data entry by 70%. Our team can finally focus on closing.",
     name: "Sarah Chen",
     title: "VP Sales, TechCorp",
     rating: 5,
@@ -45,7 +45,7 @@ export default function Testimonials() {
   //   return (
   //     <section className="relative z-10 py-24 px-4 border-t border-white/10">
   //       <div className="max-w-7xl mx-auto">
-  //         <motion.div
+  //         <m.div
   //           initial={{ opacity: 0, y: 20 }}
   //           whileInView={{ opacity: 1, y: 0 }}
   //           viewport={{ once: true }}
@@ -55,9 +55,9 @@ export default function Testimonials() {
   //           <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">
   //             Loved by Sales Teams Worldwide
   //           </h2>
-  //         </motion.div>
+  //         </m.div>
 
-  //         <motion.div
+  //         <m.div
   //           variants={containerVariants}
   //           initial="hidden"
   //           whileInView="visible"
@@ -65,7 +65,7 @@ export default function Testimonials() {
   //           className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
   //         >
   //           {testimonials.map((testimonial, index) => (
-  //             <motion.div
+  //             <m.div
   //               key={index}
   //               variants={itemVariants}
   //               className="glass rounded-2xl p-8 relative overflow-hidden group hover:glass-strong transition-all"
@@ -97,9 +97,9 @@ export default function Testimonials() {
   //                   </div>
   //                 </div>
   //               </div>
-  //             </motion.div>
+  //             </m.div>
   //           ))}
-  //         </motion.div>
+  //         </m.div>
   //       </div>
   //     </section>
   //   );

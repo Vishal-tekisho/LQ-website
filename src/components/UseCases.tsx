@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { Building2, Rocket, Users, Briefcase, TrendingUp, Zap } from 'lucide-react';
 
 const UseCases = () => {
@@ -100,7 +100,7 @@ const UseCases = () => {
 
       <div className="max-w-7xl mx-auto relative">
         {/* Section Header */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -115,12 +115,12 @@ const UseCases = () => {
           </h2>
 
           <p className="text-lg sm:text-xl md:text-2xl text-slate-400 max-w-3xl mx-auto" style={{ textShadow: 'none' }}>
-            See how LeadQ transforms lead management across industries, from real estate to SaaS sales
+            See how LeadQ.AI transforms lead management across industries, from real estate to SaaS sales
           </p>
-        </motion.div>
+        </m.div>
 
         {/* Use Cases Grid */}
-        <motion.div
+        <m.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -130,7 +130,7 @@ const UseCases = () => {
           {useCases.map((useCase, index) => {
             const Icon = useCase.icon;
             return (
-              <motion.div
+              <m.div
                 key={index}
                 variants={itemVariants}
                 className="group relative"
@@ -171,13 +171,13 @@ const UseCases = () => {
                     ))}
                   </div>
                 </div>
-              </motion.div>
+              </m.div>
             );
           })}
-        </motion.div>
+        </m.div>
 
         {/* Bottom CTA */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -185,17 +185,17 @@ const UseCases = () => {
           className="text-center mt-16"
         >
           <p className="text-slate-400 mb-6">
-            Ready to see how LeadQ works for your industry?
+            Ready to see how LeadQ.AI works for your industry?
           </p>
-          <motion.a
+          <m.a
             href="#contact"
             whileTap={{ scale: 0.95 }}
             className="inline-flex items-center gap-2 bg-gradient-to-r from-leadq-deep-blue to-leadq-royal-blue px-8 py-4 rounded-xl font-semibold text-white shadow-[0_0_20px_rgba(39,81,169,0.5)] hover:shadow-[0_0_30px_rgba(39,81,169,0.7)] hover:scale-105 transition-all duration-300"
           >
             <span>Schedule a Demo</span>
             <Zap size={20} />
-          </motion.a>
-        </motion.div>
+          </m.a>
+        </m.div>
       </div>
     </section>
   );

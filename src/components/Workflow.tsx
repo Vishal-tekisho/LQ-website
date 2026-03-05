@@ -1,12 +1,16 @@
-import { motion } from 'framer-motion';
+import { m, useReducedMotion } from 'framer-motion';
 import { Radio, Search, Mail, Calendar, CheckCircle } from 'lucide-react';
+import { useInViewPause } from '@/lib/useInViewPause';
 
 export default function Workflow() {
+  const { ref, isInView: inView } = useInViewPause();
+  const reducedMotion = useReducedMotion();
+  const isInView = inView && !reducedMotion;
   return (
-    <section id="workflow" className="relative z-10 py-24 px-4 bg-white/[0.05]">
+    <section ref={ref} id="workflow" className="relative z-10 py-24 px-4 bg-white/[0.05]">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-20">
-          <motion.h2
+          <m.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -14,8 +18,8 @@ export default function Workflow() {
             className="text-4xl sm:text-5xl md:text-6xl font-display font-bold mb-6"
           >
             How It Works
-          </motion.h2>
-          <motion.p
+          </m.h2>
+          <m.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -23,14 +27,14 @@ export default function Workflow() {
             className="text-lg sm:text-xl md:text-2xl text-leadq-silver font-medium"
           >
             From Lead to Closed Deal – Zero Clicks.
-          </motion.p>
+          </m.p>
         </div>
 
         <div className="relative max-w-6xl mx-auto">
           {/* Desktop: Horizontal Flow */}
           <div className="hidden lg:grid lg:grid-cols-3 gap-8 items-start">
             {/* Step 1: The Lead */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -43,14 +47,14 @@ export default function Workflow() {
                     <div className="w-20 h-20 rounded-full bg-gradient-to-br from-black to-leadq-silver flex items-center justify-center">
                       <Radio className="text-white" size={36} strokeWidth={2} />
                     </div>
-                    <motion.div
+                    <m.div
                       animate={{
                         scale: [1, 1.3, 1],
                         opacity: [0.8, 0, 0.8],
                       }}
                       transition={{
                         duration: 2,
-                        repeat: Infinity,
+                        repeat: isInView ? Infinity : 0,
                         ease: 'easeOut',
                       }}
                       className="absolute inset-0 rounded-full bg-leadq-silver"
@@ -61,27 +65,27 @@ export default function Workflow() {
                   The Lead
                 </h3>
                 <p className="text-leadq-silver text-base sm:text-lg text-center leading-relaxed">
-                  LeadQ detects a prospect via NFC tap, LinkedIn, or Inbound.
+                  LeadQ.AI detects a prospect via NFC tap, LinkedIn, or Inbound.
                 </p>
                 <div className="flex justify-center mt-6">
-                  <motion.div
+                  <m.div
                     animate={{
                       scale: [1, 1.2, 1],
                     }}
                     transition={{
                       duration: 1.5,
-                      repeat: Infinity,
+                      repeat: isInView ? Infinity : 0,
                       ease: 'easeInOut',
                     }}
                     className="w-3 h-3 rounded-full bg-leadq-silver shadow-[0_0_10px_rgba(192,192,192,0.8)]"
                   />
                 </div>
               </div>
-            </motion.div>
+            </m.div>
 
             {/* Connector Line 1 */}
             <div className="absolute left-[calc(33.333%-3rem)] top-28 w-[6rem] h-0.5 pointer-events-none z-0">
-              <motion.div
+              <m.div
                 initial={{ scaleX: 0 }}
                 whileInView={{ scaleX: 1 }}
                 viewport={{ once: true }}
@@ -92,11 +96,11 @@ export default function Workflow() {
                     'repeating-linear-gradient(90deg, #C0C0C0 0, #C0C0C0 8px, transparent 8px, transparent 16px)',
                 }}
               />
-              <motion.div
+              <m.div
                 animate={{ x: [0, 96, 96], opacity: [0, 1, 0] }}
                 transition={{
                   duration: 2,
-                  repeat: Infinity,
+                  repeat: isInView ? Infinity : 0,
                   ease: 'easeInOut',
                   times: [0, 0.5, 1],
                 }}
@@ -105,7 +109,7 @@ export default function Workflow() {
             </div>
 
             {/* Step 2: The Swarm */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: -50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -120,17 +124,17 @@ export default function Workflow() {
                 <div className="relative w-full aspect-square max-w-[280px] mx-auto mb-4">
                   {/* Central Hub */}
                   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
-                    <motion.div
+                    <m.div
                       animate={{ rotate: 360 }}
                       transition={{
                         duration: 20,
-                        repeat: Infinity,
+                        repeat: isInView ? Infinity : 0,
                         ease: 'linear',
                       }}
                       className="w-16 h-16 rounded-full bg-gradient-to-br from-black to-leadq-silver shadow-[0_0_20px_rgba(192,192,192,0.6)] flex items-center justify-center"
                     >
                       <div className="w-12 h-12 rounded-full bg-leadq-bg/90 backdrop-blur-sm" />
-                    </motion.div>
+                    </m.div>
                   </div>
 
                   {/* Orbiting Agents */}
@@ -147,7 +151,7 @@ export default function Workflow() {
                     return (
                       <div key={index}>
                         {/* Connection Line */}
-                        <motion.div
+                        <m.div
                           initial={{ pathLength: 0, opacity: 0 }}
                           whileInView={{ pathLength: 1, opacity: 0.4 }}
                           viewport={{ once: true }}
@@ -170,7 +174,7 @@ export default function Workflow() {
                               height: '100%',
                             }}
                           >
-                            <motion.line
+                            <m.line
                               x1="0"
                               y1="0"
                               x2={x}
@@ -184,10 +188,10 @@ export default function Workflow() {
                               transition={{ duration: 0.8, delay: delay + 0.4 }}
                             />
                           </svg>
-                        </motion.div>
+                        </m.div>
 
                         {/* Agent Node */}
-                        <motion.div
+                        <m.div
                           initial={{ scale: 0, opacity: 0 }}
                           whileInView={{ scale: 1, opacity: 1 }}
                           viewport={{ once: true }}
@@ -197,7 +201,7 @@ export default function Workflow() {
                             transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`,
                           }}
                         >
-                          <motion.div
+                          <m.div
                             animate={{
                               scale: [1, 1.1, 1],
                               boxShadow: [
@@ -208,7 +212,7 @@ export default function Workflow() {
                             }}
                             transition={{
                               duration: 2,
-                              repeat: Infinity,
+                              repeat: isInView ? Infinity : 0,
                               delay: delay + 1,
                             }}
                             className={isSilver
@@ -221,8 +225,8 @@ export default function Workflow() {
                               size={20}
                               strokeWidth={2}
                             />
-                          </motion.div>
-                        </motion.div>
+                          </m.div>
+                        </m.div>
                       </div>
                     );
                   })}
@@ -233,11 +237,11 @@ export default function Workflow() {
                   automatically.
                 </p>
               </div>
-            </motion.div>
+            </m.div>
 
             {/* Connector Line 2 */}
             <div className="absolute right-[calc(33.333%-3rem)] top-28 w-[6rem] h-0.5 pointer-events-none z-0">
-              <motion.div
+              <m.div
                 initial={{ scaleX: 0 }}
                 whileInView={{ scaleX: 1 }}
                 viewport={{ once: true }}
@@ -248,11 +252,11 @@ export default function Workflow() {
                     'repeating-linear-gradient(90deg, #C0C0C0 0, #C0C0C0 8px, transparent 8px, transparent 16px)',
                 }}
               />
-              <motion.div
+              <m.div
                 animate={{ x: [0, 96, 96], opacity: [0, 1, 0] }}
                 transition={{
                   duration: 2,
-                  repeat: Infinity,
+                  repeat: isInView ? Infinity : 0,
                   ease: 'easeInOut',
                   times: [0, 0.5, 1],
                   delay: 0.5,
@@ -262,7 +266,7 @@ export default function Workflow() {
             </div>
 
             {/* Step 3: The Result */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -271,11 +275,11 @@ export default function Workflow() {
             >
               <div className="glass-strong rounded-2xl p-8 hover:scale-105 transition-transform">
                 <div className="flex justify-center mb-6">
-                  <motion.div
+                  <m.div
                     // animate={{ rotate: [0, 360] }}
                     transition={{
                       duration: 3,
-                      repeat: Infinity,
+                      repeat: isInView ? Infinity : 0,
                       ease: 'linear',
                     }}
                     className="w-20 h-20 rounded-full bg-gradient-to-br from-black to-leadq-silver flex items-center justify-center shadow-[0_0_20px_rgba(192,192,192,0.6)]"
@@ -285,7 +289,7 @@ export default function Workflow() {
                       size={36}
                       strokeWidth={2}
                     />
-                  </motion.div>
+                  </m.div>
                 </div>
                 <h3 className="text-2xl sm:text-3xl font-display font-bold mb-4 text-center">
                   The Result
@@ -296,7 +300,7 @@ export default function Workflow() {
 
                 {/* Deal Card Animation */}
                 <div className="relative h-24 overflow-hidden rounded-xl bg-white/5">
-                  <motion.div
+                  <m.div
                     initial={{ x: -300, opacity: 0 }}
                     whileInView={{ x: 0, opacity: 1 }}
                     viewport={{ once: true }}
@@ -306,16 +310,16 @@ export default function Workflow() {
                     <span className="text-sm font-medium text-leadq-silver">
                       Deal Added to Pipeline
                     </span>
-                  </motion.div>
+                  </m.div>
                 </div>
               </div>
-            </motion.div>
+            </m.div>
           </div>
 
           {/* Mobile: Vertical Flow */}
           <div className="lg:hidden space-y-8">
             {/* Step 1 */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -328,14 +332,14 @@ export default function Workflow() {
                     <div className="w-16 h-16 rounded-full bg-gradient-to-br from-black to-leadq-silver flex items-center justify-center">
                       <Radio className="text-white" size={28} strokeWidth={2} />
                     </div>
-                    <motion.div
+                    <m.div
                       animate={{
                         scale: [1, 1.3, 1],
                         opacity: [0.8, 0, 0.8],
                       }}
                       transition={{
                         duration: 2,
-                        repeat: Infinity,
+                        repeat: isInView ? Infinity : 0,
                         ease: 'easeOut',
                       }}
                       className="absolute inset-0 rounded-full bg-leadq-silver"
@@ -346,7 +350,7 @@ export default function Workflow() {
                       The Lead
                     </h3>
                     <p className="text-leadq-silver text-base sm:text-lg">
-                      LeadQ detects a prospect via NFC tap, LinkedIn, or
+                      LeadQ.AI detects a prospect via NFC tap, LinkedIn, or
                       Inbound.
                     </p>
                   </div>
@@ -355,7 +359,7 @@ export default function Workflow() {
 
               {/* Vertical Connector */}
               <div className="flex justify-center py-4">
-                <motion.div
+                <m.div
                   initial={{ scaleY: 0 }}
                   whileInView={{ scaleY: 1 }}
                   viewport={{ once: true }}
@@ -363,10 +367,10 @@ export default function Workflow() {
                   className="w-0.5 h-12 bg-gradient-to-b from-leadq-silver to-leadq-silver origin-top"
                 />
               </div>
-            </motion.div>
+            </m.div>
 
             {/* Step 2 */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -427,7 +431,7 @@ export default function Workflow() {
 
               {/* Vertical Connector */}
               <div className="flex justify-center py-4">
-                <motion.div
+                <m.div
                   initial={{ scaleY: 0 }}
                   whileInView={{ scaleY: 1 }}
                   viewport={{ once: true }}
@@ -435,10 +439,10 @@ export default function Workflow() {
                   className="w-0.5 h-12 bg-gradient-to-b from-leadq-silver to-leadq-silver origin-top"
                 />
               </div>
-            </motion.div>
+            </m.div>
 
             {/* Step 3 */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -471,7 +475,7 @@ export default function Workflow() {
                   </span>
                 </div>
               </div>
-            </motion.div>
+            </m.div>
           </div>
         </div>
       </div>

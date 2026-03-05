@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { m, AnimatePresence } from "framer-motion"
 import { LucideIcon, Sparkles, Briefcase, ScanLine, UserPlus, LayoutDashboard, Calendar, PenLine, Bot, DollarSign, HelpCircle, Mail, Menu as MenuIcon, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Menu, MenuItem, MenuLink, MenuSection } from "./navbar-menu"
@@ -120,7 +120,7 @@ export function NavBar({ items, className }: NavBarProps) {
 
   // Lamp effect component
   const LampEffect = () => (
-    <motion.div
+    <m.div
       layoutId="navbar-lamp"
       className="absolute inset-0 w-full bg-leadq-royal-blue/5 rounded-full -z-10"
       initial={false}
@@ -135,7 +135,7 @@ export function NavBar({ items, className }: NavBarProps) {
         <div className="absolute w-8 h-6 bg-leadq-royal-blue/30 rounded-full blur-md -top-1" />
         <div className="absolute w-4 h-4 bg-leadq-royal-blue/30 rounded-full blur-sm top-0 left-2" />
       </div>
-    </motion.div>
+    </m.div>
   )
 
   // All navigation items combined for mobile
@@ -167,7 +167,7 @@ export function NavBar({ items, className }: NavBarProps) {
 
       {/* Login & Sign Up Buttons - Desktop */}
       <div className="hidden md:flex items-center gap-3 fixed top-4 right-4 z-[101]">
-        <button className="px-5 py-2.5 text-sm text-white underline underline-offset-4 hover:text-leadq-silver transition-colors rounded-lg focus:outline-none focus:ring-2 focus:ring-leadq-silver focus:ring-offset-2 focus:ring-offset-black whitespace-nowrap">
+        <button className="px-6 py-2.5 text-sm rounded-lg font-semibold bg-gradient-to-r from-leadq-deep-blue to-leadq-royal-blue text-white shadow-[0_0_20px_rgba(39,81,169,0.5)] hover:shadow-[0_0_30px_rgba(39,81,169,0.7)] hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-leadq-royal-blue focus:ring-offset-2 focus:ring-offset-black whitespace-nowrap">
           Login
         </button>
 
@@ -201,7 +201,7 @@ export function NavBar({ items, className }: NavBarProps) {
       {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {mobileMenuOpen && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
@@ -238,7 +238,7 @@ export function NavBar({ items, className }: NavBarProps) {
 
               {/* Mobile Login & Sign Up */}
               <div className="pt-6 mt-6 border-t border-white/10 space-y-3">
-                <button className="w-full px-4 py-4 text-white hover:text-leadq-silver hover:bg-white/5 rounded-xl transition-colors text-base font-medium">
+                <button className="w-full px-4 py-4 rounded-xl font-semibold bg-gradient-to-r from-leadq-deep-blue to-leadq-royal-blue text-white shadow-[0_0_20px_rgba(39,81,169,0.5)] hover:shadow-[0_0_30px_rgba(39,81,169,0.7)] hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-leadq-royal-blue focus:ring-offset-2 focus:ring-offset-black text-base">
                   Login
                 </button>
                 <button className="w-full px-4 py-4 rounded-xl font-semibold bg-gradient-to-r from-leadq-deep-blue to-leadq-royal-blue text-white shadow-[0_0_20px_rgba(39,81,169,0.5)] hover:shadow-[0_0_30px_rgba(39,81,169,0.7)] hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-leadq-royal-blue focus:ring-offset-2 focus:ring-offset-black text-base">
@@ -246,7 +246,7 @@ export function NavBar({ items, className }: NavBarProps) {
                 </button>
               </div>
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
 

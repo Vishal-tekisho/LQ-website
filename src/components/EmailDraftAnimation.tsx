@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { MotionButton } from './ui/motion-button';
+import { useInViewPause, InViewContext, useIsInView } from '@/lib/useInViewPause';
 import {
   Play,
   Pause,
@@ -42,8 +43,8 @@ interface EmailSection {
 
 // ==================== MOCK DATA ====================
 const MOCK_CONTACT = {
-  name: 'Alex Thompson',
-  email: 'alex.t@techcorp.io',
+  name: 'Sarah Chen',
+  email: 'sarah.chen@techflow.io',
   company: 'TechCorp Industries',
   meetingDate: 'Jan 28, 2026',
   meetingType: 'Product Demo',
@@ -53,14 +54,14 @@ const MOCK_EMAIL_SECTIONS: EmailSection[] = [
   {
     id: 'greeting',
     title: 'Personalized Greeting',
-    content: 'Dear Alex,',
+    content: 'Dear Sarah,',
     icon: <UserCircle className="w-4 h-4" />,
   },
   {
-    id: 'about',
-    title: 'Company Introduction',
-    content: 'Following our insightful discussion, I wanted to share how our solutions align with your strategic goals...',
-    icon: <Briefcase className="w-4 h-4" />,
+    id: 'next_actions',
+    title: 'Next Actions',
+    content: 'From our discussion: schedule technical review by Feb 3, share integration specs, and confirm go-live timeline with your team...',
+    icon: <CheckCircle2 className="w-4 h-4" />,
   },
   {
     id: 'summary',
@@ -129,10 +130,12 @@ const slideInRight: Variants = {
 // ==================== SUB-COMPONENTS ====================
 
 // Typing indicator dots
-const TypingIndicator = () => (
+const TypingIndicator = () => {
+  const isInView = useIsInView();
+  return (
   <div className="flex items-center gap-1 px-3 py-2">
     {[0, 1, 2].map((i) => (
-      <motion.div
+      <m.div
         key={i}
         className="w-2 h-2 rounded-full bg-slate-400"
         animate={{
@@ -141,18 +144,21 @@ const TypingIndicator = () => (
         }}
         transition={{
           duration: 0.6,
-          repeat: Infinity,
+          repeat: isInView ? Infinity : 0,
           delay: i * 0.15,
           ease: 'easeInOut',
         }}
       />
     ))}
   </div>
-);
+  );
+};
 
 // AI sparkle animation
-const AISparkle = () => (
-  <motion.div
+const AISparkle = () => {
+  const isInView = useIsInView();
+  return (
+  <m.div
     className="absolute -top-1 -right-1"
     animate={{
       rotate: [0, 180, 360],
@@ -160,13 +166,14 @@ const AISparkle = () => (
     }}
     transition={{
       duration: 3,
-      repeat: Infinity,
+      repeat: isInView ? Infinity : 0,
       ease: 'linear',
     }}
   >
     <Sparkles className="w-4 h-4 text-slate-400" />
-  </motion.div>
-);
+  </m.div>
+  );
+};
 
 // Pulsing status dot
 const PulsingDot = ({ color = 'bg-green-500' }: { color?: string }) => (
@@ -186,13 +193,14 @@ const StageIndicator = ({
   currentStage: WorkflowStage;
   stages: { id: WorkflowStage; label: string; icon: React.ReactNode }[];
 }) => {
+  const isInView = useIsInView();
   const stageIndex = stages.findIndex((s) => s.id === stage);
   const currentIndex = stages.findIndex((s) => s.id === currentStage);
   const isActive = stage === currentStage;
   const isComplete = stageIndex < currentIndex || currentStage === 'complete';
 
   return (
-    <motion.div
+    <m.div
       className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${isActive
         ? 'bg-leadq-royal-blue/20 text-leadq-cyan border border-leadq-royal-blue/30'
         : isComplete
@@ -200,12 +208,12 @@ const StageIndicator = ({
           : 'bg-white/5 text-slate-500 border border-white/10'
         }`}
       animate={isActive ? { scale: [1, 1.02, 1] } : {}}
-      transition={{ duration: 1.5, repeat: Infinity }}
+      transition={{ duration: 1.5, repeat: isInView ? Infinity : 0 }}
     >
       {stages.find((s) => s.id === stage)?.icon}
       <span className="hidden sm:inline">{stages.find((s) => s.id === stage)?.label}</span>
       {isComplete && <CheckCircle2 className="w-3 h-3 ml-1" />}
-    </motion.div>
+    </m.div>
   );
 };
 
@@ -246,7 +254,7 @@ const InclusionToggle = ({
   icon: React.ReactNode;
   delay?: number;
 }) => (
-  <motion.div
+  <m.div
     initial={{ opacity: 0, x: 20 }}
     animate={{ opacity: 1, x: 0 }}
     transition={{ delay, duration: 0.3 }}
@@ -263,13 +271,13 @@ const InclusionToggle = ({
       className={`w-8 h-4 rounded-full relative transition-colors ${enabled ? 'bg-slate-400' : 'bg-slate-600'
         }`}
     >
-      <motion.div
-        className="absolute top-0.5 w-3 h-3 rounded-full bg-white shadow"
-        animate={{ left: enabled ? '16px' : '2px' }}
+      <m.div
+        className="absolute top-0.5 left-0.5 w-3 h-3 rounded-full bg-white shadow"
+        animate={{ x: enabled ? 14 : 0 }}
         transition={{ type: 'spring', stiffness: 500, damping: 30 }}
       />
     </div>
-  </motion.div>
+  </m.div>
 );
 
 // Attachment card
@@ -284,7 +292,7 @@ const AttachmentCard = ({
   size: string;
   delay?: number;
 }) => (
-  <motion.div
+  <m.div
     initial={{ opacity: 0, scale: 0.9 }}
     animate={{ opacity: 1, scale: 1 }}
     transition={{ delay, duration: 0.3 }}
@@ -301,13 +309,16 @@ const AttachmentCard = ({
       <div className="text-xs text-white truncate">{name}</div>
       <div className="text-[10px] text-slate-500">{size}</div>
     </div>
-  </motion.div>
+  </m.div>
 );
 
 // ==================== MAIN COMPONENT ====================
 export default function EmailDraftAnimation() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentStage, setCurrentStage] = useState<WorkflowStage>('idle');
+  const { ref, isInView } = useInViewPause();
+  const reducedMotion = useReducedMotion();
+  const shouldAnimate = isInView && !reducedMotion;
   const [visibleSections, setVisibleSections] = useState<string[]>([]);
   const [emailSubject, setEmailSubject] = useState('');
   const [showAttachments, setShowAttachments] = useState(false);
@@ -398,7 +409,8 @@ export default function EmailDraftAnimation() {
   };
 
   return (
-    <section className="py-16 sm:py-20 px-4 relative overflow-hidden">
+    <InViewContext.Provider value={shouldAnimate ?? false}>
+    <section ref={ref} className="py-16 sm:py-20 px-4 relative overflow-hidden">
       {/* Background glow */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-slate-400/10 rounded-full blur-[120px]" />
@@ -407,17 +419,13 @@ export default function EmailDraftAnimation() {
 
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Header */}
-        <motion.div
+        <m.div
           className="text-center mb-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <div className="glass inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium text-leadq-silver border border-leadq-silver/20 mb-6">
-            <Mail className="w-4 h-4 text-leadq-silver" />
-            <span className="text-sm text-leadq-silver font-medium">AI Email Assistant</span>
-          </div>
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold text-white mb-4">
             Intelligent Email{' '}
             <span className="bg-gradient-to-r from-leadq-cyan to-leadq-royal-blue bg-clip-text text-transparent">
@@ -428,10 +436,10 @@ export default function EmailDraftAnimation() {
             Watch how AI transforms your meeting notes into personalized, professional emails
             ready to send in seconds.
           </p>
-        </motion.div>
+        </m.div>
 
         {/* Controls Bar */}
-        <motion.div
+        <m.div
           className="flex flex-wrap items-center justify-center gap-3 mb-8"
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -443,7 +451,7 @@ export default function EmailDraftAnimation() {
             onClick={handlePlayPause}
             variant={isPlaying ? 'glass-secondary' : 'gradient-blue'}
             size="compact-lg"
-            className="flex items-center gap-2"
+            className={`flex items-center gap-2 ${!isPlaying && currentStage !== 'complete' ? 'animate-btn-pulse' : ''}`}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
@@ -476,10 +484,10 @@ export default function EmailDraftAnimation() {
               />
             ))}
           </div>
-        </motion.div>
+        </m.div>
 
         {/* Main Animation Container */}
-        <motion.div
+        <m.div
           className="relative rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.07] to-white/[0.03] backdrop-blur-xl overflow-hidden"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -504,14 +512,14 @@ export default function EmailDraftAnimation() {
                 </div>
               )}
               {currentStage === 'complete' && (
-                <motion.div
+                <m.div
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   className="flex items-center gap-1.5 text-xs text-green-400"
                 >
                   <CheckCircle2 className="w-3.5 h-3.5" />
                   <span>Sent Successfully</span>
-                </motion.div>
+                </m.div>
               )}
             </div>
           </div>
@@ -522,27 +530,27 @@ export default function EmailDraftAnimation() {
             <div className="p-4 md:p-6 border-b lg:border-b-0 lg:border-r border-white/10">
               <AnimatePresence>
                 {currentStage === 'idle' ? (
-                  <motion.div
+                  <m.div
                     key="idle"
                     className="h-full flex flex-col items-center justify-center text-center"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                   >
-                    <motion.div
+                    <m.div
                       className="w-20 h-20 rounded-2xl bg-gradient-to-br from-slate-400/20 to-slate-400/20 border border-white/10 flex items-center justify-center mb-4"
                       animate={{ rotate: [0, 5, -5, 0] }}
-                      transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+                      transition={{ duration: 4, repeat: isInView ? Infinity : 0, ease: 'easeInOut' }}
                     >
                       <Mail className="w-10 h-10 text-slate-400" />
-                    </motion.div>
+                    </m.div>
                     <h3 className="text-xl sm:text-2xl font-medium text-white mb-2">Ready to Compose</h3>
                     <p className="text-base sm:text-lg text-slate-500 max-w-xs">
                       Click "Start Demo" to watch AI generate a personalized email
                     </p>
-                  </motion.div>
+                  </m.div>
                 ) : (
-                  <motion.div
+                  <m.div
                     key="active"
                     className="space-y-4"
                     variants={containerVariants}
@@ -550,12 +558,12 @@ export default function EmailDraftAnimation() {
                     animate="visible"
                   >
                     {/* Search/Contact Row */}
-                    <motion.div variants={itemVariants} className="flex gap-3">
+                    <m.div variants={itemVariants} className="flex gap-3">
                       <div className="flex-1 flex items-center gap-2 p-2.5 bg-white/5 rounded-lg border border-white/10">
                         <Search className="w-4 h-4 text-slate-500" />
                         <AnimatePresence mode="wait">
                           {currentStage === 'contact' && visibleSections.length === 0 ? (
-                            <motion.span
+                            <m.span
                               key="searching"
                               initial={{ opacity: 0 }}
                               animate={{ opacity: 1 }}
@@ -563,23 +571,23 @@ export default function EmailDraftAnimation() {
                               className="text-sm text-slate-500"
                             >
                               Searching latest contact...
-                            </motion.span>
+                            </m.span>
                           ) : (
-                            <motion.span
+                            <m.span
                               key="found"
                               initial={{ opacity: 0 }}
                               animate={{ opacity: 1 }}
                               className="text-sm text-white"
                             >
                               {MOCK_CONTACT.name}
-                            </motion.span>
+                            </m.span>
                           )}
                         </AnimatePresence>
                       </div>
-                    </motion.div>
+                    </m.div>
 
                     {/* Email Fields */}
-                    <motion.div variants={itemVariants} className="grid gap-3">
+                    <m.div variants={itemVariants} className="grid gap-3">
                       <EmailField
                         label="To"
                         value={MOCK_CONTACT.email}
@@ -592,10 +600,10 @@ export default function EmailDraftAnimation() {
                         isLoading={!emailSubject}
                         icon={<MessageSquare className="w-4 h-4" />}
                       />
-                    </motion.div>
+                    </m.div>
 
                     {/* Email Body */}
-                    <motion.div
+                    <m.div
                       variants={itemVariants}
                       className="p-3 sm:p-4 bg-white/5 rounded-xl border border-white/10 min-h-[200px] sm:min-h-[240px] md:min-h-[280px]"
                     >
@@ -616,7 +624,7 @@ export default function EmailDraftAnimation() {
                           {MOCK_EMAIL_SECTIONS.filter((s) =>
                             visibleSections.includes(s.id)
                           ).map((section, index) => (
-                            <motion.div
+                            <m.div
                               key={section.id}
                               variants={slideInLeft}
                               initial="hidden"
@@ -637,13 +645,13 @@ export default function EmailDraftAnimation() {
                                 {index === visibleSections.length - 1 &&
                                   currentStage === 'generation' && <AISparkle />}
                               </div>
-                            </motion.div>
+                            </m.div>
                           ))}
                         </AnimatePresence>
 
                         {currentStage === 'generation' &&
                           visibleSections.length < MOCK_EMAIL_SECTIONS.length && (
-                            <motion.div
+                            <m.div
                               initial={{ opacity: 0 }}
                               animate={{ opacity: 1 }}
                               className="flex items-center gap-2 p-3 bg-slate-400/10 rounded-lg border border-slate-400/20"
@@ -653,15 +661,15 @@ export default function EmailDraftAnimation() {
                                 Generating next section
                               </span>
                               <TypingIndicator />
-                            </motion.div>
+                            </m.div>
                           )}
                       </div>
-                    </motion.div>
+                    </m.div>
 
                     {/* Send Button */}
                     <AnimatePresence>
                       {(currentStage === 'delivery' || currentStage === 'complete') && (
-                        <motion.div
+                        <m.div
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
                           className="relative"
@@ -674,7 +682,7 @@ export default function EmailDraftAnimation() {
                           >
                             {/* Progress bar */}
                             {currentStage === 'delivery' && (
-                              <motion.div
+                              <m.div
                                 className="absolute inset-0 bg-white/20"
                                 initial={{ width: 0 }}
                                 animate={{ width: `${sendProgress}%` }}
@@ -694,10 +702,10 @@ export default function EmailDraftAnimation() {
                               )}
                             </div>
                           </div>
-                        </motion.div>
+                        </m.div>
                       )}
                     </AnimatePresence>
-                  </motion.div>
+                  </m.div>
                 )}
               </AnimatePresence>
             </div>
@@ -706,7 +714,7 @@ export default function EmailDraftAnimation() {
             <div className="p-4 md:p-6">
               <AnimatePresence mode="wait">
                 {currentStage === 'idle' ? (
-                  <motion.div
+                  <m.div
                     key="idle-right"
                     className="h-full flex flex-col items-center justify-center"
                     initial={{ opacity: 0 }}
@@ -717,9 +725,9 @@ export default function EmailDraftAnimation() {
                       <Clock className="w-8 h-8 text-slate-600 mx-auto mb-2" />
                       <p className="text-xs text-slate-600">Controls will appear here</p>
                     </div>
-                  </motion.div>
+                  </m.div>
                 ) : (
-                  <motion.div
+                  <m.div
                     key="active-right"
                     className="space-y-6"
                     variants={containerVariants}
@@ -727,7 +735,7 @@ export default function EmailDraftAnimation() {
                     animate="visible"
                   >
                     {/* Contact Card */}
-                    <motion.div variants={slideInRight}>
+                    <m.div variants={slideInRight}>
                       <div className="text-xs text-slate-500 uppercase tracking-wider mb-2">
                         Contact Details
                       </div>
@@ -752,10 +760,10 @@ export default function EmailDraftAnimation() {
                           <span>{MOCK_CONTACT.meetingDate}</span>
                         </div>
                       </div>
-                    </motion.div>
+                    </m.div>
 
                     {/* Inclusions */}
-                    <motion.div variants={slideInRight}>
+                    <m.div variants={slideInRight}>
                       <div className="text-xs text-slate-500 uppercase tracking-wider mb-2">
                         Include in Email
                       </div>
@@ -767,24 +775,18 @@ export default function EmailDraftAnimation() {
                           delay={0}
                         />
                         <InclusionToggle
-                          label="Company Profile"
-                          enabled={visibleSections.includes('about')}
-                          icon={<Building2 className="w-4 h-4" />}
+                          label="Next Actions"
+                          enabled={visibleSections.includes('next_actions')}
+                          icon={<CheckCircle2 className="w-4 h-4" />}
                           delay={0.1}
                         />
-                        <InclusionToggle
-                          label="Collaboration Ideas"
-                          enabled={visibleSections.includes('proposal')}
-                          icon={<Target className="w-4 h-4" />}
-                          delay={0.2}
-                        />
                       </div>
-                    </motion.div>
+                    </m.div>
 
                     {/* Attachments */}
                     <AnimatePresence>
                       {showAttachments && (
-                        <motion.div
+                        <m.div
                           initial={{ opacity: 0, height: 0 }}
                           animate={{ opacity: 1, height: 'auto' }}
                           exit={{ opacity: 0, height: 0 }}
@@ -798,7 +800,7 @@ export default function EmailDraftAnimation() {
                               <AttachmentCard key={file.name} {...file} delay={i * 0.15} />
                             ))}
                           </div>
-                          <motion.div
+                          <m.div
                             className="mt-2 p-3 border-2 border-dashed border-white/10 rounded-lg text-center"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
@@ -808,13 +810,13 @@ export default function EmailDraftAnimation() {
                             <span className="text-[10px] text-slate-600">
                               Drag & drop files here
                             </span>
-                          </motion.div>
-                        </motion.div>
+                          </m.div>
+                        </m.div>
                       )}
                     </AnimatePresence>
 
                     {/* AI Status */}
-                    <motion.div
+                    <m.div
                       variants={slideInRight}
                       className="p-3 rounded-xl bg-gradient-to-r from-slate-400/10 to-slate-400/10 border border-slate-400/20"
                     >
@@ -842,18 +844,18 @@ export default function EmailDraftAnimation() {
                           <span className="text-slate-400">Templates</span>
                         </div>
                       </div>
-                    </motion.div>
-                  </motion.div>
+                    </m.div>
+                  </m.div>
                 )}
               </AnimatePresence>
             </div>
           </div>
 
 
-        </motion.div>
+        </m.div>
 
         {/* Feature Highlights */}
-        <motion.div
+        <m.div
           className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -866,7 +868,7 @@ export default function EmailDraftAnimation() {
             { icon: <Building2 className="w-5 h-5" />, label: 'Research-Backed', desc: 'Company intelligence' },
             { icon: <Send className="w-5 h-5" />, label: 'One-Click Send', desc: 'Instant delivery' },
           ].map((feature, i) => (
-            <motion.div
+            <m.div
               key={feature.label}
               className="p-4 rounded-xl bg-white/5 border border-white/10 text-center"
               initial={{ opacity: 0, y: 20 }}
@@ -880,10 +882,11 @@ export default function EmailDraftAnimation() {
               </div>
               <div className="text-sm font-medium text-white">{feature.label}</div>
               <div className="text-xs text-slate-500">{feature.desc}</div>
-            </motion.div>
+            </m.div>
           ))}
-        </motion.div>
+        </m.div>
       </div>
     </section>
+    </InViewContext.Provider>
   );
 }
