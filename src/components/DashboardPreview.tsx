@@ -22,27 +22,27 @@ const navItems: { label: SidebarView; icon: ElementType }[] = [
 
 /* ── Dummy data ─────────────────────────────────────────── */
 const contacts = [
-  { name: 'Priya Sharma', company: 'Infosys Ltd', email: 'priya.s@infosys.com', status: 'Hot', last: '2 hrs ago' },
-  { name: 'Rohan Mehta', company: 'Wipro Tech', email: 'rohan.m@wipro.com', status: 'Warm', last: '5 hrs ago' },
-  { name: 'Anita Joshi', company: 'TCS Digital', email: 'anita.j@tcs.com', status: 'Cold', last: '1 day ago' },
-  { name: 'Siddharth Rao', company: 'HCL Systems', email: 's.rao@hcl.com', status: 'Hot', last: '3 hrs ago' },
-  { name: 'Kavya Nair', company: 'Zomato Corp', email: 'k.nair@zomato.com', status: 'Warm', last: '2 days ago' },
+  { name: 'Maya Voss', company: 'NovaSpark Inc', email: 'm.voss@novaspark.io', status: 'Hot', last: '2 hrs ago' },
+  { name: 'Tyler Reeves', company: 'BlueOrbit Co', email: 't.reeves@blueorbit.co', status: 'Warm', last: '5 hrs ago' },
+  { name: 'Sara Lindt', company: 'Quantex Labs', email: 's.lindt@quantexlabs.io', status: 'Cold', last: '1 day ago' },
+  { name: 'Jordan Blake', company: 'Celeron AI', email: 'j.blake@celeronai.io', status: 'Hot', last: '3 hrs ago' },
+  { name: 'Nia Weston', company: 'Orion Ventures', email: 'n.weston@orionvc.io', status: 'Warm', last: '2 days ago' },
 ];
 
 const meetings = [
-  { company: 'Infosys Ltd', time: 'Today, 3:00 PM', type: 'Product Demo', status: 'Confirmed' },
-  { company: 'Wipro Tech', time: 'Today, 5:30 PM', type: 'Follow-up Call', status: 'Confirmed' },
-  { company: 'Salesforce India', time: 'Mar 6, 10:00 AM', type: 'Discovery Call', status: 'Pending' },
-  { company: 'Razorpay', time: 'Mar 6, 2:00 PM', type: 'Product Demo', status: 'Confirmed' },
-  { company: "BYJU'S", time: 'Mar 7, 11:00 AM', type: 'Closing Call', status: 'Pending' },
+  { company: 'NovaSpark Inc', time: 'Today, 3:00 PM', type: 'Product Demo', status: 'Confirmed' },
+  { company: 'BlueOrbit Co', time: 'Today, 5:30 PM', type: 'Follow-up Call', status: 'Confirmed' },
+  { company: 'Quantex Labs', time: 'Mar 6, 10:00 AM', type: 'Discovery Call', status: 'Pending' },
+  { company: 'Helion Corp', time: 'Mar 6, 2:00 PM', type: 'Product Demo', status: 'Confirmed' },
+  { company: 'Archon Systems', time: 'Mar 7, 11:00 AM', type: 'Closing Call', status: 'Pending' },
 ];
 
 const emails = [
-  { recipient: 'Priya Sharma', subject: 'Follow-up: LeadQ.ai Demo', sent: '2 hrs ago', opened: true },
-  { recipient: 'Rohan Mehta', subject: 'Your AI-powered pipeline is ready', sent: '4 hrs ago', opened: false },
-  { recipient: 'Anita Joshi', subject: 'Quick question about your goals', sent: '6 hrs ago', opened: true },
-  { recipient: 'Siddharth Rao', subject: 'Case study: 3x leads in 30 days', sent: 'Yesterday', opened: true },
-  { recipient: 'Kavya Nair', subject: 'Personalised outreach — LeadQ.ai', sent: 'Yesterday', opened: false },
+  { recipient: 'Maya Voss', subject: 'Follow-up: LeadQ.ai Demo', sent: '2 hrs ago', opened: true },
+  { recipient: 'Tyler Reeves', subject: 'Your AI-powered pipeline is ready', sent: '4 hrs ago', opened: false },
+  { recipient: 'Sara Lindt', subject: 'Quick question about your goals', sent: '6 hrs ago', opened: true },
+  { recipient: 'Jordan Blake', subject: 'Case study: 3x leads in 30 days', sent: 'Yesterday', opened: true },
+  { recipient: 'Nia Weston', subject: 'Personalised outreach — LeadQ.ai', sent: 'Yesterday', opened: false },
 ];
 
 const voiceAgents = [
@@ -53,11 +53,11 @@ const voiceAgents = [
 ];
 
 const leads = [
-  { name: 'Priya Sharma', company: 'Infosys Ltd', stage: 'Proposal', score: 92, agent: 'Lead Qualifier' },
-  { name: 'Rohan Mehta', company: 'Wipro Tech', stage: 'Negotiation', score: 78, agent: 'Email Composer' },
-  { name: 'Siddharth Rao', company: 'HCL Systems', stage: 'Discovery', score: 65, agent: 'Lead Qualifier' },
-  { name: 'Meera Kapoor', company: 'Paytm', stage: 'Closed Won', score: 95, agent: 'Meeting Scheduler' },
-  { name: 'Arjun Singh', company: 'Flipkart', stage: 'Outreach', score: 54, agent: 'Data Enricher' },
+  { name: 'Maya Voss', company: 'NovaSpark Inc', stage: 'Proposal', score: 92, agent: 'Lead Qualifier' },
+  { name: 'Tyler Reeves', company: 'BlueOrbit Co', stage: 'Negotiation', score: 78, agent: 'Email Composer' },
+  { name: 'Jordan Blake', company: 'Celeron AI', stage: 'Discovery', score: 65, agent: 'Lead Qualifier' },
+  { name: 'Dana Cross', company: 'Driftwave IO', stage: 'Closed Won', score: 95, agent: 'Meeting Scheduler' },
+  { name: 'Eli Marsh', company: 'Nexlify Labs', stage: 'Outreach', score: 54, agent: 'Data Enricher' },
 ];
 
 const creditBreakdown = [
@@ -336,7 +336,7 @@ function MeetingsView() {
         <div className="grid grid-cols-4 gap-4 px-4 py-2 border-b border-white/10 text-[11px] font-semibold text-slate-500 uppercase tracking-wide">
           <span>Company</span><span>Time</span><span>Type</span><span>Status</span>
         </div>
-        {meetings.map((m, i) => (
+        {meetings.map((meeting, i) => (
           <m.div
             key={i}
             initial={{ opacity: 0, x: -10 }}
@@ -344,10 +344,10 @@ function MeetingsView() {
             transition={{ delay: i * 0.05 }}
             className="grid grid-cols-4 gap-4 px-4 py-3 border-b border-white/5 hover:bg-white/5 transition-colors cursor-pointer text-sm"
           >
-            <div className="flex items-center gap-1.5 text-white font-medium"><Building2 size={12} className="text-slate-400 shrink-0" />{m.company}</div>
-            <div className="flex items-center gap-1 text-slate-400"><Clock size={11} className="shrink-0" />{m.time}</div>
-            <span className="text-slate-400">{m.type}</span>
-            <span className={`px-2 py-0.5 rounded-full text-xs font-medium w-fit ${statusBadge(m.status)}`}>{m.status}</span>
+            <div className="flex items-center gap-1.5 text-white font-medium"><Building2 size={12} className="text-slate-400 shrink-0" />{meeting.company}</div>
+            <div className="flex items-center gap-1 text-slate-400"><Clock size={11} className="shrink-0" />{meeting.time}</div>
+            <span className="text-slate-400">{meeting.type}</span>
+            <span className={`px-2 py-0.5 rounded-full text-xs font-medium w-fit ${statusBadge(meeting.status)}`}>{meeting.status}</span>
           </m.div>
         ))}
       </div>

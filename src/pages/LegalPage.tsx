@@ -1,4 +1,4 @@
-import { useParams, Navigate, Link } from 'react-router-dom';
+import { useParams, Navigate, useNavigate } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import { LegalDocument, legalContent } from '../data/legal-content';
 
@@ -6,6 +6,7 @@ const VALID_DOCS: LegalDocument[] = ['privacy', 'terms', 'cookie', 'compliance',
 
 const LegalPage = () => {
     const { doc } = useParams<{ doc: string }>();
+    const navigate = useNavigate();
 
     if (!doc || !VALID_DOCS.includes(doc as LegalDocument)) {
         return <Navigate to="/" replace />;
@@ -16,12 +17,12 @@ const LegalPage = () => {
     return (
         <div className="min-h-screen bg-[#0a0a0f] text-slate-200 px-4 py-12 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
-                <Link
-                    to="/"
+                <button
+                    onClick={() => navigate('/', { state: { scrollTo: 'footer' } })}
                     className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-white transition-colors mb-10"
                 >
                     ← Back to LeadQ.AI
-                </Link>
+                </button>
 
                 <h1 className="text-3xl sm:text-4xl font-bold text-white mb-10 font-display">
                     {title}

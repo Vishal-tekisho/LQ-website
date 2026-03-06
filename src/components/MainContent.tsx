@@ -1,4 +1,5 @@
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Sparkles, Bot, DollarSign, Mail, Briefcase, LayoutDashboard, HelpCircle, PenLine, ScanLine, UserPlus, Calendar } from 'lucide-react';
 import { StandardNavbar } from './ui/StandardNavbar';
 
@@ -21,6 +22,39 @@ const Contact = lazy(() => import('./Contact'));
 const Footer = lazy(() => import('./Footer'));
 
 const MainContent = () => {
+    const location = useLocation();
+
+    // Scroll to a target section when arriving via navigation state (e.g. "Back to LeadQ.AI")
+    useEffect(() => {
+        const scrollTarget = (location.state as { scrollTo?: string } | null)?.scrollTo;
+        if (!scrollTarget) return;
+
+        // Clear the state so a page refresh doesn't re-scroll.
+        // Use window.history directly to avoid triggering React Router's
+        // location change (which would re-fire RouteScrollToTop and scroll to top).
+        window.history.replaceState({}, '', location.pathname);
+
+        // The target element may not be in the DOM yet (lazy-loaded).
+        // Poll until it appears (up to ~5 s).
+        let attempts = 0;
+        const maxAttempts = 50; // 50 × 100 ms = 5 s
+        const tryScroll = () => {
+            const el = document.getElementById(scrollTarget);
+            if (el) {
+                // Wait a tick for layout to settle, then scroll to the very bottom
+                setTimeout(() => {
+                    window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' });
+                }, 50);
+                return;
+            }
+            attempts++;
+            if (attempts < maxAttempts) {
+                setTimeout(tryScroll, 100);
+            }
+        };
+        tryScroll();
+    }, [location.state, location.pathname]);
+
     const navItems = [
         { name: 'Features', url: '#features', icon: Sparkles },
         { name: 'Use Cases', url: '#use-cases', icon: Briefcase },

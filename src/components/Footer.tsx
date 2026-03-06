@@ -1,4 +1,5 @@
 import { Linkedin as LinkedIn, Instagram } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { Button } from './ui/button';
 
 const XLogo = ({ className }: { className?: string }) => (
@@ -14,7 +15,7 @@ const XLogo = ({ className }: { className?: string }) => (
 
 const Footer = () => {
     return (
-        <footer className="bg-leadq-bg text-leadq-steel py-10 sm:py-12 md:py-16 px-4 sm:px-6 relative z-10 border-t border-white/5">
+        <footer id="footer" className="bg-leadq-bg text-leadq-steel py-10 sm:py-12 md:py-16 px-4 sm:px-6 relative z-10 border-t border-white/5">
             <div className="max-w-7xl mx-auto">
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 md:gap-12">
                     {/* Logo and Description Section */}
@@ -58,7 +59,9 @@ const Footer = () => {
                     <div className="md:col-span-1">
                         <h4 className="text-[#E5E7EB] text-xl sm:text-2xl font-semibold mb-8">Resources</h4>
                         <ul className="space-y-4 text-sm">
-                            <li><Button asChild variant="footer-link" size="footer-link"><a href="/legal/documentation" target="_blank" rel="noopener noreferrer">Documentation</a></Button></li>
+                            <li><Button asChild variant="footer-link" size="footer-link"><Link to="/legal/documentation">Documentation</Link></Button></li>
+                            <li><Button asChild variant="footer-link" size="footer-link"><Link to="/download">Download App</Link></Button></li>
+                            <li><Button asChild variant="footer-link" size="footer-link"><Link to="/support">Support</Link></Button></li>
                         </ul>
                     </div>
 
@@ -66,10 +69,10 @@ const Footer = () => {
                     <div className="md:col-span-1">
                         <h4 className="text-[#E5E7EB] text-xl sm:text-2xl font-semibold mb-8">Legal</h4>
                         <ul className="space-y-4 text-sm">
-                            <li><Button asChild variant="footer-link" size="footer-link"><a href="/legal/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a></Button></li>
-                            <li><Button asChild variant="footer-link" size="footer-link"><a href="/legal/terms" target="_blank" rel="noopener noreferrer">Terms of Service</a></Button></li>
-                            <li><Button asChild variant="footer-link" size="footer-link"><a href="/legal/cookie" target="_blank" rel="noopener noreferrer">Cookie Policy</a></Button></li>
-                            <li><Button asChild variant="footer-link" size="footer-link"><a href="/legal/compliance" target="_blank" rel="noopener noreferrer">Compliance</a></Button></li>
+                            <li><Button asChild variant="footer-link" size="footer-link"><Link to="/legal/privacy">Privacy Policy</Link></Button></li>
+                            <li><Button asChild variant="footer-link" size="footer-link"><Link to="/legal/terms">Terms of Service</Link></Button></li>
+                            <li><Button asChild variant="footer-link" size="footer-link"><Link to="/legal/cookie">Cookie Policy</Link></Button></li>
+                            <li><Button asChild variant="footer-link" size="footer-link"><Link to="/legal/compliance">Compliance</Link></Button></li>
                         </ul>
                     </div>
                     {/* Contact Section */}

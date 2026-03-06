@@ -756,11 +756,339 @@ Annual transparency reports and real-time Trust Center available at https://lead
     documentation: {
         title: 'Documentation',
         content: `
-## Documentation
+# LeadQ.AI Documentation
 
-Welcome to the LeadQ.AI documentation. Here you will find guides and references to help you get the most out of our platform.
+**Last Updated:** March 6, 2026
 
-*(Content to be added)*
+Welcome to the official LeadQ.AI documentation. This guide covers everything you need to know — from setting up your account and capturing your first lead, to managing your pipeline and removing the app from your device.
+
+---
+
+## Table of Contents
+
+1. [Getting Started](#getting-started)
+2. [Dashboard Overview](#dashboard-overview)
+3. [Capturing Leads](#capturing-leads)
+4. [Managing Leads](#managing-leads)
+5. [Lead Scoring](#lead-scoring)
+6. [Exporting Leads](#exporting-leads)
+7. [Notifications & Follow-ups](#notifications--follow-ups)
+8. [Team Collaboration](#team-collaboration)
+9. [Settings & Preferences](#settings--preferences)
+10. [Deleting the App](#deleting-the-app)
+11. [Account & Data Deletion](#account--data-deletion)
+12. [Troubleshooting](#troubleshooting)
+13. [Contact Support](#contact-support)
+
+---
+
+## 1. Getting Started
+
+### Creating an Account
+
+1. Open the LeadQ.AI app on your iOS or Android device.
+2. Tap **Sign Up** on the welcome screen.
+3. Enter your **name**, **work email address**, and a strong **password**.
+4. Tap **Create Account** — a verification email will be sent to you.
+5. Open the email and click **Verify Email** to activate your account.
+6. Return to the app and tap **Sign In**.
+
+> **Tip:** Use your work email address so that team invitations and lead exports are routed correctly.
+
+### Signing In
+
+1. Open LeadQ.AI and tap **Sign In**.
+2. Enter your registered email and password.
+3. Tap **Login**.
+4. If you have forgotten your password, tap **Forgot Password?**, enter your email, and follow the reset link sent to your inbox.
+
+### Onboarding Walkthrough
+
+On first login LeadQ.AI displays a short interactive walkthrough covering the main sections of the app. You can skip it at any time and restart it later from **Settings → Help → Onboarding Tour**.
+
+---
+
+## 2. Dashboard Overview
+
+The Dashboard is the central hub of LeadQ.AI. It is divided into the following sections:
+
+| Section | Description |
+|---|---|
+| **Lead Feed** | A live, chronologically ordered stream of newly captured leads. |
+| **Pipeline View** | Kanban-style columns (New → Contacted → Qualified → Closed) showing lead progression. |
+| **Analytics Panel** | Charts showing lead volume, conversion rates, and team activity over time. |
+| **Quick Capture Button** | The glowing **+** button at the bottom centre — tap it to capture a lead instantly. |
+| **Notifications Bell** | Top-right icon showing pending follow-up reminders and team activity alerts. |
+| **Profile Avatar** | Top-right corner — opens your account settings and logout option. |
+
+---
+
+## 3. Capturing Leads
+
+LeadQ.AI supports three methods of capturing a lead:
+
+### A. Business Card Scan
+
+1. Tap the **+** Quick Capture button on the Dashboard.
+2. Select **Scan Business Card**.
+3. Point your camera at the card and hold steady — the AI will auto-detect edges.
+4. Tap **Capture**. The OCR engine extracts name, title, company, email, and phone number automatically.
+5. Review the extracted details, make any corrections, then tap **Save Lead**.
+
+### B. QR Code Scan
+
+1. Tap **+** → **Scan QR Code**.
+2. Point your camera at a LinkedIn QR code, virtual business card QR code, or any contact QR code.
+3. Details are auto-populated. Tap **Save Lead**.
+
+### C. Manual Entry
+
+1. Tap **+** → **Add Manually**.
+2. Fill in the contact form:
+   - **Full Name** *(required)*
+   - **Company**
+   - **Job Title**
+   - **Email Address**
+   - **Phone Number**
+   - **LinkedIn Profile URL**
+   - **Notes / Tags**
+3. Tap **Save Lead**.
+
+---
+
+## 4. Managing Leads
+
+### Viewing a Lead
+
+Tap any lead card in the Feed or Pipeline View to open the Lead Detail screen. This screen shows all captured information, AI-enriched profile data, activity history, and your notes.
+
+### Editing a Lead
+
+1. Open the Lead Detail screen.
+2. Tap the **Edit** (pencil) icon in the top-right corner.
+3. Update any field and tap **Save**.
+
+### Tagging Leads
+
+Tags help you organise and filter leads quickly.
+
+1. Open the Lead Detail screen → tap **Add Tag**.
+2. Select an existing tag or type a new one and press Enter.
+3. To remove a tag, tap the **×** beside it.
+
+### Filtering & Searching
+
+- Use the **Search bar** at the top of the Dashboard to find leads by name, company, or email.
+- Tap the **Filter** icon to narrow results by tag, date range, lead score, or pipeline stage.
+
+### Moving Leads Through the Pipeline
+
+- In **Pipeline View**, long-press a lead card and drag it to a new column.
+- Alternatively, open the Lead Detail screen and tap the current stage label to change it from a dropdown.
+
+### Deleting a Lead
+
+1. Open the Lead Detail screen.
+2. Tap the **⋮** (three-dot) menu in the top-right corner.
+3. Select **Delete Lead** and confirm.
+
+> **Note:** Deleted leads cannot be recovered. Export a backup first if needed.
+
+---
+
+## 5. Lead Scoring
+
+The AI Lead Score (0–100) is automatically calculated when a lead is captured. The score reflects:
+
+- **Profile completeness** — how many fields are filled
+- **Job seniority** — director/VP/C-suite ranks higher
+- **Company size** — larger companies score higher
+- **Engagement signals** — whether the contact has interacted with your outreach
+
+The score is displayed as a colour-coded badge:
+
+| Colour | Score Range | Meaning |
+|---|---|---|
+| 🟢 Green | 75–100 | High priority |
+| 🟡 Yellow | 40–74 | Medium priority |
+| 🔴 Red | 0–39 | Low priority |
+
+You cannot manually override AI scores, but you can add notes or tags to reflect your own assessment.
+
+---
+
+## 6. Exporting Leads
+
+### Export to CSV
+
+1. Go to **Dashboard → ⋮ Menu → Export Leads**.
+2. Apply any filters (date range, tag, pipeline stage) to narrow the export.
+3. Tap **Export as CSV** — the file will be saved to your device's Downloads folder and shared via your native share sheet.
+
+### CRM Integration
+
+LeadQ.AI supports direct sync with popular CRMs:
+
+- **HubSpot** — Go to **Settings → Integrations → HubSpot** and click **Connect**. Authorise with your HubSpot account. Leads will sync automatically on save.
+- **Salesforce** — Go to **Settings → Integrations → Salesforce**, enter your Salesforce domain and OAuth credentials, then tap **Authorise**.
+- **Pipedrive / Zoho CRM** — Available under **Settings → Integrations**. Follow the on-screen OAuth flow for each.
+
+---
+
+## 7. Notifications & Follow-ups
+
+### Setting a Follow-up Reminder
+
+1. Open a Lead Detail screen.
+2. Tap **Set Reminder**.
+3. Choose a date and time, add an optional note, and tap **Schedule**.
+4. You will receive a push notification at the scheduled time.
+
+### Managing Notification Preferences
+
+Go to **Settings → Notifications** to toggle:
+
+- Follow-up reminders
+- New lead alerts (when a team member captures a lead)
+- Weekly pipeline summary
+- Product updates and announcements
+
+---
+
+## 8. Team Collaboration
+
+### Inviting Team Members
+
+1. Go to **Settings → Team → Invite Member**.
+2. Enter the colleague's work email address and select their role (**Admin** or **Member**).
+3. Tap **Send Invite** — they will receive an email invitation to join your workspace.
+
+### Sharing a Lead
+
+1. Open a Lead Detail screen.
+2. Tap the **Share** icon.
+3. Select a team member from the list — they will receive an in-app notification with a link to the lead.
+
+### Roles & Permissions
+
+| Role | Capabilities |
+|---|---|
+| **Admin** | Full access — manage team, integrations, billing, and all leads |
+| **Member** | Capture, view, edit, and share leads; cannot manage team or billing |
+
+---
+
+## 9. Settings & Preferences
+
+Navigate to **Settings** via the **Profile Avatar** on the Dashboard.
+
+| Setting | Description |
+|---|---|
+| **Profile** | Update your name, photo, and password |
+| **Notifications** | Configure push notification preferences |
+| **Integrations** | Connect CRMs and third-party tools |
+| **Team** | Invite / remove team members and manage roles |
+| **Language** | Switch the app language |
+| **Theme** | Toggle between Dark and System Default |
+| **Help** | Access this documentation, restart the onboarding tour, or contact support |
+| **Sign Out** | Log out of your current session |
+
+---
+
+## 10. Deleting the App
+
+### iOS (iPhone / iPad)
+
+1. Locate the **LeadQ.AI** icon on your home screen.
+2. Long-press the icon until a context menu appears.
+3. Tap **Remove App**.
+4. Tap **Delete App** to confirm.
+
+**Optional — Remove stored data from iCloud:**
+
+1. Open **Settings** on your iPhone.
+2. Tap **[Your Name] → iCloud → Manage Account Storage → LeadQ.AI**.
+3. Tap **Delete Data** to remove any iCloud backups associated with the app.
+
+> Your LeadQ.AI account and lead data remain on our servers. See [Account & Data Deletion](#account--data-deletion) below to remove your data entirely.
+
+---
+
+### Android
+
+1. Locate the **LeadQ.AI** icon on your home screen or app drawer.
+2. Long-press the icon — drag it to the **Uninstall** bin that appears at the top of the screen, or tap the **Uninstall** option in the pop-up menu.
+3. Tap **OK** to confirm.
+
+**Optional — Clear app data before uninstalling:**
+
+1. Go to **Settings → Apps → LeadQ.AI → Storage**.
+2. Tap **Clear Data**, then tap **OK**.
+3. Return to the previous step and uninstall the app.
+
+> Clearing app data removes your local cache, but your account and leads are safely stored in the cloud and will be available again if you reinstall.
+
+---
+
+## 11. Account & Data Deletion
+
+### Delete Your Account In-App
+
+1. Open LeadQ.AI and go to **Settings → Profile → Delete Account**.
+2. Read the confirmation notice — deletion is **permanent and irreversible**.
+3. Type **DELETE** in the confirmation field and tap **Confirm**.
+4. Your account, all captured leads, and associated data will be permanently removed within **30 days**.
+
+### Request Data Deletion (GDPR / CCPA)
+
+If you have already uninstalled the app or cannot access your account, email us at [contact@tekisho.ai](mailto:contact@tekisho.ai) with the subject line **Data Deletion Request** and include:
+
+- The email address associated with your account
+- Your full name
+
+We will process your request within **30 days** in accordance with applicable data protection regulations.
+
+---
+
+## 12. Troubleshooting
+
+### Cannot Log In
+- Double-check your email address and password.
+- Tap **Forgot Password?** to reset your credentials.
+- Ensure you have verified your email address after sign-up.
+- Check your internet connection.
+
+### Leads Not Syncing
+- Pull down on the Dashboard to manually trigger a sync refresh.
+- Ensure the app has network access (**Settings → Privacy → Local Network**).
+- Sign out and sign back in to re-establish your session.
+
+### Camera Not Opening for Scan
+- Go to your device **Settings → Apps → LeadQ.AI → Permissions** (Android) or **Settings → Privacy → Camera → LeadQ.AI** (iOS) and ensure camera access is enabled.
+
+### App Crashing or Freezing
+- Close the app completely and reopen it.
+- Ensure your device OS is up to date.
+- Uninstall and reinstall the app — your cloud data will not be lost.
+- If the issue persists, contact support with your device model and OS version.
+
+### CRM Sync Failing
+- Re-authorise the integration: **Settings → Integrations → [CRM name] → Reconnect**.
+- Ensure your CRM account has the necessary API permissions enabled.
+
+---
+
+## 13. Contact Support
+
+If you cannot find the answer here, our support team is ready to help.
+
+- **Support Centre:** [leadq.ai/support](/support)
+- **Email:** [contact@tekisho.ai](mailto:contact@tekisho.ai)
+- **Response Time:** Within 1 business day
+
+---
+
+*LeadQ.AI is a product of Tekisho Infotech Pvt. Ltd., Hyderabad, India.*
     `
     }
 };

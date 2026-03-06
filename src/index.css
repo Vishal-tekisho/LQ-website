@@ -409,7 +409,8 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  /* scroll-behavior: smooth removed — handled explicitly in JS where needed
+     to prevent CSS from overriding window.scrollTo({ behavior: 'instant' }) */
 }
 
 button,

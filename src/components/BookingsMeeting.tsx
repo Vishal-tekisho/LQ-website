@@ -270,6 +270,14 @@ export default function BookingsMeeting() {
   // Clean up timeouts on unmount
   useEffect(() => () => clearAllTimeouts(), [clearAllTimeouts]);
 
+  // Auto-start when the section scrolls into view
+  useEffect(() => {
+    if (isInView && !isPlaying) {
+      runAnimation();
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isInView]);
+
   const stages: AnimationStage[] = [
     'idle',
     'booking-webhook',

@@ -45,8 +45,8 @@ export const MenuItem = ({
                 <span>{item}</span>
                 {children && (
                     <ChevronDown
-                        size={14}
-                        strokeWidth={2}
+                        size={18}
+                        strokeWidth={2.5}
                         className={`transition-transform duration-300 ${active === item ? "rotate-180" : "rotate-0"}`}
                     />
                 )}
