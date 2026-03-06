@@ -4,7 +4,7 @@ A modern, interactive landing page for LeadQ.AI - The AI Copilot That Automates 
 
 ## Overview
 
-LeadQ.AI is an AI-powered platform that transforms how businesses manage leads and convert them into revenue. This landing page showcases the platform's capabilities with stunning animations, interactive demonstrations, and comprehensive feature explanations.
+LeadQ.AI is an AI-powered platform that transforms how businesses manage leads and convert them into revenue. This landing page showcases the platform's capabilities with stunning animations, interactive demonstrations, and comprehensive feature explanations
 
 ## Tech-Stack
 
