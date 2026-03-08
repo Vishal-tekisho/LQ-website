@@ -23,7 +23,7 @@ LeadQ.AI is an AI-powered platform that transforms how businesses manage leads a
 
 ## Features
 
-### Landing Page Sections
+### Landing-Page Sections
 
 1. **Hero Section** - Animated headline with gradient text effects
 2. **What LeadQ.AI Does** - Platform overview and value proposition
