@@ -11,8 +11,8 @@ const UseCases = () => {
         { label: 'Faster Lead Capture', value: '85%' },
         { label: 'Follow-up Rate', value: '95%' }
       ],
-      gradient: 'from-leadq-royal-blue/10 to-leadq-cyan/5',
-      iconColor: 'text-leadq-cyan'
+      gradient: 'from-leadq-purple/10 to-leadq-purple-light/5',
+      iconColor: 'text-leadq-purple-light'
     },
     {
       icon: Rocket,
@@ -22,8 +22,8 @@ const UseCases = () => {
         { label: 'Pipeline Growth', value: '3x' },
         { label: 'Qualification Time', value: '70%' }
       ],
-      gradient: 'from-leadq-royal-blue/10 to-leadq-cyan/5',
-      iconColor: 'text-leadq-cyan'
+      gradient: 'from-leadq-purple/10 to-leadq-purple-light/5',
+      iconColor: 'text-leadq-purple-light'
     },
     {
       icon: Users,
@@ -33,8 +33,8 @@ const UseCases = () => {
         { label: 'Check-in Speed', value: '90%' },
         { label: 'Engagement Rate', value: '4x' }
       ],
-      gradient: 'from-leadq-royal-blue/10 to-leadq-cyan/5',
-      iconColor: 'text-leadq-cyan'
+      gradient: 'from-leadq-purple/10 to-leadq-purple-light/5',
+      iconColor: 'text-leadq-purple-light'
     },
     {
       icon: Briefcase,
@@ -44,8 +44,8 @@ const UseCases = () => {
         { label: 'Client Retention', value: '92%' },
         { label: 'Referral Rate', value: '2.5x' }
       ],
-      gradient: 'from-leadq-royal-blue/10 to-leadq-cyan/5',
-      iconColor: 'text-leadq-cyan'
+      gradient: 'from-leadq-purple/10 to-leadq-purple-light/5',
+      iconColor: 'text-leadq-purple-light'
     },
     {
       icon: TrendingUp,
@@ -55,8 +55,8 @@ const UseCases = () => {
         { label: 'Compliance Score', value: '100%' },
         { label: 'Deal Velocity', value: '60%' }
       ],
-      gradient: 'from-leadq-royal-blue/10 to-leadq-cyan/5',
-      iconColor: 'text-leadq-cyan'
+      gradient: 'from-leadq-purple/10 to-leadq-purple-light/5',
+      iconColor: 'text-leadq-purple-light'
     },
     {
       icon: Zap,
@@ -66,8 +66,8 @@ const UseCases = () => {
         { label: 'Time Saved', value: '15hrs/wk' },
         { label: 'Cost Reduction', value: '80%' }
       ],
-      gradient: 'from-leadq-royal-blue/10 to-leadq-cyan/5',
-      iconColor: 'text-leadq-cyan'
+      gradient: 'from-leadq-purple/10 to-leadq-purple-light/5',
+      iconColor: 'text-leadq-purple-light'
     }
   ];
 
@@ -109,7 +109,7 @@ const UseCases = () => {
         >
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold mb-6" style={{ textShadow: 'none' }}>
             Built for{' '}
-            <span className="bg-gradient-to-r from-leadq-cyan to-leadq-royal-blue bg-clip-text text-transparent" style={{ textShadow: 'none', filter: 'none' }}>
+            <span className="text-[#A89FE0]" style={{ textShadow: 'none', filter: 'none' }}>
               every industry
             </span>
           </h2>
@@ -190,7 +190,7 @@ const UseCases = () => {
           <m.a
             href="#contact"
             whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-leadq-deep-blue to-leadq-royal-blue px-8 py-4 rounded-xl font-semibold text-white shadow-[0_0_20px_rgba(39,81,169,0.5)] hover:shadow-[0_0_30px_rgba(39,81,169,0.7)] hover:scale-105 transition-all duration-300"
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-[#7B6FD4] to-[#A89FE0] px-8 py-4 rounded-xl font-semibold text-white shadow-[0_0_20px_rgba(123,111,212,0.5)] hover:shadow-[0_0_30px_rgba(123,111,212,0.7)] hover:scale-105 transition-all duration-300"
           >
             <span>Schedule a Demo</span>
             <Zap size={20} />

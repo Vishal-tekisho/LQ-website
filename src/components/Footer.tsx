@@ -27,7 +27,7 @@ const Footer = () => {
                                 className="h-20 w-auto"
                             />
                             <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-leadq-platinum to-leadq-steel">
-                                LeadQ<span className="text-leadq-cyan">.AI</span>
+                                LeadQ<span className="text-[#A89FE0]">.AI</span>
                             </span>
                         </div>
 
@@ -38,7 +38,7 @@ const Footer = () => {
                         <div className="flex gap-4">
 
                             <a href="https://www.linkedin.com/company/tekisho/posts/?feedView=all" target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors group">
-                                <LinkedIn className="w-5 h-5 group-hover:text-blue-600 transition-colors" />
+                                <LinkedIn className="w-5 h-5 group-hover:text-[#7B6FD4] transition-colors" />
                             </a>
 
                             <a href="https://www.instagram.com/leadq_ai/" target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors group">
@@ -87,8 +87,8 @@ const Footer = () => {
                                     rel="noopener noreferrer"
                                     className="group flex items-start gap-2 hover:text-white transition-colors"
                                 >
-                                    <MapPin className="w-4 h-4 mt-0.5 shrink-0 text-leadq-cyan group-hover:scale-110 transition-transform" />
-                                    <div className="space-y-1 group-hover:underline underline-offset-2 decoration-leadq-cyan">
+                                    <MapPin className="w-4 h-4 mt-0.5 shrink-0 text-[#A89FE0] group-hover:scale-110 transition-transform" />
+                                    <div className="space-y-1 group-hover:underline underline-offset-2 decoration-[#A89FE0]">
                                         <p>Tekisho Infotech Inc.</p>
                                         <p>5005 W Royal Ln, Suite 288,</p>
                                         <p>Irving, TX. 75063</p>
@@ -104,8 +104,8 @@ const Footer = () => {
                                     rel="noopener noreferrer"
                                     className="group flex items-start gap-2 hover:text-white transition-colors"
                                 >
-                                    <MapPin className="w-4 h-4 mt-0.5 shrink-0 text-leadq-cyan group-hover:scale-110 transition-transform" />
-                                    <div className="space-y-1 group-hover:underline underline-offset-2 decoration-leadq-cyan">
+                                    <MapPin className="w-4 h-4 mt-0.5 shrink-0 text-[#A89FE0] group-hover:scale-110 transition-transform" />
+                                    <div className="space-y-1 group-hover:underline underline-offset-2 decoration-[#A89FE0]">
                                         <p>Tekisho Infotech Pvt. Ltd.</p>
                                         <p>505 A, 5th Floor, Techno 1,</p>
                                         <p>Gachibowli Road, Raidurg,</p>

@@ -109,7 +109,7 @@ export default function Contact() {
         >
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold mb-4">
             Get in{' '}
-            <span className="bg-gradient-to-r from-leadq-cyan to-leadq-royal-blue bg-clip-text text-transparent">
+            <span className="text-[#A89FE0]">
               Touch
             </span>
           </h2>
@@ -131,7 +131,7 @@ export default function Contact() {
               animate={{ opacity: 1, scale: 1 }}
               className="text-center py-12"
             >
-              <CheckCircle size={64} className="mx-auto mb-4 text-leadq-cyan" />
+              <CheckCircle size={64} className="mx-auto mb-4 text-[#A89FE0]" />
               <h3 className="text-2xl sm:text-3xl font-bold mb-2 text-white">Message Sent!</h3>
               <p className="text-leadq-silver" role="status" aria-live="polite">
                 Thank you for reaching out. We'll get back to you within 24 hours.
@@ -156,7 +156,7 @@ export default function Contact() {
                   onChange={(e) => handleChange('name', e.target.value)}
                   className={`w-full glass px-4 py-3 rounded-lg text-white placeholder-leadq-silver focus:outline-none focus:ring-2 transition-all ${errors.name
                     ? 'ring-2 ring-red-400'
-                    : 'focus:ring-leadq-royal-blue focus:shadow-lg focus:shadow-leadq-royal-blue/20'
+                    : 'focus:ring-[#7B6FD4] focus:shadow-lg focus:shadow-[#7B6FD4]/20'
                     }`}
                   placeholder="John Doe"
                   disabled={formState === 'sending'}
@@ -181,7 +181,7 @@ export default function Contact() {
                   onChange={(e) => handleChange('email', e.target.value)}
                   className={`w-full glass px-4 py-3 rounded-lg text-white placeholder-leadq-silver focus:outline-none focus:ring-2 transition-all ${errors.email
                     ? 'ring-2 ring-red-400'
-                    : 'focus:ring-leadq-royal-blue focus:shadow-lg focus:shadow-leadq-royal-blue/20'
+                    : 'focus:ring-[#7B6FD4] focus:shadow-lg focus:shadow-[#7B6FD4]/20'
                     }`}
                   placeholder="john@company.com"
                   disabled={formState === 'sending'}
@@ -204,7 +204,7 @@ export default function Contact() {
                   id="company"
                   value={formData.company}
                   onChange={(e) => handleChange('company', e.target.value)}
-                  className="w-full glass px-4 py-3 rounded-lg text-white placeholder-leadq-silver focus:outline-none focus:ring-2 focus:ring-leadq-royal-blue focus:shadow-lg focus:shadow-leadq-royal-blue/20 transition-all"
+                  className="w-full glass px-4 py-3 rounded-lg text-white placeholder-leadq-silver focus:outline-none focus:ring-2 focus:ring-[#7B6FD4] focus:shadow-lg focus:shadow-[#7B6FD4]/20 transition-all"
                   placeholder="Acme Corp"
                   disabled={formState === 'sending'}
                 />
@@ -221,7 +221,7 @@ export default function Contact() {
                   rows={5}
                   className={`w-full glass px-4 py-3 rounded-lg text-white placeholder-leadq-silver focus:outline-none focus:ring-2 transition-all resize-none ${errors.message
                     ? 'ring-2 ring-red-400'
-                    : 'focus:ring-leadq-royal-blue focus:shadow-lg focus:shadow-leadq-royal-blue/20'
+                    : 'focus:ring-[#7B6FD4] focus:shadow-lg focus:shadow-[#7B6FD4]/20'
                     }`}
                   placeholder="Tell us about your needs..."
                   disabled={formState === 'sending'}

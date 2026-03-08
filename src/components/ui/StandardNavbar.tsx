@@ -225,7 +225,7 @@ export function StandardNavbar({ items, className }: NavBarProps) {
 
                     {/* Desktop Actions */}
                     <div className="hidden md:flex items-center gap-4">
-                        <button className="px-6 py-2.5 text-sm rounded-lg font-semibold bg-gradient-to-r from-leadq-deep-blue to-leadq-royal-blue text-white shadow-[0_0_20px_rgba(39,81,169,0.5)] hover:shadow-[0_0_30px_rgba(39,81,169,0.7)] hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-leadq-royal-blue focus:ring-offset-2 focus:ring-offset-black whitespace-nowrap">
+                        <button className="px-6 py-2.5 text-sm rounded-lg font-semibold bg-gradient-to-r from-leadq-purple-dark to-leadq-purple text-white shadow-[0_0_20px_rgba(123,111,212,0.5)] hover:shadow-[0_0_30px_rgba(123,111,212,0.7)] hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-leadq-purple focus:ring-offset-2 focus:ring-offset-black whitespace-nowrap">
                             Login
                         </button>
                         <SpotlightButton>
@@ -268,7 +268,7 @@ export function StandardNavbar({ items, className }: NavBarProps) {
                                             className={cn(
                                                 "flex items-center gap-4 p-3 rounded-xl transition-all",
                                                 isActive
-                                                    ? "bg-leadq-royal-blue/10 text-leadq-royal-blue border border-leadq-royal-blue/30"
+                                                    ? "bg-leadq-purple/10 text-leadq-purple border border-leadq-purple/30"
                                                     : "text-leadq-silver hover:bg-white/5 hover:text-white"
                                             )}
                                         >
@@ -280,10 +280,10 @@ export function StandardNavbar({ items, className }: NavBarProps) {
                             </div>
 
                             <div className="pt-6 border-t border-white/10 space-y-4">
-                                <button className="w-full py-4 font-bold bg-gradient-to-r from-leadq-deep-blue to-leadq-royal-blue text-white rounded-xl shadow-lg shadow-leadq-royal-blue/20">
+                                <button className="w-full py-4 font-bold bg-gradient-to-r from-leadq-purple-dark to-leadq-purple text-white rounded-xl shadow-lg shadow-leadq-purple/20">
                                     Login
                                 </button>
-                                <button className="w-full py-4 font-bold bg-gradient-to-r from-leadq-deep-blue to-leadq-royal-blue text-white rounded-xl shadow-lg shadow-leadq-royal-blue/20">
+                                <button className="w-full py-4 font-bold bg-gradient-to-r from-leadq-purple-dark to-leadq-purple text-white rounded-xl shadow-lg shadow-leadq-purple/20">
                                     Sign Up
                                 </button>
                             </div>

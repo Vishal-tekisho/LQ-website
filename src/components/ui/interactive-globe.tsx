@@ -262,6 +262,7 @@ export function InteractiveGlobe({
   const animRef = useRef<number>(0);
   const timeRef = useRef(0);
   const isVisibleRef = useRef(true);
+  const lastFrameTimeRef = useRef<number>(0);
 
   // Generate globe dots + fetch real-world land data
   const dotsRef = useRef<[number, number, number][]>([]);
@@ -271,7 +272,7 @@ export function InteractiveGlobe({
 
   useEffect(() => {
     const dots: [number, number, number][] = [];
-    const numDots = 8000;
+    const numDots = 1800;
     const goldenRatio = (1 + Math.sqrt(5)) / 2;
     for (let i = 0; i < numDots; i++) {
       const theta = (2 * Math.PI * i) / goldenRatio;
@@ -310,25 +311,34 @@ export function InteractiveGlobe({
     const canvas = canvasRef.current;
     if (!canvas) return;
 
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
     // Skip expensive draw when globe is off-screen
     if (!isVisibleRef.current) {
       animRef.current = requestAnimationFrame(draw);
       return;
     }
 
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+    // Frame throttling — approx 35 FPS (1000/35 = ~28ms)
+    const now = performance.now();
+    const elapsed = now - (lastFrameTimeRef.current || 0);
+    if (elapsed < 28) {
+      animRef.current = requestAnimationFrame(draw);
+      return;
+    }
+    lastFrameTimeRef.current = now;
 
     const dpr = window.devicePixelRatio || 1;
     const w = canvas.clientWidth || size;
     const h = canvas.clientHeight || size;
-    
+
     // Skip if canvas not properly sized (prevents issues on mobile load)
     if (w === 0 || h === 0) {
       animRef.current = requestAnimationFrame(draw);
       return;
     }
-    
+
     canvas.width = w * dpr;
     canvas.height = h * dpr;
     ctx.scale(dpr, dpr);
@@ -350,9 +360,9 @@ export function InteractiveGlobe({
 
     // ── 1. Outer atmosphere halo ──────────────────────────────────────────────
     const haloGrad = ctx.createRadialGradient(cx, cy, radius * 0.92, cx, cy, radius * 1.22);
-    haloGrad.addColorStop(0, "rgba(79, 164, 196, 0.18)");
-    haloGrad.addColorStop(0.5, "rgba(39, 81, 169, 0.06)");
-    haloGrad.addColorStop(1, "rgba(39, 81, 169, 0)");
+    haloGrad.addColorStop(0, "rgba(123, 111, 212, 0.18)");
+    haloGrad.addColorStop(0.5, "rgba(91, 79, 190, 0.06)");
+    haloGrad.addColorStop(1, "rgba(91, 79, 190, 0)");
     ctx.fillStyle = haloGrad;
     ctx.beginPath();
     ctx.arc(cx, cy, radius * 1.22, 0, Math.PI * 2);
@@ -374,7 +384,7 @@ export function InteractiveGlobe({
     ctx.restore();
 
     // ── 3. Graticule (lat/lng grid lines) ─────────────────────────────────────
-    ctx.strokeStyle = "rgba(79, 164, 196, 0.07)";
+    ctx.strokeStyle = "rgba(123, 111, 212, 0.07)";
     ctx.lineWidth = 0.5;
     // Latitude rings every 30°
     for (let lat = -60; lat <= 60; lat += 30) {
@@ -414,7 +424,7 @@ export function InteractiveGlobe({
       ctx.beginPath();
       ctx.arc(cx, cy, radius, 0, Math.PI * 2);
       ctx.clip();
-      ctx.strokeStyle = "rgba(79, 164, 196, 0.35)";
+      ctx.strokeStyle = "rgba(123, 111, 212, 0.35)";
       ctx.lineWidth = 0.8;
       for (const ring of coastRings) {
         ctx.beginPath();
@@ -521,26 +531,20 @@ export function InteractiveGlobe({
         if (isLand) {
           const alpha = 0.12 + depth * 0.6;
           const dotSize = 0.8 + depth * 1.0;
-          ctx.beginPath();
-          ctx.arc(sx, sy, dotSize, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(79, 164, 196, ${alpha.toFixed(2)})`;
-          ctx.fill();
+          ctx.fillStyle = `rgba(123, 111, 212, ${alpha.toFixed(2)})`;
+          ctx.fillRect(sx - dotSize, sy - dotSize, dotSize * 2, dotSize * 2);
         } else {
           const alpha = 0.01 + depth * 0.04;
           const dotSize = 0.4 + depth * 0.2;
-          ctx.beginPath();
-          ctx.arc(sx, sy, dotSize, 0, Math.PI * 2);
           ctx.fillStyle = `rgba(20, 60, 120, ${alpha.toFixed(2)})`;
-          ctx.fill();
+          ctx.fillRect(sx - dotSize, sy - dotSize, dotSize * 2, dotSize * 2);
         }
       } else {
         // Fallback before data loads
         const alpha = 0.08 + depth * 0.55;
         const dotSize = 0.8 + depth * 1.0;
-        ctx.beginPath();
-        ctx.arc(sx, sy, dotSize, 0, Math.PI * 2);
         ctx.fillStyle = dotColor.replace("ALPHA", alpha.toFixed(2));
-        ctx.fill();
+        ctx.fillRect(sx - dotSize, sy - dotSize, dotSize * 2, dotSize * 2);
       }
     }
 
@@ -617,9 +621,9 @@ export function InteractiveGlobe({
 
       // Highlight Hyderabad with a contrasting gold/amber colour
       const isHighlight = marker.label === "Hyderabad";
-      const ringColor = isHighlight ? `rgba(255, 180, 50, ` : `rgba(79, 164, 196, `;
+      const ringColor = isHighlight ? `rgba(255, 180, 50, ` : `rgba(123, 111, 212, `;
       const coreColor = isHighlight ? "rgba(255, 200, 80, 1)" : "rgba(160, 220, 255, 1)";
-      const glowColor = isHighlight ? "rgba(255, 180, 50, 0.9)" : "rgba(79, 164, 196, 0.9)";
+      const glowColor = isHighlight ? "rgba(255, 180, 50, 0.9)" : "rgba(123, 111, 212, 0.9)";
       const labelColor = isHighlight ? "rgba(255, 200, 100, 0.9)" : "rgba(160, 210, 255, 0.65)";
 
       // Outer pulse ring
@@ -671,7 +675,7 @@ export function InteractiveGlobe({
     // ── 8. Rim edge glow ──────────────────────────────────────────────────────
     ctx.beginPath();
     ctx.arc(cx, cy, radius, 0, Math.PI * 2);
-    ctx.strokeStyle = "rgba(79, 164, 196, 0.3)";
+    ctx.strokeStyle = "rgba(123, 111, 212, 0.3)";
     ctx.lineWidth = 1.5;
     ctx.stroke();
 
@@ -684,7 +688,7 @@ export function InteractiveGlobe({
     if (!canvas) return;
     const observer = new IntersectionObserver(
       ([entry]) => { isVisibleRef.current = entry.isIntersecting; },
-      { rootMargin: '200px' }
+      { rootMargin: '0px' }
     );
     observer.observe(canvas);
     return () => observer.disconnect();
@@ -698,18 +702,18 @@ export function InteractiveGlobe({
       }
       animRef.current = requestAnimationFrame(draw);
     };
-    
+
     startAnimation();
-    
+
     // Restart animation on visibility change (mobile browsers often pause RAF)
     const handleVisibilityChange = () => {
       if (document.visibilityState === 'visible' && !animRef.current) {
         startAnimation();
       }
     };
-    
+
     document.addEventListener('visibilitychange', handleVisibilityChange);
-    
+
     return () => {
       cancelAnimationFrame(animRef.current);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
@@ -748,7 +752,7 @@ export function InteractiveGlobe({
     const clamped = Math.max(-1, Math.min(1, normalised));
     timeRef.current = Math.asin(clamped) / 0.30;
     dragRef.current.active = false;
-    
+
     // Ensure animation continues on mobile after touch release
     if (!animRef.current) {
       animRef.current = requestAnimationFrame(draw);

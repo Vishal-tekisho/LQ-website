@@ -13,7 +13,7 @@ export default function FinalCTA() {
           transition={{ duration: 0.7 }}
           className="relative max-w-4xl mx-auto rounded-3xl overflow-hidden shadow-2xl"
           style={{
-            background: 'linear-gradient(135deg, rgb(5, 6, 14) 0%, rgb(39, 81, 169) 50%, rgb(79, 164, 196) 100%)',
+            background: 'linear-gradient(135deg, rgb(8, 8, 42) 0%, rgb(91, 79, 190) 50%, rgb(123, 111, 212) 100%)',
           }}
         >
           <div className="absolute inset-0 opacity-20">

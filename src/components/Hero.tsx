@@ -19,7 +19,7 @@ export default function Hero() {
                             {words.map((word, wordIndex) => (
                                 <span
                                     key={wordIndex}
-                                    className={`inline-block mr-2 sm:mr-3 last:mr-0 ${wordIndex >= 2 ? "bg-gradient-to-r from-leadq-cyan to-leadq-royal-blue bg-clip-text text-transparent" : "text-white"}`}
+                                    className={`inline-block mr-2 sm:mr-3 last:mr-0 ${wordIndex >= 2 ? "bg-gradient-to-r from-leadq-purple to-leadq-purple-light bg-clip-text text-transparent" : "text-white"}`}
                                 >
                                     {word.split("").map((letter, letterIndex) => (
                                         <m.span
@@ -62,12 +62,12 @@ export default function Hero() {
                                 <p className="text-2xl font-bold text-white">90%</p>
                                 <p className="text-xs text-leadq-silver">Match Accuracy</p>
                             </div>
-                            <div className="w-px h-8 bg-leadq-cyan/30" />
+                            <div className="w-px h-8 bg-leadq-purple/30" />
                             <div>
                                 <p className="text-2xl font-bold text-white">Instant</p>
                                 <p className="text-xs text-leadq-silver">AI Lead Qualification</p>
                             </div>
-                            <div className="w-px h-8 bg-leadq-cyan/30" />
+                            <div className="w-px h-8 bg-leadq-purple/30" />
                             <div>
                                 <p className="text-2xl font-bold text-white">3x</p>
                                 <p className="text-xs text-leadq-silver">Conversion Rate</p>
@@ -75,20 +75,20 @@ export default function Hero() {
                         </m.div>
                     </m.div>
 
-                    <m.div 
+                    <m.div
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 0.5, duration: 1.5 }}
                         className="flex-1 flex items-center justify-center w-full relative"
                     >
                         {/* Ambient glow */}
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 rounded-full bg-leadq-cyan/10 blur-3xl pointer-events-none" />
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 rounded-full bg-leadq-purple/10 blur-3xl pointer-events-none" />
                         <InteractiveGlobe
                             size={460}
                             className="w-full max-w-[280px] sm:max-w-[360px] lg:max-w-[460px] aspect-square"
-                            dotColor="rgba(79, 164, 196, ALPHA)"
-                            arcColor="rgba(79, 164, 196, 0.5)"
-                            markerColor="rgba(39, 81, 169, 1)"
+                            dotColor="rgba(123, 111, 212, ALPHA)"
+                            arcColor="rgba(123, 111, 212, 0.5)"
+                            markerColor="rgba(91, 79, 190, 1)"
                         />
                     </m.div>
                 </div>

@@ -133,24 +133,24 @@ const slideInRight: Variants = {
 const TypingIndicator = () => {
   const isInView = useIsInView();
   return (
-  <div className="flex items-center gap-1 px-3 py-2">
-    {[0, 1, 2].map((i) => (
-      <m.div
-        key={i}
-        className="w-2 h-2 rounded-full bg-slate-400"
-        animate={{
-          y: [0, -6, 0],
-          opacity: [0.5, 1, 0.5],
-        }}
-        transition={{
-          duration: 0.6,
-          repeat: isInView ? Infinity : 0,
-          delay: i * 0.15,
-          ease: 'easeInOut',
-        }}
-      />
-    ))}
-  </div>
+    <div className="flex items-center gap-1 px-3 py-2">
+      {[0, 1, 2].map((i) => (
+        <m.div
+          key={i}
+          className="w-2 h-2 rounded-full bg-slate-400"
+          animate={{
+            y: [0, -6, 0],
+            opacity: [0.5, 1, 0.5],
+          }}
+          transition={{
+            duration: 0.6,
+            repeat: isInView ? Infinity : 0,
+            delay: i * 0.15,
+            ease: 'easeInOut',
+          }}
+        />
+      ))}
+    </div>
   );
 };
 
@@ -158,20 +158,20 @@ const TypingIndicator = () => {
 const AISparkle = () => {
   const isInView = useIsInView();
   return (
-  <m.div
-    className="absolute -top-1 -right-1"
-    animate={{
-      rotate: [0, 180, 360],
-      scale: [1, 1.2, 1],
-    }}
-    transition={{
-      duration: 3,
-      repeat: isInView ? Infinity : 0,
-      ease: 'linear',
-    }}
-  >
-    <Sparkles className="w-4 h-4 text-slate-400" />
-  </m.div>
+    <m.div
+      className="absolute -top-1 -right-1"
+      animate={{
+        rotate: [0, 180, 360],
+        scale: [1, 1.2, 1],
+      }}
+      transition={{
+        duration: 3,
+        repeat: isInView ? Infinity : 0,
+        ease: 'linear',
+      }}
+    >
+      <Sparkles className="w-4 h-4 text-slate-400" />
+    </m.div>
   );
 };
 
@@ -202,7 +202,7 @@ const StageIndicator = ({
   return (
     <m.div
       className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${isActive
-        ? 'bg-leadq-royal-blue/20 text-leadq-cyan border border-leadq-royal-blue/30'
+        ? 'bg-[#7B6FD4]/20 text-[#A89FE0] border border-[#7B6FD4]/30'
         : isComplete
           ? 'bg-green-500/20 text-green-400 border border-green-500/30'
           : 'bg-white/5 text-slate-500 border border-white/10'
@@ -410,483 +410,483 @@ export default function EmailDraftAnimation() {
 
   return (
     <InViewContext.Provider value={shouldAnimate ?? false}>
-    <section ref={ref} className="py-16 sm:py-20 px-4 relative overflow-hidden">
-      {/* Background glow */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-slate-400/10 rounded-full blur-[120px]" />
-        <div className="absolute top-1/4 right-1/4 w-[400px] h-[400px] bg-slate-400/5 rounded-full blur-[100px]" />
-      </div>
+      <section ref={ref} className="py-16 sm:py-20 px-4 relative overflow-hidden">
+        {/* Background glow */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-slate-400/10 rounded-full blur-[120px]" />
+          <div className="absolute top-1/4 right-1/4 w-[400px] h-[400px] bg-slate-400/5 rounded-full blur-[100px]" />
+        </div>
 
-      <div className="max-w-6xl mx-auto relative z-10">
-        {/* Header */}
-        <m.div
-          className="text-center mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold text-white mb-4">
-            Intelligent Email{' '}
-            <span className="bg-gradient-to-r from-leadq-cyan to-leadq-royal-blue bg-clip-text text-transparent">
-              Draft Generation
-            </span>
-          </h2>
-          <p className="text-slate-400 max-w-2xl mx-auto text-lg sm:text-xl md:text-2xl" style={{ textShadow: 'none' }}>
-            Watch how AI transforms your meeting notes into personalized, professional emails
-            ready to send in seconds.
-          </p>
-        </m.div>
-
-        {/* Controls Bar */}
-        <m.div
-          className="flex flex-wrap items-center justify-center gap-3 mb-8"
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2, duration: 0.5 }}
-        >
-          {/* Play/Pause Button */}
-          <MotionButton
-            onClick={handlePlayPause}
-            variant={isPlaying ? 'glass-secondary' : 'gradient-blue'}
-            size="compact-lg"
-            className={`flex items-center gap-2 ${!isPlaying && currentStage !== 'complete' ? 'animate-btn-pulse' : ''}`}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
+        <div className="max-w-6xl mx-auto relative z-10">
+          {/* Header */}
+          <m.div
+            className="text-center mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
           >
-            {currentStage === 'complete' ? (
-              <>
-                <RotateCcw className="w-4 h-4" />
-                <span>Replay</span>
-              </>
-            ) : isPlaying ? (
-              <>
-                <Pause className="w-4 h-4" />
-                <span>Pause</span>
-              </>
-            ) : (
-              <>
-                <Play className="w-4 h-4" />
-                <span>Start Demo</span>
-              </>
-            )}
-          </MotionButton>
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold text-white mb-4">
+              Intelligent Email{' '}
+              <span className="text-[#A89FE0]">
+                Draft Generation
+              </span>
+            </h2>
+            <p className="text-slate-400 max-w-2xl mx-auto text-lg sm:text-xl md:text-2xl" style={{ textShadow: 'none' }}>
+              Watch how AI transforms your meeting notes into personalized, professional emails
+              ready to send in seconds.
+            </p>
+          </m.div>
 
-          {/* Stage Indicators */}
-          <div className="flex flex-wrap items-center gap-2">
-            {stages.map((stage) => (
-              <StageIndicator
-                key={stage.id}
-                stage={stage.id}
-                currentStage={currentStage}
-                stages={stages}
-              />
-            ))}
-          </div>
-        </m.div>
-
-        {/* Main Animation Container */}
-        <m.div
-          className="relative rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.07] to-white/[0.03] backdrop-blur-xl overflow-hidden"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3, duration: 0.6 }}
-        >
-          {/* Window Header */}
-          <div className="flex items-center justify-between px-4 py-3 border-b border-white/10 bg-white/5">
-            <div className="flex items-center gap-2">
-              <div className="flex gap-1.5">
-                <div className="w-3 h-3 rounded-full bg-red-500/80" />
-                <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-                <div className="w-3 h-3 rounded-full bg-green-500/80" />
-              </div>
-              <span className="text-xs text-slate-500 ml-2">Email Draft Studio</span>
-            </div>
-            <div className="flex items-center gap-2">
-              {currentStage !== 'idle' && currentStage !== 'complete' && (
-                <div className="flex items-center gap-1.5 text-xs text-slate-400">
-                  <PulsingDot color="bg-slate-400" />
-                  <span>Processing</span>
-                </div>
-              )}
-              {currentStage === 'complete' && (
-                <m.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="flex items-center gap-1.5 text-xs text-green-400"
-                >
-                  <CheckCircle2 className="w-3.5 h-3.5" />
-                  <span>Sent Successfully</span>
-                </m.div>
-              )}
-            </div>
-          </div>
-
-          {/* Content */}
-          <div className="grid lg:grid-cols-[1fr,280px] xl:grid-cols-[1fr,320px] min-h-[400px] sm:min-h-[450px] md:min-h-[500px]">
-            {/* Left Panel - Email Editor */}
-            <div className="p-4 md:p-6 border-b lg:border-b-0 lg:border-r border-white/10">
-              <AnimatePresence>
-                {currentStage === 'idle' ? (
-                  <m.div
-                    key="idle"
-                    className="h-full flex flex-col items-center justify-center text-center"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                  >
-                    <m.div
-                      className="w-20 h-20 rounded-2xl bg-gradient-to-br from-slate-400/20 to-slate-400/20 border border-white/10 flex items-center justify-center mb-4"
-                      animate={{ rotate: [0, 5, -5, 0] }}
-                      transition={{ duration: 4, repeat: isInView ? Infinity : 0, ease: 'easeInOut' }}
-                    >
-                      <Mail className="w-10 h-10 text-slate-400" />
-                    </m.div>
-                    <h3 className="text-xl sm:text-2xl font-medium text-white mb-2">Ready to Compose</h3>
-                    <p className="text-base sm:text-lg text-slate-500 max-w-xs">
-                      Click "Start Demo" to watch AI generate a personalized email
-                    </p>
-                  </m.div>
-                ) : (
-                  <m.div
-                    key="active"
-                    className="space-y-4"
-                    variants={containerVariants}
-                    initial="hidden"
-                    animate="visible"
-                  >
-                    {/* Search/Contact Row */}
-                    <m.div variants={itemVariants} className="flex gap-3">
-                      <div className="flex-1 flex items-center gap-2 p-2.5 bg-white/5 rounded-lg border border-white/10">
-                        <Search className="w-4 h-4 text-slate-500" />
-                        <AnimatePresence mode="wait">
-                          {currentStage === 'contact' && visibleSections.length === 0 ? (
-                            <m.span
-                              key="searching"
-                              initial={{ opacity: 0 }}
-                              animate={{ opacity: 1 }}
-                              exit={{ opacity: 0 }}
-                              className="text-sm text-slate-500"
-                            >
-                              Searching latest contact...
-                            </m.span>
-                          ) : (
-                            <m.span
-                              key="found"
-                              initial={{ opacity: 0 }}
-                              animate={{ opacity: 1 }}
-                              className="text-sm text-white"
-                            >
-                              {MOCK_CONTACT.name}
-                            </m.span>
-                          )}
-                        </AnimatePresence>
-                      </div>
-                    </m.div>
-
-                    {/* Email Fields */}
-                    <m.div variants={itemVariants} className="grid gap-3">
-                      <EmailField
-                        label="To"
-                        value={MOCK_CONTACT.email}
-                        isLoading={currentStage === 'contact' && !emailSubject}
-                        icon={<AtSign className="w-4 h-4" />}
-                      />
-                      <EmailField
-                        label="Subject"
-                        value={emailSubject || 'Generating...'}
-                        isLoading={!emailSubject}
-                        icon={<MessageSquare className="w-4 h-4" />}
-                      />
-                    </m.div>
-
-                    {/* Email Body */}
-                    <m.div
-                      variants={itemVariants}
-                      className="p-3 sm:p-4 bg-white/5 rounded-xl border border-white/10 min-h-[200px] sm:min-h-[240px] md:min-h-[280px]"
-                    >
-                      <div className="flex items-center justify-between mb-3">
-                        <span className="text-xs text-slate-500 uppercase tracking-wider">
-                          Email Body
-                        </span>
-                        {(currentStage === 'generation' && visibleSections.length < MOCK_EMAIL_SECTIONS.length) && (
-                          <div className="flex items-center gap-2 text-xs text-slate-400">
-                            <Loader2 className="w-3 h-3 animate-spin" />
-                            <span>AI Writing...</span>
-                          </div>
-                        )}
-                      </div>
-
-                      <div className="space-y-3">
-                        <AnimatePresence mode="popLayout">
-                          {MOCK_EMAIL_SECTIONS.filter((s) =>
-                            visibleSections.includes(s.id)
-                          ).map((section, index) => (
-                            <m.div
-                              key={section.id}
-                              variants={slideInLeft}
-                              initial="hidden"
-                              animate="visible"
-                              transition={{ delay: index * 0.1 }}
-                              className="relative"
-                            >
-                              <div className="flex items-start gap-2 p-3 bg-white/5 rounded-lg border border-white/10">
-                                <div className="mt-0.5 text-slate-400">{section.icon}</div>
-                                <div className="flex-1 min-w-0">
-                                  <div className="text-[10px] text-slate-400/70 uppercase tracking-wider mb-1">
-                                    {section.title}
-                                  </div>
-                                  <p className="text-sm text-slate-300 leading-relaxed">
-                                    {section.content}
-                                  </p>
-                                </div>
-                                {index === visibleSections.length - 1 &&
-                                  currentStage === 'generation' && <AISparkle />}
-                              </div>
-                            </m.div>
-                          ))}
-                        </AnimatePresence>
-
-                        {currentStage === 'generation' &&
-                          visibleSections.length < MOCK_EMAIL_SECTIONS.length && (
-                            <m.div
-                              initial={{ opacity: 0 }}
-                              animate={{ opacity: 1 }}
-                              className="flex items-center gap-2 p-3 bg-slate-400/10 rounded-lg border border-slate-400/20"
-                            >
-                              <Zap className="w-4 h-4 text-slate-400" />
-                              <span className="text-xs text-slate-400">
-                                Generating next section
-                              </span>
-                              <TypingIndicator />
-                            </m.div>
-                          )}
-                      </div>
-                    </m.div>
-
-                    {/* Send Button */}
-                    <AnimatePresence>
-                      {(currentStage === 'delivery' || currentStage === 'complete') && (
-                        <m.div
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          className="relative"
-                        >
-                          <div
-                            className={`relative overflow-hidden rounded-xl ${currentStage === 'complete'
-                              ? 'bg-gradient-to-r from-green-500 to-green-600'
-                              : 'bg-gradient-to-r from-slate-400 to-slate-500'
-                              }`}
-                          >
-                            {/* Progress bar */}
-                            {currentStage === 'delivery' && (
-                              <m.div
-                                className="absolute inset-0 bg-white/20"
-                                initial={{ width: 0 }}
-                                animate={{ width: `${sendProgress}%` }}
-                              />
-                            )}
-                            <div className="relative flex items-center justify-center gap-2 py-3 text-black font-medium">
-                              {currentStage === 'complete' ? (
-                                <>
-                                  <CheckCircle2 className="w-5 h-5" />
-                                  <span>Email Sent Successfully!</span>
-                                </>
-                              ) : (
-                                <>
-                                  <Send className="w-5 h-5" />
-                                  <span>Sending Email... {sendProgress}%</span>
-                                </>
-                              )}
-                            </div>
-                          </div>
-                        </m.div>
-                      )}
-                    </AnimatePresence>
-                  </m.div>
-                )}
-              </AnimatePresence>
-            </div>
-
-            {/* Right Panel - Controls */}
-            <div className="p-4 md:p-6">
-              <AnimatePresence mode="wait">
-                {currentStage === 'idle' ? (
-                  <m.div
-                    key="idle-right"
-                    className="h-full flex flex-col items-center justify-center"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                  >
-                    <div className="text-center">
-                      <Clock className="w-8 h-8 text-slate-600 mx-auto mb-2" />
-                      <p className="text-xs text-slate-600">Controls will appear here</p>
-                    </div>
-                  </m.div>
-                ) : (
-                  <m.div
-                    key="active-right"
-                    className="space-y-6"
-                    variants={containerVariants}
-                    initial="hidden"
-                    animate="visible"
-                  >
-                    {/* Contact Card */}
-                    <m.div variants={slideInRight}>
-                      <div className="text-xs text-slate-500 uppercase tracking-wider mb-2">
-                        Contact Details
-                      </div>
-                      <div className="p-3 bg-white/5 rounded-xl border border-white/10">
-                        <div className="flex items-center gap-3 mb-3">
-                          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-slate-400/30 to-slate-400/30 flex items-center justify-center">
-                            <User className="w-5 h-5 text-white" />
-                          </div>
-                          <div>
-                            <div className="text-sm font-medium text-white">
-                              {MOCK_CONTACT.name}
-                            </div>
-                            <div className="text-xs text-slate-500">
-                              {MOCK_CONTACT.company}
-                            </div>
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-2 text-xs text-slate-400">
-                          <Building2 className="w-3.5 h-3.5" />
-                          <span>{MOCK_CONTACT.meetingType}</span>
-                          <ChevronRight className="w-3 h-3 text-slate-600" />
-                          <span>{MOCK_CONTACT.meetingDate}</span>
-                        </div>
-                      </div>
-                    </m.div>
-
-                    {/* Inclusions */}
-                    <m.div variants={slideInRight}>
-                      <div className="text-xs text-slate-500 uppercase tracking-wider mb-2">
-                        Include in Email
-                      </div>
-                      <div className="space-y-2">
-                        <InclusionToggle
-                          label="Meeting Summary"
-                          enabled={visibleSections.includes('summary')}
-                          icon={<CalendarClock className="w-4 h-4" />}
-                          delay={0}
-                        />
-                        <InclusionToggle
-                          label="Next Actions"
-                          enabled={visibleSections.includes('next_actions')}
-                          icon={<CheckCircle2 className="w-4 h-4" />}
-                          delay={0.1}
-                        />
-                      </div>
-                    </m.div>
-
-                    {/* Attachments */}
-                    <AnimatePresence>
-                      {showAttachments && (
-                        <m.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: 'auto' }}
-                          exit={{ opacity: 0, height: 0 }}
-                        >
-                          <div className="text-xs text-slate-500 uppercase tracking-wider mb-2 flex items-center gap-2">
-                            <Paperclip className="w-3.5 h-3.5" />
-                            Attachments
-                          </div>
-                          <div className="space-y-2">
-                            {MOCK_ATTACHMENTS.map((file, i) => (
-                              <AttachmentCard key={file.name} {...file} delay={i * 0.15} />
-                            ))}
-                          </div>
-                          <m.div
-                            className="mt-2 p-3 border-2 border-dashed border-white/10 rounded-lg text-center"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 0.3 }}
-                          >
-                            <Paperclip className="w-4 h-4 text-slate-600 mx-auto mb-1" />
-                            <span className="text-[10px] text-slate-600">
-                              Drag & drop files here
-                            </span>
-                          </m.div>
-                        </m.div>
-                      )}
-                    </AnimatePresence>
-
-                    {/* AI Status */}
-                    <m.div
-                      variants={slideInRight}
-                      className="p-3 rounded-xl bg-gradient-to-r from-slate-400/10 to-slate-400/10 border border-slate-400/20"
-                    >
-                      <div className="flex items-center gap-2 mb-2">
-                        <Sparkles className="w-4 h-4 text-slate-400" />
-                        <span className="text-xs font-medium text-slate-400">
-                          AI Engine Status
-                        </span>
-                      </div>
-                      <div className="grid grid-cols-2 gap-2 text-[10px]">
-                        <div className="flex items-center gap-1.5">
-                          <PulsingDot color="bg-green-500" />
-                          <span className="text-slate-400">Personalization</span>
-                        </div>
-                        <div className="flex items-center gap-1.5">
-                          <PulsingDot color="bg-green-500" />
-                          <span className="text-slate-400">Research</span>
-                        </div>
-                        <div className="flex items-center gap-1.5">
-                          <PulsingDot color="bg-green-500" />
-                          <span className="text-slate-400">Summarization</span>
-                        </div>
-                        <div className="flex items-center gap-1.5">
-                          <PulsingDot color="bg-green-500" />
-                          <span className="text-slate-400">Templates</span>
-                        </div>
-                      </div>
-                    </m.div>
-                  </m.div>
-                )}
-              </AnimatePresence>
-            </div>
-          </div>
-
-
-        </m.div>
-
-        {/* Feature Highlights */}
-        <m.div
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.5, duration: 0.6 }}
-        >
-          {[
-            { icon: <Zap className="w-5 h-5" />, label: 'Auto-Generate', desc: 'AI-powered content' },
-            { icon: <User className="w-5 h-5" />, label: 'Personalized', desc: 'Context-aware emails' },
-            { icon: <Building2 className="w-5 h-5" />, label: 'Research-Backed', desc: 'Company intelligence' },
-            { icon: <Send className="w-5 h-5" />, label: 'One-Click Send', desc: 'Instant delivery' },
-          ].map((feature, i) => (
-            <m.div
-              key={feature.label}
-              className="p-4 rounded-xl bg-white/5 border border-white/10 text-center"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.6 + i * 0.1 }}
-              whileHover={{ y: -4, borderColor: 'rgba(192, 192, 192, 0.3)' }}
+          {/* Controls Bar */}
+          <m.div
+            className="flex flex-wrap items-center justify-center gap-3 mb-8"
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+          >
+            {/* Play/Pause Button */}
+            <MotionButton
+              onClick={handlePlayPause}
+              variant={isPlaying ? 'glass-secondary' : 'gradient-blue'}
+              size="compact-lg"
+              className={`flex items-center gap-2 ${!isPlaying && currentStage !== 'complete' ? 'animate-btn-pulse' : ''}`}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
             >
-              <div className="w-10 h-10 rounded-lg bg-slate-400/10 flex items-center justify-center mx-auto mb-2 text-slate-400">
-                {feature.icon}
+              {currentStage === 'complete' ? (
+                <>
+                  <RotateCcw className="w-4 h-4" />
+                  <span>Replay</span>
+                </>
+              ) : isPlaying ? (
+                <>
+                  <Pause className="w-4 h-4" />
+                  <span>Pause</span>
+                </>
+              ) : (
+                <>
+                  <Play className="w-4 h-4" />
+                  <span>Start Demo</span>
+                </>
+              )}
+            </MotionButton>
+
+            {/* Stage Indicators */}
+            <div className="flex flex-wrap items-center gap-2">
+              {stages.map((stage) => (
+                <StageIndicator
+                  key={stage.id}
+                  stage={stage.id}
+                  currentStage={currentStage}
+                  stages={stages}
+                />
+              ))}
+            </div>
+          </m.div>
+
+          {/* Main Animation Container */}
+          <m.div
+            className="relative rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.07] to-white/[0.03] backdrop-blur-xl overflow-hidden"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+          >
+            {/* Window Header */}
+            <div className="flex items-center justify-between px-4 py-3 border-b border-white/10 bg-white/5">
+              <div className="flex items-center gap-2">
+                <div className="flex gap-1.5">
+                  <div className="w-3 h-3 rounded-full bg-red-500/80" />
+                  <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
+                  <div className="w-3 h-3 rounded-full bg-green-500/80" />
+                </div>
+                <span className="text-xs text-slate-500 ml-2">Email Draft Studio</span>
               </div>
-              <div className="text-sm font-medium text-white">{feature.label}</div>
-              <div className="text-xs text-slate-500">{feature.desc}</div>
-            </m.div>
-          ))}
-        </m.div>
-      </div>
-    </section>
+              <div className="flex items-center gap-2">
+                {currentStage !== 'idle' && currentStage !== 'complete' && (
+                  <div className="flex items-center gap-1.5 text-xs text-slate-400">
+                    <PulsingDot color="bg-slate-400" />
+                    <span>Processing</span>
+                  </div>
+                )}
+                {currentStage === 'complete' && (
+                  <m.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="flex items-center gap-1.5 text-xs text-green-400"
+                  >
+                    <CheckCircle2 className="w-3.5 h-3.5" />
+                    <span>Sent Successfully</span>
+                  </m.div>
+                )}
+              </div>
+            </div>
+
+            {/* Content */}
+            <div className="grid lg:grid-cols-[1fr,280px] xl:grid-cols-[1fr,320px] min-h-[400px] sm:min-h-[450px] md:min-h-[500px]">
+              {/* Left Panel - Email Editor */}
+              <div className="p-4 md:p-6 border-b lg:border-b-0 lg:border-r border-white/10">
+                <AnimatePresence>
+                  {currentStage === 'idle' ? (
+                    <m.div
+                      key="idle"
+                      className="h-full flex flex-col items-center justify-center text-center"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                    >
+                      <m.div
+                        className="w-20 h-20 rounded-2xl bg-gradient-to-br from-slate-400/20 to-slate-400/20 border border-white/10 flex items-center justify-center mb-4"
+                        animate={{ rotate: [0, 5, -5, 0] }}
+                        transition={{ duration: 4, repeat: isInView ? Infinity : 0, ease: 'easeInOut' }}
+                      >
+                        <Mail className="w-10 h-10 text-slate-400" />
+                      </m.div>
+                      <h3 className="text-xl sm:text-2xl font-medium text-white mb-2">Ready to Compose</h3>
+                      <p className="text-base sm:text-lg text-slate-500 max-w-xs">
+                        Click "Start Demo" to watch AI generate a personalized email
+                      </p>
+                    </m.div>
+                  ) : (
+                    <m.div
+                      key="active"
+                      className="space-y-4"
+                      variants={containerVariants}
+                      initial="hidden"
+                      animate="visible"
+                    >
+                      {/* Search/Contact Row */}
+                      <m.div variants={itemVariants} className="flex gap-3">
+                        <div className="flex-1 flex items-center gap-2 p-2.5 bg-white/5 rounded-lg border border-white/10">
+                          <Search className="w-4 h-4 text-slate-500" />
+                          <AnimatePresence mode="wait">
+                            {currentStage === 'contact' && visibleSections.length === 0 ? (
+                              <m.span
+                                key="searching"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                className="text-sm text-slate-500"
+                              >
+                                Searching latest contact...
+                              </m.span>
+                            ) : (
+                              <m.span
+                                key="found"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                className="text-sm text-white"
+                              >
+                                {MOCK_CONTACT.name}
+                              </m.span>
+                            )}
+                          </AnimatePresence>
+                        </div>
+                      </m.div>
+
+                      {/* Email Fields */}
+                      <m.div variants={itemVariants} className="grid gap-3">
+                        <EmailField
+                          label="To"
+                          value={MOCK_CONTACT.email}
+                          isLoading={currentStage === 'contact' && !emailSubject}
+                          icon={<AtSign className="w-4 h-4" />}
+                        />
+                        <EmailField
+                          label="Subject"
+                          value={emailSubject || 'Generating...'}
+                          isLoading={!emailSubject}
+                          icon={<MessageSquare className="w-4 h-4" />}
+                        />
+                      </m.div>
+
+                      {/* Email Body */}
+                      <m.div
+                        variants={itemVariants}
+                        className="p-3 sm:p-4 bg-white/5 rounded-xl border border-white/10 min-h-[200px] sm:min-h-[240px] md:min-h-[280px]"
+                      >
+                        <div className="flex items-center justify-between mb-3">
+                          <span className="text-xs text-slate-500 uppercase tracking-wider">
+                            Email Body
+                          </span>
+                          {(currentStage === 'generation' && visibleSections.length < MOCK_EMAIL_SECTIONS.length) && (
+                            <div className="flex items-center gap-2 text-xs text-slate-400">
+                              <Loader2 className="w-3 h-3 animate-spin" />
+                              <span>AI Writing...</span>
+                            </div>
+                          )}
+                        </div>
+
+                        <div className="space-y-3">
+                          <AnimatePresence mode="popLayout">
+                            {MOCK_EMAIL_SECTIONS.filter((s) =>
+                              visibleSections.includes(s.id)
+                            ).map((section, index) => (
+                              <m.div
+                                key={section.id}
+                                variants={slideInLeft}
+                                initial="hidden"
+                                animate="visible"
+                                transition={{ delay: index * 0.1 }}
+                                className="relative"
+                              >
+                                <div className="flex items-start gap-2 p-3 bg-white/5 rounded-lg border border-white/10">
+                                  <div className="mt-0.5 text-slate-400">{section.icon}</div>
+                                  <div className="flex-1 min-w-0">
+                                    <div className="text-[10px] text-slate-400/70 uppercase tracking-wider mb-1">
+                                      {section.title}
+                                    </div>
+                                    <p className="text-sm text-slate-300 leading-relaxed">
+                                      {section.content}
+                                    </p>
+                                  </div>
+                                  {index === visibleSections.length - 1 &&
+                                    currentStage === 'generation' && <AISparkle />}
+                                </div>
+                              </m.div>
+                            ))}
+                          </AnimatePresence>
+
+                          {currentStage === 'generation' &&
+                            visibleSections.length < MOCK_EMAIL_SECTIONS.length && (
+                              <m.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                className="flex items-center gap-2 p-3 bg-slate-400/10 rounded-lg border border-slate-400/20"
+                              >
+                                <Zap className="w-4 h-4 text-slate-400" />
+                                <span className="text-xs text-slate-400">
+                                  Generating next section
+                                </span>
+                                <TypingIndicator />
+                              </m.div>
+                            )}
+                        </div>
+                      </m.div>
+
+                      {/* Send Button */}
+                      <AnimatePresence>
+                        {(currentStage === 'delivery' || currentStage === 'complete') && (
+                          <m.div
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="relative"
+                          >
+                            <div
+                              className={`relative overflow-hidden rounded-xl ${currentStage === 'complete'
+                                ? 'bg-gradient-to-r from-green-500 to-green-600'
+                                : 'bg-gradient-to-r from-slate-400 to-slate-500'
+                                }`}
+                            >
+                              {/* Progress bar */}
+                              {currentStage === 'delivery' && (
+                                <m.div
+                                  className="absolute inset-0 bg-white/20"
+                                  initial={{ width: 0 }}
+                                  animate={{ width: `${sendProgress}%` }}
+                                />
+                              )}
+                              <div className="relative flex items-center justify-center gap-2 py-3 text-black font-medium">
+                                {currentStage === 'complete' ? (
+                                  <>
+                                    <CheckCircle2 className="w-5 h-5" />
+                                    <span>Email Sent Successfully!</span>
+                                  </>
+                                ) : (
+                                  <>
+                                    <Send className="w-5 h-5" />
+                                    <span>Sending Email... {sendProgress}%</span>
+                                  </>
+                                )}
+                              </div>
+                            </div>
+                          </m.div>
+                        )}
+                      </AnimatePresence>
+                    </m.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {/* Right Panel - Controls */}
+              <div className="p-4 md:p-6">
+                <AnimatePresence mode="wait">
+                  {currentStage === 'idle' ? (
+                    <m.div
+                      key="idle-right"
+                      className="h-full flex flex-col items-center justify-center"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                    >
+                      <div className="text-center">
+                        <Clock className="w-8 h-8 text-slate-600 mx-auto mb-2" />
+                        <p className="text-xs text-slate-600">Controls will appear here</p>
+                      </div>
+                    </m.div>
+                  ) : (
+                    <m.div
+                      key="active-right"
+                      className="space-y-6"
+                      variants={containerVariants}
+                      initial="hidden"
+                      animate="visible"
+                    >
+                      {/* Contact Card */}
+                      <m.div variants={slideInRight}>
+                        <div className="text-xs text-slate-500 uppercase tracking-wider mb-2">
+                          Contact Details
+                        </div>
+                        <div className="p-3 bg-white/5 rounded-xl border border-white/10">
+                          <div className="flex items-center gap-3 mb-3">
+                            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-slate-400/30 to-slate-400/30 flex items-center justify-center">
+                              <User className="w-5 h-5 text-white" />
+                            </div>
+                            <div>
+                              <div className="text-sm font-medium text-white">
+                                {MOCK_CONTACT.name}
+                              </div>
+                              <div className="text-xs text-slate-500">
+                                {MOCK_CONTACT.company}
+                              </div>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-2 text-xs text-slate-400">
+                            <Building2 className="w-3.5 h-3.5" />
+                            <span>{MOCK_CONTACT.meetingType}</span>
+                            <ChevronRight className="w-3 h-3 text-slate-600" />
+                            <span>{MOCK_CONTACT.meetingDate}</span>
+                          </div>
+                        </div>
+                      </m.div>
+
+                      {/* Inclusions */}
+                      <m.div variants={slideInRight}>
+                        <div className="text-xs text-slate-500 uppercase tracking-wider mb-2">
+                          Include in Email
+                        </div>
+                        <div className="space-y-2">
+                          <InclusionToggle
+                            label="Meeting Summary"
+                            enabled={visibleSections.includes('summary')}
+                            icon={<CalendarClock className="w-4 h-4" />}
+                            delay={0}
+                          />
+                          <InclusionToggle
+                            label="Next Actions"
+                            enabled={visibleSections.includes('next_actions')}
+                            icon={<CheckCircle2 className="w-4 h-4" />}
+                            delay={0.1}
+                          />
+                        </div>
+                      </m.div>
+
+                      {/* Attachments */}
+                      <AnimatePresence>
+                        {showAttachments && (
+                          <m.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            exit={{ opacity: 0, height: 0 }}
+                          >
+                            <div className="text-xs text-slate-500 uppercase tracking-wider mb-2 flex items-center gap-2">
+                              <Paperclip className="w-3.5 h-3.5" />
+                              Attachments
+                            </div>
+                            <div className="space-y-2">
+                              {MOCK_ATTACHMENTS.map((file, i) => (
+                                <AttachmentCard key={file.name} {...file} delay={i * 0.15} />
+                              ))}
+                            </div>
+                            <m.div
+                              className="mt-2 p-3 border-2 border-dashed border-white/10 rounded-lg text-center"
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 1 }}
+                              transition={{ delay: 0.3 }}
+                            >
+                              <Paperclip className="w-4 h-4 text-slate-600 mx-auto mb-1" />
+                              <span className="text-[10px] text-slate-600">
+                                Drag & drop files here
+                              </span>
+                            </m.div>
+                          </m.div>
+                        )}
+                      </AnimatePresence>
+
+                      {/* AI Status */}
+                      <m.div
+                        variants={slideInRight}
+                        className="p-3 rounded-xl bg-gradient-to-r from-slate-400/10 to-slate-400/10 border border-slate-400/20"
+                      >
+                        <div className="flex items-center gap-2 mb-2">
+                          <Sparkles className="w-4 h-4 text-slate-400" />
+                          <span className="text-xs font-medium text-slate-400">
+                            AI Engine Status
+                          </span>
+                        </div>
+                        <div className="grid grid-cols-2 gap-2 text-[10px]">
+                          <div className="flex items-center gap-1.5">
+                            <PulsingDot color="bg-green-500" />
+                            <span className="text-slate-400">Personalization</span>
+                          </div>
+                          <div className="flex items-center gap-1.5">
+                            <PulsingDot color="bg-green-500" />
+                            <span className="text-slate-400">Research</span>
+                          </div>
+                          <div className="flex items-center gap-1.5">
+                            <PulsingDot color="bg-green-500" />
+                            <span className="text-slate-400">Summarization</span>
+                          </div>
+                          <div className="flex items-center gap-1.5">
+                            <PulsingDot color="bg-green-500" />
+                            <span className="text-slate-400">Templates</span>
+                          </div>
+                        </div>
+                      </m.div>
+                    </m.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            </div>
+
+
+          </m.div>
+
+          {/* Feature Highlights */}
+          <m.div
+            className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.5, duration: 0.6 }}
+          >
+            {[
+              { icon: <Zap className="w-5 h-5" />, label: 'Auto-Generate', desc: 'AI-powered content' },
+              { icon: <User className="w-5 h-5" />, label: 'Personalized', desc: 'Context-aware emails' },
+              { icon: <Building2 className="w-5 h-5" />, label: 'Research-Backed', desc: 'Company intelligence' },
+              { icon: <Send className="w-5 h-5" />, label: 'One-Click Send', desc: 'Instant delivery' },
+            ].map((feature, i) => (
+              <m.div
+                key={feature.label}
+                className="p-4 rounded-xl bg-white/5 border border-white/10 text-center"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.6 + i * 0.1 }}
+                whileHover={{ y: -4, borderColor: 'rgba(123, 111, 212, 0.3)' }}
+              >
+                <div className="w-10 h-10 rounded-lg bg-slate-400/10 flex items-center justify-center mx-auto mb-2 text-slate-400">
+                  {feature.icon}
+                </div>
+                <div className="text-sm font-medium text-white">{feature.label}</div>
+                <div className="text-xs text-slate-500">{feature.desc}</div>
+              </m.div>
+            ))}
+          </m.div>
+        </div>
+      </section>
     </InViewContext.Provider>
   );
 }

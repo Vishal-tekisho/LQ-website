@@ -33,7 +33,7 @@ const LegalPage = () => {
                     prose-p:text-slate-300 prose-p:leading-relaxed
                     prose-li:text-slate-300
                     prose-strong:text-white
-                    prose-a:text-cyan-400 prose-a:no-underline hover:prose-a:underline
+                    prose-a:text-[#A89FE0] prose-a:no-underline hover:prose-a:underline
                     prose-hr:border-white/10
                 ">
                     <ReactMarkdown>{content}</ReactMarkdown>

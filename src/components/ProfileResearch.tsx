@@ -119,16 +119,16 @@ const slideInRight: Variants = {
 const TypingIndicator = () => {
   const isInView = useIsInView();
   return (
-  <div className="flex items-center gap-1 px-3 py-2">
-    {[0, 1, 2].map((i) => (
-      <m.div
-        key={i}
-        className="w-2 h-2 rounded-full bg-slate-400"
-        animate={{ y: [0, -6, 0], opacity: [0.5, 1, 0.5] }}
-        transition={{ duration: 0.6, repeat: isInView ? Infinity : 0, delay: i * 0.15 }}
-      />
-    ))}
-  </div>
+    <div className="flex items-center gap-1 px-3 py-2">
+      {[0, 1, 2].map((i) => (
+        <m.div
+          key={i}
+          className="w-2 h-2 rounded-full bg-slate-400"
+          animate={{ y: [0, -6, 0], opacity: [0.5, 1, 0.5] }}
+          transition={{ duration: 0.6, repeat: isInView ? Infinity : 0, delay: i * 0.15 }}
+        />
+      ))}
+    </div>
   );
 };
 
@@ -153,12 +153,12 @@ const PulsingDot = ({ color = 'bg-green-500' }: { color?: string }) => (
 const ScanLine = () => {
   const isInView = useIsInView();
   return (
-  <m.div
-    className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-slate-400 to-transparent"
-    initial={{ y: 0, opacity: 0 }}
-    animate={{ y: ['0%', '1000%', '0%'], opacity: [0, 1, 0] }}
-    transition={{ duration: 2, repeat: isInView ? Infinity : 0, ease: 'linear' }}
-  />
+    <m.div
+      className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-slate-400 to-transparent relative z-20 will-change-transform"
+      initial={{ y: -10, opacity: 0 }}
+      animate={{ y: [-10, 240, -10], opacity: [0, 1, 0] }}
+      transition={{ duration: 2, repeat: isInView ? Infinity : 0, ease: 'linear' }}
+    />
   );
 };
 
@@ -202,45 +202,45 @@ const StageIndicator = ({ currentStage, stages }: { currentStage: Stage; stages:
 const InputCard = ({ profile, isActive }: { profile: ProfileData; isActive: boolean }) => {
   const isInView = useIsInView();
   return (
-  <m.div
-    variants={slideInLeft}
-    className="relative rounded-2xl p-6 md:p-8 bg-gradient-to-br from-slate-100 to-slate-200 shadow-2xl mx-auto w-full max-w-[360px] overflow-hidden"
-    style={{ aspectRatio: '1.586 / 1' }}
-  >
-    {isActive && (
-      <m.div
-        className="absolute top-0 left-0 right-0 h-1 bg-leadq-cyan shadow-[0_0_15px_rgba(45,212,191,0.5)] z-20"
-        initial={{ y: 0, opacity: 0 }}
-        animate={{ y: ['0%', '1000%', '0%'], opacity: [0, 1, 0] }}
-        transition={{ duration: 2, repeat: isInView ? Infinity : 0, ease: 'linear' }}
-      />
-    )}
-    
-    {/* Visiting card decorative element */}
-    <div className="absolute -right-6 -bottom-6 opacity-5 pointer-events-none">
-      <Briefcase className="w-48 h-48 text-slate-900" />
-    </div>
-    
-    <div className="flex flex-col h-full justify-between relative z-10">
-      <div className="flex justify-between items-start">
-        <div>
-          <h3 className="text-2xl font-bold text-slate-900 tracking-tight">{profile.name}</h3>
-          <p className="text-sm font-bold text-leadq-royal-blue mt-1 uppercase tracking-widest">{profile.role}</p>
+    <m.div
+      variants={slideInLeft}
+      className="relative rounded-2xl p-6 md:p-8 bg-gradient-to-br from-slate-100 to-slate-200 shadow-2xl mx-auto w-full max-w-[360px] overflow-hidden"
+      style={{ aspectRatio: '1.586 / 1' }}
+    >
+      {isActive && (
+        <m.div
+          className="absolute top-0 left-0 right-0 h-1 bg-[#A89FE0] shadow-[0_0_15px_rgba(168,159,224,0.5)] z-20 will-change-transform"
+          initial={{ y: -10, opacity: 0 }}
+          animate={{ y: [-10, 240, -10], opacity: [0, 1, 0] }}
+          transition={{ duration: 2, repeat: isInView ? Infinity : 0, ease: 'linear' }}
+        />
+      )}
+
+      {/* Visiting card decorative element */}
+      <div className="absolute -right-6 -bottom-6 opacity-5 pointer-events-none">
+        <Briefcase className="w-48 h-48 text-slate-900" />
+      </div>
+
+      <div className="flex flex-col h-full justify-between relative z-10">
+        <div className="flex justify-between items-start">
+          <div>
+            <h3 className="text-2xl font-bold text-slate-900 tracking-tight">{profile.name}</h3>
+            <p className="text-sm font-bold text-[#7B6FD4] mt-1 uppercase tracking-widest">{profile.role}</p>
+          </div>
+          <div className="w-12 h-12 rounded-full bg-slate-900/5 flex items-center justify-center shrink-0">
+            <Building2 className="w-6 h-6 text-slate-800" />
+          </div>
         </div>
-        <div className="w-12 h-12 rounded-full bg-slate-900/5 flex items-center justify-center shrink-0">
-          <Building2 className="w-6 h-6 text-slate-800" />
+
+        <div className="space-y-3 mt-auto">
+          <div className="flex items-center gap-2">
+            <Building2 className="w-4 h-4 text-slate-500" />
+            <p className="font-bold text-slate-800 tracking-wide text-lg">{profile.company}</p>
+          </div>
+          <div className="w-12 h-1 bg-[#7B6FD4]/30 rounded-full" />
         </div>
       </div>
-      
-      <div className="space-y-3 mt-auto">
-        <div className="flex items-center gap-2">
-          <Building2 className="w-4 h-4 text-slate-500" />
-          <p className="font-bold text-slate-800 tracking-wide text-lg">{profile.company}</p>
-        </div>
-        <div className="w-12 h-1 bg-leadq-royal-blue/30 rounded-full" />
-      </div>
-    </div>
-  </m.div>
+    </m.div>
   );
 };
 
@@ -598,176 +598,176 @@ export default function ProfileResearch() {
 
   return (
     <InViewContext.Provider value={shouldAnimate ?? false}>
-    <section ref={ref} id="profile-research" className="relative z-10 py-16 md:py-24 px-4 overflow-hidden">
-      {/* Background effects */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-slate-400/10 rounded-full blur-[120px]" />
-        <div className="absolute top-1/4 right-1/4 w-[400px] h-[400px] bg-slate-400/5 rounded-full blur-[100px]" />
-      </div>
-
-      <div className="max-w-7xl mx-auto relative">
-        <m.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-8 md:mb-12"
-        >
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold mb-4">
-            Profile{' '}
-            <span className="bg-gradient-to-r from-leadq-cyan to-leadq-royal-blue bg-clip-text text-transparent">
-              Research
-            </span>
-          </h2>
-
-          <p className="text-lg sm:text-xl md:text-2xl text-slate-400 max-w-2xl mx-auto mb-6" style={{ textShadow: 'none' }}>
-            Transform minimal contact inputs into rich, verified professional profiles in seconds
-          </p>
-
-          {/* Action button */}
-          {stage === 'idle' ? (
-            <MotionButton
-              onClick={startAnimation}
-              variant="gradient-blue"
-              className="inline-flex items-center gap-2 animate-btn-pulse"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Search className="w-5 h-5" />
-              <span>Start Research Demo</span>
-            </MotionButton>
-          ) : (
-            <MotionButton
-              onClick={() => {
-                resetAnimation();
-                setTimeout(startAnimation, 100);
-              }}
-              variant="glass-secondary"
-              className="inline-flex items-center gap-2 text-sm"
-              whileHover={{ scale: isAnimating ? 1 : 1.05 }}
-              whileTap={{ scale: isAnimating ? 1 : 0.95 }}
-              disabled={isAnimating}
-            >
-              <RefreshCw className={`w-4 h-4 ${isAnimating ? 'animate-spin' : ''}`} />
-              <span>{isAnimating ? 'Researching...' : 'Replay Demo'}</span>
-            </MotionButton>
-          )}
-        </m.div>
-
-        {/* Stage indicator - only visible after demo starts */}
-        {stage !== 'idle' && <StageIndicator currentStage={stage} stages={stages} />}
-
-        {/* Main animation container */}
-        <div className="flex flex-col lg:flex-row gap-4 md:gap-8 items-center justify-center w-full">
-
-          {/* Input Card — always visible, starts centred, shifts left when demo begins */}
-          <m.div
-            className="flex flex-col justify-center"
-            animate={stage === 'idle'
-              ? { flex: '0 0 auto', maxWidth: '420px', width: '100%' }
-              : { flex: '1 1 0%', maxWidth: '100%', width: '100%' }
-            }
-            transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-          >
-            <InputCard profile={INPUT_PROFILE} isActive={stage === 'input' || stage === 'researching'} />
-          </m.div>
-
-          {/* Everything else animates in once demo starts */}
-          <AnimatePresence>
-            {stage !== 'idle' && (
-              <>
-                {/* Arrow 1 */}
-                <m.div
-                  key="arrow1"
-                  initial={{ opacity: 0, x: -12 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -12 }}
-                  transition={{ duration: 0.4 }}
-                  className="text-leadq-royal-blue/40 flex justify-center items-center shrink-0"
-                >
-                  <m.div animate={{ x: [0, 5, 0] }} transition={{ duration: 1.5, repeat: isInView ? Infinity : 0, ease: 'easeInOut' }}>
-                    <ArrowRight className="hidden lg:block w-8 h-8" />
-                  </m.div>
-                  <m.div animate={{ y: [0, 5, 0] }} transition={{ duration: 1.5, repeat: isInView ? Infinity : 0, ease: 'easeInOut' }}>
-                    <ArrowDown className="block lg:hidden w-8 h-8" />
-                  </m.div>
-                </m.div>
-
-                {/* Center: Research Visualization */}
-                <m.div
-                  key="center"
-                  initial={{ opacity: 0, scale: 0.92 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.92 }}
-                  transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-                  className="w-full lg:flex-1 flex flex-col mx-auto max-w-[320px]"
-                >
-                  <ResearchVisualization stage={stage} activeSources={activeSources} />
-                </m.div>
-
-                {/* Arrow 2 */}
-                <m.div
-                  key="arrow2"
-                  initial={{ opacity: 0, x: -12 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -12 }}
-                  transition={{ duration: 0.4, delay: 0.1 }}
-                  className="text-leadq-royal-blue/40 flex justify-center items-center shrink-0"
-                >
-                  <m.div animate={{ x: [0, 5, 0] }} transition={{ duration: 1.5, repeat: isInView ? Infinity : 0, ease: 'easeInOut', delay: 0.2 }}>
-                    <ArrowRight className="hidden lg:block w-8 h-8" />
-                  </m.div>
-                  <m.div animate={{ y: [0, 5, 0] }} transition={{ duration: 1.5, repeat: isInView ? Infinity : 0, ease: 'easeInOut', delay: 0.2 }}>
-                    <ArrowDown className="block lg:hidden w-8 h-8" />
-                  </m.div>
-                </m.div>
-
-                {/* Right: Enriched Profile */}
-                <m.div
-                  key="right"
-                  initial={{ opacity: 0, x: 40 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 40 }}
-                  transition={{ duration: 0.5, delay: 0.15, ease: [0.25, 0.1, 0.25, 1] }}
-                  className="w-full lg:flex-1 flex flex-col h-[500px]"
-                >
-                  <EnrichedCard profile={ENRICHED_PROFILE} visibleFields={visibleFields} />
-                </m.div>
-              </>
-            )}
-          </AnimatePresence>
+      <section ref={ref} id="profile-research" className="relative z-10 py-16 md:py-24 px-4 overflow-hidden">
+        {/* Background effects */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-slate-400/10 rounded-full blur-[120px]" />
+          <div className="absolute top-1/4 right-1/4 w-[400px] h-[400px] bg-slate-400/5 rounded-full blur-[100px]" />
         </div>
 
-        {/* Feature highlights */}
-        <m.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-12 md:mt-16 grid grid-cols-2 md:grid-cols-4 gap-4"
-        >
-          {[
-            { icon: Shield, label: 'Identity-Locked', desc: 'Strict matching' },
-            { icon: Filter, label: 'Noise Filtered', desc: 'High-confidence only' },
-            { icon: Brain, label: 'AI Summary', desc: 'Outreach-ready' },
-            { icon: Zap, label: 'Fast Enrichment', desc: 'Seconds, not hours' },
-          ].map((feature, index) => (
+        <div className="max-w-7xl mx-auto relative">
+          <m.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-8 md:mb-12"
+          >
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold mb-4">
+              Profile{' '}
+              <span className="text-[#A89FE0]">
+                Research
+              </span>
+            </h2>
+
+            <p className="text-lg sm:text-xl md:text-2xl text-slate-400 max-w-2xl mx-auto mb-6" style={{ textShadow: 'none' }}>
+              Transform minimal contact inputs into rich, verified professional profiles in seconds
+            </p>
+
+            {/* Action button */}
+            {stage === 'idle' ? (
+              <MotionButton
+                onClick={startAnimation}
+                variant="gradient-blue"
+                className="inline-flex items-center gap-2 animate-btn-pulse"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Search className="w-5 h-5" />
+                <span>Start Research Demo</span>
+              </MotionButton>
+            ) : (
+              <MotionButton
+                onClick={() => {
+                  resetAnimation();
+                  setTimeout(startAnimation, 100);
+                }}
+                variant="glass-secondary"
+                className="inline-flex items-center gap-2 text-sm"
+                whileHover={{ scale: isAnimating ? 1 : 1.05 }}
+                whileTap={{ scale: isAnimating ? 1 : 0.95 }}
+                disabled={isAnimating}
+              >
+                <RefreshCw className={`w-4 h-4 ${isAnimating ? 'animate-spin' : ''}`} />
+                <span>{isAnimating ? 'Researching...' : 'Replay Demo'}</span>
+              </MotionButton>
+            )}
+          </m.div>
+
+          {/* Stage indicator - only visible after demo starts */}
+          {stage !== 'idle' && <StageIndicator currentStage={stage} stages={stages} />}
+
+          {/* Main animation container */}
+          <div className="flex flex-col lg:flex-row gap-4 md:gap-8 items-center justify-center w-full">
+
+            {/* Input Card — always visible, starts centred, shifts left when demo begins */}
             <m.div
-              key={feature.label}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: 0.1 * index }}
-              className="text-center p-4 rounded-xl bg-white/5 border border-white/10"
+              className="flex flex-col justify-center"
+              animate={stage === 'idle'
+                ? { flex: '0 0 auto', maxWidth: '420px', width: '100%' }
+                : { flex: '1 1 0%', maxWidth: '100%', width: '100%' }
+              }
+              transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
             >
-              <feature.icon className="w-6 h-6 text-white mx-auto mb-2" />
-              <p className="text-sm font-medium text-white">{feature.label}</p>
-              <p className="text-xs text-slate-500">{feature.desc}</p>
+              <InputCard profile={INPUT_PROFILE} isActive={stage === 'input' || stage === 'researching'} />
             </m.div>
-          ))}
-        </m.div>
-      </div>
-    </section>
+
+            {/* Everything else animates in once demo starts */}
+            <AnimatePresence>
+              {stage !== 'idle' && (
+                <>
+                  {/* Arrow 1 */}
+                  <m.div
+                    key="arrow1"
+                    initial={{ opacity: 0, x: -12 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -12 }}
+                    transition={{ duration: 0.4 }}
+                    className="text-[#7B6FD4]/40 flex justify-center items-center shrink-0"
+                  >
+                    <m.div animate={{ x: [0, 5, 0] }} transition={{ duration: 1.5, repeat: isInView ? Infinity : 0, ease: 'easeInOut' }}>
+                      <ArrowRight className="hidden lg:block w-8 h-8" />
+                    </m.div>
+                    <m.div animate={{ y: [0, 5, 0] }} transition={{ duration: 1.5, repeat: isInView ? Infinity : 0, ease: 'easeInOut' }}>
+                      <ArrowDown className="block lg:hidden w-8 h-8" />
+                    </m.div>
+                  </m.div>
+
+                  {/* Center: Research Visualization */}
+                  <m.div
+                    key="center"
+                    initial={{ opacity: 0, scale: 0.92 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.92 }}
+                    transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+                    className="w-full lg:flex-1 flex flex-col mx-auto max-w-[320px]"
+                  >
+                    <ResearchVisualization stage={stage} activeSources={activeSources} />
+                  </m.div>
+
+                  {/* Arrow 2 */}
+                  <m.div
+                    key="arrow2"
+                    initial={{ opacity: 0, x: -12 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -12 }}
+                    transition={{ duration: 0.4, delay: 0.1 }}
+                    className="text-[#7B6FD4]/40 flex justify-center items-center shrink-0"
+                  >
+                    <m.div animate={{ x: [0, 5, 0] }} transition={{ duration: 1.5, repeat: isInView ? Infinity : 0, ease: 'easeInOut', delay: 0.2 }}>
+                      <ArrowRight className="hidden lg:block w-8 h-8" />
+                    </m.div>
+                    <m.div animate={{ y: [0, 5, 0] }} transition={{ duration: 1.5, repeat: isInView ? Infinity : 0, ease: 'easeInOut', delay: 0.2 }}>
+                      <ArrowDown className="block lg:hidden w-8 h-8" />
+                    </m.div>
+                  </m.div>
+
+                  {/* Right: Enriched Profile */}
+                  <m.div
+                    key="right"
+                    initial={{ opacity: 0, x: 40 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 40 }}
+                    transition={{ duration: 0.5, delay: 0.15, ease: [0.25, 0.1, 0.25, 1] }}
+                    className="w-full lg:flex-1 flex flex-col h-[500px]"
+                  >
+                    <EnrichedCard profile={ENRICHED_PROFILE} visibleFields={visibleFields} />
+                  </m.div>
+                </>
+              )}
+            </AnimatePresence>
+          </div>
+
+          {/* Feature highlights */}
+          <m.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="mt-12 md:mt-16 grid grid-cols-2 md:grid-cols-4 gap-4"
+          >
+            {[
+              { icon: Shield, label: 'Identity-Locked', desc: 'Strict matching' },
+              { icon: Filter, label: 'Noise Filtered', desc: 'High-confidence only' },
+              { icon: Brain, label: 'AI Summary', desc: 'Outreach-ready' },
+              { icon: Zap, label: 'Fast Enrichment', desc: 'Seconds, not hours' },
+            ].map((feature, index) => (
+              <m.div
+                key={feature.label}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.1 * index }}
+                className="text-center p-4 rounded-xl bg-white/5 border border-white/10"
+              >
+                <feature.icon className="w-6 h-6 text-white mx-auto mb-2" />
+                <p className="text-sm font-medium text-white">{feature.label}</p>
+                <p className="text-xs text-slate-500">{feature.desc}</p>
+              </m.div>
+            ))}
+          </m.div>
+        </div>
+      </section>
     </InViewContext.Provider>
   );
 }

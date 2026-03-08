@@ -70,16 +70,16 @@ const PulsingDot = ({ color = 'bg-green-500' }: { color?: string }) => (
 const TypingIndicator = () => {
     const isInView = useIsInView();
     return (
-    <div className="flex items-center gap-1 px-2 py-1">
-        {[0, 1, 2].map((i) => (
-            <m.div
-                key={i}
-                className="w-1.5 h-1.5 bg-leadq-silver rounded-full"
-                animate={{ y: [0, -4, 0], opacity: [0.5, 1, 0.5] }}
-                transition={{ duration: 0.5, repeat: isInView ? Infinity : 0, delay: i * 0.12 }}
-            />
-        ))}
-    </div>
+        <div className="flex items-center gap-1 px-2 py-1">
+            {[0, 1, 2].map((i) => (
+                <m.div
+                    key={i}
+                    className="w-1.5 h-1.5 bg-leadq-silver rounded-full"
+                    animate={{ y: [0, -4, 0], opacity: [0.5, 1, 0.5] }}
+                    transition={{ duration: 0.5, repeat: isInView ? Infinity : 0, delay: i * 0.12 }}
+                />
+            ))}
+        </div>
     );
 };
 
@@ -139,7 +139,7 @@ const PhoneVisualization = ({ stage, isMuted }: { stage: CallStage; isMuted: boo
                     {stage === 'idle' && <Phone className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-slate-400" />}
                     {stage === 'dialing' && <PhoneCall className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-yellow-400" />}
                     {(stage === 'connected' || isAISpeaking) && <Bot className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-leadq-silver" />}
-                    {isUserSpeaking && <User className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-blue-400" />}
+                    {isUserSpeaking && <User className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-[#A89FE0]" />}
                     {stage === 'ai-thinking' && (
                         <m.div animate={{ rotate: 360 }} transition={{ duration: 2, repeat: isInView ? Infinity : 0, ease: 'linear' }}>
                             <Brain className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-leadq-silver" />
@@ -187,9 +187,9 @@ const ConversationBubble = ({ message }: { message: ConversationMessage; isLates
                     {isAI ? (
                         <Bot className="w-3.5 h-3.5 text-leadq-silver" />
                     ) : (
-                        <User className="w-3.5 h-3.5 text-blue-400" />
+                        <User className="w-3.5 h-3.5 text-[#A89FE0]" />
                     )}
-                    <span className={`text-[10px] font-medium ${isAI ? 'text-leadq-silver' : 'text-blue-400'}`}>
+                    <span className={`text-[10px] font-medium ${isAI ? 'text-leadq-silver' : 'text-[#A89FE0]'}`}>
                         {isAI ? 'AI Agent' : 'Customer'}
                     </span>
                     {message.isInterruption && (
@@ -385,244 +385,244 @@ export default function OutboundVoiceAgent() {
 
     return (
         <InViewContext.Provider value={shouldAnimate ?? false}>
-        <section ref={ref} id="voice-agent" className="relative z-10 py-16 sm:py-20 md:py-24 px-4">
-            {/* Background effects */}
-            <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-leadq-silver/5 rounded-full blur-3xl" />
-                <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl" />
-            </div>
+            <section ref={ref} id="voice-agent" className="relative z-10 py-16 sm:py-20 md:py-24 px-4">
+                {/* Background effects */}
+                <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                    <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-leadq-silver/5 rounded-full blur-3xl" />
+                    <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl" />
+                </div>
 
-            <div className="max-w-6xl mx-auto relative">
-                {/* Header */}
-                <m.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                    className="text-center mb-12"
-                >
-                    <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold mb-4">
-                        Voice{' '}
-                        <span className="bg-gradient-to-r from-leadq-cyan to-leadq-royal-blue bg-clip-text text-transparent">
-                            Agent
-                        </span>
-                    </h2>
+                <div className="max-w-6xl mx-auto relative">
+                    {/* Header */}
+                    <m.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                        className="text-center mb-12"
+                    >
+                        <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold mb-4">
+                            Voice{' '}
+                            <span className="text-[#A89FE0]">
+                                Agent
+                            </span>
+                        </h2>
 
-                    <p className="text-slate-400 max-w-2xl mx-auto text-lg sm:text-xl md:text-2xl mb-8" style={{ textShadow: 'none' }}>
-                        Replace robocalls with intelligent conversations. Our AI handles interruptions naturally
-                        and understands context in real-time.
-                    </p>
+                        <p className="text-slate-400 max-w-2xl mx-auto text-lg sm:text-xl md:text-2xl mb-8" style={{ textShadow: 'none' }}>
+                            Replace robocalls with intelligent conversations. Our AI handles interruptions naturally
+                            and understands context in real-time.
+                        </p>
 
-                    {/* Control buttons */}
-                    <div className="flex items-center justify-center gap-4">
-                        <MotionButton
-                            onClick={startDemo}
-                            disabled={isPlaying && stage !== 'ended'}
-                            variant="gradient-blue"
-                            size="compact-lg"
-                            className="flex items-center gap-2"
-                            whileHover={isPlaying ? {} : { scale: 1.02 }}
-                            whileTap={isPlaying ? {} : { scale: 0.98 }}
-                        >
-                            <Play className="w-4 h-4" />
-                            <span>{stage === 'ended' ? 'Replay Demo' : 'Start Demo Call'}</span>
-                        </MotionButton>
-
-                        {stage !== 'idle' && (
+                        {/* Control buttons */}
+                        <div className="flex items-center justify-center gap-4">
                             <MotionButton
-                                variant="ghost"
+                                onClick={startDemo}
+                                disabled={isPlaying && stage !== 'ended'}
+                                variant="gradient-blue"
                                 size="compact-lg"
                                 className="flex items-center gap-2"
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                onClick={resetDemo}
+                                whileHover={isPlaying ? {} : { scale: 1.02 }}
+                                whileTap={isPlaying ? {} : { scale: 0.98 }}
                             >
-                                <RotateCcw className="w-4 h-4" />
-                                <span>Reset</span>
+                                <Play className="w-4 h-4" />
+                                <span>{stage === 'ended' ? 'Replay Demo' : 'Start Demo Call'}</span>
                             </MotionButton>
-                        )}
-                    </div>
-                </m.div>
 
-                {/* Main demo container */}
-                <m.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.2, duration: 0.6 }}
-                    className="grid lg:grid-cols-2 gap-6 lg:gap-8"
-                >
-                    {/* Left: Phone visualization */}
-                    <div className="glass rounded-2xl p-6 md:p-8 border border-white/10">
-                        {/* Status bar */}
-                        <div className="flex items-center justify-between mb-6">
-                            <div className="flex items-center gap-3">
-                                <PulsingDot color={
-                                    stage === 'idle' ? 'bg-slate-500' :
-                                        stage === 'dialing' ? 'bg-yellow-500' :
-                                            stage === 'ended' ? 'bg-red-500' :
-                                                'bg-green-500'
-                                } />
-                                <span className="text-sm font-medium text-white">{getStatusText()}</span>
+                            {stage !== 'idle' && (
+                                <MotionButton
+                                    variant="ghost"
+                                    size="compact-lg"
+                                    className="flex items-center gap-2"
+                                    initial={{ opacity: 0, scale: 0.9 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    onClick={resetDemo}
+                                >
+                                    <RotateCcw className="w-4 h-4" />
+                                    <span>Reset</span>
+                                </MotionButton>
+                            )}
+                        </div>
+                    </m.div>
+
+                    {/* Main demo container */}
+                    <m.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.2, duration: 0.6 }}
+                        className="grid lg:grid-cols-2 gap-6 lg:gap-8"
+                    >
+                        {/* Left: Phone visualization */}
+                        <div className="glass rounded-2xl p-6 md:p-8 border border-white/10">
+                            {/* Status bar */}
+                            <div className="flex items-center justify-between mb-6">
+                                <div className="flex items-center gap-3">
+                                    <PulsingDot color={
+                                        stage === 'idle' ? 'bg-slate-500' :
+                                            stage === 'dialing' ? 'bg-yellow-500' :
+                                                stage === 'ended' ? 'bg-red-500' :
+                                                    'bg-green-500'
+                                    } />
+                                    <span className="text-sm font-medium text-white">{getStatusText()}</span>
+                                </div>
+                                {stage !== 'idle' && stage !== 'dialing' && (
+                                    <div className="flex items-center gap-2 text-sm text-slate-400">
+                                        <Clock className="w-4 h-4" />
+                                        <span className="font-mono">{formatDuration(callDuration)}</span>
+                                    </div>
+                                )}
                             </div>
-                            {stage !== 'idle' && stage !== 'dialing' && (
-                                <div className="flex items-center gap-2 text-sm text-slate-400">
-                                    <Clock className="w-4 h-4" />
-                                    <span className="font-mono">{formatDuration(callDuration)}</span>
-                                </div>
-                            )}
-                        </div>
 
-                        {/* Phone visualization */}
-                        <PhoneVisualization stage={stage} isMuted={isMuted} />
+                            {/* Phone visualization */}
+                            <PhoneVisualization stage={stage} isMuted={isMuted} />
 
-                        {/* Call info */}
-                        <div className="mt-6 text-center">
-                            <p className="text-sm text-slate-500">Calling</p>
-                            <p className="text-lg font-medium text-white">Sarah Chen</p>
-                            <p className="text-sm text-slate-400">TechCorp Industries</p>
-                        </div>
+                            {/* Call info */}
+                            <div className="mt-6 text-center">
+                                <p className="text-sm text-slate-500">Calling</p>
+                                <p className="text-lg font-medium text-white">Sarah Chen</p>
+                                <p className="text-sm text-slate-400">TechCorp Industries</p>
+                            </div>
 
-                        {/* Feature highlights */}
-                        <div className="mt-6 grid grid-cols-2 gap-1.5 sm:gap-2">
-                            {[
-                                { icon: Volume2, label: 'Natural Voice', active: stage === 'ai-speaking' || stage === 'ai-responding' },
-                                { icon: Brain, label: 'Context Aware', active: stage === 'ai-thinking' },
-                            ].map((feature) => (
-                                <m.div
-                                    key={feature.label}
-                                    className={`p-3 rounded-lg text-center transition-colors ${feature.active ? 'bg-leadq-silver/20 border border-leadq-silver/30' : 'bg-white/5 border border-white/10'
-                                        }`}
-                                    animate={feature.active ? { scale: [1, 1.02, 1] } : {}}
-                                    transition={{ duration: 1, repeat: feature.active ? Infinity : 0 }}
-                                >
-                                    <feature.icon className={`w-4 h-4 sm:w-5 sm:h-5 mx-auto mb-1 ${feature.active ? 'text-leadq-silver' : 'text-slate-500'}`} />
-                                    <span className={`text-[9px] sm:text-[10px] ${feature.active ? 'text-leadq-silver' : 'text-slate-500'}`}>
-                                        {feature.label}
-                                    </span>
-                                </m.div>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Right: Conversation transcript */}
-                    <div className="glass rounded-2xl p-6 md:p-8 border border-white/10 flex flex-col">
-                        <div className="flex items-center justify-between mb-4">
-                            <h3 className="text-xl sm:text-2xl font-display font-medium text-slate-400 uppercase tracking-wider">
-                                Call Transcripts
-                            </h3>
-                            {isPlaying && stage !== 'ended' && (
-                                <div className="flex items-center gap-2">
-                                    <PulsingDot color="bg-red-500" />
-                                    <span className="text-xs text-red-400 font-medium">LIVE</span>
-                                </div>
-                            )}
-                        </div>
-
-                        <div ref={transcriptRef} className="flex-1 overflow-y-auto max-h-[280px] sm:max-h-[350px] md:max-h-[400px] pr-2 space-y-1">
-                            <AnimatePresence>
-                                {conversations.map((msg, index) => (
-                                    <ConversationBubble
-                                        key={msg.id}
-                                        message={msg}
-                                        isLatest={index === conversations.length - 1}
-                                    />
+                            {/* Feature highlights */}
+                            <div className="mt-6 grid grid-cols-2 gap-1.5 sm:gap-2">
+                                {[
+                                    { icon: Volume2, label: 'Natural Voice', active: stage === 'ai-speaking' || stage === 'ai-responding' },
+                                    { icon: Brain, label: 'Context Aware', active: stage === 'ai-thinking' },
+                                ].map((feature) => (
+                                    <m.div
+                                        key={feature.label}
+                                        className={`p-3 rounded-lg text-center transition-colors ${feature.active ? 'bg-leadq-silver/20 border border-leadq-silver/30' : 'bg-white/5 border border-white/10'
+                                            }`}
+                                        animate={feature.active ? { scale: [1, 1.02, 1] } : {}}
+                                        transition={{ duration: 1, repeat: feature.active ? Infinity : 0 }}
+                                    >
+                                        <feature.icon className={`w-4 h-4 sm:w-5 sm:h-5 mx-auto mb-1 ${feature.active ? 'text-leadq-silver' : 'text-slate-500'}`} />
+                                        <span className={`text-[9px] sm:text-[10px] ${feature.active ? 'text-leadq-silver' : 'text-slate-500'}`}>
+                                            {feature.label}
+                                        </span>
+                                    </m.div>
                                 ))}
-                            </AnimatePresence>
+                            </div>
+                        </div>
 
-                            {/* Typing indicator */}
-                            {(stage === 'ai-thinking' || stage === 'scheduling') && (
-                                <m.div
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    className="flex justify-start"
-                                >
-                                    <div className="bg-white/10 border border-white/10 rounded-2xl rounded-bl-sm px-4 py-2">
-                                        <div className="flex items-center gap-2">
-                                            <Bot className="w-3.5 h-3.5 text-leadq-silver" />
-                                            <TypingIndicator />
+                        {/* Right: Conversation transcript */}
+                        <div className="glass rounded-2xl p-6 md:p-8 border border-white/10 flex flex-col">
+                            <div className="flex items-center justify-between mb-4">
+                                <h3 className="text-xl sm:text-2xl font-display font-medium text-slate-400 uppercase tracking-wider">
+                                    Call Transcripts
+                                </h3>
+                                {isPlaying && stage !== 'ended' && (
+                                    <div className="flex items-center gap-2">
+                                        <PulsingDot color="bg-red-500" />
+                                        <span className="text-xs text-red-400 font-medium">LIVE</span>
+                                    </div>
+                                )}
+                            </div>
+
+                            <div ref={transcriptRef} className="flex-1 overflow-y-auto max-h-[280px] sm:max-h-[350px] md:max-h-[400px] pr-2 space-y-1">
+                                <AnimatePresence>
+                                    {conversations.map((msg, index) => (
+                                        <ConversationBubble
+                                            key={msg.id}
+                                            message={msg}
+                                            isLatest={index === conversations.length - 1}
+                                        />
+                                    ))}
+                                </AnimatePresence>
+
+                                {/* Typing indicator */}
+                                {(stage === 'ai-thinking' || stage === 'scheduling') && (
+                                    <m.div
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        className="flex justify-start"
+                                    >
+                                        <div className="bg-white/10 border border-white/10 rounded-2xl rounded-bl-sm px-4 py-2">
+                                            <div className="flex items-center gap-2">
+                                                <Bot className="w-3.5 h-3.5 text-leadq-silver" />
+                                                <TypingIndicator />
+                                            </div>
                                         </div>
+                                    </m.div>
+                                )}
+
+                                {/* Empty state */}
+                                {conversations.length === 0 && stage === 'idle' && (
+                                    <div className="h-full flex flex-col items-center justify-center text-center py-12">
+                                        <Phone className="w-12 h-12 text-slate-600 mb-4" />
+                                        <p className="text-slate-500 text-sm">
+                                            Click "Start Demo Call" to see the AI in action
+                                        </p>
+                                    </div>
+                                )}
+                            </div>
+
+                            {/* Key moments indicator */}
+                            {stage === 'user-interrupting' && (
+                                <m.div
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    className="mt-4 p-3 rounded-lg bg-orange-500/10 border border-orange-500/20"
+                                >
+                                    <div className="flex items-center gap-2">
+                                        <Sparkles className="w-4 h-4 text-orange-400" />
+                                        <span className="text-xs text-orange-300 font-medium">
+                                            AI instantly stops speaking when interrupted — just like a human
+                                        </span>
                                     </div>
                                 </m.div>
                             )}
 
-                            {/* Empty state */}
-                            {conversations.length === 0 && stage === 'idle' && (
-                                <div className="h-full flex flex-col items-center justify-center text-center py-12">
-                                    <Phone className="w-12 h-12 text-slate-600 mb-4" />
-                                    <p className="text-slate-500 text-sm">
-                                        Click "Start Demo Call" to see the AI in action
-                                    </p>
-                                </div>
+                            {stage === 'confirmed' && (
+                                <m.div
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    className="mt-4 p-3 rounded-lg bg-green-500/10 border border-green-500/20"
+                                >
+                                    <div className="flex items-center gap-2">
+                                        <CheckCircle2 className="w-4 h-4 text-green-400" />
+                                        <span className="text-xs text-green-300 font-medium">
+                                            Meeting scheduled and synced to CRM automatically
+                                        </span>
+                                    </div>
+                                </m.div>
                             )}
                         </div>
+                    </m.div>
 
-                        {/* Key moments indicator */}
-                        {stage === 'user-interrupting' && (
+                    {/* Feature highlights below */}
+                    <m.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.4, duration: 0.6 }}
+                        className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4"
+                    >
+                        {[
+                            { icon: CheckCircle2, label: 'Call Confirmation', desc: 'Verify appointments' },
+                            { icon: Bell, label: 'Reminder Calls', desc: 'Timely notifications' },
+                            { icon: XCircle, label: 'Cancellation Calls', desc: 'Handle changes gracefully' },
+                            { icon: PhoneForwarded, label: 'Follow-up Calls', desc: 'Nurture relationships' },
+                        ].map((feature, i) => (
                             <m.div
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                className="mt-4 p-3 rounded-lg bg-orange-500/10 border border-orange-500/20"
+                                key={feature.label}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.5 + i * 0.1 }}
+                                whileHover={{ y: -4, borderColor: 'rgba(123, 111, 212, 0.3)' }}
+                                className="p-4 rounded-xl bg-white/5 border border-white/10 text-center"
                             >
-                                <div className="flex items-center gap-2">
-                                    <Sparkles className="w-4 h-4 text-orange-400" />
-                                    <span className="text-xs text-orange-300 font-medium">
-                                        AI instantly stops speaking when interrupted — just like a human
-                                    </span>
+                                <div className="w-10 h-10 rounded-lg bg-leadq-silver/10 flex items-center justify-center mx-auto mb-2">
+                                    <feature.icon className="w-5 h-5 text-leadq-silver" />
                                 </div>
+                                <div className="text-sm font-medium text-white">{feature.label}</div>
+                                <div className="text-xs text-slate-500">{feature.desc}</div>
                             </m.div>
-                        )}
-
-                        {stage === 'confirmed' && (
-                            <m.div
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                className="mt-4 p-3 rounded-lg bg-green-500/10 border border-green-500/20"
-                            >
-                                <div className="flex items-center gap-2">
-                                    <CheckCircle2 className="w-4 h-4 text-green-400" />
-                                    <span className="text-xs text-green-300 font-medium">
-                                        Meeting scheduled and synced to CRM automatically
-                                    </span>
-                                </div>
-                            </m.div>
-                        )}
-                    </div>
-                </m.div>
-
-                {/* Feature highlights below */}
-                <m.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.4, duration: 0.6 }}
-                    className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4"
-                >
-                    {[
-                        { icon: CheckCircle2, label: 'Call Confirmation', desc: 'Verify appointments' },
-                        { icon: Bell, label: 'Reminder Calls', desc: 'Timely notifications' },
-                        { icon: XCircle, label: 'Cancellation Calls', desc: 'Handle changes gracefully' },
-                        { icon: PhoneForwarded, label: 'Follow-up Calls', desc: 'Nurture relationships' },
-                    ].map((feature, i) => (
-                        <m.div
-                            key={feature.label}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.5 + i * 0.1 }}
-                            whileHover={{ y: -4, borderColor: 'rgba(192, 192, 192, 0.3)' }}
-                            className="p-4 rounded-xl bg-white/5 border border-white/10 text-center"
-                        >
-                            <div className="w-10 h-10 rounded-lg bg-leadq-silver/10 flex items-center justify-center mx-auto mb-2">
-                                <feature.icon className="w-5 h-5 text-leadq-silver" />
-                            </div>
-                            <div className="text-sm font-medium text-white">{feature.label}</div>
-                            <div className="text-xs text-slate-500">{feature.desc}</div>
-                        </m.div>
-                    ))}
-                </m.div>
-            </div>
-        </section>
+                        ))}
+                    </m.div>
+                </div>
+            </section>
         </InViewContext.Provider>
     );
 }

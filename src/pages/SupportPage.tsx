@@ -86,7 +86,7 @@ export default function SupportPage() {
                   className="h-10 w-auto"
                 />
                 <span className="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-leadq-platinum to-leadq-steel">
-                  LeadQ<span className="text-leadq-cyan">.AI</span>
+                  LeadQ<span className="text-[#A89FE0]">.AI</span>
                 </span>
               </Link>
             </div>
@@ -99,13 +99,13 @@ export default function SupportPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full border border-leadq-cyan/20 bg-leadq-cyan/5 text-leadq-cyan text-sm font-medium">
+              <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full border border-[#A89FE0]/20 bg-[#A89FE0]/5 text-[#A89FE0] text-sm font-medium">
                 <Headphones size={16} />
                 Support Center
               </div>
               <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold text-leadq-platinum mb-4">
                 How can we{' '}
-                <span className="bg-gradient-to-r from-leadq-cyan to-leadq-royal-blue bg-clip-text text-transparent">
+                <span className="text-[#A89FE0]">
                   help you?
                 </span>
               </h1>
@@ -126,8 +126,8 @@ export default function SupportPage() {
                 transition={{ duration: 0.4, delay: 0.1 }}
                 className="glass rounded-2xl p-6 sm:p-8 flex flex-col items-start gap-4"
               >
-                <div className="p-3 rounded-xl bg-leadq-cyan/10">
-                  <Mail className="w-6 h-6 text-leadq-cyan" />
+                <div className="p-3 rounded-xl bg-[#A89FE0]/10">
+                  <Mail className="w-6 h-6 text-[#A89FE0]" />
                 </div>
                 <div>
                   <h3 className="text-lg font-display font-semibold text-white mb-1">
@@ -135,7 +135,7 @@ export default function SupportPage() {
                   </h3>
                   <a
                     href="mailto:contact@tekisho.ai"
-                    className="text-leadq-cyan hover:text-leadq-cyan-bright transition-colors break-all"
+                    className="text-[#A89FE0] hover:text-[#A89FE0]/80 transition-colors break-all"
                   >
                     contact@tekisho.ai
                   </a>
@@ -163,8 +163,8 @@ export default function SupportPage() {
                 transition={{ duration: 0.4, delay: 0.2 }}
                 className="glass rounded-2xl p-6 sm:p-8 flex flex-col items-start gap-4"
               >
-                <div className="p-3 rounded-xl bg-leadq-cyan/10">
-                  <Clock className="w-6 h-6 text-leadq-cyan" />
+                <div className="p-3 rounded-xl bg-[#A89FE0]/10">
+                  <Clock className="w-6 h-6 text-[#A89FE0]" />
                 </div>
                 <div>
                   <h3 className="text-lg font-display font-semibold text-white mb-1">
@@ -190,8 +190,8 @@ export default function SupportPage() {
                 transition={{ duration: 0.4, delay: 0.3 }}
                 className="glass rounded-2xl p-6 sm:p-8 flex flex-col items-start gap-4 sm:col-span-2 lg:col-span-1"
               >
-                <div className="p-3 rounded-xl bg-leadq-cyan/10">
-                  <Globe className="w-6 h-6 text-leadq-cyan" />
+                <div className="p-3 rounded-xl bg-[#A89FE0]/10">
+                  <Globe className="w-6 h-6 text-[#A89FE0]" />
                 </div>
                 <div>
                   <h3 className="text-lg font-display font-semibold text-white mb-1">
@@ -205,7 +205,7 @@ export default function SupportPage() {
                   href="/legal/documentation"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-auto inline-flex items-center gap-1.5 text-sm text-leadq-cyan hover:text-leadq-cyan-bright transition-colors"
+                  className="mt-auto inline-flex items-center gap-1.5 text-sm text-[#A89FE0] hover:text-[#A89FE0]/80 transition-colors"
                 >
                   <BookOpen size={14} /> View documentation
                 </a>
@@ -222,7 +222,7 @@ export default function SupportPage() {
             >
               <h2 className="text-3xl sm:text-4xl font-display font-bold text-leadq-platinum mb-8 text-center">
                 Knowledge{' '}
-                <span className="bg-gradient-to-r from-leadq-cyan to-leadq-royal-blue bg-clip-text text-transparent">
+                <span className="text-[#A89FE0]">
                   Base
                 </span>
               </h2>
@@ -243,7 +243,7 @@ export default function SupportPage() {
                     }
                   }}
                   placeholder="Search articles by keyword, topic, or tag…"
-                  className="w-full pl-11 pr-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-leadq-steel/60 focus:outline-none focus:ring-2 focus:ring-leadq-cyan/40 focus:border-leadq-cyan/40 transition-all text-sm"
+                  className="w-full pl-11 pr-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-leadq-steel/60 focus:outline-none focus:ring-2 focus:ring-[#A89FE0]/40 focus:border-[#A89FE0]/40 transition-all text-sm"
                 />
               </div>
 
@@ -256,11 +256,10 @@ export default function SupportPage() {
                       setActiveCategory(cat as SupportCategory | 'All');
                       setOpenArticleId(null);
                     }}
-                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all border ${
-                      activeCategory === cat
-                        ? 'bg-leadq-cyan/15 border-leadq-cyan/40 text-leadq-cyan'
-                        : 'bg-white/5 border-white/10 text-leadq-silver hover:bg-white/10 hover:border-white/20'
-                    }`}
+                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all border ${activeCategory === cat
+                      ? 'bg-[#A89FE0]/15 border-[#A89FE0]/40 text-[#A89FE0]'
+                      : 'bg-white/5 border-white/10 text-leadq-silver hover:bg-white/10 hover:border-white/20'
+                      }`}
                   >
                     {cat}
                   </button>
@@ -309,7 +308,7 @@ export default function SupportPage() {
                             )
                           }
                           variant="ghost"
-                          className="w-full text-left px-5 sm:px-6 py-4 sm:py-5 flex items-start justify-between gap-4 focus:ring-2 focus:ring-leadq-royal-blue focus:ring-inset rounded-xl whitespace-normal h-auto"
+                          className="w-full text-left px-5 sm:px-6 py-4 sm:py-5 flex items-start justify-between gap-4 focus:ring-2 focus:ring-[#7B6FD4] focus:ring-inset rounded-xl whitespace-normal h-auto"
                           aria-expanded={openArticleId === article.id}
                           aria-controls={`kb-${article.id}`}
                         >
@@ -317,7 +316,7 @@ export default function SupportPage() {
                             <span className="block font-medium text-white text-base sm:text-lg leading-snug">
                               {article.title}
                             </span>
-                            <span className="block text-xs text-leadq-cyan/70 mt-1 font-medium">
+                            <span className="block text-xs text-[#A89FE0]/70 mt-1 font-medium">
                               {article.category}
                             </span>
                           </div>
@@ -334,7 +333,7 @@ export default function SupportPage() {
                           >
                             <ChevronDown
                               size={22}
-                              className="text-leadq-cyan"
+                              className="text-[#A89FE0]"
                             />
                           </m.div>
                         </Button>

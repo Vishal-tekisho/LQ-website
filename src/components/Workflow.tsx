@@ -179,7 +179,7 @@ export default function Workflow() {
                               y1="0"
                               x2={x}
                               y2={y}
-                              stroke={'rgb(192, 192, 192)'}
+                              stroke={'rgb(123, 111, 212)'}
                               strokeWidth="2"
                               strokeDasharray="4 4"
                               initial={{ pathLength: 0 }}
@@ -205,9 +205,9 @@ export default function Workflow() {
                             animate={{
                               scale: [1, 1.1, 1],
                               boxShadow: [
-                                '0 0 0 0 rgba(192, 192, 192, 0.4)',
-                                '0 0 0 8px rgba(192, 192, 192, 0)',
-                                '0 0 0 0 rgba(192, 192, 192, 0)',
+                                '0 0 0 0 rgba(123, 111, 212, 0.4)',
+                                '0 0 0 8px rgba(123, 111, 212, 0)',
+                                '0 0 0 0 rgba(123, 111, 212, 0)',
                               ],
                             }}
                             transition={{

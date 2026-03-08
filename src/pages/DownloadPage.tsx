@@ -108,7 +108,7 @@ function StepCard({ step, delay }: { step: Step; delay: number }) {
       transition={{ duration: 0.35, delay }}
       className="flex gap-4 items-start"
     >
-      <span className="flex-shrink-0 w-9 h-9 rounded-full bg-leadq-cyan/15 text-leadq-cyan font-bold text-sm flex items-center justify-center">
+      <span className="flex-shrink-0 w-9 h-9 rounded-full bg-[#A89FE0]/15 text-[#A89FE0] font-bold text-sm flex items-center justify-center">
         {step.number}
       </span>
       <div>
@@ -150,7 +150,7 @@ export default function DownloadPage() {
                   className="h-10 w-auto"
                 />
                 <span className="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-leadq-platinum to-leadq-steel">
-                  LeadQ<span className="text-leadq-cyan">.AI</span>
+                  LeadQ<span className="text-[#A89FE0]">.AI</span>
                 </span>
               </Link>
             </div>
@@ -163,13 +163,13 @@ export default function DownloadPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full border border-leadq-cyan/20 bg-leadq-cyan/5 text-leadq-cyan text-sm font-medium">
+              <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full border border-[#A89FE0]/20 bg-[#A89FE0]/5 text-[#A89FE0] text-sm font-medium">
                 <Download size={16} />
                 Download
               </div>
               <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold text-leadq-platinum mb-4">
                 Get LeadQ.AI on{' '}
-                <span className="bg-gradient-to-r from-leadq-cyan to-leadq-royal-blue bg-clip-text text-transparent">
+                <span className="text-[#A89FE0]">
                   your device
                 </span>
               </h1>
@@ -189,8 +189,8 @@ export default function DownloadPage() {
                 transition={{ duration: 0.4, delay: 0.1 }}
                 className="glass rounded-2xl p-6 flex items-start gap-4"
               >
-                <div className="p-3 rounded-xl bg-leadq-cyan/10 flex-shrink-0">
-                  <AppleLogo className="w-6 h-6 text-leadq-cyan" />
+                <div className="p-3 rounded-xl bg-[#A89FE0]/10 flex-shrink-0">
+                  <AppleLogo className="w-6 h-6 text-[#A89FE0]" />
                 </div>
                 <div>
                   <h3 className="text-white font-display font-semibold mb-1">
@@ -208,8 +208,8 @@ export default function DownloadPage() {
                 transition={{ duration: 0.4, delay: 0.2 }}
                 className="glass rounded-2xl p-6 flex items-start gap-4"
               >
-                <div className="p-3 rounded-xl bg-leadq-cyan/10 flex-shrink-0">
-                  <AndroidLogo className="w-6 h-6 text-leadq-cyan" />
+                <div className="p-3 rounded-xl bg-[#A89FE0]/10 flex-shrink-0">
+                  <AndroidLogo className="w-6 h-6 text-[#A89FE0]" />
                 </div>
                 <div>
                   <h3 className="text-white font-display font-semibold mb-1">
@@ -230,22 +230,20 @@ export default function DownloadPage() {
               <div className="inline-flex rounded-full p-1 bg-white/5 border border-white/10">
                 <button
                   onClick={() => setActiveTab('ios')}
-                  className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-medium transition-all ${
-                    activeTab === 'ios'
-                      ? 'bg-leadq-cyan/15 text-leadq-cyan border border-leadq-cyan/30'
-                      : 'text-leadq-silver hover:text-white border border-transparent'
-                  }`}
+                  className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-medium transition-all ${activeTab === 'ios'
+                    ? 'bg-[#A89FE0]/15 text-[#A89FE0] border border-[#A89FE0]/30'
+                    : 'text-leadq-silver hover:text-white border border-transparent'
+                    }`}
                 >
                   <AppleLogo size={16} />
                   iOS
                 </button>
                 <button
                   onClick={() => setActiveTab('android')}
-                  className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-medium transition-all ${
-                    activeTab === 'android'
-                      ? 'bg-leadq-cyan/15 text-leadq-cyan border border-leadq-cyan/30'
-                      : 'text-leadq-silver hover:text-white border border-transparent'
-                  }`}
+                  className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-medium transition-all ${activeTab === 'android'
+                    ? 'bg-[#A89FE0]/15 text-[#A89FE0] border border-[#A89FE0]/30'
+                    : 'text-leadq-silver hover:text-white border border-transparent'
+                    }`}
                 >
                   <AndroidLogo className="w-4 h-4" />
                   Android
@@ -263,9 +261,9 @@ export default function DownloadPage() {
             >
               <div className="flex items-center gap-3 mb-2">
                 {activeTab === 'ios' ? (
-                  <AppleLogo size={22} className="text-leadq-cyan" />
+                  <AppleLogo size={22} className="text-[#A89FE0]" />
                 ) : (
-                  <AndroidLogo className="w-5 h-5 text-leadq-cyan" />
+                  <AndroidLogo className="w-5 h-5 text-[#A89FE0]" />
                 )}
                 <h3 className="text-xl sm:text-2xl font-display font-bold text-white">
                   {activeTab === 'ios'
@@ -322,7 +320,7 @@ export default function DownloadPage() {
                   }
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-leadq-cyan/15 border border-leadq-cyan/30 text-leadq-cyan hover:bg-leadq-cyan/25 transition-all text-sm font-medium"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#A89FE0]/15 border border-[#A89FE0]/30 text-[#A89FE0] hover:bg-[#A89FE0]/25 transition-all text-sm font-medium"
                 >
                   <ExternalLink size={16} />
                   {activeTab === 'ios'

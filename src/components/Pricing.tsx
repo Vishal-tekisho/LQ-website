@@ -17,7 +17,7 @@ const Pricing = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold mb-8">
-            <span className="bg-gradient-to-r from-leadq-cyan to-leadq-royal-blue bg-clip-text text-transparent">
+            <span className="text-[#A89FE0]">
               Pricing
             </span>
           </h2>

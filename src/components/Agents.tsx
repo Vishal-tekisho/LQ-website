@@ -26,7 +26,7 @@ const agents: Agent[] = [
     description:
       'Enriches contacts from web signals and builds rich profiles.',
     icon: Search,
-    color: 'leadq-cyan',
+    color: '#A89FE0',
   },
   {
     id: 2,
@@ -34,7 +34,7 @@ const agents: Agent[] = [
     description:
       'Negotiates meeting times and syncs calendars automatically.',
     icon: Calendar,
-    color: 'leadq-cyan',
+    color: '#A89FE0',
   },
   {
     id: 3,
@@ -52,7 +52,7 @@ const agents: Agent[] = [
     description:
       'Both online and offline meetings can be scheduled from LeadQ.AI base.',
     icon: Users,
-    color: 'leadq-cyan',
+    color: '#A89FE0',
   },
   {
     id: 6,
@@ -60,7 +60,7 @@ const agents: Agent[] = [
     description:
       'Understands context from meetings and knowledgebase, drafts custom emails based on the content.',
     icon: Mail,
-    color: 'leadq-cyan',
+    color: '#A89FE0',
   },
   {
     id: 7,
@@ -68,7 +68,7 @@ const agents: Agent[] = [
     description:
       'Replaces robocalls with intelligent, conversational AI for support, scheduling, and lead qualification.',
     icon: Mic,
-    color: 'leadq-cyan',
+    color: '#A89FE0',
   },
 ];
 
@@ -85,7 +85,7 @@ export default function Agents() {
             className="text-4xl sm:text-5xl md:text-6xl font-display font-bold mb-6"
           >
             Meet Your{' '}
-            <span className="bg-gradient-to-r from-leadq-cyan to-leadq-royal-blue bg-clip-text text-transparent">
+            <span className="text-[#A89FE0]">
               New Workforce
             </span>
           </m.h2>
@@ -113,14 +113,14 @@ export default function Agents() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className={`group relative glass rounded-2xl p-6 ${agent.highlight
-                  ? 'bg-gradient-to-br from-leadq-royal-blue/10 to-leadq-cyan/5'
+                  ? 'bg-gradient-to-br from-[#7B6FD4]/10 to-[#A89FE0]/5'
                   : ''
                   } ${agent.className || ''}`}
               >
                 <div className="relative">
                   <div className="flex items-start justify-between mb-4">
                     <div
-                      className={`w-12 h-12 rounded-xl bg-leadq-royal-blue/10 flex items-center justify-center`}
+                      className={`w-12 h-12 rounded-xl bg-[#7B6FD4]/10 flex items-center justify-center`}
                     >
                       <Icon
                         className={`text-${colorClass}`}

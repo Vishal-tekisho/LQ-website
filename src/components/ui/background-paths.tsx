@@ -12,7 +12,7 @@ function FloatingPaths({ position }: { position: number }) {
             } -${189 + i * 6} -${312 - i * 5 * position} ${216 - i * 6} ${152 - i * 5 * position
             } ${343 - i * 6}C${616 - i * 5 * position} ${470 - i * 6} ${684 - i * 5 * position
             } ${875 - i * 6} ${684 - i * 5 * position} ${875 - i * 6}`,
-        color: `rgba(21, 45, 99,${0.1 + i * 0.03})`,
+        color: `rgba(123, 111, 212,${0.1 + i * 0.03})`,
         width: 0.5 + i * 0.03,
     }));
 
@@ -91,9 +91,9 @@ export function BackgroundPaths({
                         >
                             <div
                                 className="rounded-full px-8 py-4 text-base font-semibold backdrop-blur-md 
-                            bg-gradient-to-r from-leadq-deep-blue via-leadq-royal-blue to-leadq-cyan
+                            bg-gradient-to-r from-[#7B6FD4] via-[#A89FE0] to-[#7B6FD4]
                             text-white transition-all duration-300 
-                            border border-white/10 flex items-center shadow-[0_0_20px_rgba(39,81,169,0.5)] hover:shadow-[0_0_30px_rgba(39,81,169,0.7)]"
+                            border border-white/10 flex items-center shadow-[0_0_20px_rgba(123,111,212,0.5)] hover:shadow-[0_0_30px_rgba(123,111,212,0.7)]"
                             >
                                 <span className="opacity-90">
                                     Discover Excellence
@@ -108,7 +108,7 @@ export function BackgroundPaths({
                         </m.div>
                     </Link>
 
-                    <h1 className="text-5xl sm:text-7xl md:text-8xl font-display font-bold mb-8 tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-leadq-royal-blue/50">
+                    <h1 className="text-5xl sm:text-7xl md:text-8xl font-display font-bold mb-8 tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-[#A89FE0]/50">
                         {words.map((word, wordIndex) => (
                             <span
                                 key={wordIndex}

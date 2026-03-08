@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { m, AnimatePresence, useReducedMotion } from 'framer-motion';
+import { m, useReducedMotion } from 'framer-motion';
 import {
     CreditCard,
     StickyNote,
@@ -13,7 +13,10 @@ import {
     Phone,
     Mail,
     Building2,
-    User
+    User,
+    UserPlus,
+    Search,
+    Shield
 } from 'lucide-react';
 
 interface Step {
@@ -27,23 +30,29 @@ const steps: Step[] = [
     {
         id: 1,
         title: 'Capture people you meet',
-        description: 'Snap a card, we fill the details for you. No more stacks of cards or messy screenshots.',
+        description: 'Snap a business card, we fill the details for you. No more stacks of cards or messy screenshots.',
         icon: <CreditCard className="w-6 h-7" />,
     },
     {
         id: 2,
+        title: 'Instant Profile Research',
+        description: 'We instantly find their social profiles, company data, and verify their identity so you know exactly who you are talking to.',
+        icon: <UserPlus className="w-6 h-6" />,
+    },
+    {
+        id: 3,
         title: 'Remember every meeting',
         description: 'Talk or type a few points. LeadQ.AI turns them into clear, searchable notes.',
         icon: <StickyNote className="w-6 h-6" />,
     },
     {
-        id: 3,
+        id: 4,
         title: 'Never forget follow-ups',
         description: "LeadQ.AI suggests who to follow up with each day so deals don't quietly die.",
         icon: <CalendarCheck className="w-6 h-6" />,
     },
     {
-        id: 4,
+        id: 5,
         title: 'See the full story for each lead',
         description: "Every meeting, note and follow-up in one place, so you're never going in cold.",
         icon: <UserCircle className="w-6 h-6" />,
@@ -75,122 +84,101 @@ function CardScanAnimation({ isActive }: { isActive: boolean }) {
 
     useEffect(() => {
         if (isActive && !prefersReducedMotion) {
-            const timer = setTimeout(() => setScanned(true), 800);
-            return () => clearTimeout(timer);
+            setScanned(true);
         } else {
             setScanned(false);
         }
     }, [isActive, prefersReducedMotion]);
 
     return (
-        <div className="relative w-full flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-0 py-4 lg:py-0 lg:h-80">
-            {/* Front Card */}
-            <m.div
-                initial={{ opacity: 0, scale: 0.8, rotateY: -15, x: -20 }}
-                animate={isActive ? { opacity: 1, scale: 1, rotateY: 0, x: 0 } : { opacity: 0, scale: 0.8 }}
-                transition={{ duration: 0.5 }}
-                className="relative w-full max-w-[14rem] lg:absolute lg:left-4 lg:w-80 aspect-[1.586/1] bg-[#f8f9fa] rounded-xl p-6 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.3)] overflow-hidden border border-gray-100 z-20"
-                style={{
-                    backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E\")"
-                }}
-            >
-                {/* Card Content */}
-                <div className="relative z-10 h-full flex flex-col justify-between">
-                    {/* Top: Logo */}
-                    <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 bg-gray-900 rounded-lg flex items-center justify-center">
-                            <div className="w-4 h-4 border-2 border-white rounded-sm transform rotate-45"></div>
-                        </div>
-                        <span className="font-bold text-gray-900 tracking-tight">TECHCORP</span>
-                    </div>
-
-                    {/* Middle: Name & Title */}
-                    <div className="mt-4">
-                        <div className="text-2xl font-bold text-gray-900 font-serif tracking-tight">Sarah Chen</div>
-                        <div className="text-sm font-medium text-leadq-royal-blue uppercase tracking-wider mt-1">VP of Sales</div>
-                    </div>
-
-                    {/* Decorative Bottom */}
-                    <div className="mt-auto h-1 w-12 bg-gray-900 rounded-full"></div>
-                </div>
-
-                {/* Decorative Accent */}
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-leadq-royal-blue/5 to-transparent rounded-bl-full -mr-10 -mt-10"></div>
-
-                {/* Scan line */}
-                {isActive && !prefersReducedMotion && (
-                    <m.div
-                        initial={{ y: 0 }}
-                        animate={{ y: '100%' }}
-                        transition={{ duration: 1.5, repeat: scanned ? 0 : Infinity, ease: "linear" }}
-                        className="absolute top-0 left-0 right-0 h-8 bg-gradient-to-b from-leadq-cyan/20 to-transparent pointer-events-none z-20 border-t border-leadq-cyan/50"
-                    />
-                )}
-            </m.div>
-
-            {/* Back Card */}
-            <m.div
-                initial={{ opacity: 0, scale: 0.8, rotate: 5, x: 20 }}
-                animate={isActive ? { opacity: 1, scale: 1, rotate: 5, x: 0 } : { opacity: 0, scale: 0.8 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                className="relative w-full max-w-[14rem] lg:absolute lg:left-48 lg:top-6 lg:w-80 aspect-[1.586/1] bg-[#f8f9fa] rounded-xl p-6 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.2)] overflow-hidden border border-gray-100 z-10"
-                style={{
-                    backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E\")"
-                }}
-            >
-                <div className="relative z-10 h-full flex flex-col justify-center items-center text-center">
-                    <div className="opacity-10 absolute inset-0 flex items-center justify-center">
-                        <div className="w-32 h-32 border-4 border-gray-900 rounded-full flex items-center justify-center">
-                            <span className="font-bold text-gray-900 text-4xl">TC</span>
-                        </div>
-                    </div>
-
-                    <div className="space-y-2 relative z-20">
-                        <div className="flex flex-col items-center gap-0.5">
-                            <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600">
-                                <Mail size={14} />
+        <div className="relative w-full flex flex-col xl:flex-row items-center justify-center gap-6 xl:gap-4 py-4 xl:py-0 min-h-[300px]">
+            {/* The stacked cards */}
+            <div className="relative w-[280px] h-[180px] flex-shrink-0">
+                {/* Front Card */}
+                <m.div
+                    initial={{ opacity: 0, scale: 0.8, rotateY: -15, x: -20 }}
+                    animate={isActive ? { opacity: 1, scale: 1, rotateY: 0, x: 0 } : { opacity: 0, scale: 0.8 }}
+                    transition={{ duration: 0.5 }}
+                    className="absolute top-0 left-0 w-[240px] aspect-[1.586/1] bg-[#f8f9fa] rounded-xl p-5 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.3)] overflow-hidden border border-gray-100 z-20"
+                    style={{
+                        backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E\")"
+                    }}
+                >
+                    <div className="relative z-10 h-full flex flex-col justify-between">
+                        <div className="flex items-center gap-2">
+                            <div className="w-8 h-8 bg-gray-900 rounded-lg flex items-center justify-center">
+                                <div className="w-4 h-4 border-2 border-white rounded-[2px] transform rotate-45"></div>
                             </div>
-                            <span className="text-gray-900 font-medium font-mono text-sm">sarah.chen@techflow.io</span>
+                            <span className="font-bold text-gray-900 text-sm tracking-tight">TECHCORP</span>
                         </div>
+                        <div className="mt-2">
+                            <div className="text-xl font-bold text-gray-900 font-serif tracking-tight">Sarah Chen</div>
+                            <div className="text-[10px] font-medium text-leadq-purple-light uppercase tracking-wider mt-0.5">VP of Sales</div>
+                        </div>
+                        <div className="mt-auto h-1 w-10 bg-gray-900 rounded-full"></div>
+                    </div>
+                    <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-leadq-purple-light/10 to-transparent rounded-bl-full -mr-8 -mt-8"></div>
+                    {isActive && !prefersReducedMotion && (
+                        <m.div
+                            initial={{ y: -30 }}
+                            animate={{ y: 160 }}
+                            transition={{ duration: 1.5, repeat: scanned ? 0 : Infinity, ease: "linear" }}
+                            className="absolute top-0 left-0 right-0 h-8 bg-gradient-to-b from-leadq-purple-light/20 to-transparent pointer-events-none z-20 border-t border-leadq-purple-light/50 will-change-transform"
+                        />
+                    )}
+                </m.div>
 
-                        <div className="w-full h-px bg-gray-200"></div>
-
-                        <div className="flex flex-col items-center gap-0.5">
-                            <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600">
-                                <Phone size={14} />
+                {/* Back Card */}
+                <m.div
+                    initial={{ opacity: 0, scale: 0.8, rotate: 5, x: 20 }}
+                    animate={isActive ? { opacity: 1, scale: 1, rotate: 5, x: 0 } : { opacity: 0, scale: 0.8 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute top-6 left-10 w-[240px] aspect-[1.586/1] bg-[#f8f9fa] rounded-xl p-5 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.2)] overflow-hidden border border-gray-100 z-10"
+                    style={{
+                        backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E\")"
+                    }}
+                >
+                    <div className="relative z-10 h-full flex flex-col justify-center items-center text-center">
+                        <div className="opacity-10 absolute inset-0 flex items-center justify-center">
+                            <div className="w-24 h-24 border-4 border-gray-900 rounded-full flex items-center justify-center">
+                                <span className="font-bold text-gray-900 text-3xl">TC</span>
                             </div>
-                            <span className="text-gray-900 font-medium font-mono text-sm">+1 555 123 4567</span>
+                        </div>
+                        <div className="space-y-1.5 relative z-20">
+                            <div className="flex flex-col items-center gap-0.5">
+                                <div className="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center text-gray-600">
+                                    <Mail size={12} />
+                                </div>
+                                <span className="text-gray-900 font-medium font-mono text-[11px]">sarah.chen@techflow.io</span>
+                            </div>
+                            <div className="w-full h-px bg-gray-200 my-1"></div>
+                            <div className="flex flex-col items-center gap-0.5">
+                                <div className="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center text-gray-600">
+                                    <Phone size={12} />
+                                </div>
+                                <span className="text-gray-900 font-medium font-mono text-[11px]">+1 555 123 4567</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                {/* Scan line */}
-                {isActive && !prefersReducedMotion && (
-                    <m.div
-                        initial={{ y: 0 }}
-                        animate={{ y: '100%' }}
-                        transition={{ duration: 1.5, repeat: scanned ? 0 : Infinity, ease: "linear" }}
-                        className="absolute top-0 left-0 right-0 h-8 bg-gradient-to-b from-leadq-cyan/20 to-transparent pointer-events-none z-20 border-t border-leadq-cyan/50"
-                    />
-                )}
-            </m.div>
+                </m.div>
+            </div>
 
             {/* Arrow indicator */}
             <m.div
                 initial={{ opacity: 0, scale: 0 }}
                 animate={isActive ? { opacity: 1, scale: 1 } : {}}
-                transition={{ delay: 0.3 }}
-                className="text-leadq-silver lg:absolute lg:left-1/2 lg:top-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2 lg:z-30"
+                transition={{ duration: 0.2 }}
+                className="text-leadq-silver flex-shrink-0 z-30 hidden sm:block"
             >
-                <ChevronRight className="w-6 h-6 lg:w-8 lg:h-8 rotate-90 lg:rotate-0" />
+                <ChevronRight className="w-6 h-6 xl:w-8 xl:h-8 rotate-90 xl:rotate-0" />
             </m.div>
 
             {/* Auto-fill UI */}
             <m.div
                 initial={{ opacity: 0, x: 50 }}
-                animate={scanned || prefersReducedMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="relative w-full max-w-[16rem] lg:absolute lg:right-8 lg:w-64 glass rounded-xl p-4 border border-white/20 z-30"
+                animate={isActive || prefersReducedMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+                transition={{ duration: 0.2 }}
+                className="relative w-full max-w-[16rem] xl:w-[220px] glass rounded-xl p-4 border border-white/20 z-40 flex-shrink-0"
             >
                 <div className="text-xs text-leadq-silver mb-3">Contact Details</div>
                 {[
@@ -198,17 +186,17 @@ function CardScanAnimation({ isActive }: { isActive: boolean }) {
                     { icon: <Building2 className="w-3 h-3" />, label: 'Company', value: 'TechCorp Inc.' },
                     { icon: <Mail className="w-3 h-3" />, label: 'Email', value: 'sarah.chen@techflow.io' },
                     { icon: <Phone className="w-3 h-3" />, label: 'Phone', value: '+1 555 123 4567' },
-                ].map((field, idx) => (
+                ].map((field) => (
                     <m.div
                         key={field.label}
                         initial={{ opacity: 0, x: 20 }}
-                        animate={scanned || prefersReducedMotion ? { opacity: 1, x: 0 } : {}}
-                        transition={{ delay: idx * 0.12 }}
+                        animate={isActive || prefersReducedMotion ? { opacity: 1, x: 0 } : {}}
+                        transition={{ duration: 0.2 }}
                         className="flex items-center gap-2 mb-2"
                     >
                         <span className="text-leadq-silver">{field.icon}</span>
-                        <span className="text-leadq-silver/70 text-xs w-14">{field.label}</span>
-                        <span className="text-white text-xs truncate">{field.value}</span>
+                        <span className="text-leadq-silver/70 text-[11px] w-12">{field.label}</span>
+                        <span className="text-white text-[11px] truncate leading-tight">{field.value}</span>
                     </m.div>
                 ))}
             </m.div>
@@ -216,15 +204,118 @@ function CardScanAnimation({ isActive }: { isActive: boolean }) {
     );
 }
 
-// Step 2: Notes to Summary Animation
+// Step 2: Profile Research Animation
+function ProfileResearchAnimation({ isActive }: { isActive: boolean }) {
+    const prefersReducedMotion = useReducedMotion();
+    const [scanned, setScanned] = useState(false);
+    const [enriched, setEnriched] = useState(false);
+
+    useEffect(() => {
+        if (isActive && !prefersReducedMotion) {
+            setScanned(true);
+            setEnriched(true);
+        } else {
+            setScanned(false);
+            setEnriched(false);
+        }
+    }, [isActive, prefersReducedMotion]);
+
+    return (
+        <div className="relative w-full flex flex-col xl:flex-row items-center justify-center gap-6 xl:gap-8 py-4 xl:py-0 min-h-[300px]">
+            {/* Minimal Contact Box */}
+            <m.div
+                initial={{ opacity: 0, x: -30 }}
+                animate={isActive ? { opacity: enriched ? 0.5 : 1, x: 0, scale: enriched ? 0.95 : 1 } : { opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="relative w-full max-w-[14rem] xl:w-48 glass rounded-xl p-4 border border-white/20 flex-shrink-0"
+            >
+                <div className="text-[10px] text-slate-400 font-semibold mb-3 uppercase tracking-wider">Scanned Data</div>
+                <div className="space-y-3">
+                    <div className="flex items-center gap-2">
+                        <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center text-slate-300">
+                            <User size={12} />
+                        </div>
+                        <span className="text-white text-xs font-medium">Sarah Chen</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                        <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center text-slate-300">
+                            <Building2 size={12} />
+                        </div>
+                        <span className="text-white text-xs font-medium">TechCorp</span>
+                    </div>
+                </div>
+
+                {/* Scanning overlay */}
+                {isActive && !enriched && !prefersReducedMotion && (
+                    <m.div
+                        className="absolute inset-0 bg-leadq-purple-light/5 rounded-xl border border-leadq-purple-light/30"
+                        animate={{ opacity: [0.3, 0.7, 0.3] }}
+                        transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                    />
+                )}
+            </m.div>
+
+            {/* AI Search Animation Node */}
+            <m.div
+                initial={{ opacity: 0, scale: 0 }}
+                animate={isActive ? { opacity: 1, scale: 1 } : {}}
+                transition={{ duration: 0.2 }}
+                className="relative z-30"
+            >
+                <div className="w-12 h-12 rounded-full bg-gradient-to-r from-leadq-purple to-leadq-purple-light p-px shadow-[0_0_20px_rgba(168,159,224,0.3)]">
+                    <div className="w-full h-full bg-[#0f172a] rounded-full flex items-center justify-center relative overflow-hidden">
+                        <Search className={`w-5 h-5 text-white z-10 ${!scanned && isActive && !prefersReducedMotion ? 'animate-pulse' : ''}`} />
+                        {isActive && !enriched && !prefersReducedMotion && (
+                            <m.div
+                                className="absolute inset-0 bg-gradient-to-tr from-leadq-purple-light/30 to-transparent"
+                                animate={{ rotate: 360 }}
+                                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                            />
+                        )}
+                    </div>
+                </div>
+            </m.div>
+
+            {/* Enriched Profile Summary */}
+            <m.div
+                initial={{ opacity: 0, x: 30 }}
+                animate={enriched || prefersReducedMotion ? { opacity: 1, x: 0 } : { opacity: 0.3, x: 30 }}
+                transition={{ duration: 0.2 }}
+                className="relative w-full max-w-[16rem] xl:w-[240px] glass rounded-xl p-4 border border-leadq-silver/30 shadow-lg shadow-leadq-silver/10 flex-shrink-0"
+            >
+                <div className="flex items-center justify-between mb-3 border-b border-white/10 pb-2">
+                    <div className="text-[10px] text-green-400 font-semibold uppercase tracking-wider flex items-center gap-1.5">
+                        <Shield className="w-3 h-3" />
+                        Verified Profile
+                    </div>
+                </div>
+                <div className="space-y-2.5">
+                    <div>
+                        <div className="text-leadq-silver/70 text-[10px] uppercase">Identity</div>
+                        <div className="text-white text-sm font-medium">Sarah Chen</div>
+                    </div>
+                    <div>
+                        <div className="text-leadq-silver/70 text-[10px] uppercase">Role</div>
+                        <div className="text-white text-sm leading-tight text-slate-300">VP of Sales @ TechCorp Inc.</div>
+                    </div>
+                    <div>
+                        <div className="text-leadq-silver/70 text-[10px] uppercase">Experience</div>
+                        <div className="text-white text-sm leading-tight text-slate-300">12+ years B2B SaaS</div>
+                    </div>
+                </div>
+            </m.div>
+        </div>
+    );
+}
+
+// Step 3: Notes to Summary Animation
 function NotesToSummaryAnimation({ isActive }: { isActive: boolean }) {
     const prefersReducedMotion = useReducedMotion();
     const [transformed, setTransformed] = useState(false);
 
     useEffect(() => {
         if (isActive && !prefersReducedMotion) {
-            const timer = setTimeout(() => setTransformed(true), 1000);
-            return () => clearTimeout(timer);
+            setTransformed(true);
         } else {
             setTransformed(false);
         }
@@ -238,13 +329,13 @@ function NotesToSummaryAnimation({ isActive }: { isActive: boolean }) {
     ];
 
     return (
-        <div className="relative w-full flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-0 py-4 lg:py-0 lg:h-80">
+        <div className="relative w-full flex flex-col xl:flex-row items-center justify-center gap-6 xl:gap-8 py-4 xl:py-0 min-h-[300px]">
             {/* Rough Notes */}
             <m.div
                 initial={{ opacity: 0, x: -30 }}
                 animate={isActive ? { opacity: transformed ? 0.7 : 1, x: 0, scale: transformed ? 0.95 : 1 } : { opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                className="relative w-full max-w-[14rem] lg:absolute lg:left-8 lg:w-52 glass rounded-xl p-4 border border-white/20"
+                className="relative w-full max-w-[14rem] xl:w-48 glass rounded-xl p-4 border border-white/20 flex-shrink-0"
             >
                 <div className="text-xs text-slate-300 font-semibold mb-2">My Notes</div>
                 {roughNotes.map((note, idx) => (
@@ -265,9 +356,9 @@ function NotesToSummaryAnimation({ isActive }: { isActive: boolean }) {
                 initial={{ opacity: 0, scale: 0 }}
                 animate={isActive ? { opacity: 1, scale: 1 } : {}}
                 transition={{ delay: 0.25 }}
-                className="text-leadq-silver lg:absolute lg:left-1/2 lg:-translate-x-1/2"
+                className="text-leadq-silver flex-shrink-0 hidden sm:block"
             >
-                <ChevronRight className="w-6 h-6 rotate-90 lg:rotate-0 lg:w-8 lg:h-8" />
+                <ChevronRight className="w-6 h-6 rotate-90 xl:rotate-0 xl:w-8 xl:h-8" />
             </m.div>
 
             {/* Structured Summary */}
@@ -275,21 +366,21 @@ function NotesToSummaryAnimation({ isActive }: { isActive: boolean }) {
                 initial={{ opacity: 0, x: 30 }}
                 animate={transformed || prefersReducedMotion ? { opacity: 1, x: 0 } : { opacity: 0.3, x: 30 }}
                 transition={{ duration: 0.2 }}
-                className="relative w-full max-w-[16rem] lg:absolute lg:right-8 lg:w-64 glass rounded-xl p-4 border border-leadq-silver/30 shadow-lg shadow-leadq-silver/10"
+                className="relative w-full max-w-[16rem] xl:w-[240px] glass rounded-xl p-4 border border-leadq-silver/30 shadow-lg shadow-leadq-silver/10 flex-shrink-0"
             >
                 <div className="text-xs text-leadq-silver mb-3">Meeting Summary</div>
                 <div className="space-y-2">
                     <div>
-                        <div className="text-leadq-silver/70 text-xs">Who</div>
+                        <div className="text-leadq-silver/70 text-[11px]">Who</div>
                         <div className="text-white text-sm">Sarah Chen, TechCorp</div>
                     </div>
                     <div>
-                        <div className="text-leadq-silver/70 text-xs">What</div>
-                        <div className="text-white text-sm">Interested in CRM solution</div>
+                        <div className="text-leadq-silver/70 text-[11px]">What</div>
+                        <div className="text-white text-sm leading-tight">Interested in CRM solution</div>
                     </div>
                     <div>
-                        <div className="text-leadq-silver/70 text-xs">Next Steps</div>
-                        <div className="text-white text-sm">Schedule demo next week</div>
+                        <div className="text-leadq-silver/70 text-[11px]">Next Steps</div>
+                        <div className="text-white text-sm leading-tight">Schedule demo next week</div>
                     </div>
                 </div>
             </m.div>
@@ -297,7 +388,7 @@ function NotesToSummaryAnimation({ isActive }: { isActive: boolean }) {
     );
 }
 
-// Step 3: Follow-ups Animation
+// Step 4: Follow-ups Animation
 function FollowUpsAnimation({ isActive }: { isActive: boolean }) {
     const prefersReducedMotion = useReducedMotion();
     const [checkedTask, setCheckedTask] = useState<number | null>(null);
@@ -313,7 +404,7 @@ function FollowUpsAnimation({ isActive }: { isActive: boolean }) {
     ];
 
     return (
-        <div className="relative w-full flex flex-col sm:flex-row items-center justify-center gap-4 py-4 sm:py-0 sm:h-80">
+        <div className="relative w-full flex flex-col sm:flex-row items-center justify-center gap-4 py-4 sm:py-0 min-h-[300px]">
             {/* Calendar */}
             <m.div
                 initial={{ opacity: 0, y: 20 }}
@@ -322,7 +413,7 @@ function FollowUpsAnimation({ isActive }: { isActive: boolean }) {
                 className="w-full max-w-[10rem] sm:w-40 glass rounded-xl p-3 border border-white/20"
             >
                 <div className="text-xs text-leadq-silver mb-2">February 2026</div>
-                <div className="grid grid-cols-7 gap-1 text-xs text-center">
+                <div className="grid grid-cols-7 gap-1 text-[11px] text-center">
                     {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((d, i) => (
                         <div key={i} className="text-leadq-silver/70">{d}</div>
                     ))}
@@ -331,7 +422,7 @@ function FollowUpsAnimation({ isActive }: { isActive: boolean }) {
                             key={i}
                             initial={{ opacity: 0 }}
                             animate={isActive ? { opacity: 1 } : {}}
-                            transition={{ delay: i * 0.02 }}
+                            transition={{ duration: 0.1 }}
                             className={`p-1 rounded ${i === 5 ? 'bg-leadq-silver text-white' : 'text-leadq-silver'}`}
                         >
                             {i + 1}
@@ -344,8 +435,8 @@ function FollowUpsAnimation({ isActive }: { isActive: boolean }) {
             <m.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={isActive ? { opacity: 1, x: 0 } : { opacity: 0 }}
-                transition={{ duration: 0.2, delay: 0.1 }}
-                className="w-full max-w-[16rem] sm:w-64 glass rounded-xl p-4 border border-white/20"
+                transition={{ duration: 0.2 }}
+                className="w-full max-w-[16rem] sm:w-[220px] glass rounded-xl p-4 border border-white/20"
             >
                 <div className="text-xs text-leadq-silver mb-3">Today's Follow-ups</div>
                 {tasks.map((task, idx) => (
@@ -353,7 +444,7 @@ function FollowUpsAnimation({ isActive }: { isActive: boolean }) {
                         key={task.id}
                         initial={{ opacity: 0, x: 20 }}
                         animate={isActive ? { opacity: 1, x: 0 } : {}}
-                        transition={{ delay: 0.1 + idx * 0.05 }}
+                        transition={{ duration: 0.15 }}
                         onClick={() => !prefersReducedMotion && setCheckedTask(task.id)}
                         className={`flex items-start gap-2 mb-3 cursor-pointer transition-opacity ${checkedTask === task.id ? 'opacity-50' : ''
                             }`}
@@ -366,9 +457,9 @@ function FollowUpsAnimation({ isActive }: { isActive: boolean }) {
                             <div className={`text-sm text-white truncate ${checkedTask === task.id ? 'line-through' : ''}`}>
                                 {task.name}
                             </div>
-                            <div className="text-xs text-leadq-silver truncate">{task.action}</div>
+                            <div className="text-[11px] text-leadq-silver truncate">{task.action}</div>
                         </div>
-                        <div className="ml-auto text-xs text-leadq-silver flex-shrink-0">{task.due}</div>
+                        <div className="ml-auto text-[10px] text-leadq-silver flex-shrink-0">{task.due}</div>
                     </m.div>
                 ))}
             </m.div>
@@ -376,9 +467,8 @@ function FollowUpsAnimation({ isActive }: { isActive: boolean }) {
     );
 }
 
-// Step 4: Timeline Animation
+// Step 5: Timeline Animation
 function TimelineAnimation({ isActive }: { isActive: boolean }) {
-    const prefersReducedMotion = useReducedMotion();
 
     const timelineItems = [
         { date: 'Feb 1', event: 'Card scanned', icon: <CreditCard className="w-3 h-3" /> },
@@ -388,12 +478,12 @@ function TimelineAnimation({ isActive }: { isActive: boolean }) {
     ];
 
     return (
-        <div className="relative w-full flex items-center justify-center py-4 sm:py-0 sm:h-80">
+        <div className="relative w-full flex items-center justify-center py-4 sm:py-0 min-h-[300px]">
             <m.div
                 initial={{ opacity: 0 }}
                 animate={isActive ? { opacity: 1 } : { opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                className="w-full max-w-[18rem] sm:max-w-none sm:w-96 glass rounded-xl p-4 border border-white/20"
+                className="w-full max-w-[18rem] sm:max-w-none sm:w-80 glass rounded-xl p-4 xl:p-6 border border-white/20"
             >
                 {/* Contact Header */}
                 <div className="flex items-center gap-3 mb-4 pb-3 border-b border-white/10">
@@ -401,8 +491,8 @@ function TimelineAnimation({ isActive }: { isActive: boolean }) {
                         SC
                     </div>
                     <div>
-                        <div className="text-white font-medium">Sarah Chen</div>
-                        <div className="text-leadq-silver text-xs">VP of Sales, TechCorp</div>
+                        <div className="text-white font-medium text-sm">Sarah Chen</div>
+                        <div className="text-leadq-silver text-[11px]">VP of Sales, TechCorp</div>
                     </div>
                 </div>
 
@@ -414,16 +504,16 @@ function TimelineAnimation({ isActive }: { isActive: boolean }) {
                             key={idx}
                             initial={{ opacity: 0, x: -20 }}
                             animate={isActive ? { opacity: 1, x: 0 } : {}}
-                            transition={{ delay: prefersReducedMotion ? 0 : 0.1 + idx * 0.08 }}
+                            transition={{ duration: 0.2 }}
                             className="flex items-center gap-3 mb-3 relative"
                         >
                             <div className="w-6 h-6 rounded-full bg-leadq-silver/20 border border-leadq-silver/50 flex items-center justify-center text-leadq-silver z-10">
                                 {item.icon}
                             </div>
                             <div className="flex-1">
-                                <div className="text-white text-sm">{item.event}</div>
+                                <div className="text-white text-[13px]">{item.event}</div>
                             </div>
-                            <div className="text-leadq-silver/70 text-xs">{item.date}</div>
+                            <div className="text-leadq-silver/70 text-[10px] uppercase font-semibold">{item.date}</div>
                         </m.div>
                     ))}
                 </div>
@@ -434,6 +524,7 @@ function TimelineAnimation({ isActive }: { isActive: boolean }) {
 
 export default function WhatLeadQDoes() {
     const [activeStep, setActiveStep] = useState(1);
+    const [mobileVisible, setMobileVisible] = useState<Record<number, boolean>>({});
     const sectionRef = useRef<HTMLElement>(null);
     const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
     const prefersReducedMotion = useReducedMotion();
@@ -444,8 +535,8 @@ export default function WhatLeadQDoes() {
 
         const observerOptions = {
             root: null,
-            rootMargin: '-15% 0px -15% 0px',
-            threshold: 0,
+            rootMargin: '-10% 0px -10% 0px',
+            threshold: 0.5,
         };
 
         const observer = new IntersectionObserver((entries) => {
@@ -496,10 +587,12 @@ export default function WhatLeadQDoes() {
             case 1:
                 return <CardScanAnimation isActive={isActive} />;
             case 2:
-                return <NotesToSummaryAnimation isActive={isActive} />;
+                return <ProfileResearchAnimation isActive={isActive} />;
             case 3:
-                return <FollowUpsAnimation isActive={isActive} />;
+                return <NotesToSummaryAnimation isActive={isActive} />;
             case 4:
+                return <FollowUpsAnimation isActive={isActive} />;
+            case 5:
                 return <TimelineAnimation isActive={isActive} />;
             default:
                 return null;
@@ -510,7 +603,7 @@ export default function WhatLeadQDoes() {
         <section
             ref={sectionRef}
             id="what-leadq-does"
-            className="relative z-10 py-12 sm:py-16 px-4"
+            className="relative z-10 py-12 sm:py-16 px-4 will-change-transform"
         >
             <div className="max-w-7xl mx-auto">
                 {/* Hero Sub-section */}
@@ -519,12 +612,12 @@ export default function WhatLeadQDoes() {
                     <m.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
+                        viewport={{ once: false }}
                         transition={{ duration: 0.6 }}
                     >
                         <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold text-white mb-6">
                             What LeadQ.AI Does{' '}
-                            <span className="bg-gradient-to-r from-leadq-cyan to-leadq-royal-blue bg-clip-text text-transparent">
+                            <span className="text-[#A89FE0]">
                                 for You
                             </span>
                         </h2>
@@ -539,16 +632,17 @@ export default function WhatLeadQDoes() {
 
                 {/* Workflow Stepper */}
                 <div className="relative">
-                    {/* Desktop: Vertical Stepper */}
+                    {/* Desktop: Side-by-Side Row Stepper */}
                     <div className="hidden lg:block">
-                        <div className="relative">
+                        <div className="relative max-w-5xl mx-auto">
                             {/* Progress Line */}
-                            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-white/10" />
+                            <div className="absolute left-[39px] top-12 bottom-24 w-0.5 bg-white/10" />
                             <m.div
-                                className="absolute left-8 top-0 w-0.5 bg-gradient-to-b from-leadq-silver to-leadq-silver"
-                                initial={{ height: 0 }}
-                                animate={{ height: `${((activeStep - 1) / (steps.length - 1)) * 100}%` }}
+                                className="absolute left-[39px] top-12 w-0.5 bg-gradient-to-b from-leadq-purple-light to-leadq-purple origin-top will-change-transform"
+                                initial={{ scaleY: 0 }}
+                                animate={{ scaleY: (activeStep - 1) / (steps.length - 1) }}
                                 transition={{ duration: 0.5 }}
+                                style={{ transformOrigin: "top" }}
                             />
 
                             {/* Steps */}
@@ -557,51 +651,52 @@ export default function WhatLeadQDoes() {
                                     key={step.id}
                                     ref={(el) => { stepRefs.current[idx] = el; }}
                                     data-step={step.id}
-                                    className="relative pl-20 pb-16 last:pb-0"
+                                    className="relative pl-16 sm:pl-20 pb-16 lg:pb-24 xl:pb-32 last:pb-0"
                                 >
                                     {/* Step Indicator */}
                                     <m.div
-                                        className={`absolute left-4 w-8 h-8 rounded-full flex items-center justify-center transition-colors duration-300 ${activeStep >= step.id
-                                            ? 'bg-leadq-royal-blue text-white'
-                                            : 'bg-white/10 text-leadq-silver'
+                                        className={`absolute left-4 top-1/2 -translate-y-10 w-8 h-8 rounded-full flex items-center justify-center transition-colors duration-500 z-10 ${activeStep >= step.id
+                                            ? 'bg-leadq-purple text-white shadow-[0_0_20px_rgba(123,111,212,0.5)]'
+                                            : 'bg-[#0f172a] border-2 border-white/20 text-leadq-silver'
                                             }`}
-                                        whileHover={{ scale: 1.1 }}
+                                        animate={{ scale: activeStep >= step.id ? 1.1 : 1 }}
+                                        whileHover={{ scale: 1.2 }}
                                         onClick={() => setActiveStep(step.id)}
                                     >
-                                        {step.icon}
+                                        <div className="scale-75">{step.icon}</div>
                                     </m.div>
 
-                                    {/* Step Content */}
+                                    {/* Step Content Card */}
                                     <m.div
-                                        initial={{ opacity: 0, x: 20 }}
-                                        whileInView={{ opacity: 1, x: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: idx * 0.1 }}
-                                        className={`glass rounded-2xl p-6 border transition-all duration-300 cursor-pointer ${activeStep === step.id
-                                            ? 'border-leadq-royal-blue/50 shadow-lg shadow-leadq-royal-blue/10'
-                                            : 'border-white/10 hover:border-white/20'
+                                        initial={{ opacity: 0, y: 30 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: false }}
+                                        transition={{ delay: 0, duration: 0.15 }}
+                                        className={`glass rounded-2xl p-6 lg:p-8 xl:p-10 overflow-hidden relative will-change-[opacity,transform] transition-opacity duration-300 ${activeStep === step.id
+                                            ? 'border-leadq-purple/50 shadow-2xl shadow-leadq-purple/10 bg-white/5 opacity-100'
+                                            : 'border-white/10 hover:border-white/20 opacity-60 hover:opacity-100'
                                             }`}
-                                        onClick={() => setActiveStep(step.id)}
+                                        animate={{ scale: activeStep === step.id ? 1.02 : 1 }}
                                     >
-                                        <h3 className="text-2xl sm:text-3xl font-display font-semibold text-white mb-2">
-                                            {step.title}
-                                        </h3>
-                                        <p className="text-leadq-silver">{step.description}</p>
+                                        {/* Card Content: Text Left, Animation Right */}
+                                        <div className="flex flex-col xl:flex-row items-center gap-6 xl:gap-8">
+                                            {/* Text */}
+                                            <div className="flex-1 max-w-lg">
+                                                <h3 className={`text-2xl sm:text-3xl xl:text-4xl font-display font-semibold mb-3 transition-colors duration-300 ${activeStep === step.id ? 'text-white' : 'text-slate-300'}`}>
+                                                    {step.title}
+                                                </h3>
+                                                <p className="text-leadq-silver text-base sm:text-lg leading-relaxed">
+                                                    {step.description}
+                                                </p>
+                                            </div>
 
-                                        {/* Show animation inline for active step */}
-                                        <AnimatePresence mode="wait">
-                                            {activeStep === step.id && (
-                                                <m.div
-                                                    initial={{ opacity: 0, height: 0 }}
-                                                    animate={{ opacity: 1, height: 'auto' }}
-                                                    exit={{ opacity: 0, height: 0 }}
-                                                    transition={{ duration: 0.6 }}
-                                                    className="mt-4 overflow-hidden"
-                                                >
-                                                    {renderStepAnimation(step.id)}
-                                                </m.div>
-                                            )}
-                                        </AnimatePresence>
+                                            {/* Animation */}
+                                            <div className="flex-1 flex items-center justify-center min-h-[260px] xl:min-h-[300px] w-full">
+                                                <div className={`w-full transition-[opacity,transform] duration-700 ease-out will-change-[opacity,transform] ${activeStep === step.id ? 'opacity-100 scale-100 translate-y-0' : 'opacity-10 scale-95 translate-y-4 pointer-events-none'}`}>
+                                                    {renderStepAnimation(step.id, activeStep === step.id)}
+                                                </div>
+                                            </div>
+                                        </div>
                                     </m.div>
                                 </div>
                             ))}
@@ -610,21 +705,23 @@ export default function WhatLeadQDoes() {
 
                     {/* Mobile & Tablet: Scroll-Reveal Cards */}
                     <div className="lg:hidden flex flex-col gap-6">
-                        {steps.map((step, idx) => (
+                        {steps.map((step) => (
                             <m.div
                                 key={step.id}
                                 initial={{ opacity: 0, y: 40 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, margin: "-100px" }}
+                                viewport={{ once: false, amount: 0.2 }}
+                                onViewportEnter={() => setMobileVisible(prev => ({ ...prev, [step.id]: true }))}
+                                onViewportLeave={() => setMobileVisible(prev => ({ ...prev, [step.id]: false }))}
                                 transition={{
-                                    duration: 0.6,
-                                    delay: idx * 0.15,
+                                    duration: 0.15,
+                                    delay: 0,
                                     ease: [0.25, 0.46, 0.45, 0.94]
                                 }}
-                                className="glass rounded-2xl p-6 border border-leadq-silver/30"
+                                className="glass rounded-2xl p-6 border border-leadq-silver/30 overflow-hidden"
                             >
                                 <div className="flex items-center gap-3 mb-4">
-                                    <div className="w-10 h-10 rounded-full bg-leadq-royal-blue/20 flex items-center justify-center text-leadq-royal-blue">
+                                    <div className="w-10 h-10 rounded-full bg-leadq-purple/20 flex items-center justify-center text-leadq-purple-light">
                                         {step.icon}
                                     </div>
                                     <h3 className="text-2xl sm:text-3xl font-display font-semibold text-white">
@@ -632,7 +729,9 @@ export default function WhatLeadQDoes() {
                                     </h3>
                                 </div>
                                 <p className="text-leadq-silver mb-6">{step.description}</p>
-                                {renderStepAnimation(step.id, true)}
+                                <div className={`transition-opacity duration-500 w-full ${mobileVisible[step.id] ? 'opacity-100' : 'opacity-0'}`}>
+                                    {renderStepAnimation(step.id, mobileVisible[step.id] || false)}
+                                </div>
                             </m.div>
                         ))}
                     </div>
@@ -642,7 +741,7 @@ export default function WhatLeadQDoes() {
                 <m.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: false }}
                     transition={{ duration: 0.6 }}
                     className="mt-24"
                 >
@@ -655,7 +754,7 @@ export default function WhatLeadQDoes() {
                                 key={feature.title}
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
+                                viewport={{ once: false }}
                                 transition={{ delay: idx * 0.1 }}
                                 className="glass rounded-2xl p-6 border border-white/10 text-center hover:border-leadq-silver/30 transition-colors"
                             >
@@ -668,8 +767,8 @@ export default function WhatLeadQDoes() {
                         ))}
                     </div>
                 </m.div>
-            </div>
-        </section>
+            </div >
+        </section >
     );
 }
 

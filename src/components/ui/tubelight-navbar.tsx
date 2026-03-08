@@ -122,7 +122,7 @@ export function NavBar({ items, className }: NavBarProps) {
   const LampEffect = () => (
     <m.div
       layoutId="navbar-lamp"
-      className="absolute inset-0 w-full bg-leadq-royal-blue/5 rounded-full -z-10"
+      className="absolute inset-0 w-full bg-[#7B6FD4]/5 rounded-full -z-10"
       initial={false}
       transition={{
         type: "spring",
@@ -130,10 +130,10 @@ export function NavBar({ items, className }: NavBarProps) {
         damping: 30,
       }}
     >
-      <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-1 bg-leadq-royal-blue rounded-t-full">
-        <div className="absolute w-12 h-6 bg-leadq-royal-blue/30 rounded-full blur-md -top-2 -left-2" />
-        <div className="absolute w-8 h-6 bg-leadq-royal-blue/30 rounded-full blur-md -top-1" />
-        <div className="absolute w-4 h-4 bg-leadq-royal-blue/30 rounded-full blur-sm top-0 left-2" />
+      <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-1 bg-[#7B6FD4] rounded-t-full">
+        <div className="absolute w-12 h-6 bg-[#7B6FD4]/30 rounded-full blur-md -top-2 -left-2" />
+        <div className="absolute w-8 h-6 bg-[#7B6FD4]/30 rounded-full blur-md -top-1" />
+        <div className="absolute w-4 h-4 bg-[#7B6FD4]/30 rounded-full blur-sm top-0 left-2" />
       </div>
     </m.div>
   )
@@ -160,18 +160,18 @@ export function NavBar({ items, className }: NavBarProps) {
             className="h-8 w-auto"
           />
           <span className="text-base font-bold font-display text-white">
-            LeadQ<span className="text-leadq-royal-blue">.AI</span>
+            LeadQ<span className="text-[#A89FE0]">.AI</span>
           </span>
         </Link>
       </div>
 
       {/* Login & Sign Up Buttons - Desktop */}
       <div className="hidden md:flex items-center gap-3 fixed top-4 right-4 z-[101]">
-        <button className="px-6 py-2.5 text-sm rounded-lg font-semibold bg-gradient-to-r from-leadq-deep-blue to-leadq-royal-blue text-white shadow-[0_0_20px_rgba(39,81,169,0.5)] hover:shadow-[0_0_30px_rgba(39,81,169,0.7)] hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-leadq-royal-blue focus:ring-offset-2 focus:ring-offset-black whitespace-nowrap">
+        <button className="px-6 py-2.5 text-sm rounded-lg font-semibold bg-gradient-to-r from-[#7B6FD4] to-[#A89FE0] text-white shadow-[0_0_20px_rgba(123,111,212,0.5)] hover:shadow-[0_0_30px_rgba(123,111,212,0.7)] hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#7B6FD4] focus:ring-offset-2 focus:ring-offset-black whitespace-nowrap">
           Login
         </button>
 
-        <button className="px-6 py-2.5 text-sm rounded-lg font-semibold bg-gradient-to-r from-leadq-deep-blue to-leadq-royal-blue text-white shadow-[0_0_20px_rgba(39,81,169,0.5)] hover:shadow-[0_0_30px_rgba(39,81,169,0.7)] hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-leadq-royal-blue focus:ring-offset-2 focus:ring-offset-black whitespace-nowrap">
+        <button className="px-6 py-2.5 text-sm rounded-lg font-semibold bg-gradient-to-r from-[#7B6FD4] to-[#A89FE0] text-white shadow-[0_0_20px_rgba(123,111,212,0.5)] hover:shadow-[0_0_30px_rgba(123,111,212,0.7)] hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#7B6FD4] focus:ring-offset-2 focus:ring-offset-black whitespace-nowrap">
           Sign Up
         </button>
       </div>
@@ -221,7 +221,7 @@ export function NavBar({ items, className }: NavBarProps) {
                     className={cn(
                       "flex items-center gap-4 px-4 py-4 rounded-xl transition-all",
                       isActive
-                        ? "bg-leadq-royal-blue/10 text-leadq-royal-blue border border-leadq-royal-blue/30"
+                        ? "bg-[#7B6FD4]/10 text-[#7B6FD4] border border-[#7B6FD4]/30"
                         : "text-leadq-silver hover:bg-white/5 hover:text-white"
                     )}
                   >
@@ -238,10 +238,10 @@ export function NavBar({ items, className }: NavBarProps) {
 
               {/* Mobile Login & Sign Up */}
               <div className="pt-6 mt-6 border-t border-white/10 space-y-3">
-                <button className="w-full px-4 py-4 rounded-xl font-semibold bg-gradient-to-r from-leadq-deep-blue to-leadq-royal-blue text-white shadow-[0_0_20px_rgba(39,81,169,0.5)] hover:shadow-[0_0_30px_rgba(39,81,169,0.7)] hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-leadq-royal-blue focus:ring-offset-2 focus:ring-offset-black text-base">
+                <button className="w-full px-4 py-4 rounded-xl font-semibold bg-gradient-to-r from-[#7B6FD4] to-[#A89FE0] text-white shadow-[0_0_20px_rgba(123,111,212,0.5)] hover:shadow-[0_0_30px_rgba(123,111,212,0.7)] hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#7B6FD4] focus:ring-offset-2 focus:ring-offset-black text-base">
                   Login
                 </button>
-                <button className="w-full px-4 py-4 rounded-xl font-semibold bg-gradient-to-r from-leadq-deep-blue to-leadq-royal-blue text-white shadow-[0_0_20px_rgba(39,81,169,0.5)] hover:shadow-[0_0_30px_rgba(39,81,169,0.7)] hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-leadq-royal-blue focus:ring-offset-2 focus:ring-offset-black text-base">
+                <button className="w-full px-4 py-4 rounded-xl font-semibold bg-gradient-to-r from-[#7B6FD4] to-[#A89FE0] text-white shadow-[0_0_20px_rgba(123,111,212,0.5)] hover:shadow-[0_0_30px_rgba(123,111,212,0.7)] hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#7B6FD4] focus:ring-offset-2 focus:ring-offset-black text-base">
                   Sign Up
                 </button>
               </div>
@@ -315,8 +315,8 @@ export function NavBar({ items, className }: NavBarProps) {
                   onClick={() => handleLinkClick(item.name)}
                   className={cn(
                     "relative cursor-pointer text-sm font-semibold px-4 py-2 rounded-full transition-colors whitespace-nowrap flex items-center gap-2",
-                    "text-leadq-silver hover:text-leadq-royal-blue",
-                    isActive && "text-leadq-royal-blue"
+                    "text-leadq-silver hover:text-[#7B6FD4]",
+                    isActive && "text-[#7B6FD4]"
                   )}
                 >
                   <Icon size={18} strokeWidth={2} className="hidden md:block" />

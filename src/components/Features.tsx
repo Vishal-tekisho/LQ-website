@@ -69,7 +69,7 @@ const Features = () => {
         >
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold mb-4">
             Why Choose{' '}
-            <span className="bg-gradient-to-r from-leadq-cyan to-leadq-royal-blue bg-clip-text text-transparent">
+            <span className="text-[#A89FE0]">
               LeadQ.AI
             </span>
             ?

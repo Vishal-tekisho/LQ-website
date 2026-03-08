@@ -78,7 +78,7 @@ export function SideNavigation() {
                                             className={cn(
                                                 "transition-all duration-300 rounded-full",
                                                 isActive
-                                                    ? "w-1.5 h-1.5 bg-leadq-royal-blue shadow-[0_0_10px_rgba(39,81,169,0.8)]"
+                                                    ? "w-1.5 h-1.5 bg-[#7B6FD4] shadow-[0_0_10px_rgba(123,111,212,0.8)]"
                                                     : "w-1 h-1 bg-leadq-silver/40 group-hover:bg-leadq-silver/80 group-hover:w-1.5 group-hover:h-1.5"
                                             )}
                                             layoutId="activeSectionIndicator"
