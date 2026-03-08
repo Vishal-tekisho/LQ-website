@@ -1,4 +1,4 @@
-import { Linkedin as LinkedIn, Instagram } from 'lucide-react';
+import { Linkedin as LinkedIn, Instagram, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from './ui/button';
 
@@ -81,22 +81,38 @@ const Footer = () => {
                         <div className="space-y-6 text-sm">
                             <div className="space-y-2">
                                 <p className="font-semibold text-white">USA Office</p>
-                                <div className="space-y-1">
-                                    <p>Tekisho Infotech Inc.</p>
-                                    <p>5005 W Royal Ln, Suite 288,</p>
-                                    <p>Irving, TX. 75063</p>
-                                </div>
+                                <a
+                                    href="https://www.google.com/maps/search/?api=1&query=5005+W+Royal+Ln+Suite+288+Irving+TX+75063"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="group flex items-start gap-2 hover:text-white transition-colors"
+                                >
+                                    <MapPin className="w-4 h-4 mt-0.5 shrink-0 text-leadq-cyan group-hover:scale-110 transition-transform" />
+                                    <div className="space-y-1 group-hover:underline underline-offset-2 decoration-leadq-cyan">
+                                        <p>Tekisho Infotech Inc.</p>
+                                        <p>5005 W Royal Ln, Suite 288,</p>
+                                        <p>Irving, TX. 75063</p>
+                                    </div>
+                                </a>
                             </div>
 
                             <div className="space-y-2">
                                 <p className="font-semibold text-white">India Office</p>
-                                <div className="space-y-1">
-                                    <p>Tekisho Infotech Pvt. Ltd.</p>
-                                    <p>505 A, 5th Floor, Techno 1,</p>
-                                    <p>Gachibowli Road, Raidurg,</p>
-                                    <p>Hyderabad, Telangana - 500032</p>
-                                    <p>+91 7331104192</p>
-                                </div>
+                                <a
+                                    href="https://www.google.com/maps/search/?api=1&query=Tekisho+Infotech+505+A+5th+Floor+Techno+1+Gachibowli+Road+Raidurg+Hyderabad+Telangana+500032"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="group flex items-start gap-2 hover:text-white transition-colors"
+                                >
+                                    <MapPin className="w-4 h-4 mt-0.5 shrink-0 text-leadq-cyan group-hover:scale-110 transition-transform" />
+                                    <div className="space-y-1 group-hover:underline underline-offset-2 decoration-leadq-cyan">
+                                        <p>Tekisho Infotech Pvt. Ltd.</p>
+                                        <p>505 A, 5th Floor, Techno 1,</p>
+                                        <p>Gachibowli Road, Raidurg,</p>
+                                        <p>Hyderabad, Telangana - 500032</p>
+                                    </div>
+                                </a>
+                                <p>+91 7331104192</p>
                             </div>
 
                             <div>
