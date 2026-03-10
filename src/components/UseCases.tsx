@@ -95,7 +95,7 @@ const UseCases = () => {
   };
 
   return (
-    <section id="use-cases" className="relative z-10 py-12 sm:py-16 md:py-20 px-4 overflow-hidden">
+    <section id="use-cases" className="relative z-10 min-h-[100svh] flex flex-col justify-center py-8 lg:py-12 px-4 overflow-hidden">
       {/* Background gradient effect */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-400/5 to-transparent pointer-events-none" />
 

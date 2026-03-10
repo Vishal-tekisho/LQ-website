@@ -386,7 +386,7 @@ export default function OutboundVoiceAgent() {
 
     return (
         <InViewContext.Provider value={shouldAnimate ?? false}>
-            <section ref={ref} id="voice-agent" className="relative z-10 py-12 sm:py-16 md:py-20 px-4">
+            <section ref={ref} id="voice-agent" className="relative z-10 min-h-[100svh] flex flex-col justify-center py-8 lg:py-12 px-4">
                 {/* Background effects */}
                 <div className="absolute inset-0 pointer-events-none overflow-hidden">
                     <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-leadq-silver/5 rounded-full blur-3xl" />

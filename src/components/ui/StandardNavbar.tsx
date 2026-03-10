@@ -150,11 +150,8 @@ export function StandardNavbar({ items, className }: NavBarProps) {
                         <img
                             src="/leadq-logo-main.png"
                             alt="LeadQ.AI"
-                            className="h-14 w-auto"
+                            className="h-16 py-auto"
                         />
-                        <span className="text-lg font-bold font-display bg-clip-text text-transparent bg-gradient-to-r from-leadq-platinum to-leadq-steel">
-                            LeadQ<span className="text-[#A89FE0]">.AI</span>
-                        </span>
                     </Link>
 
                     {/* Desktop Navigation */}

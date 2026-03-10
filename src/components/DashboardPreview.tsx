@@ -588,13 +588,13 @@ export default function DashboardPreview() {
       >
         {/* Responsive scaling wrapper */}
         <div className="relative overflow-hidden h-[200px] sm:h-[420px] md:h-[510px] lg:h-auto flex justify-center">
-          <div className="min-w-[960px] lg:min-w-0 origin-top scale-[0.32] sm:scale-[0.675] md:scale-[0.82] lg:scale-100 lg:origin-top">
+          <div className="min-w-[960px] lg:min-w-0 origin-top scale-[0.32] sm:scale-[0.675] md:scale-[0.82] lg:scale-100 lg:origin-top" style={{ width: 1100 }}>
 
             {/* Browser chrome */}
-            <div className="rounded-2xl overflow-hidden border border-gray-300 shadow-2xl">
+            <div className="rounded-2xl overflow-hidden border border-gray-300 shadow-2xl flex flex-col bg-white" style={{ height: 660, width: 1100 }}>
 
               {/* Title bar – dark */}
-              <div className="bg-[#1a1d3a] border-b border-white/10 px-4 py-2.5 flex items-center gap-3">
+              <div className="bg-[#1a1d3a] shrink-0 border-b border-white/10 px-4 py-2.5 flex items-center gap-3">
                 <div className="flex gap-1.5">
                   <span className="w-3 h-3 rounded-full bg-red-500/70" />
                   <span className="w-3 h-3 rounded-full bg-yellow-500/70" />
@@ -609,7 +609,7 @@ export default function DashboardPreview() {
               </div>
 
               {/* App shell */}
-              <div className="flex" style={{ minHeight: 580 }}>
+              <div className="flex flex-1 min-h-0 w-full relative">
 
                 {/* ── Sidebar (dark navy, icon+label stack) ── */}
                 <div className="w-[72px] shrink-0 bg-[#1a1d3a] flex flex-col items-center py-4 gap-1">
@@ -647,7 +647,7 @@ export default function DashboardPreview() {
                 </div>
 
                 {/* ── Main area (light background) ── */}
-                <div className="flex-1 min-w-0 bg-[#f4f6fb] flex flex-col">
+                <div className="flex-1 min-w-0 bg-[#f4f6fb] flex flex-col min-h-0">
 
                   {/* Top header bar */}
                   <div className="bg-white border-b border-gray-200 px-5 py-3 flex items-center justify-between shrink-0">
@@ -680,7 +680,7 @@ export default function DashboardPreview() {
                   </div>
 
                   {/* Content pane */}
-                  <div className="flex-1 min-w-0 p-5 overflow-auto">
+                  <div className="flex-1 min-w-0 min-h-0 p-5 overflow-y-scroll relative">
                     <AnimatePresence mode="wait">
                       <m.div
                         key={activeNav}

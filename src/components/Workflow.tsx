@@ -7,7 +7,7 @@ export default function Workflow() {
   const reducedMotion = useReducedMotion();
   const isInView = inView && !reducedMotion;
   return (
-    <section ref={ref} id="workflow" className="relative z-10 py-12 sm:py-16 md:py-20 px-4 bg-white/[0.05]">
+    <section ref={ref} id="workflow" className="relative z-10 min-h-[100svh] flex flex-col justify-center py-8 lg:py-12 px-4 bg-white/[0.05]">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-20">
           <m.h2

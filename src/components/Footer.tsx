@@ -24,11 +24,8 @@ const Footer = () => {
                             <img
                                 src="/leadq-logo-main.png"
                                 alt="LeadQ.AI Logo"
-                                className="h-20 w-auto"
+                                className="h-16 w-auto"
                             />
-                            <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-leadq-platinum to-leadq-steel">
-                                LeadQ<span className="text-[#A89FE0]">.AI</span>
-                            </span>
                         </div>
 
                         <p className="text-sm leading-relaxed max-w-xs">

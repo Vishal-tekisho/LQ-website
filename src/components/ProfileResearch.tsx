@@ -581,7 +581,7 @@ export default function ProfileResearch() {
 
   return (
     <InViewContext.Provider value={shouldAnimate ?? false}>
-      <section ref={ref} id="profile-research" className="relative z-10 pt-28 pb-12 sm:py-16 md:py-20 px-4 overflow-hidden">
+      <section ref={ref} id="profile-research" className="relative z-10 min-h-[100svh] flex flex-col justify-center pt-20 pb-8 lg:py-12 px-4 overflow-hidden">
         {/* Background effects */}
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-slate-400/10 rounded-full blur-[120px]" />
@@ -733,7 +733,7 @@ export default function ProfileResearch() {
               { icon: Shield, label: 'Identity-Locked', desc: 'Strict matching' },
               { icon: Filter, label: 'Noise Filtered', desc: 'High-confidence only' },
               { icon: Brain, label: 'AI Summary', desc: 'Outreach-ready' },
-              { icon: Zap, label: 'Fast Enrichment', desc: 'Seconds, not hours' },
+              { icon: Zap, label: 'Fast Enrichment', desc: 'Minutes, not hours' },
             ].map((feature, index) => (
               <m.div
                 key={feature.label}

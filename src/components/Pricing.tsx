@@ -7,7 +7,7 @@ const Pricing = () => {
 
 
   return (
-    <section id="pricing" className="relative z-10 py-12 sm:py-16 md:py-20 px-4">
+    <section id="pricing" className="relative z-10 min-h-[100svh] flex flex-col justify-center py-8 lg:py-12 px-4">
       <div className="max-w-7xl mx-auto">
         <m.div
           initial={{ opacity: 0, y: 20 }}

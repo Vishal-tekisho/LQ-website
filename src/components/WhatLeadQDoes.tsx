@@ -620,7 +620,7 @@ export default function WhatLeadQDoes() {
         <section
             ref={sectionRef}
             id="what-leadq-does"
-            className="relative z-10 py-12 sm:py-16 px-4 will-change-transform"
+            className="relative z-10 min-h-[100svh] flex flex-col justify-center py-8 lg:py-12 px-4 will-change-transform"
         >
             <div className="max-w-7xl mx-auto">
                 {/* Hero Sub-section */}

@@ -342,7 +342,7 @@ export default function BookingsMeeting() {
 
   return (
     <InViewContext.Provider value={shouldAnimate ?? false}>
-      <section id="bookings-meeting" className="relative z-10 py-12 sm:py-16 md:py-20 px-4">
+      <section id="bookings-meeting" className="relative z-10 min-h-[100svh] flex flex-col justify-center py-8 lg:py-12 px-4">
         {/* Background ambient effects */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-slate-400/10 rounded-full blur-3xl" />

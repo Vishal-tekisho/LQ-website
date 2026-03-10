@@ -58,7 +58,7 @@ const Features = () => {
   };
 
   return (
-    <section id="features" className="relative z-10 py-12 sm:py-16 md:py-20 px-4">
+    <section id="features" className="relative z-10 min-h-[100svh] flex flex-col justify-center py-8 sm:py-12 lg:py-16 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <m.div
@@ -66,9 +66,9 @@ const Features = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16 sm:mb-20"
+          className="text-center mb-10 sm:mb-14"
         >
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-4">
             Why Choose{' '}
             <span className="text-[#A89FE0]">
               LeadQ.AI
@@ -82,8 +82,8 @@ const Features = () => {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 lg:gap-8"
+          viewport={{ once: true, margin: "-50px" }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"
         >
           {features.map((feature, index) => {
             const Icon = feature.icon;
