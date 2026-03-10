@@ -1,4 +1,4 @@
-# LeadQ.AI Landing Page
+# LeadQ.AI Landing-Page
 
 A modern, interactive landing page for LeadQ.AI - The AI Copilot That Automates Lead Management.
 
