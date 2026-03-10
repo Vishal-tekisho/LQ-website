@@ -23,6 +23,7 @@ import {
   ArrowDown,
 } from 'lucide-react';
 import { MotionButton } from './ui/motion-button';
+import { SpotlightCard } from '@/components/ui/spotlight-card';
 
 // Types
 type Stage = 'idle' | 'input' | 'researching' | 'disambiguating' | 'enriching' | 'complete';
@@ -88,14 +89,6 @@ const WEB_SOURCES = [
 ];
 
 // Animation variants
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1, delayChildren: 0.2 },
-  },
-};
-
 const itemVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
@@ -149,18 +142,6 @@ const PulsingDot = ({ color = 'bg-green-500' }: { color?: string }) => (
     <span className={`relative inline-flex rounded-full h-2.5 w-2.5 ${color}`} />
   </span>
 );
-
-const ScanLine = () => {
-  const isInView = useIsInView();
-  return (
-    <m.div
-      className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-slate-400 to-transparent relative z-20 will-change-transform"
-      initial={{ y: -10, opacity: 0 }}
-      animate={{ y: [-10, 240, -10], opacity: [0, 1, 0] }}
-      transition={{ duration: 2, repeat: isInView ? Infinity : 0, ease: 'linear' }}
-    />
-  );
-};
 
 // Stage indicator component
 const StageIndicator = ({ currentStage, stages }: { currentStage: Stage; stages: { key: Stage; label: string; icon: React.ElementType }[] }) => {
@@ -251,62 +232,64 @@ const ResearchVisualization = ({ stage, activeSources }: { stage: Stage; activeS
   return (
     <m.div
       variants={itemVariants}
-      className="glass rounded-xl p-4 md:p-6 relative overflow-hidden h-[220px] flex flex-col items-center justify-center w-full"
+      className="relative w-full h-[220px]"
     >
+      <SpotlightCard className="p-4 md:p-6 flex flex-col items-center justify-center h-full rounded-xl">
 
-      <div className="text-center mb-4">
-        <m.div
+        <div className="text-center mb-4">
+          <m.div
 
-          transition={{ duration: 2, repeat: isResearching ? Infinity : 0, ease: 'linear' }}
-          className="inline-block mb-2"
-        >
-          <Search className="w-8 h-8 text-slate-400" />
-        </m.div>
-        <p className="text-sm text-slate-400">
-          {stage === 'idle' || stage === 'input' ? 'Ready to research' :
-            stage === 'researching' ? 'Analyzing web signals...' :
-              stage === 'disambiguating' ? 'Verifying identity...' :
-                stage === 'enriching' ? 'Building full profile...' :
-                  'Research complete'}
-        </p>
-      </div>
+            transition={{ duration: 2, repeat: isResearching ? Infinity : 0, ease: 'linear' }}
+            className="inline-block mb-2"
+          >
+            <Search className="w-8 h-8 text-slate-400" />
+          </m.div>
+          <p className="text-sm text-slate-400">
+            {stage === 'idle' || stage === 'input' ? 'Ready to research' :
+              stage === 'researching' ? 'Analyzing web signals...' :
+                stage === 'disambiguating' ? 'Verifying identity...' :
+                  stage === 'enriching' ? 'Building full profile...' :
+                    'Research complete'}
+          </p>
+        </div>
 
-      <div className="flex items-center justify-center gap-3 w-full">
-        {WEB_SOURCES.map((source, index) => {
-          const Icon = source.icon;
-          const isActive = activeSources.includes(source.id);
+        <div className="flex items-center justify-center gap-3 w-full">
+          {WEB_SOURCES.map((source, index) => {
+            const Icon = source.icon;
+            const isActive = activeSources.includes(source.id);
 
-          return (
-            <m.div
-              key={source.id}
-              className={`flex flex-col items-center justify-center gap-2 p-2 rounded-lg transition-all w-[88px] h-[84px] text-center ${isActive ? 'bg-white/10' : 'bg-white/5'
-                }`}
-              animate={isActive ? { scale: [1, 1.05, 1] } : {}}
-              transition={{ duration: 0.5, repeat: isActive ? Infinity : 0, delay: index * 0.2 }}
-            >
-              <div className={`relative ${isActive ? 'opacity-100' : 'opacity-40'}`}>
-                <Icon className={`w-6 h-6 mx-auto ${source.color}`} />
-                {isActive && (
-                  <m.div
-                    className="absolute -top-1 -right-1"
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                  >
-                    <PulsingDot color="bg-green-500" />
-                  </m.div>
-                )}
-              </div>
-              <span className={`text-[10px] sm:text-[11px] leading-tight w-full ${isActive ? 'text-white' : 'text-slate-500'}`}>
-                {source.name}
-              </span>
-            </m.div>
-          );
-        })}
-      </div>
+            return (
+              <m.div
+                key={source.id}
+                className={`flex flex-col items-center justify-center gap-2 p-2 rounded-lg transition-all w-[88px] h-[84px] text-center ${isActive ? 'bg-white/10' : 'bg-white/5'
+                  }`}
+                animate={isActive ? { scale: [1, 1.05, 1] } : {}}
+                transition={{ duration: 0.5, repeat: isActive ? Infinity : 0, delay: index * 0.2 }}
+              >
+                <div className={`relative ${isActive ? 'opacity-100' : 'opacity-40'}`}>
+                  <Icon className={`w-6 h-6 mx-auto ${source.color}`} />
+                  {isActive && (
+                    <m.div
+                      className="absolute -top-1 -right-1"
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                    >
+                      <PulsingDot color="bg-green-500" />
+                    </m.div>
+                  )}
+                </div>
+                <span className={`text-[10px] sm:text-[11px] leading-tight w-full ${isActive ? 'text-white' : 'text-slate-500'}`}>
+                  {source.name}
+                </span>
+              </m.div>
+            );
+          })}
+        </div>
 
-      <div className={`mt-4 ${isResearching ? 'visible' : 'invisible'}`}>
-        <TypingIndicator />
-      </div>
+        <div className={`mt-4 ${isResearching ? 'visible' : 'invisible'}`}>
+          <TypingIndicator />
+        </div>
+      </SpotlightCard>
     </m.div>
   );
 };
@@ -598,7 +581,7 @@ export default function ProfileResearch() {
 
   return (
     <InViewContext.Provider value={shouldAnimate ?? false}>
-      <section ref={ref} id="profile-research" className="relative z-10 py-16 md:py-24 px-4 overflow-hidden">
+      <section ref={ref} id="profile-research" className="relative z-10 pt-28 pb-12 sm:py-16 md:py-20 px-4 overflow-hidden">
         {/* Background effects */}
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-slate-400/10 rounded-full blur-[120px]" />

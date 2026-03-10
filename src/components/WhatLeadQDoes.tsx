@@ -18,6 +18,7 @@ import {
     Search,
     Shield
 } from 'lucide-react';
+import { SpotlightCard } from '@/components/ui/spotlight-card';
 
 interface Step {
     id: number;
@@ -36,7 +37,7 @@ const steps: Step[] = [
     {
         id: 2,
         title: 'Instant Profile Research',
-        description: 'We instantly find their social profiles, company data, and verify their identity so you know exactly who you are talking to.',
+        description: 'We instantly find their profiles, company data, and verify their identity so you know exactly who you are talking to.',
         icon: <UserPlus className="w-6 h-6" />,
     },
     {
@@ -178,27 +179,29 @@ function CardScanAnimation({ isActive }: { isActive: boolean }) {
                 initial={{ opacity: 0, x: 50 }}
                 animate={isActive || prefersReducedMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
                 transition={{ duration: 0.2 }}
-                className="relative w-full max-w-[16rem] xl:w-[220px] glass rounded-xl p-4 border border-white/20 z-40 flex-shrink-0"
+                className="relative w-full max-w-[16rem] xl:w-[220px] z-40 flex-shrink-0"
             >
-                <div className="text-xs text-leadq-silver mb-3">Contact Details</div>
-                {[
-                    { icon: <User className="w-3 h-3" />, label: 'Name', value: 'Sarah Chen' },
-                    { icon: <Building2 className="w-3 h-3" />, label: 'Company', value: 'TechCorp Inc.' },
-                    { icon: <Mail className="w-3 h-3" />, label: 'Email', value: 'sarah.chen@techflow.io' },
-                    { icon: <Phone className="w-3 h-3" />, label: 'Phone', value: '+1 555 123 4567' },
-                ].map((field) => (
-                    <m.div
-                        key={field.label}
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={isActive || prefersReducedMotion ? { opacity: 1, x: 0 } : {}}
-                        transition={{ duration: 0.2 }}
-                        className="flex items-center gap-2 mb-2"
-                    >
-                        <span className="text-leadq-silver">{field.icon}</span>
-                        <span className="text-leadq-silver/70 text-[11px] w-12">{field.label}</span>
-                        <span className="text-white text-[11px] truncate leading-tight">{field.value}</span>
-                    </m.div>
-                ))}
+                <SpotlightCard className="p-4 border-white/20 rounded-xl">
+                    <div className="text-xs text-leadq-silver mb-3">Contact Details</div>
+                    {[
+                        { icon: <User className="w-3 h-3" />, label: 'Name', value: 'Sarah Chen' },
+                        { icon: <Building2 className="w-3 h-3" />, label: 'Company', value: 'TechCorp Inc.' },
+                        { icon: <Mail className="w-3 h-3" />, label: 'Email', value: 'sarah.chen@techflow.io' },
+                        { icon: <Phone className="w-3 h-3" />, label: 'Phone', value: '+1 555 123 4567' },
+                    ].map((field) => (
+                        <m.div
+                            key={field.label}
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={isActive || prefersReducedMotion ? { opacity: 1, x: 0 } : {}}
+                            transition={{ duration: 0.2 }}
+                            className="flex items-center gap-2 mb-2"
+                        >
+                            <span className="text-leadq-silver">{field.icon}</span>
+                            <span className="text-leadq-silver/70 text-[11px] w-12">{field.label}</span>
+                            <span className="text-white text-[11px] truncate leading-tight">{field.value}</span>
+                        </m.div>
+                    ))}
+                </SpotlightCard>
             </m.div>
         </div>
     );
@@ -227,32 +230,34 @@ function ProfileResearchAnimation({ isActive }: { isActive: boolean }) {
                 initial={{ opacity: 0, x: -30 }}
                 animate={isActive ? { opacity: enriched ? 0.5 : 1, x: 0, scale: enriched ? 0.95 : 1 } : { opacity: 0 }}
                 transition={{ duration: 0.3 }}
-                className="relative w-full max-w-[14rem] xl:w-48 glass rounded-xl p-4 border border-white/20 flex-shrink-0"
+                className="relative w-full max-w-[14rem] xl:w-48 flex-shrink-0"
             >
-                <div className="text-[10px] text-slate-400 font-semibold mb-3 uppercase tracking-wider">Scanned Data</div>
-                <div className="space-y-3">
-                    <div className="flex items-center gap-2">
-                        <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center text-slate-300">
-                            <User size={12} />
+                <SpotlightCard className="p-4 border-white/20 rounded-xl">
+                    <div className="text-[10px] text-slate-400 font-semibold mb-3 uppercase tracking-wider">Scanned Data</div>
+                    <div className="space-y-3">
+                        <div className="flex items-center gap-2">
+                            <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center text-slate-300">
+                                <User size={12} />
+                            </div>
+                            <span className="text-white text-xs font-medium">Sarah Chen</span>
                         </div>
-                        <span className="text-white text-xs font-medium">Sarah Chen</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                        <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center text-slate-300">
-                            <Building2 size={12} />
+                        <div className="flex items-center gap-2">
+                            <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center text-slate-300">
+                                <Building2 size={12} />
+                            </div>
+                            <span className="text-white text-xs font-medium">TechCorp</span>
                         </div>
-                        <span className="text-white text-xs font-medium">TechCorp</span>
                     </div>
-                </div>
 
-                {/* Scanning overlay */}
-                {isActive && !enriched && !prefersReducedMotion && (
-                    <m.div
-                        className="absolute inset-0 bg-leadq-purple-light/5 rounded-xl border border-leadq-purple-light/30"
-                        animate={{ opacity: [0.3, 0.7, 0.3] }}
-                        transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-                    />
-                )}
+                    {/* Scanning overlay */}
+                    {isActive && !enriched && !prefersReducedMotion && (
+                        <m.div
+                            className="absolute inset-0 bg-leadq-purple-light/5 rounded-xl border border-leadq-purple-light/30"
+                            animate={{ opacity: [0.3, 0.7, 0.3] }}
+                            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                        />
+                    )}
+                </SpotlightCard>
             </m.div>
 
             {/* AI Search Animation Node */}
@@ -281,28 +286,30 @@ function ProfileResearchAnimation({ isActive }: { isActive: boolean }) {
                 initial={{ opacity: 0, x: 30 }}
                 animate={enriched || prefersReducedMotion ? { opacity: 1, x: 0 } : { opacity: 0.3, x: 30 }}
                 transition={{ duration: 0.2 }}
-                className="relative w-full max-w-[16rem] xl:w-[240px] glass rounded-xl p-4 border border-leadq-silver/30 shadow-lg shadow-leadq-silver/10 flex-shrink-0"
+                className="relative w-full max-w-[16rem] xl:w-[240px] shadow-lg shadow-leadq-silver/10 flex-shrink-0"
             >
-                <div className="flex items-center justify-between mb-3 border-b border-white/10 pb-2">
-                    <div className="text-[10px] text-green-400 font-semibold uppercase tracking-wider flex items-center gap-1.5">
-                        <Shield className="w-3 h-3" />
-                        Verified Profile
+                <SpotlightCard className="p-4 border-leadq-silver/30 rounded-xl">
+                    <div className="flex items-center justify-between mb-3 border-b border-white/10 pb-2">
+                        <div className="text-[10px] text-green-400 font-semibold uppercase tracking-wider flex items-center gap-1.5">
+                            <Shield className="w-3 h-3" />
+                            Verified Profile
+                        </div>
                     </div>
-                </div>
-                <div className="space-y-2.5">
-                    <div>
-                        <div className="text-leadq-silver/70 text-[10px] uppercase">Identity</div>
-                        <div className="text-white text-sm font-medium">Sarah Chen</div>
+                    <div className="space-y-2.5">
+                        <div>
+                            <div className="text-leadq-silver/70 text-[10px] uppercase">Identity</div>
+                            <div className="text-white text-sm font-medium">Sarah Chen</div>
+                        </div>
+                        <div>
+                            <div className="text-leadq-silver/70 text-[10px] uppercase">Role</div>
+                            <div className="text-white text-sm leading-tight text-slate-300">VP of Sales @ TechCorp Inc.</div>
+                        </div>
+                        <div>
+                            <div className="text-leadq-silver/70 text-[10px] uppercase">Experience</div>
+                            <div className="text-white text-sm leading-tight text-slate-300">12+ years B2B SaaS</div>
+                        </div>
                     </div>
-                    <div>
-                        <div className="text-leadq-silver/70 text-[10px] uppercase">Role</div>
-                        <div className="text-white text-sm leading-tight text-slate-300">VP of Sales @ TechCorp Inc.</div>
-                    </div>
-                    <div>
-                        <div className="text-leadq-silver/70 text-[10px] uppercase">Experience</div>
-                        <div className="text-white text-sm leading-tight text-slate-300">12+ years B2B SaaS</div>
-                    </div>
-                </div>
+                </SpotlightCard>
             </m.div>
         </div>
     );
@@ -335,20 +342,22 @@ function NotesToSummaryAnimation({ isActive }: { isActive: boolean }) {
                 initial={{ opacity: 0, x: -30 }}
                 animate={isActive ? { opacity: transformed ? 0.7 : 1, x: 0, scale: transformed ? 0.95 : 1 } : { opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                className="relative w-full max-w-[14rem] xl:w-48 glass rounded-xl p-4 border border-white/20 flex-shrink-0"
+                className="relative w-full max-w-[14rem] xl:w-48 flex-shrink-0"
             >
-                <div className="text-xs text-slate-300 font-semibold mb-2">My Notes</div>
-                {roughNotes.map((note, idx) => (
-                    <m.div
-                        key={idx}
-                        initial={{ opacity: 0 }}
-                        animate={isActive ? { opacity: 1 } : {}}
-                        transition={{ delay: idx * 0.08 }}
-                        className="text-slate-200 text-xs font-mono mb-1"
-                    >
-                        {note}
-                    </m.div>
-                ))}
+                <SpotlightCard className="p-4 border-white/20 rounded-xl">
+                    <div className="text-xs text-slate-300 font-semibold mb-2">My Notes</div>
+                    {roughNotes.map((note, idx) => (
+                        <m.div
+                            key={idx}
+                            initial={{ opacity: 0 }}
+                            animate={isActive ? { opacity: 1 } : {}}
+                            transition={{ delay: idx * 0.08 }}
+                            className="text-slate-200 text-xs font-mono mb-1"
+                        >
+                            {note}
+                        </m.div>
+                    ))}
+                </SpotlightCard>
             </m.div>
 
             {/* Arrow */}
@@ -366,23 +375,25 @@ function NotesToSummaryAnimation({ isActive }: { isActive: boolean }) {
                 initial={{ opacity: 0, x: 30 }}
                 animate={transformed || prefersReducedMotion ? { opacity: 1, x: 0 } : { opacity: 0.3, x: 30 }}
                 transition={{ duration: 0.2 }}
-                className="relative w-full max-w-[16rem] xl:w-[240px] glass rounded-xl p-4 border border-leadq-silver/30 shadow-lg shadow-leadq-silver/10 flex-shrink-0"
+                className="relative w-full max-w-[16rem] xl:w-[240px] shadow-lg shadow-leadq-silver/10 flex-shrink-0"
             >
-                <div className="text-xs text-leadq-silver mb-3">Meeting Summary</div>
-                <div className="space-y-2">
-                    <div>
-                        <div className="text-leadq-silver/70 text-[11px]">Who</div>
-                        <div className="text-white text-sm">Sarah Chen, TechCorp</div>
+                <SpotlightCard className="p-4 border-leadq-silver/30 rounded-xl">
+                    <div className="text-xs text-leadq-silver mb-3">Meeting Summary</div>
+                    <div className="space-y-2">
+                        <div>
+                            <div className="text-leadq-silver/70 text-[11px]">Who</div>
+                            <div className="text-white text-sm">Sarah Chen, TechCorp</div>
+                        </div>
+                        <div>
+                            <div className="text-leadq-silver/70 text-[11px]">What</div>
+                            <div className="text-white text-sm leading-tight">Interested in CRM solution</div>
+                        </div>
+                        <div>
+                            <div className="text-leadq-silver/70 text-[11px]">Next Steps</div>
+                            <div className="text-white text-sm leading-tight">Schedule demo next week</div>
+                        </div>
                     </div>
-                    <div>
-                        <div className="text-leadq-silver/70 text-[11px]">What</div>
-                        <div className="text-white text-sm leading-tight">Interested in CRM solution</div>
-                    </div>
-                    <div>
-                        <div className="text-leadq-silver/70 text-[11px]">Next Steps</div>
-                        <div className="text-white text-sm leading-tight">Schedule demo next week</div>
-                    </div>
-                </div>
+                </SpotlightCard>
             </m.div>
         </div>
     );
@@ -410,25 +421,27 @@ function FollowUpsAnimation({ isActive }: { isActive: boolean }) {
                 initial={{ opacity: 0, y: 20 }}
                 animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                className="w-full max-w-[10rem] sm:w-40 glass rounded-xl p-3 border border-white/20"
+                className="w-full max-w-[10rem] sm:w-40"
             >
-                <div className="text-xs text-leadq-silver mb-2">February 2026</div>
-                <div className="grid grid-cols-7 gap-1 text-[11px] text-center">
-                    {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((d, i) => (
-                        <div key={i} className="text-leadq-silver/70">{d}</div>
-                    ))}
-                    {Array.from({ length: 6 }, (_, i) => (
-                        <m.div
-                            key={i}
-                            initial={{ opacity: 0 }}
-                            animate={isActive ? { opacity: 1 } : {}}
-                            transition={{ duration: 0.1 }}
-                            className={`p-1 rounded ${i === 5 ? 'bg-leadq-silver text-white' : 'text-leadq-silver'}`}
-                        >
-                            {i + 1}
-                        </m.div>
-                    ))}
-                </div>
+                <SpotlightCard className="p-3 border-white/20 rounded-xl">
+                    <div className="text-xs text-leadq-silver mb-2">February 2026</div>
+                    <div className="grid grid-cols-7 gap-1 text-[11px] text-center">
+                        {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((d, i) => (
+                            <div key={i} className="text-leadq-silver/70">{d}</div>
+                        ))}
+                        {Array.from({ length: 6 }, (_, i) => (
+                            <m.div
+                                key={i}
+                                initial={{ opacity: 0 }}
+                                animate={isActive ? { opacity: 1 } : {}}
+                                transition={{ duration: 0.1 }}
+                                className={`p-1 rounded ${i === 5 ? 'bg-leadq-silver text-white' : 'text-leadq-silver'}`}
+                            >
+                                {i + 1}
+                            </m.div>
+                        ))}
+                    </div>
+                </SpotlightCard>
             </m.div>
 
             {/* Task List */}
@@ -436,32 +449,34 @@ function FollowUpsAnimation({ isActive }: { isActive: boolean }) {
                 initial={{ opacity: 0, x: 20 }}
                 animate={isActive ? { opacity: 1, x: 0 } : { opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                className="w-full max-w-[16rem] sm:w-[220px] glass rounded-xl p-4 border border-white/20"
+                className="w-full max-w-[16rem] sm:w-[220px]"
             >
-                <div className="text-xs text-leadq-silver mb-3">Today's Follow-ups</div>
-                {tasks.map((task, idx) => (
-                    <m.div
-                        key={task.id}
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={isActive ? { opacity: 1, x: 0 } : {}}
-                        transition={{ duration: 0.15 }}
-                        onClick={() => !prefersReducedMotion && setCheckedTask(task.id)}
-                        className={`flex items-start gap-2 mb-3 cursor-pointer transition-opacity ${checkedTask === task.id ? 'opacity-50' : ''
-                            }`}
-                    >
-                        <div className={`w-4 h-4 rounded border flex items-center justify-center flex-shrink-0 mt-0.5 transition-colors ${checkedTask === task.id ? 'bg-leadq-silver border-leadq-silver' : 'border-slate-500'
-                            }`}>
-                            {checkedTask === task.id && <Check className="w-3 h-3 text-white" />}
-                        </div>
-                        <div className="min-w-0">
-                            <div className={`text-sm text-white truncate ${checkedTask === task.id ? 'line-through' : ''}`}>
-                                {task.name}
+                <SpotlightCard className="p-4 border-white/20 rounded-xl">
+                    <div className="text-xs text-leadq-silver mb-3">Today's Follow-ups</div>
+                    {tasks.map((task) => (
+                        <m.div
+                            key={task.id}
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={isActive ? { opacity: 1, x: 0 } : {}}
+                            transition={{ duration: 0.15 }}
+                            onClick={() => !prefersReducedMotion && setCheckedTask(task.id)}
+                            className={`flex items-start gap-2 mb-3 cursor-pointer transition-opacity ${checkedTask === task.id ? 'opacity-50' : ''
+                                }`}
+                        >
+                            <div className={`w-4 h-4 rounded border flex items-center justify-center flex-shrink-0 mt-0.5 transition-colors ${checkedTask === task.id ? 'bg-leadq-silver border-leadq-silver' : 'border-slate-500'
+                                }`}>
+                                {checkedTask === task.id && <Check className="w-3 h-3 text-white" />}
                             </div>
-                            <div className="text-[11px] text-leadq-silver truncate">{task.action}</div>
-                        </div>
-                        <div className="ml-auto text-[10px] text-leadq-silver flex-shrink-0">{task.due}</div>
-                    </m.div>
-                ))}
+                            <div className="min-w-0">
+                                <div className={`text-sm text-white truncate ${checkedTask === task.id ? 'line-through' : ''}`}>
+                                    {task.name}
+                                </div>
+                                <div className="text-[11px] text-leadq-silver truncate">{task.action}</div>
+                            </div>
+                            <div className="ml-auto text-[10px] text-leadq-silver flex-shrink-0">{task.due}</div>
+                        </m.div>
+                    ))}
+                </SpotlightCard>
             </m.div>
         </div>
     );
@@ -483,40 +498,42 @@ function TimelineAnimation({ isActive }: { isActive: boolean }) {
                 initial={{ opacity: 0 }}
                 animate={isActive ? { opacity: 1 } : { opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                className="w-full max-w-[18rem] sm:max-w-none sm:w-80 glass rounded-xl p-4 xl:p-6 border border-white/20"
+                className="w-full max-w-[18rem] sm:max-w-none sm:w-80"
             >
-                {/* Contact Header */}
-                <div className="flex items-center gap-3 mb-4 pb-3 border-b border-white/10">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-leadq-silver to-leadq-silver flex items-center justify-center text-white font-bold">
-                        SC
+                <SpotlightCard className="p-4 xl:p-6 border-white/20 rounded-xl">
+                    {/* Contact Header */}
+                    <div className="flex items-center gap-3 mb-4 pb-3 border-b border-white/10">
+                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-leadq-silver to-leadq-silver flex items-center justify-center text-white font-bold">
+                            SC
+                        </div>
+                        <div>
+                            <div className="text-white font-medium text-sm">Sarah Chen</div>
+                            <div className="text-leadq-silver text-[11px]">VP of Sales, TechCorp</div>
+                        </div>
                     </div>
-                    <div>
-                        <div className="text-white font-medium text-sm">Sarah Chen</div>
-                        <div className="text-leadq-silver text-[11px]">VP of Sales, TechCorp</div>
-                    </div>
-                </div>
 
-                {/* Timeline */}
-                <div className="relative">
-                    <div className="absolute left-[11px] top-2 bottom-2 w-0.5 bg-white/10" />
-                    {timelineItems.map((item, idx) => (
-                        <m.div
-                            key={idx}
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={isActive ? { opacity: 1, x: 0 } : {}}
-                            transition={{ duration: 0.2 }}
-                            className="flex items-center gap-3 mb-3 relative"
-                        >
-                            <div className="w-6 h-6 rounded-full bg-leadq-silver/20 border border-leadq-silver/50 flex items-center justify-center text-leadq-silver z-10">
-                                {item.icon}
-                            </div>
-                            <div className="flex-1">
-                                <div className="text-white text-[13px]">{item.event}</div>
-                            </div>
-                            <div className="text-leadq-silver/70 text-[10px] uppercase font-semibold">{item.date}</div>
-                        </m.div>
-                    ))}
-                </div>
+                    {/* Timeline */}
+                    <div className="relative">
+                        <div className="absolute left-[11px] top-2 bottom-2 w-0.5 bg-white/10" />
+                        {timelineItems.map((item, idx) => (
+                            <m.div
+                                key={idx}
+                                initial={{ opacity: 0, x: -20 }}
+                                animate={isActive ? { opacity: 1, x: 0 } : {}}
+                                transition={{ duration: 0.2 }}
+                                className="flex items-center gap-3 mb-3 relative"
+                            >
+                                <div className="w-6 h-6 rounded-full bg-leadq-silver/20 border border-leadq-silver/50 flex items-center justify-center text-leadq-silver z-10">
+                                    {item.icon}
+                                </div>
+                                <div className="flex-1">
+                                    <div className="text-white text-[13px]">{item.event}</div>
+                                </div>
+                                <div className="text-leadq-silver/70 text-[10px] uppercase font-semibold">{item.date}</div>
+                            </m.div>
+                        ))}
+                    </div>
+                </SpotlightCard>
             </m.div>
         </div>
     );
@@ -607,7 +624,7 @@ export default function WhatLeadQDoes() {
         >
             <div className="max-w-7xl mx-auto">
                 {/* Hero Sub-section */}
-                <div className="text-center max-w-3xl mx-auto mb-20">
+                <div className="text-center max-w-3xl mx-auto mb-12">
                     {/* Text Content */}
                     <m.div
                         initial={{ opacity: 0, y: 20 }}
@@ -651,7 +668,7 @@ export default function WhatLeadQDoes() {
                                     key={step.id}
                                     ref={(el) => { stepRefs.current[idx] = el; }}
                                     data-step={step.id}
-                                    className="relative pl-16 sm:pl-20 pb-16 lg:pb-24 xl:pb-32 last:pb-0"
+                                    className="relative pl-16 sm:pl-20 pb-12 lg:pb-16 xl:pb-20 last:pb-0"
                                 >
                                     {/* Step Indicator */}
                                     <m.div
@@ -660,8 +677,6 @@ export default function WhatLeadQDoes() {
                                             : 'bg-[#0f172a] border-2 border-white/20 text-leadq-silver'
                                             }`}
                                         animate={{ scale: activeStep >= step.id ? 1.1 : 1 }}
-                                        whileHover={{ scale: 1.2 }}
-                                        onClick={() => setActiveStep(step.id)}
                                     >
                                         <div className="scale-75">{step.icon}</div>
                                     </m.div>
@@ -672,31 +687,33 @@ export default function WhatLeadQDoes() {
                                         whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: false }}
                                         transition={{ delay: 0, duration: 0.15 }}
-                                        className={`glass rounded-2xl p-6 lg:p-8 xl:p-10 overflow-hidden relative will-change-[opacity,transform] transition-opacity duration-300 ${activeStep === step.id
-                                            ? 'border-leadq-purple/50 shadow-2xl shadow-leadq-purple/10 bg-white/5 opacity-100'
-                                            : 'border-white/10 hover:border-white/20 opacity-60 hover:opacity-100'
+                                        className={`overflow-hidden relative will-change-[opacity,transform] transition-opacity duration-300 ${activeStep === step.id
+                                            ? 'shadow-2xl shadow-leadq-purple/10 opacity-100'
+                                            : 'opacity-60 hover:opacity-100'
                                             }`}
                                         animate={{ scale: activeStep === step.id ? 1.02 : 1 }}
                                     >
-                                        {/* Card Content: Text Left, Animation Right */}
-                                        <div className="flex flex-col xl:flex-row items-center gap-6 xl:gap-8">
-                                            {/* Text */}
-                                            <div className="flex-1 max-w-lg">
-                                                <h3 className={`text-2xl sm:text-3xl xl:text-4xl font-display font-semibold mb-3 transition-colors duration-300 ${activeStep === step.id ? 'text-white' : 'text-slate-300'}`}>
-                                                    {step.title}
-                                                </h3>
-                                                <p className="text-leadq-silver text-base sm:text-lg leading-relaxed">
-                                                    {step.description}
-                                                </p>
-                                            </div>
+                                        <SpotlightCard className={`p-6 lg:p-8 xl:p-10 rounded-2xl ${activeStep === step.id ? 'border-leadq-purple/50 bg-white/5' : 'border-white/10 hover:border-white/20'}`}>
+                                            {/* Card Content: Text Left, Animation Right */}
+                                            <div className="flex flex-col xl:flex-row items-center gap-6 xl:gap-8">
+                                                {/* Text */}
+                                                <div className="flex-1 max-w-lg">
+                                                    <h3 className={`text-2xl sm:text-3xl xl:text-4xl font-display font-semibold mb-3 transition-colors duration-300 ${activeStep === step.id ? 'text-white' : 'text-slate-300'}`}>
+                                                        {step.title}
+                                                    </h3>
+                                                    <p className="text-leadq-silver text-base sm:text-lg leading-relaxed">
+                                                        {step.description}
+                                                    </p>
+                                                </div>
 
-                                            {/* Animation */}
-                                            <div className="flex-1 flex items-center justify-center min-h-[260px] xl:min-h-[300px] w-full">
-                                                <div className={`w-full transition-[opacity,transform] duration-700 ease-out will-change-[opacity,transform] ${activeStep === step.id ? 'opacity-100 scale-100 translate-y-0' : 'opacity-10 scale-95 translate-y-4 pointer-events-none'}`}>
-                                                    {renderStepAnimation(step.id, activeStep === step.id)}
+                                                {/* Animation */}
+                                                <div className="flex-1 flex items-center justify-center min-h-[260px] xl:min-h-[300px] w-full">
+                                                    <div className={`w-full transition-[opacity,transform] duration-700 ease-out will-change-[opacity,transform] ${activeStep === step.id ? 'opacity-100 scale-100 translate-y-0' : 'opacity-10 scale-95 translate-y-4 pointer-events-none'}`}>
+                                                        {renderStepAnimation(step.id, activeStep === step.id)}
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </SpotlightCard>
                                     </m.div>
                                 </div>
                             ))}
@@ -718,20 +735,22 @@ export default function WhatLeadQDoes() {
                                     delay: 0,
                                     ease: [0.25, 0.46, 0.45, 0.94]
                                 }}
-                                className="glass rounded-2xl p-6 border border-leadq-silver/30 overflow-hidden"
+                                className="overflow-hidden"
                             >
-                                <div className="flex items-center gap-3 mb-4">
-                                    <div className="w-10 h-10 rounded-full bg-leadq-purple/20 flex items-center justify-center text-leadq-purple-light">
-                                        {step.icon}
+                                <SpotlightCard className="p-6 border-leadq-silver/30 rounded-2xl">
+                                    <div className="flex items-center gap-3 mb-4">
+                                        <div className="w-10 h-10 rounded-full bg-leadq-purple/20 flex items-center justify-center text-leadq-purple-light">
+                                            {step.icon}
+                                        </div>
+                                        <h3 className="text-2xl sm:text-3xl font-display font-semibold text-white">
+                                            {step.title}
+                                        </h3>
                                     </div>
-                                    <h3 className="text-2xl sm:text-3xl font-display font-semibold text-white">
-                                        {step.title}
-                                    </h3>
-                                </div>
-                                <p className="text-leadq-silver mb-6">{step.description}</p>
-                                <div className={`transition-opacity duration-500 w-full ${mobileVisible[step.id] ? 'opacity-100' : 'opacity-0'}`}>
-                                    {renderStepAnimation(step.id, mobileVisible[step.id] || false)}
-                                </div>
+                                    <p className="text-leadq-silver mb-6">{step.description}</p>
+                                    <div className={`transition-opacity duration-500 w-full ${mobileVisible[step.id] ? 'opacity-100' : 'opacity-0'}`}>
+                                        {renderStepAnimation(step.id, mobileVisible[step.id] || false)}
+                                    </div>
+                                </SpotlightCard>
                             </m.div>
                         ))}
                     </div>
@@ -743,7 +762,7 @@ export default function WhatLeadQDoes() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: false }}
                     transition={{ duration: 0.6 }}
-                    className="mt-24"
+                    className="mt-16"
                 >
                     <h3 className="text-2xl sm:text-3xl font-display font-bold text-white text-center mb-12">
                         Built for real-world selling
@@ -756,13 +775,14 @@ export default function WhatLeadQDoes() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: false }}
                                 transition={{ delay: idx * 0.1 }}
-                                className="glass rounded-2xl p-6 border border-white/10 text-center hover:border-leadq-silver/30 transition-colors"
                             >
-                                <div className="w-12 h-12 rounded-full bg-leadq-silver/20 flex items-center justify-center text-leadq-silver mx-auto mb-4">
-                                    {feature.icon}
-                                </div>
-                                <h4 className="text-2xl sm:text-3xl font-semibold text-white mb-2">{feature.title}</h4>
-                                <p className="text-leadq-silver text-base sm:text-lg">{feature.description}</p>
+                                <SpotlightCard className="p-6 border-white/10 text-center hover:border-leadq-silver/30 transition-colors rounded-2xl">
+                                    <div className="w-12 h-12 rounded-full bg-leadq-silver/20 flex items-center justify-center text-leadq-silver mx-auto mb-4">
+                                        {feature.icon}
+                                    </div>
+                                    <h4 className="text-2xl sm:text-3xl font-semibold text-white mb-2">{feature.title}</h4>
+                                    <p className="text-leadq-silver text-base sm:text-lg">{feature.description}</p>
+                                </SpotlightCard>
                             </m.div>
                         ))}
                     </div>

@@ -29,7 +29,7 @@ const menuGroups = {
             { name: "Lead Capture", url: "#lead-capture", icon: ScanLine, description: "Capture and manage leads efficiently." },
             { name: "Research", url: "#profile-research", icon: UserPlus, description: "Deep dive into prospect data." },
             { name: "Dashboard", url: "#dashboard", icon: LayoutDashboard, description: "Visualize your performance metrics." },
-            { name: "Bookings", url: "#bookings-meeting", icon: Calendar, description: "Manage appointments and schedules." },
+            { name: "Meetings", url: "#bookings-meeting", icon: Calendar, description: "Manage appointments and schedules." },
             { name: "Email Draft", url: "#email-draft", icon: PenLine, description: "AI-powered email composition." },
             { name: "AI Agents", url: "#agents", icon: Bot, description: "Automate tasks with intelligent agents." },
         ]
@@ -152,8 +152,8 @@ export function StandardNavbar({ items, className }: NavBarProps) {
                             alt="LeadQ.AI"
                             className="h-14 w-auto"
                         />
-                        <span className="text-lg font-bold font-display text-white">
-                            LeadQ.AI
+                        <span className="text-lg font-bold font-display bg-clip-text text-transparent bg-gradient-to-r from-leadq-platinum to-leadq-steel">
+                            LeadQ<span className="text-[#A89FE0]">.AI</span>
                         </span>
                     </Link>
 
@@ -252,40 +252,46 @@ export function StandardNavbar({ items, className }: NavBarProps) {
                         animate={{ opacity: 1, height: "100vh" }}
                         exit={{ opacity: 0, height: 0 }}
                         transition={{ duration: 0.3, ease: "easeInOut" }}
-                        className="md:hidden fixed inset-0 top-0 bg-black/95 backdrop-blur-xl z-[100] pt-20 overflow-y-auto"
+                        className="md:hidden fixed inset-0 top-0 bg-black/95 backdrop-blur-xl z-[100] flex flex-col overflow-hidden"
                     >
-                        <div className="px-6 py-8 space-y-6">
-                            <div className="space-y-2">
-                                <div className="text-xs font-semibold text-leadq-silver/50 uppercase tracking-wider mb-4">Navigation</div>
-                                {allNavItems.map((item) => {
-                                    const Icon = item.icon
-                                    const isActive = activeTab === item.name
-                                    return (
-                                        <a
-                                            key={item.name}
-                                            href={item.url}
-                                            onClick={(e) => handleLinkClick(e, item.url, item.name)}
-                                            className={cn(
-                                                "flex items-center gap-4 p-3 rounded-xl transition-all",
-                                                isActive
-                                                    ? "bg-leadq-purple/10 text-leadq-purple border border-leadq-purple/30"
-                                                    : "text-leadq-silver hover:bg-white/5 hover:text-white"
-                                            )}
-                                        >
-                                            <Icon size={20} strokeWidth={2} />
-                                            <span className="text-base font-medium">{item.name}</span>
-                                        </a>
-                                    )
-                                })}
-                            </div>
+                        {/* Spacer for Top Navbar height */}
+                        <div className="h-16 md:h-20 shrink-0 border-b border-white/5 bg-transparent" />
 
-                            <div className="pt-6 border-t border-white/10 space-y-4">
-                                <button className="w-full py-4 font-bold bg-gradient-to-r from-leadq-purple-dark to-leadq-purple text-white rounded-xl shadow-lg shadow-leadq-purple/20">
-                                    Login
-                                </button>
-                                <button className="w-full py-4 font-bold bg-gradient-to-r from-leadq-purple-dark to-leadq-purple text-white rounded-xl shadow-lg shadow-leadq-purple/20">
-                                    Sign Up
-                                </button>
+                        {/* Scrollable Content Area */}
+                        <div className="flex-1 overflow-y-auto px-6 py-8">
+                            <div className="space-y-6">
+                                <div className="space-y-2">
+                                    <div className="text-xs font-semibold text-leadq-silver/50 uppercase tracking-wider mb-4">Navigation</div>
+                                    {allNavItems.map((item) => {
+                                        const Icon = item.icon
+                                        const isActive = activeTab === item.name
+                                        return (
+                                            <a
+                                                key={item.name}
+                                                href={item.url}
+                                                onClick={(e) => handleLinkClick(e, item.url, item.name)}
+                                                className={cn(
+                                                    "flex items-center gap-4 p-3 rounded-xl transition-all",
+                                                    isActive
+                                                        ? "bg-leadq-purple/10 text-leadq-purple border border-leadq-purple/30"
+                                                        : "text-leadq-silver hover:bg-white/5 hover:text-white"
+                                                )}
+                                            >
+                                                <Icon size={20} strokeWidth={2} />
+                                                <span className="text-base font-medium">{item.name}</span>
+                                            </a>
+                                        )
+                                    })}
+                                </div>
+
+                                <div className="pt-6 border-t border-white/10 space-y-4">
+                                    <button className="w-full py-4 font-bold bg-gradient-to-r from-leadq-purple-dark to-leadq-purple text-white rounded-xl shadow-lg shadow-leadq-purple/20">
+                                        Login
+                                    </button>
+                                    <button className="w-full py-4 font-bold bg-gradient-to-r from-leadq-purple-dark to-leadq-purple text-white rounded-xl shadow-lg shadow-leadq-purple/20">
+                                        Sign Up
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </m.div>

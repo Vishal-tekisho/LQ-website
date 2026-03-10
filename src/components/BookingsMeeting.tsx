@@ -1,6 +1,6 @@
-import { m, AnimatePresence, useReducedMotion } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { useInViewPause, InViewContext, useIsInView } from '@/lib/useInViewPause';
+import { useInViewPause, InViewContext } from '@/lib/useInViewPause';
 import {
   Calendar,
   Mic,
@@ -19,8 +19,7 @@ import {
   Image,
   Upload,
   Play,
-  Pause,
-  RotateCcw
+  Pause
 } from 'lucide-react';
 import { Button } from './ui/button';
 
@@ -46,7 +45,6 @@ interface Meeting {
 
 // Typing indicator component
 const TypingIndicator = () => {
-  const isInView = useIsInView();
   return (
     <div className="flex items-center gap-1">
       {[0, 1, 2].map((i) => (
@@ -56,7 +54,7 @@ const TypingIndicator = () => {
           animate={{ y: [0, -4, 0] }}
           transition={{
             duration: 0.6,
-            repeat: isInView ? Infinity : 0,
+            repeat: Infinity,
             delay: i * 0.15,
             ease: "easeInOut"
           }}
@@ -68,7 +66,6 @@ const TypingIndicator = () => {
 
 // Orbital loading animation with glowing rings
 const OrbitalLoader = () => {
-  const isInView = useIsInView();
   return (
     <div className="relative flex items-center justify-center w-44 h-44 sm:w-52 sm:h-52">
       {/* Radial glow backdrop */}
@@ -78,7 +75,7 @@ const OrbitalLoader = () => {
           background: 'radial-gradient(circle, rgba(148,163,184,0.15) 0%, rgba(148,163,184,0.05) 40%, transparent 70%)',
         }}
         animate={{ opacity: [0.5, 1, 0.5] }}
-        transition={{ duration: 3, repeat: isInView ? Infinity : 0, ease: 'easeInOut' }}
+        transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
       />
 
       {/* Outer ring — clockwise, slower */}
@@ -93,7 +90,7 @@ const OrbitalLoader = () => {
           filter: 'drop-shadow(0 0 6px rgba(148,163,184,0.5))',
         }}
         animate={{ rotate: 360 }}
-        transition={{ duration: 6, repeat: isInView ? Infinity : 0, ease: 'linear' }}
+        transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
       />
 
       {/* Outer ring spark dot */}
@@ -106,7 +103,7 @@ const OrbitalLoader = () => {
           boxShadow: '0 0 8px 2px rgba(148,163,184,0.7)',
         }}
         animate={{ rotate: 360 }}
-        transition={{ duration: 6, repeat: isInView ? Infinity : 0, ease: 'linear' }}
+        transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
       />
 
       {/* Inner ring — counter-clockwise, faster */}
@@ -121,7 +118,7 @@ const OrbitalLoader = () => {
           filter: 'drop-shadow(0 0 5px rgba(100,116,139,0.45))',
         }}
         animate={{ rotate: -360 }}
-        transition={{ duration: 4, repeat: isInView ? Infinity : 0, ease: 'linear' }}
+        transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
       />
 
       {/* Inner ring spark dot */}
@@ -132,7 +129,7 @@ const OrbitalLoader = () => {
           height: '75%',
         }}
         animate={{ rotate: -360 }}
-        transition={{ duration: 4, repeat: isInView ? Infinity : 0, ease: 'linear' }}
+        transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
       >
         <div
           className="absolute w-1 h-1 rounded-full bg-slate-400"
@@ -156,7 +153,7 @@ const OrbitalLoader = () => {
           borderRightColor: 'rgba(148,163,184,0.1)',
         }}
         animate={{ rotate: 360 }}
-        transition={{ duration: 8, repeat: isInView ? Infinity : 0, ease: 'linear' }}
+        transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
       />
 
       {/* Calendar icon with glow */}
@@ -169,7 +166,7 @@ const OrbitalLoader = () => {
             'drop-shadow(0 0 4px rgba(148,163,184,0.3))',
           ],
         }}
-        transition={{ duration: 3, repeat: isInView ? Infinity : 0, ease: 'easeInOut' }}
+        transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
       >
         <Calendar className="w-14 h-14 sm:w-16 sm:h-16 text-slate-300/70" />
       </m.div>
@@ -179,7 +176,6 @@ const OrbitalLoader = () => {
 
 // Glowing loading dots
 const GlowDots = () => {
-  const isInView = useIsInView();
   return (
     <div className="flex items-center gap-2 mt-3">
       {[0, 1, 2].map((i) => (
@@ -193,7 +189,7 @@ const GlowDots = () => {
           }}
           transition={{
             duration: 1.2,
-            repeat: isInView ? Infinity : 0,
+            repeat: Infinity,
             delay: i * 0.25,
             ease: 'easeInOut',
           }}
@@ -235,20 +231,7 @@ const PulsingDot = ({ color = 'cyan' }: { color?: 'cyan' | 'blue' | 'green' }) =
   );
 };
 
-// Stage indicator component
-const StageIndicator = ({ stages, currentStage }: { stages: string[]; currentStage: number }) => (
-  <div className="flex items-center justify-center gap-2 mb-6">
-    {stages.map((_, index) => (
-      <m.div
-        key={index}
-        className={`h-1.5 rounded-full transition-all duration-300 ${index <= currentStage ? 'bg-gradient-to-r from-slate-400 to-slate-400' : 'bg-white/20'
-          }`}
-        animate={{ width: index === currentStage ? 24 : 8 }}
-        transition={{ duration: 0.3 }}
-      />
-    ))}
-  </div>
-);
+
 
 export default function BookingsMeeting() {
   const [stage, setStage] = useState<AnimationStage>('idle');
@@ -258,9 +241,8 @@ export default function BookingsMeeting() {
   const [momSections, setMomSections] = useState<string[]>([]);
   const [uploadProgress, setUploadProgress] = useState(0);
   const timeoutIds = useRef<ReturnType<typeof setTimeout>[]>([]);
-  const { ref, isInView } = useInViewPause();
-  const reducedMotion = useReducedMotion();
-  const shouldAnimate = isInView && !reducedMotion;
+  const { isInView } = useInViewPause();
+  const shouldAnimate = true;
 
   const clearAllTimeouts = useCallback(() => {
     timeoutIds.current.forEach(id => clearTimeout(id));
@@ -278,18 +260,6 @@ export default function BookingsMeeting() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isInView]);
 
-  const stages: AnimationStage[] = [
-    'idle',
-    'booking-webhook',
-    'booking-offline',
-    'context-linking',
-    'live-transcription',
-    'proof-upload',
-    'ai-summary',
-    'dashboard'
-  ];
-
-  const stageIndex = stages.indexOf(stage);
 
   const transcriptData = [
     { speaker: 'Sarah Chen', text: "Let's discuss the Q4 projections...", color: 'cyan' },
@@ -372,7 +342,7 @@ export default function BookingsMeeting() {
 
   return (
     <InViewContext.Provider value={shouldAnimate ?? false}>
-      <section id="bookings-meeting" className="relative z-10 py-16 sm:py-20 md:py-24 px-4">
+      <section id="bookings-meeting" className="relative z-10 py-12 sm:py-16 md:py-20 px-4">
         {/* Background ambient effects */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-slate-400/10 rounded-full blur-3xl" />
@@ -398,8 +368,7 @@ export default function BookingsMeeting() {
               Seamless scheduling, real-time transcription with speaker diarization, and AI-powered meeting summaries
             </p>
 
-            {/* Stage Progress Indicator */}
-            <StageIndicator stages={stages} currentStage={stageIndex} />
+
 
             {/* Demo Controls */}
             <m.div

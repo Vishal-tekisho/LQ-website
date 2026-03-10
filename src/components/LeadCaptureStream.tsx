@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Player } from '@lottiefiles/react-lottie-player';
 import { Mail, Phone, Linkedin, Briefcase, Scan, ChevronLeft, ChevronRight, Zap } from 'lucide-react';
 import { Button } from './ui/button';
+import { SpotlightCard } from '@/components/ui/spotlight-card';
 
 const LOTTIE_URL = 'https://lottie.host/2e6e9c91-c9e7-4c14-b14d-3ac7e7e78c4a/fZQYSdIyEk.json';
 
@@ -25,12 +26,14 @@ const fallbackCards: LeadCard[] = [
 
 function FallbackCard({ name, company, role }: { name: string; company: string; role: string }) {
   return (
-    <div className="flex-shrink-0 w-48 h-28 mx-4 rounded-xl glass p-4 flex flex-col justify-between transition-transform">
-      <div>
-        <p className="font-semibold text-white text-sm">{name}</p>
-        <p className="text-xs text-leadq-silver">{role}</p>
-      </div>
-      <p className="text-[10px] text-leadq-silver">{company}</p>
+    <div className="flex-shrink-0 w-48 h-28 mx-4 transition-transform">
+      <SpotlightCard className="p-4 flex flex-col justify-between rounded-xl h-full border-white/10">
+        <div>
+          <p className="font-semibold text-white text-sm">{name}</p>
+          <p className="text-xs text-leadq-silver">{role}</p>
+        </div>
+        <p className="text-[10px] text-leadq-silver">{company}</p>
+      </SpotlightCard>
     </div>
   );
 }
@@ -73,21 +76,21 @@ function PhoneScannerOverlay({
   return (
     <div className="absolute z-40 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
       <div className="relative w-64 md:w-72">
-        <div className="relative rounded-[2.5rem] border-4 border-slate-700 bg-black/80 backdrop-blur-sm p-2 shadow-2xl">
-          <div className="absolute top-4 left-1/2 -translate-x-1/2 w-20 h-6 bg-black rounded-full z-10" />
+        <div className="relative rounded-[2.5rem] border-4 border-slate-700 max-sm:bg-white sm:bg-black/80 backdrop-blur-sm p-2 shadow-2xl">
+          <div className="absolute top-4 left-1/2 -translate-x-1/2 w-20 h-6 max-sm:bg-slate-200 sm:bg-black rounded-full z-10" />
 
-          <div className="relative rounded-[2rem] bg-gradient-to-b from-gray-900/90 to-black/90 overflow-hidden min-h-[420px]">
-            <div className="flex items-center justify-between px-6 py-2 text-leadq-silver text-xs">
+          <div className="relative rounded-[2rem] max-sm:bg-white sm:bg-gradient-to-b sm:from-gray-900/90 sm:to-black/90 overflow-hidden min-h-[420px]">
+            <div className="flex items-center justify-between px-6 py-2 max-sm:text-slate-500 sm:text-leadq-silver text-xs">
               <span>9:21</span>
               <div className="flex items-center gap-1">
                 <div className="flex gap-0.5">
-                  <div className="w-1 h-2 bg-leadq-silver rounded-sm" />
-                  <div className="w-1 h-2.5 bg-leadq-silver rounded-sm" />
-                  <div className="w-1 h-3 bg-leadq-silver rounded-sm" />
-                  <div className="w-1 h-3.5 bg-leadq-silver rounded-sm" />
+                  <div className="w-1 h-2 max-sm:bg-slate-400 sm:bg-leadq-silver rounded-sm" />
+                  <div className="w-1 h-2.5 max-sm:bg-slate-400 sm:bg-leadq-silver rounded-sm" />
+                  <div className="w-1 h-3 max-sm:bg-slate-400 sm:bg-leadq-silver rounded-sm" />
+                  <div className="w-1 h-3.5 max-sm:bg-slate-400 sm:bg-leadq-silver rounded-sm" />
                 </div>
-                <div className="w-5 h-2.5 border border-leadq-silver rounded-sm ml-1">
-                  <div className="w-3/4 h-full bg-leadq-silver rounded-sm" />
+                <div className="w-5 h-2.5 border max-sm:border-slate-400 sm:border-leadq-silver rounded-sm ml-1">
+                  <div className="w-3/4 h-full max-sm:bg-slate-400 sm:bg-leadq-silver rounded-sm" />
                 </div>
               </div>
             </div>
@@ -96,8 +99,8 @@ function PhoneScannerOverlay({
               {/* Header with toggle */}
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2">
-                  <Scan className="w-5 h-5 text-leadq-silver" />
-                  <span className="text-leadq-silver font-semibold text-sm">AI Scanner</span>
+                  <Scan className="w-5 h-5 max-sm:text-slate-500 sm:text-leadq-silver" />
+                  <span className="max-sm:text-slate-700 sm:text-leadq-silver font-semibold text-sm">AI Scanner</span>
                 </div>
                 <Button
                   onClick={onToggleView}
@@ -110,77 +113,102 @@ function PhoneScannerOverlay({
               </div>
 
               {/* Scan area */}
-              <div className="relative border-2 border-dashed border-leadq-silver/50 rounded-xl p-4 mb-4">
-                <div className="absolute inset-0 bg-leadq-silver/5 rounded-xl" />
-                <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-leadq-silver rounded-tl-lg" />
-                <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-leadq-silver rounded-tr-lg" />
-                <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-leadq-silver rounded-bl-lg" />
-                <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-leadq-silver rounded-br-lg" />
+              <div className="relative border-2 border-dashed max-sm:border-slate-300 sm:border-leadq-silver/50 rounded-xl p-4 mb-4 h-40 overflow-hidden">
+                <div className="absolute inset-0 max-sm:bg-slate-50 sm:bg-leadq-silver/5 rounded-xl" />
+                <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 max-sm:border-slate-400 sm:border-leadq-silver rounded-tl-lg z-20" />
+                <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 max-sm:border-slate-400 sm:border-leadq-silver rounded-tr-lg z-20" />
+                <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 max-sm:border-slate-400 sm:border-leadq-silver rounded-bl-lg z-20" />
+                <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 max-sm:border-slate-400 sm:border-leadq-silver rounded-br-lg z-20" />
 
-                <div className="relative z-10 text-center py-4">
-                  <div className={`w-12 h-12 mx-auto mb-2 rounded-full bg-leadq-silver/20 flex items-center justify-center ${isScanning ? 'animate-pulse' : ''}`}>
-                    <Scan className={`w-6 h-6 text-leadq-silver ${isScanning ? 'animate-spin' : ''}`} />
-                  </div>
-                  <p className="text-xs text-leadq-silver">
-                    {isScanning ? 'Scanning...' : 'Ready to scan business card'}
-                  </p>
-                </div>
+                {isScanning ? (
+                  <>
+                    {/* Virtual Business Card sliding up */}
+                    <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-48 h-28 bg-white rounded-md shadow-lg p-3 animate-card-slide-up flex flex-col justify-between z-10 border border-slate-200">
+                      <div>
+                        <div className="h-2 w-16 bg-slate-300 rounded mb-1.5" />
+                        <div className="h-1.5 w-12 bg-slate-200 rounded" />
+                      </div>
+                      <div className="flex justify-between items-end">
+                        <div className="space-y-1">
+                          <div className="h-1 w-20 bg-slate-200 rounded" />
+                          <div className="h-1 w-16 bg-slate-200 rounded" />
+                        </div>
+                        <div className="w-6 h-6 rounded-full bg-slate-200" />
+                      </div>
+                    </div>
 
-                {/* Scan line animation */}
-                {isScanning && (
-                  <div className="absolute inset-x-0 top-0 h-full overflow-hidden rounded-xl pointer-events-none">
-                    <div
-                      className="absolute inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-leadq-silver to-transparent"
-                      style={{ animation: 'scanLine 1s ease-in-out infinite' }}
-                    />
+                    {/* Thick laser sweep */}
+                    <div className="laser-beam" />
+                  </>
+                ) : (
+                  <div className="relative z-10 text-center py-4 h-full flex flex-col items-center justify-center">
+                    <div className="w-12 h-12 mx-auto mb-2 rounded-full max-sm:bg-slate-200 sm:bg-leadq-silver/20 flex items-center justify-center">
+                      <Scan className="w-6 h-6 max-sm:text-slate-500 sm:text-leadq-silver" />
+                    </div>
+                    <p className="text-xs max-sm:text-slate-500 sm:text-leadq-silver">
+                      Ready to scan business card
+                    </p>
                   </div>
                 )}
               </div>
 
               {/* Lead details card */}
-              <div className={`glass rounded-xl p-4 transition-all duration-300 ${isScanning ? 'opacity-50' : 'opacity-100'}`}>
-                {showEnriched ? (
-                  <>
-                    <div className="flex gap-3 mb-3">
-                      <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-leadq-silver to-leadq-silver flex items-center justify-center">
-                        <span className="text-white font-bold text-sm">{lead.name.charAt(0)}</span>
+              <div className={`transition-all duration-500 transform ${showEnriched && !isScanning ? 'animate-pop-in' : ''} ${isScanning ? 'opacity-80 scale-[0.98]' : 'opacity-100 scale-100'}`}>
+                <SpotlightCard className="max-sm:bg-slate-100 max-sm:border-slate-200 rounded-xl p-4 sm:border-white/10">
+                  {showEnriched && !isScanning ? (
+                    <>
+                      <div className="flex gap-3 mb-3">
+                        <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#A89FE0] to-[#7B6FD4] flex items-center justify-center">
+                          <span className="text-white font-bold text-sm">{lead.name.charAt(0)}</span>
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="font-semibold max-sm:text-slate-900 sm:text-white text-sm truncate">{lead.name}</p>
+                          <p className="text-xs max-sm:text-slate-500 sm:text-leadq-silver truncate">{lead.role}</p>
+                        </div>
                       </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="font-semibold text-white text-sm truncate">{lead.name}</p>
-                        <p className="text-xs text-leadq-silver truncate">{lead.role}</p>
-                      </div>
-                    </div>
 
-                    <div className="space-y-1.5 text-xs">
-                      <div className="flex items-center gap-2 text-leadq-silver">
-                        <Mail size={10} className="flex-shrink-0" />
-                        <span className="truncate">{lead.email}</span>
+                      <div className="space-y-1.5 text-xs">
+                        <div className="flex items-center gap-2 max-sm:text-slate-600 sm:text-leadq-silver">
+                          <Mail size={10} className="flex-shrink-0" />
+                          <span className="truncate">{lead.email}</span>
+                        </div>
+                        <div className="flex items-center gap-2 max-sm:text-slate-600 sm:text-leadq-silver">
+                          <Phone size={10} className="flex-shrink-0" />
+                          <span>{lead.phone}</span>
+                        </div>
+                        <div className="flex items-center gap-2 max-sm:text-slate-600 sm:text-leadq-silver">
+                          <Linkedin size={10} className="flex-shrink-0" />
+                          <span>{lead.linkedin}</span>
+                        </div>
+                        <div className="flex items-center gap-2 max-sm:text-slate-600 sm:text-leadq-silver">
+                          <Briefcase size={10} className="flex-shrink-0" />
+                          <span>{lead.company}</span>
+                        </div>
                       </div>
-                      <div className="flex items-center gap-2 text-leadq-silver">
-                        <Phone size={10} className="flex-shrink-0" />
-                        <span>{lead.phone}</span>
-                      </div>
-                      <div className="flex items-center gap-2 text-leadq-silver">
-                        <Linkedin size={10} className="flex-shrink-0" />
-                        <span>{lead.linkedin}</span>
-                      </div>
-                      <div className="flex items-center gap-2 text-leadq-silver">
-                        <Briefcase size={10} className="flex-shrink-0" />
-                        <span>{lead.company}</span>
-                      </div>
+                    </>
+                  ) : (
+                    <div className="text-[10px] max-sm:text-slate-600 sm:text-leadq-silver space-y-1 font-mono">
+                      <p className="max-sm:text-slate-400 sm:text-leadq-silver">// Raw scan data</p>
+                      {isScanning ? (
+                        <div className="flex flex-col items-start min-h-[60px]">
+                          <span className="typing-effect delay-75">NAME: {lead.name}</span>
+                          <span className="typing-effect delay-150">ROLE: {lead.role}</span>
+                          <span className="typing-effect delay-300">COMPANY: {lead.company}</span>
+                          <span className="typing-effect text-leadq-purple mt-1 blink-caret">Extracting full profile...</span>
+                        </div>
+                      ) : (
+                        <>
+                          <p>NAME: {lead.name}</p>
+                          <p>ROLE: {lead.role}</p>
+                          <p>COMPANY: {lead.company}</p>
+                          <p className="max-sm:text-slate-400 sm:text-leadq-silver/70">// Enrichment pending...</p>
+                          <p className="max-sm:text-slate-400 sm:text-leadq-silver/70">EMAIL: [extracting...]</p>
+                          <p className="max-sm:text-slate-400 sm:text-leadq-silver/70">PHONE: [extracting...]</p>
+                        </>
+                      )}
                     </div>
-                  </>
-                ) : (
-                  <div className="text-[10px] text-leadq-silver space-y-1 font-mono">
-                    <p className="text-leadq-silver">// Raw scan data</p>
-                    <p>NAME: {lead.name}</p>
-                    <p>ROLE: {lead.role}</p>
-                    <p>COMPANY: {lead.company}</p>
-                    <p className="text-leadq-silver/70">// Enrichment pending...</p>
-                    <p className="text-leadq-silver/70">EMAIL: [extracting...]</p>
-                    <p className="text-leadq-silver/70">PHONE: [extracting...]</p>
-                  </div>
-                )}
+                  )}
+                </SpotlightCard>
               </div>
 
               {/* Navigation */}
@@ -194,7 +222,7 @@ function PhoneScannerOverlay({
                   <ChevronLeft size={14} />
                   <span>Prev</span>
                 </Button>
-                <span className="text-[10px] text-leadq-silver/70">
+                <span className="text-[10px] max-sm:text-slate-400 sm:text-leadq-silver/70">
                   {leadIndex + 1} / {totalLeads}
                 </span>
                 <Button
@@ -247,18 +275,20 @@ export default function LeadCaptureStream() {
       setCurrentLeadIndex((prev) => (prev + 1) % fallbackCards.length);
       setShowEnriched(true);
       setIsScanning(false);
-    }, 1500);
+    }, 2500); // Increased time slightly to allow typing and card animation to play out
   };
 
   // Navigation handlers
   const handleNextLead = () => {
     if (isScanning) return;
     setCurrentLeadIndex((prev) => (prev + 1) % fallbackCards.length);
+    setShowEnriched(true); // Ensure enriched view on navigation
   };
 
   const handlePrevLead = () => {
     if (isScanning) return;
     setCurrentLeadIndex((prev) => (prev - 1 + fallbackCards.length) % fallbackCards.length);
+    setShowEnriched(true);
   };
 
   // Toggle view handler
@@ -269,7 +299,7 @@ export default function LeadCaptureStream() {
   const currentLead = fallbackCards[currentLeadIndex];
 
   return (
-    <section id="lead-capture" className="relative z-10 py-16 sm:py-20 md:py-24 px-4 overflow-hidden">
+    <section id="lead-capture" className="relative z-10 py-12 sm:py-16 md:py-20 px-4 overflow-hidden">
 
 
       <div className="max-w-7xl mx-auto">

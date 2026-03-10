@@ -61,7 +61,7 @@ const MainContent = () => {
         { name: 'Lead Capture', url: '#lead-capture', icon: ScanLine },
         { name: 'Enrichment', url: '#profile-enrichment', icon: UserPlus },
         { name: 'Dashboard', url: '#dashboard', icon: LayoutDashboard },
-        { name: 'Bookings', url: '#bookings-meeting', icon: Calendar },
+        { name: 'Meetings', url: '#bookings-meeting', icon: Calendar },
         { name: 'Email Draft', url: '#email-draft', icon: PenLine },
         { name: 'AI Agents', url: '#agents', icon: Bot },
         { name: 'Pricing', url: '#pricing', icon: DollarSign },

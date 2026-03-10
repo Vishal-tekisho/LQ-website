@@ -21,6 +21,7 @@ import {
     XCircle,
     PhoneForwarded,
 } from 'lucide-react';
+import { SpotlightCard } from '@/components/ui/spotlight-card';
 
 type CallStage =
     | 'idle'
@@ -385,7 +386,7 @@ export default function OutboundVoiceAgent() {
 
     return (
         <InViewContext.Provider value={shouldAnimate ?? false}>
-            <section ref={ref} id="voice-agent" className="relative z-10 py-16 sm:py-20 md:py-24 px-4">
+            <section ref={ref} id="voice-agent" className="relative z-10 py-12 sm:py-16 md:py-20 px-4">
                 {/* Background effects */}
                 <div className="absolute inset-0 pointer-events-none overflow-hidden">
                     <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-leadq-silver/5 rounded-full blur-3xl" />
@@ -420,7 +421,7 @@ export default function OutboundVoiceAgent() {
                                 disabled={isPlaying && stage !== 'ended'}
                                 variant="gradient-blue"
                                 size="compact-lg"
-                                className="flex items-center gap-2"
+                                className={`flex items-center gap-2 ${!(isPlaying && stage !== 'ended') ? 'animate-btn-pulse' : ''}`}
                                 whileHover={isPlaying ? {} : { scale: 1.02 }}
                                 whileTap={isPlaying ? {} : { scale: 0.98 }}
                             >
@@ -453,7 +454,7 @@ export default function OutboundVoiceAgent() {
                         className="grid lg:grid-cols-2 gap-6 lg:gap-8"
                     >
                         {/* Left: Phone visualization */}
-                        <div className="glass rounded-2xl p-6 md:p-8 border border-white/10">
+                        <SpotlightCard className="p-6 md:p-8 rounded-2xl border-white/10">
                             {/* Status bar */}
                             <div className="flex items-center justify-between mb-6">
                                 <div className="flex items-center gap-3">
@@ -503,10 +504,10 @@ export default function OutboundVoiceAgent() {
                                     </m.div>
                                 ))}
                             </div>
-                        </div>
+                        </SpotlightCard>
 
                         {/* Right: Conversation transcript */}
-                        <div className="glass rounded-2xl p-6 md:p-8 border border-white/10 flex flex-col">
+                        <SpotlightCard className="p-6 md:p-8 rounded-2xl border-white/10 flex flex-col">
                             <div className="flex items-center justify-between mb-4">
                                 <h3 className="text-xl sm:text-2xl font-display font-medium text-slate-400 uppercase tracking-wider">
                                     Call Transcripts
@@ -587,7 +588,7 @@ export default function OutboundVoiceAgent() {
                                     </div>
                                 </m.div>
                             )}
-                        </div>
+                        </SpotlightCard>
                     </m.div>
 
                     {/* Feature highlights below */}

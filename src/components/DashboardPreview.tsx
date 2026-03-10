@@ -552,7 +552,7 @@ export default function DashboardPreview() {
   const { ref, isInView } = useInViewPause();
 
   return (
-    <section ref={ref} id="dashboard" className="relative z-10 py-20 px-4">
+    <section ref={ref} id="dashboard" className="relative z-10 py-12 md:py-16 px-4">
       {/* Section heading */}
       <div className="max-w-7xl mx-auto mb-10 text-center">
         <m.h2
@@ -587,8 +587,8 @@ export default function DashboardPreview() {
         className="max-w-7xl mx-auto"
       >
         {/* Responsive scaling wrapper */}
-        <div className="relative overflow-hidden h-[200px] sm:h-[420px] md:h-[510px] lg:h-auto">
-          <div className="min-w-[960px] lg:min-w-0 origin-top-left scale-[0.32] sm:scale-[0.675] md:scale-[0.82] lg:scale-100 lg:origin-top">
+        <div className="relative overflow-hidden h-[200px] sm:h-[420px] md:h-[510px] lg:h-auto flex justify-center">
+          <div className="min-w-[960px] lg:min-w-0 origin-top scale-[0.32] sm:scale-[0.675] md:scale-[0.82] lg:scale-100 lg:origin-top">
 
             {/* Browser chrome */}
             <div className="rounded-2xl overflow-hidden border border-gray-300 shadow-2xl">

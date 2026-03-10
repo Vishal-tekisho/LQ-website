@@ -7,6 +7,7 @@ import {
   Mail,
   Mic,
 } from 'lucide-react';
+import { SpotlightCard } from '@/components/ui/spotlight-card';
 
 interface Agent {
   id: number;
@@ -74,7 +75,7 @@ const agents: Agent[] = [
 
 export default function Agents() {
   return (
-    <section id="agents" className="relative z-10 py-16 sm:py-20 md:py-24 px-4">
+    <section id="agents" className="relative z-10 py-12 sm:py-16 md:py-20 px-4">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <m.h2
@@ -112,36 +113,38 @@ export default function Agents() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className={`group relative glass rounded-2xl p-6 ${agent.highlight
-                  ? 'bg-gradient-to-br from-[#7B6FD4]/10 to-[#A89FE0]/5'
-                  : ''
-                  } ${agent.className || ''}`}
+                className={`group relative flex ${agent.className || ''}`}
               >
-                <div className="relative">
-                  <div className="flex items-start justify-between mb-4">
-                    <div
-                      className={`w-12 h-12 rounded-xl bg-[#7B6FD4]/10 flex items-center justify-center`}
-                    >
-                      <Icon
-                        className={`text-${colorClass}`}
-                        size={24}
-                        strokeWidth={2}
-                      />
+                <SpotlightCard className={`p-6 rounded-2xl flex-1 flex flex-col ${agent.highlight
+                  ? 'bg-gradient-to-br from-[#7B6FD4]/10 to-[#A89FE0]/5 border-white/20'
+                  : 'border-white/10'
+                  }`}>
+                  <div className="relative">
+                    <div className="flex items-start justify-between mb-4">
+                      <div
+                        className={`w-12 h-12 rounded-xl bg-[#7B6FD4]/10 flex items-center justify-center`}
+                      >
+                        <Icon
+                          className={`text-${colorClass}`}
+                          size={24}
+                          strokeWidth={2}
+                        />
+                      </div>
+                      {agent.badge && (
+                        <span className="glass-strong px-3 py-1 rounded-full text-xs font-medium text-leadq-silver border border-leadq-silver/30">
+                          {agent.badge}
+                        </span>
+                      )}
                     </div>
-                    {agent.badge && (
-                      <span className="glass-strong px-3 py-1 rounded-full text-xs font-medium text-leadq-silver border border-leadq-silver/30">
-                        {agent.badge}
-                      </span>
-                    )}
-                  </div>
 
-                  <h3 className="text-2xl sm:text-3xl font-display font-semibold mb-3">
-                    {agent.title}
-                  </h3>
-                  <p className="text-leadq-silver text-base sm:text-lg leading-relaxed">
-                    {agent.description}
-                  </p>
-                </div>
+                    <h3 className="text-2xl sm:text-3xl font-display font-semibold mb-3">
+                      {agent.title}
+                    </h3>
+                    <p className="text-leadq-silver text-base sm:text-lg leading-relaxed">
+                      {agent.description}
+                    </p>
+                  </div>
+                </SpotlightCard>
               </m.div>
             );
           })}

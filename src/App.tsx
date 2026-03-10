@@ -14,7 +14,6 @@ import SkipToContent from './components/SkipToContent';
 import ErrorBoundary from './components/ErrorBoundary';
 
 // Lazy-load heavy/non-critical components
-const AnoAI = lazy(() => import('./components/ui/animated-shader-background'));
 const ScrollToTop = lazy(() => import('./components/ScrollToTop'));
 const CookieConsent = lazy(() => import('./components/CookieConsent'));
 const LegalPage = lazy(() => import('./pages/LegalPage'));
@@ -46,10 +45,6 @@ function App() {
           element={
             <ErrorBoundary>
               <div className="min-h-screen relative overflow-hidden">
-                <Suspense fallback={null}>
-                  <AnoAI />
-                </Suspense>
-                <div className="fixed inset-0 noise pointer-events-none z-0" />
                 <SkipToContent />
 
                 <div className="relative z-10">

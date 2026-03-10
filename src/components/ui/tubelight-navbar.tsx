@@ -27,7 +27,7 @@ const menuGroups = {
       { name: "Lead Capture", url: "#lead-capture", icon: ScanLine, description: "Capture and qualify leads in real time." },
       { name: "Research", url: "#profile-research", icon: UserPlus, description: "AI-driven prospect intelligence." },
       { name: "Dashboard", url: "#dashboard", icon: LayoutDashboard, description: "Visualize your performance metrics." },
-      { name: "Bookings", url: "#bookings-meeting", icon: Calendar, description: "Manage appointments and schedules." },
+      { name: "Meetings", url: "#bookings-meeting", icon: Calendar, description: "Manage appointments and schedules." },
       { name: "Email Draft", url: "#email-draft", icon: PenLine, description: "AI-powered email composition." },
       { name: "AI Agents", url: "#agents", icon: Bot, description: "Automate tasks with intelligent agents." },
     ]
@@ -159,7 +159,7 @@ export function NavBar({ items, className }: NavBarProps) {
             alt="LeadQ.AI"
             className="h-8 w-auto"
           />
-          <span className="text-base font-bold font-display text-white">
+          <span className="text-base font-bold font-display bg-clip-text text-transparent bg-gradient-to-r from-leadq-platinum to-leadq-steel">
             LeadQ<span className="text-[#A89FE0]">.AI</span>
           </span>
         </Link>
@@ -184,8 +184,8 @@ export function NavBar({ items, className }: NavBarProps) {
             alt="LeadQ.AI"
             className="h-8 w-auto"
           />
-          <span className="text-base font-bold font-display text-white">
-            LeadQ<span className="text-leadq-silver">.ai</span>
+          <span className="text-base font-bold font-display bg-clip-text text-transparent bg-gradient-to-r from-leadq-platinum to-leadq-steel">
+            LeadQ<span className="text-[#A89FE0]">.AI</span>
           </span>
         </Link>
         <button

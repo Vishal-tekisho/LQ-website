@@ -1,5 +1,6 @@
 import { m } from 'framer-motion';
 import { Building2, Rocket, Users, Briefcase, TrendingUp, Zap } from 'lucide-react';
+import { SpotlightCard } from '@/components/ui/spotlight-card';
 
 const UseCases = () => {
   const useCases = [
@@ -88,13 +89,13 @@ const UseCases = () => {
       y: 0,
       transition: {
         duration: 0.5,
-        ease: 'easeOut'
+        ease: 'easeOut' as const
       }
     }
   };
 
   return (
-    <section id="use-cases" className="relative z-10 py-16 sm:py-20 md:py-24 px-4 overflow-hidden">
+    <section id="use-cases" className="relative z-10 py-12 sm:py-16 md:py-20 px-4 overflow-hidden">
       {/* Background gradient effect */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-400/5 to-transparent pointer-events-none" />
 
@@ -140,7 +141,7 @@ const UseCases = () => {
 
                 {/* Card content */}
                 {/* Use Cases Grid */}
-                <div className="relative glass rounded-2xl border border-white/10 p-6 h-full flex flex-col transition-all duration-300">
+                <SpotlightCard className="relative p-6 h-full flex flex-col transition-all duration-300">
                   {/* Icon */}
                   <div className="mb-4">
                     <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${useCase.gradient} flex items-center justify-center transition-transform duration-300`}>
@@ -170,7 +171,7 @@ const UseCases = () => {
                       </div>
                     ))}
                   </div>
-                </div>
+                </SpotlightCard>
               </m.div>
             );
           })}

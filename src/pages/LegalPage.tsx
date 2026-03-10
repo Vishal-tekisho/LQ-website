@@ -1,5 +1,6 @@
-import { useParams, Navigate, useNavigate } from 'react-router-dom';
+import { useParams, Navigate, useNavigate, Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
+import { ArrowLeft } from 'lucide-react';
 import { LegalDocument, legalContent } from '../data/legal-content';
 
 const VALID_DOCS: LegalDocument[] = ['privacy', 'terms', 'cookie', 'compliance', 'documentation'];
@@ -15,25 +16,45 @@ const LegalPage = () => {
     const { title, content } = legalContent[doc as LegalDocument];
 
     return (
-        <div className="min-h-screen bg-[#0a0a0f] text-slate-200 px-4 py-12 sm:px-6 lg:px-8">
-            <div className="max-w-4xl mx-auto">
-                <button
-                    onClick={() => navigate('/', { state: { scrollTo: 'footer' } })}
-                    className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-white transition-colors mb-10"
-                >
-                    ← Back to LeadQ.AI
-                </button>
+        <div className="min-h-screen bg-leadq-bg text-leadq-steel font-sans relative">
+            {/* Noise overlay */}
+            <div className="fixed inset-0 noise pointer-events-none z-0" />
 
-                <h1 className="text-3xl sm:text-4xl font-bold text-white mb-10 font-display">
+            {/* ── Top bar ──────────────────────────────────────── */}
+            <nav className="sticky top-0 z-50 backdrop-blur-xl bg-leadq-bg/70 border-b border-white/5">
+                <div className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 py-4">
+                    <button
+                        onClick={() => navigate('/', { state: { scrollTo: 'footer' } })}
+                        className="flex items-center gap-2 text-leadq-silver hover:text-white transition-colors text-sm"
+                    >
+                        <ArrowLeft size={16} />
+                        Back to LeadQ.AI
+                    </button>
+                    <Link to="/" className="flex items-center gap-2">
+                        <img
+                            src="/leadq-logo-main.png"
+                            alt="LeadQ.AI Logo"
+                            className="h-10 w-auto"
+                        />
+                        <span className="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-leadq-platinum to-leadq-steel">
+                            LeadQ<span className="text-[#A89FE0]">.AI</span>
+                        </span>
+                    </Link>
+                </div>
+            </nav>
+
+            <div className="relative z-10 max-w-4xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
+
+                <h1 className="text-3xl sm:text-4xl font-bold text-leadq-platinum mb-10 font-display">
                     {title}
                 </h1>
 
-                <div className="prose prose-invert prose-slate max-w-none
-                    prose-headings:text-white prose-headings:font-semibold
-                    prose-p:text-slate-300 prose-p:leading-relaxed
-                    prose-li:text-slate-300
-                    prose-strong:text-white
-                    prose-a:text-[#A89FE0] prose-a:no-underline hover:prose-a:underline
+                <div className="prose prose-invert max-w-none
+                    prose-headings:text-leadq-platinum prose-headings:font-semibold prose-headings:font-display
+                    prose-p:text-leadq-steel prose-p:leading-relaxed prose-p:font-sans
+                    prose-li:text-leadq-steel prose-li:font-sans
+                    prose-strong:text-leadq-platinum
+                    prose-a:text-leadq-cyan prose-a:no-underline hover:prose-a:underline
                     prose-hr:border-white/10
                 ">
                     <ReactMarkdown>{content}</ReactMarkdown>

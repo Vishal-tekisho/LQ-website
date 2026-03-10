@@ -1,5 +1,5 @@
 import { m } from 'framer-motion';
-
+import { SpotlightCard } from '@/components/ui/spotlight-card';
 
 const Pricing = () => {
 
@@ -7,7 +7,7 @@ const Pricing = () => {
 
 
   return (
-    <section id="pricing" className="relative z-10 py-16 sm:py-20 md:py-24 px-4">
+    <section id="pricing" className="relative z-10 py-12 sm:py-16 md:py-20 px-4">
       <div className="max-w-7xl mx-auto">
         <m.div
           initial={{ opacity: 0, y: 20 }}
@@ -22,11 +22,11 @@ const Pricing = () => {
             </span>
           </h2>
 
-          <div className="glass rounded-2xl p-12 max-w-3xl mx-auto border border-leadq-royal-blue/20 bg-leadq-deep-blue/10 backdrop-blur-sm">
+          <SpotlightCard className="p-12 max-w-3xl mx-auto border-leadq-royal-blue/20 bg-leadq-deep-blue/10">
             <h3 className="text-2xl sm:text-3xl font-display font-bold text-white">
               To Be Decided
             </h3>
-          </div>
+          </SpotlightCard>
         </m.div>
       </div>
     </section>

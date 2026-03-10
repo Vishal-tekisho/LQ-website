@@ -1,5 +1,6 @@
 import { m } from 'framer-motion';
 import { Link2, BrainCircuit, Activity, Mic } from 'lucide-react';
+import { SpotlightCard } from '@/components/ui/spotlight-card';
 
 const Features = () => {
   const features = [
@@ -57,7 +58,7 @@ const Features = () => {
   };
 
   return (
-    <section id="features" className="relative z-10 py-20 sm:py-24 md:py-32 px-4">
+    <section id="features" className="relative z-10 py-12 sm:py-16 md:py-20 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <m.div
@@ -92,48 +93,40 @@ const Features = () => {
               <m.div
                 key={index}
                 variants={cardVariants}
-                className={`
-                  relative p-6 sm:p-7 md:p-8 rounded-2xl overflow-hidden group
-                  ${isGradient
-                    ? 'bg-zinc-900/50 border border-white/10'
-                    : 'glass border-white/10'
-                  }
-                `}
+                className="h-full"
               >
-
-
-
-
-                <div className="relative z-10">
-                  {/* Icon */}
-                  <div className="mb-6">
-                    <div
-                      className={`
+                <SpotlightCard className="h-full relative p-6 sm:p-7 md:p-8 group flex flex-col">
+                  <div className="relative z-10 flex-1">
+                    {/* Icon */}
+                    <div className="mb-6">
+                      <div
+                        className={`
                         w-14 h-14 sm:w-16 sm:h-16 rounded-xl flex items-center justify-center
                         ${isGradient
-                          ? 'bg-white/5 border border-white/10'
-                          : 'bg-slate-400/10'
-                        }
+                            ? 'bg-white/5 border border-white/10'
+                            : 'bg-slate-400/10'
+                          }
                         text-slate-200
                       `}
-                    >
-                      <Icon className="w-7 h-7 sm:w-8 sm:h-8" />
+                      >
+                        <Icon className="w-7 h-7 sm:w-8 sm:h-8" />
+                      </div>
                     </div>
+
+                    {/* Title */}
+                    <h3 className="text-2xl font-display font-bold mb-3 text-white">
+                      {feature.title}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="text-zinc-300 leading-relaxed text-base">
+                      {feature.description}
+                    </p>
                   </div>
 
-                  {/* Title */}
-                  <h3 className="text-2xl font-display font-bold mb-3 text-white">
-                    {feature.title}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="text-zinc-300 leading-relaxed text-base">
-                    {feature.description}
-                  </p>
-                </div>
-
-                {/* Decorative corner accent */}
-                <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-slate-400/10 to-transparent rounded-bl-full opacity-50 transition-opacity duration-500" />
+                  {/* Decorative corner accent */}
+                  <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-slate-400/10 to-transparent rounded-bl-full opacity-50 transition-opacity duration-500" />
+                </SpotlightCard>
               </m.div>
             );
           })}

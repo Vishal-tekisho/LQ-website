@@ -2,6 +2,7 @@ import { m, AnimatePresence } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { Button } from './ui/button';
+import { SpotlightCard } from '@/components/ui/spotlight-card';
 
 const faqs = [
   {
@@ -65,7 +66,7 @@ export default function FAQ() {
   };
 
   return (
-    <section id="faq" className="relative z-10 py-16 sm:py-20 md:py-24 px-4">
+    <section id="faq" className="relative z-10 py-12 sm:py-16 md:py-20 px-4">
       <div className="max-w-4xl mx-auto">
         <m.div
           initial={{ opacity: 0, y: 20 }}
@@ -96,64 +97,65 @@ export default function FAQ() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.05 }}
-              className="glass rounded-xl overflow-hidden"
             >
-              <Button
-                onClick={() => toggleItem(index)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    toggleItem(index);
-                  }
-                }}
-                variant="ghost"
-                className="w-full text-left px-6 py-5 flex items-center justify-between gap-4 focus:ring-2 focus:ring-leadq-royal-blue focus:ring-inset rounded-xl whitespace-normal h-auto"
-                aria-expanded={openIndex === index}
-                aria-controls={`faq-answer-${index}`}
-              >
-                <span className="font-medium text-white text-lg sm:text-xl pr-4 min-w-0">
-                  {faq.question}
-                </span>
-                <m.div
-                  animate={{ rotate: openIndex === index ? 180 : 0 }}
-                  transition={{ duration: 0.3, ease: 'easeInOut' }}
-                  className="flex-shrink-0"
+              <SpotlightCard className="rounded-xl">
+                <Button
+                  onClick={() => toggleItem(index)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      toggleItem(index);
+                    }
+                  }}
+                  variant="ghost"
+                  className="w-full text-left px-6 py-5 flex items-center justify-between gap-4 focus:ring-2 focus:ring-leadq-royal-blue focus:ring-inset rounded-xl whitespace-normal h-auto"
+                  aria-expanded={openIndex === index}
+                  aria-controls={`faq-answer-${index}`}
                 >
-                  <ChevronDown size={24} className="text-leadq-cyan" />
-                </m.div>
-              </Button>
-
-              <AnimatePresence initial={false}>
-                {openIndex === index && (
+                  <span className="font-medium text-white text-lg sm:text-xl pr-4 min-w-0">
+                    {faq.question}
+                  </span>
                   <m.div
-                    id={`faq-answer-${index}`}
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{
-                      height: 'auto',
-                      opacity: 1,
-                      transition: {
-                        height: { duration: 0.3, ease: 'easeOut' },
-                        opacity: { duration: 0.2, delay: 0.1 },
-                      },
-                    }}
-                    exit={{
-                      height: 0,
-                      opacity: 0,
-                      transition: {
-                        height: { duration: 0.3, ease: 'easeIn' },
-                        opacity: { duration: 0.2 },
-                      },
-                    }}
-                    className="overflow-hidden"
+                    animate={{ rotate: openIndex === index ? 180 : 0 }}
+                    transition={{ duration: 0.3, ease: 'easeInOut' }}
+                    className="flex-shrink-0"
                   >
-                    <div className="px-6 pb-5 pt-0">
-                      <p className="text-slate-100 text-base sm:text-lg leading-relaxed">
-                        {faq.answer}
-                      </p>
-                    </div>
+                    <ChevronDown size={24} className="text-leadq-cyan" />
                   </m.div>
-                )}
-              </AnimatePresence>
+                </Button>
+
+                <AnimatePresence initial={false}>
+                  {openIndex === index && (
+                    <m.div
+                      id={`faq-answer-${index}`}
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{
+                        height: 'auto',
+                        opacity: 1,
+                        transition: {
+                          height: { duration: 0.3, ease: 'easeOut' },
+                          opacity: { duration: 0.2, delay: 0.1 },
+                        },
+                      }}
+                      exit={{
+                        height: 0,
+                        opacity: 0,
+                        transition: {
+                          height: { duration: 0.3, ease: 'easeIn' },
+                          opacity: { duration: 0.2 },
+                        },
+                      }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-6 pb-5 pt-0">
+                        <p className="text-slate-100 text-base sm:text-lg leading-relaxed">
+                          {faq.answer}
+                        </p>
+                      </div>
+                    </m.div>
+                  )}
+                </AnimatePresence>
+              </SpotlightCard>
             </m.div>
           ))}
         </m.div>

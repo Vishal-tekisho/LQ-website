@@ -410,7 +410,7 @@ export default function EmailDraftAnimation() {
 
   return (
     <InViewContext.Provider value={shouldAnimate ?? false}>
-      <section ref={ref} className="py-16 sm:py-20 px-4 relative overflow-hidden">
+      <section ref={ref} className="py-12 sm:py-16 md:py-20 px-4 relative overflow-hidden">
         {/* Background glow */}
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-slate-400/10 rounded-full blur-[120px]" />
