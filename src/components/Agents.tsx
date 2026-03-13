@@ -141,8 +141,13 @@ export default function Agents() {
                       {agent.description}
                     </p>
 
-                    {/* Hover Overlay */}
-                    <div className="pointer-events-none absolute inset-0 flex items-center justify-center bottom-0 rounded-2xl bg-black/60 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all duration-300 z-0">
+                    {/* Mobile/Tablet Indicator */}
+                    <div className="mt-5 lg:hidden inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#7B6FD4]/10 text-[#A89FE0] font-semibold text-sm animate-pulse border border-[#7B6FD4]/20">
+                      Tap to explore &rarr;
+                    </div>
+
+                    {/* Hover Overlay (Desktop) */}
+                    <div className="hidden lg:flex pointer-events-none absolute inset-0 items-center justify-center bottom-0 rounded-2xl bg-black/60 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all duration-300 z-0">
                       <span className="text-white font-semibold font-display text-lg tracking-wide translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                         Click to explore &rarr;
                       </span>
