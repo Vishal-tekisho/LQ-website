@@ -140,6 +140,13 @@ export default function Agents() {
                     <p className="text-leadq-silver text-base sm:text-lg leading-relaxed">
                       {agent.description}
                     </p>
+
+                    {/* Hover Overlay */}
+                    <div className="pointer-events-none absolute inset-0 flex items-center justify-center bottom-0 rounded-2xl bg-black/60 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all duration-300 z-0">
+                      <span className="text-white font-semibold font-display text-lg tracking-wide translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                        Click to explore &rarr;
+                      </span>
+                    </div>
                   </div>
                 </SpotlightCard>
               </m.div>
