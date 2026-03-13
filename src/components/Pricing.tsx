@@ -1,37 +1,78 @@
-import { m } from 'framer-motion';
-import { SpotlightCard } from '@/components/ui/spotlight-card';
+"use client";
+
+import { PricingBlock } from "@/components/blocks/pricing";
+
+const demoPlans = [
+  {
+    name: "STARTER",
+    price: "50",
+    yearlyPrice: "40",
+    period: "per month",
+    features: [
+      "Up to 10 projects",
+      "Basic analytics",
+      "48-hour support response time",
+      "Limited API access",
+      "Community support",
+    ],
+    description: "Perfect for individuals and small projects",
+    buttonText: "Start Free Trial",
+    href: "/#contact",
+    isPopular: false,
+  },
+  {
+    name: "PROFESSIONAL",
+    price: "99",
+    yearlyPrice: "79",
+    period: "per month",
+    features: [
+      "Unlimited projects",
+      "Advanced analytics",
+      "24-hour support response time",
+      "Full API access",
+      "Priority support",
+      "Team collaboration",
+      "Custom integrations",
+    ],
+    description: "Ideal for growing teams and businesses",
+    buttonText: "Get Started",
+    href: "/#contact",
+    isPopular: true,
+  },
+  {
+    name: "ENTERPRISE",
+    price: "299",
+    yearlyPrice: "239",
+    period: "per month",
+    features: [
+      "Everything in Professional",
+      "Custom solutions",
+      "Dedicated account manager",
+      "1-hour support response time",
+      "SSO Authentication",
+      "Advanced security",
+      "Custom contracts",
+      "SLA agreement",
+    ],
+    description: "For large organizations with specific needs",
+    buttonText: "Contact Sales",
+    href: "/#contact",
+    isPopular: false,
+  },
+];
 
 const Pricing = () => {
-
-
-
-
   return (
-    <section id="pricing" className="relative z-10 min-h-[100svh] flex flex-col justify-center py-8 lg:py-12 px-4">
-      <div className="max-w-7xl mx-auto">
-        <m.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold mb-8">
-            <span className="text-[#A89FE0]">
-              Pricing
-            </span>
-          </h2>
-
-          <SpotlightCard className="p-12 max-w-3xl mx-auto border-leadq-royal-blue/20 bg-leadq-deep-blue/10">
-            <h3 className="text-2xl sm:text-3xl font-display font-bold text-white">
-              To Be Decided
-            </h3>
-          </SpotlightCard>
-        </m.div>
+    <section id="pricing" className="relative z-10 w-full flex items-center justify-center py-12 px-4">
+      <div className="w-full max-w-7xl mx-auto rounded-lg">
+        <PricingBlock 
+          plans={demoPlans}
+          title="Simple, Transparent Pricing"
+          description={"Choose the plan that works for you.\nAll plans include access to our platform, lead generation tools, and dedicated support."}
+        />
       </div>
     </section>
   );
-};
+}
 
 export default Pricing;
-
