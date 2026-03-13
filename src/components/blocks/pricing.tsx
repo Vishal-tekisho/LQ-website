@@ -86,7 +86,7 @@ export function PricingBlock({
               ref={switchRef as any}
               checked={!isMonthly}
               onCheckedChange={handleToggle}
-              className="relative data-[state=checked]:bg-[#7B6FD4]"
+              className="relative data-[state=checked]:bg-[#7B6FD4] data-[state=unchecked]:bg-white/20"
             />
           </Label>
         </label>
