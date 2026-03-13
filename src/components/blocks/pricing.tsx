@@ -1,8 +1,6 @@
 "use client";
 
 import { buttonVariants } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
-import { Switch } from "@/components/ui/switch";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
@@ -79,20 +77,41 @@ export function PricingBlock({
         </p>
       </div>
 
-      <div className="flex justify-center mb-10 text-white">
-        <label className="relative inline-flex items-center cursor-pointer">
-          <Label>
-            <Switch
-              ref={switchRef as any}
-              checked={!isMonthly}
-              onCheckedChange={handleToggle}
-              className="relative data-[state=checked]:bg-[#7B6FD4] data-[state=unchecked]:bg-white/20"
-            />
-          </Label>
-        </label>
-        <span className="ml-2 font-semibold">
-          Annual billing <span className="text-[#A89FE0]">(Save 20%)</span>
-        </span>
+      <div className="flex justify-center mb-10">
+        <div className="relative flex items-center p-1.5 bg-white/5 backdrop-blur-md rounded-full border border-white/10 shadow-inner">
+          <button
+            onClick={() => {
+              if (!isMonthly) handleToggle(false);
+            }}
+            className={cn(
+              "relative w-32 py-2.5 text-sm font-semibold rounded-full transition-all duration-300 z-10",
+              isMonthly ? "text-white" : "text-leadq-silver hover:text-white"
+            )}
+          >
+            Monthly
+          </button>
+          
+          <button
+            onClick={() => {
+              if (isMonthly) handleToggle(true);
+            }}
+            className={cn(
+              "relative w-44 py-2.5 text-sm font-semibold rounded-full transition-all duration-300 z-10 flex items-center justify-center gap-2",
+              !isMonthly ? "text-white" : "text-leadq-silver hover:text-white"
+            )}
+            ref={switchRef as any}
+          >
+            Annually <span className={cn("text-[10px] px-2 py-0.5 rounded-full font-bold transition-colors", !isMonthly ? "bg-white/20 text-white" : "bg-[#A89FE0]/20 text-[#A89FE0]")}>Save 20%</span>
+          </button>
+          
+          <div 
+            className="absolute top-1.5 bottom-1.5 left-1.5 bg-[#7B6FD4] rounded-full shadow-[0_0_15px_rgba(123,111,212,0.4)] transition-transform duration-300 ease-out z-0 pointer-events-none"
+            style={{
+              width: isMonthly ? "128px" : "176px",
+              transform: isMonthly ? "translateX(0)" : "translateX(128px)"
+            }}
+          />
+        </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 sm:2 gap-4">
