@@ -74,7 +74,7 @@ const features = [
     {
         icon: <TrendingUp className="w-6 h-6" />,
         title: 'Grows with you',
-        description: 'Plays nicely with email, calendar, WhatsApp and CRM tools.',
+        description: 'Plays nicely with email, calendar and CRM tools.',
     },
 ];
 

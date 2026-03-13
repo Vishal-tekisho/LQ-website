@@ -2,10 +2,10 @@ import { useState, type ElementType } from 'react';
 import { m, AnimatePresence } from 'framer-motion';
 import { useInViewPause } from '@/lib/useInViewPause';
 import {
-  LayoutDashboard, Users, Calendar, Mail, Mic, Target, CreditCard,
-  Bell, TrendingUp, ChevronDown, X, ArrowRight, Bot,
+  LayoutDashboard, Users, Calendar, Mail,
+  Bell, TrendingUp, ChevronDown, ArrowRight, Bot,
   Phone, Clock, CheckCircle, AlertCircle, Building2,
-  BarChart3, Zap, Activity, Video
+  Activity, Video
 } from 'lucide-react';
 
 type SidebarView = 'Dashboard' | 'Contacts' | 'Meetings' | 'Emails' | 'Voice' | 'Voice Agents' | 'Leads' | 'Credit Usage';
@@ -50,13 +50,6 @@ const voiceAgents = [
   { name: 'Appointment Setter', status: 'Active', calls: 203, success: '52%', queue: 22 },
 ];
 
-const leads = [
-  { name: 'Maya Voss', company: 'NovaSpark Inc', stage: 'Proposal', score: 92, agent: 'Lead Qualifier' },
-  { name: 'Tyler Reeves', company: 'BlueOrbit Co', stage: 'Negotiation', score: 78, agent: 'Email Composer' },
-  { name: 'Jordan Blake', company: 'Celeron AI', stage: 'Discovery', score: 65, agent: 'Lead Qualifier' },
-  { name: 'Dana Cross', company: 'Driftwave IO', stage: 'Closed Won', score: 95, agent: 'Meeting Scheduler' },
-  { name: 'Eli Marsh', company: 'Nexlify Labs', stage: 'Outreach', score: 54, agent: 'Data Enricher' },
-];
 
 const statusBadge = (s: string) => {
   const map: Record<string, string> = {
@@ -206,8 +199,8 @@ function MiniCalendar() {
 }
 
 /* ─────────── MAIN DASHBOARD VIEW ─────────── */
-function DashboardView({ setView }: { setView: (v: SidebarView) => void }) {
-  const [dismissed, setDismissed] = useState<number[]>([]);
+function DashboardView() {
+  const [dismissed] = useState<number[]>([]);
 
   const priorities = [
     {
@@ -549,7 +542,7 @@ function VoiceAgentsView() {
 /* ── Main export ────────────────────────────────────────── */
 export default function DashboardPreview() {
   const [activeNav, setActiveNav] = useState<SidebarView>('Dashboard');
-  const { ref, isInView } = useInViewPause();
+  const { ref } = useInViewPause();
 
   return (
     <section ref={ref} id="dashboard" className="relative z-10 py-12 md:py-16 px-4">
@@ -587,8 +580,8 @@ export default function DashboardPreview() {
         className="max-w-7xl mx-auto"
       >
         {/* Responsive scaling wrapper */}
-        <div className="relative overflow-hidden h-[200px] sm:h-[420px] md:h-[510px] lg:h-auto flex justify-center">
-          <div className="min-w-[960px] lg:min-w-0 origin-top scale-[0.32] sm:scale-[0.675] md:scale-[0.82] lg:scale-100 lg:origin-top" style={{ width: 1100 }}>
+        <div className="relative overflow-hidden h-[230px] sm:h-[460px] md:h-[550px] lg:h-[540px] xl:h-[580px] 2xl:h-[680px] flex justify-center">
+          <div className="min-w-[960px] lg:min-w-0 origin-top scale-[0.35] sm:scale-[0.675] md:scale-[0.82] lg:scale-[0.8] xl:scale-[0.85] 2xl:scale-100 lg:origin-top flex justify-center" style={{ width: 1100 }}>
 
             {/* Browser chrome */}
             <div className="rounded-2xl overflow-hidden border border-gray-300 shadow-2xl flex flex-col bg-white" style={{ height: 660, width: 1100 }}>
@@ -690,7 +683,7 @@ export default function DashboardPreview() {
                         transition={{ duration: 0.22 }}
                         className="h-full"
                       >
-                        {activeNav === 'Dashboard' && <DashboardView setView={setActiveNav} />}
+                        {activeNav === 'Dashboard' && <DashboardView />}
                         {activeNav === 'Contacts' && <ContactsView />}
                         {activeNav === 'Meetings' && <MeetingsView />}
                         {activeNav === 'Emails' && <EmailsView />}
