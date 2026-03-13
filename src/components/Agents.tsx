@@ -2,12 +2,12 @@ import { m } from 'framer-motion';
 import {
   Search,
   Calendar,
-  Smartphone,
   Users,
   Mail,
   Mic,
 } from 'lucide-react';
 import { SpotlightCard } from '@/components/ui/spotlight-card';
+import { Link } from 'react-router-dom';
 
 interface Agent {
   id: number;
@@ -18,58 +18,54 @@ interface Agent {
   highlight?: boolean;
   badge?: string;
   className?: string;
+  link: string;
 }
 
 const agents: Agent[] = [
   {
     id: 1,
-    title: 'Research Agent',
+    title: 'Lead Capture Agent',
     description:
-      'Enriches contacts from web signals and builds rich profiles.',
+      'Turn every scan into revenue by instantly validating and qualifying leads.',
     icon: Search,
     color: '#A89FE0',
+    link: '/agents/contact-capture',
   },
   {
     id: 2,
-    title: 'Scheduling Agent',
+    title: 'Research Agent',
     description:
-      'Negotiates meeting times and syncs calendars automatically.',
-    icon: Calendar,
+      'Enriches contacts from web signals and builds rich profiles continuously.',
+    icon: Users,
     color: '#A89FE0',
+    link: '/agents/research',
   },
   {
     id: 3,
-    title: 'NFC Bridge',
+    title: 'Meetings Agent',
     description:
-      'Tap to capture. Instantly digitizes physical business cards into CRM data.',
-    icon: Smartphone,
-    // color: 'amber',
-    // highlight: true,
-    badge: 'Hardware Dependent',
+      'Turn website visitors into booked meetings instantly with AI-driven booking.',
+    icon: Calendar,
+    color: '#A89FE0',
+    link: '/agents/meetings',
   },
   {
     id: 4,
-    title: 'Meeting Agent',
-    description:
-      'Both online and offline meetings can be scheduled from LeadQ.AI base.',
-    icon: Users,
-    color: '#A89FE0',
-  },
-  {
-    id: 6,
     title: 'Email Agent',
     description:
-      'Understands context from meetings and knowledgebase, drafts custom emails based on the content.',
+      'Understands context and drafts intelligent, personalized emails perfectly.',
     icon: Mail,
     color: '#A89FE0',
+    link: '/agents/email',
   },
   {
-    id: 7,
-    title: 'Voice Agents',
+    id: 5,
+    title: 'Voice Agent',
     description:
-      'Replaces robocalls with intelligent, conversational AI for support, scheduling, and lead qualification.',
+      'Replaces robocalls with intelligent, conversational AI for calls and support.',
     icon: Mic,
     color: '#A89FE0',
+    link: '/agents/voice',
   },
 ];
 
@@ -120,6 +116,7 @@ export default function Agents() {
                   : 'border-white/10'
                   }`}>
                   <div className="relative">
+                    <Link to={agent.link} className="absolute inset-0 z-10" />
                     <div className="flex items-start justify-between mb-4">
                       <div
                         className={`w-12 h-12 rounded-xl bg-[#7B6FD4]/10 flex items-center justify-center`}

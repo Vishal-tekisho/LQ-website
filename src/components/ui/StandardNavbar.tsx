@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react"
 import { m, AnimatePresence } from "framer-motion"
-import { LucideIcon, Sparkles, Briefcase, ScanLine, UserPlus, LayoutDashboard, Calendar, PenLine, Bot, DollarSign, HelpCircle, Mail, Menu as MenuIcon, X } from "lucide-react"
+import { LucideIcon, Briefcase, DollarSign, HelpCircle, Mail, Menu as MenuIcon, X } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { Menu, MenuItem, MenuLink, MenuSection } from "./navbar-menu"
 import { Link } from "react-router-dom"
 import { SpotlightButton } from "./SpotlightButton"
 
@@ -18,26 +17,8 @@ interface NavBarProps {
     className?: string
 }
 
-// Group definitions for dropdown menus
-const menuGroups = {
-    solutions: {
-        label: "Solutions",
-        icon: Briefcase,
-        items: [
-            { name: "Features", url: "#features", icon: Sparkles, description: "Explore the core capabilities of LeadQ.AI." },
-            { name: "Use Cases", url: "#use-cases", icon: Briefcase, description: "See how LeadQ.AI solves real-world problems." },
-            { name: "Lead Capture", url: "#lead-capture", icon: ScanLine, description: "Capture and manage leads efficiently." },
-            { name: "Research", url: "#profile-research", icon: UserPlus, description: "Deep dive into prospect data." },
-            { name: "Dashboard", url: "#dashboard", icon: LayoutDashboard, description: "Visualize your performance metrics." },
-            { name: "Meetings", url: "#bookings-meeting", icon: Calendar, description: "Manage appointments and schedules." },
-            { name: "Email Draft", url: "#email-draft", icon: PenLine, description: "AI-powered email composition." },
-            { name: "AI Agents", url: "#agents", icon: Bot, description: "Automate tasks with intelligent agents." },
-        ]
-    }
-}
-
-// Direct links (not in dropdowns)
 const directLinks = [
+    { name: "Solutions", url: "#agents", icon: Briefcase },
     { name: "Pricing", url: "#pricing", icon: DollarSign },
     { name: "FAQ", url: "#faq", icon: HelpCircle },
     { name: "Contact", url: "#contact", icon: Mail },
@@ -45,7 +26,6 @@ const directLinks = [
 
 export function StandardNavbar({ items, className }: NavBarProps) {
     const [activeTab, setActiveTab] = useState("")
-    const [activeMenu, setActiveMenu] = useState<string | null>(null)
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
     const [isScrolled, setIsScrolled] = useState(false)
 
@@ -93,7 +73,6 @@ export function StandardNavbar({ items, className }: NavBarProps) {
     const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, url: string, name: string) => {
         e.preventDefault()
         setActiveTab(name)
-        setActiveMenu(null)
         setMobileMenuOpen(false)
 
         if (url.startsWith("#")) {
@@ -129,10 +108,7 @@ export function StandardNavbar({ items, className }: NavBarProps) {
     }, [mobileMenuOpen])
 
     // All navigation items combined for mobile
-    const allNavItems = [
-        ...menuGroups.solutions.items,
-        ...directLinks
-    ]
+    const allNavItems = directLinks
 
     return (
         <div
@@ -156,50 +132,6 @@ export function StandardNavbar({ items, className }: NavBarProps) {
 
                     {/* Desktop Navigation */}
                     <div className="hidden md:flex items-center gap-1">
-                        <Menu setActive={setActiveMenu}>
-                            {/* Solutions Dropdown */}
-                            <MenuItem
-                                setActive={setActiveMenu}
-                                active={activeMenu}
-                                item="Solutions"
-                                icon={menuGroups.solutions.icon}
-                                wideDropdown={true}
-                                buttonClassName=""
-                            >
-                                <div className="flex gap-6 min-w-[480px]">
-                                    <div className="flex-1">
-                                        <MenuSection>
-                                            {menuGroups.solutions.items.slice(0, 4).map((item) => (
-                                                <MenuLink
-                                                    key={item.name}
-                                                    href={item.url}
-                                                    icon={item.icon}
-                                                    onClick={(e) => handleLinkClick(e, item.url, item.name)}
-                                                    description={item.description}
-                                                >
-                                                    {item.name}
-                                                </MenuLink>
-                                            ))}
-                                        </MenuSection>
-                                    </div>
-                                    <div className="flex-1">
-                                        <MenuSection>
-                                            {menuGroups.solutions.items.slice(4).map((item) => (
-                                                <MenuLink
-                                                    key={item.name}
-                                                    href={item.url}
-                                                    icon={item.icon}
-                                                    onClick={(e) => handleLinkClick(e, item.url, item.name)}
-                                                    description={item.description}
-                                                >
-                                                    {item.name}
-                                                </MenuLink>
-                                            ))}
-                                        </MenuSection>
-                                    </div>
-                                </div>
-                            </MenuItem>
-
                             {/* Direct Links */}
                             {directLinks.map((item) => {
                                 const isActive = activeTab === item.name
@@ -209,15 +141,15 @@ export function StandardNavbar({ items, className }: NavBarProps) {
                                         href={item.url}
                                         onClick={(e) => handleLinkClick(e, item.url, item.name)}
                                         className={cn(
-                                            "px-4 py-2 text-sm font-medium rounded-full transition-colors",
+                                            "flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-full transition-colors",
                                             isActive ? "text-white bg-white/10" : "text-leadq-silver hover:text-white hover:bg-white/5"
                                         )}
                                     >
+                                        {item.name === "Solutions" && <item.icon size={18} strokeWidth={2} />}
                                         {item.name}
                                     </a>
                                 )
                             })}
-                        </Menu>
                     </div>
 
                     {/* Desktop Actions */}

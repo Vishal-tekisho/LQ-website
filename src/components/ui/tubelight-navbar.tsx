@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react"
 import { m, AnimatePresence } from "framer-motion"
-import { LucideIcon, Sparkles, Briefcase, ScanLine, UserPlus, LayoutDashboard, Calendar, PenLine, Bot, DollarSign, HelpCircle, Mail, Menu as MenuIcon, X } from "lucide-react"
+import { LucideIcon, Briefcase, DollarSign, HelpCircle, Mail, Menu as MenuIcon, X } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { Menu, MenuItem, MenuLink, MenuSection } from "./navbar-menu"
 import { Link } from "react-router-dom"
 
 interface NavItem {
@@ -16,26 +15,8 @@ interface NavBarProps {
   className?: string
 }
 
-// Group definitions for dropdown menus
-const menuGroups = {
-  solutions: {
-    label: "Solutions",
-    icon: Briefcase,
-    items: [
-      { name: "Features", url: "#features", icon: Sparkles, description: "Explore powerful AI tools." },
-      { name: "Use Cases", url: "#use-cases", icon: Briefcase, description: "Real-world sales scenarios." },
-      { name: "Lead Capture", url: "#lead-capture", icon: ScanLine, description: "Capture and qualify leads in real time." },
-      { name: "Research", url: "#profile-research", icon: UserPlus, description: "AI-driven prospect intelligence." },
-      { name: "Dashboard", url: "#dashboard", icon: LayoutDashboard, description: "Visualize your performance metrics." },
-      { name: "Meetings", url: "#bookings-meeting", icon: Calendar, description: "Manage appointments and schedules." },
-      { name: "Email Draft", url: "#email-draft", icon: PenLine, description: "AI-powered email composition." },
-      { name: "AI Agents", url: "#agents", icon: Bot, description: "Automate tasks with intelligent agents." },
-    ]
-  }
-}
-
-// Direct links (not in dropdowns)
 const directLinks = [
+  { name: "Solutions", url: "#agents", icon: Briefcase },
   { name: "Pricing", url: "#pricing", icon: DollarSign },
   { name: "FAQ", url: "#faq", icon: HelpCircle },
   { name: "Contact", url: "#contact", icon: Mail },
@@ -45,11 +26,6 @@ const directLinks = [
 type ActiveNavElement = "Solutions" | "Pricing" | "FAQ" | "Contact" | null
 
 function getActiveNavElement(activeTab: string): ActiveNavElement {
-  // Check if activeTab is in Solutions group
-  if (menuGroups.solutions.items.some(item => item.name === activeTab)) {
-    return "Solutions"
-  }
-  // Check direct links
   if (directLinks.some(item => item.name === activeTab)) {
     return activeTab as ActiveNavElement
   }
@@ -58,7 +34,6 @@ function getActiveNavElement(activeTab: string): ActiveNavElement {
 
 export function NavBar({ items, className }: NavBarProps) {
   const [activeTab, setActiveTab] = useState(items[0]?.name || "")
-  const [activeMenu, setActiveMenu] = useState<string | null>(null)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   // Intersection Observer to update active tab on scroll
@@ -92,10 +67,8 @@ export function NavBar({ items, className }: NavBarProps) {
     return () => observer.disconnect()
   }, [items])
 
-  // Handle link click
   const handleLinkClick = (name: string) => {
     setActiveTab(name)
-    setActiveMenu(null)
     setMobileMenuOpen(false)
   }
 
@@ -139,10 +112,7 @@ export function NavBar({ items, className }: NavBarProps) {
   )
 
   // All navigation items combined for mobile
-  const allNavItems = [
-    ...menuGroups.solutions.items,
-    ...directLinks
-  ]
+  const allNavItems = directLinks
 
   return (
     <div
@@ -253,56 +223,7 @@ export function NavBar({ items, className }: NavBarProps) {
       {/* Desktop Navigation */}
       <div className="hidden md:flex max-w-4xl mx-auto items-center justify-center">
         {/* Navigation Items */}
-        <div className="flex items-center bg-black/60 border border-white/10 backdrop-blur-xl py-1.5 px-2 rounded-full shadow-lg">
-          <Menu setActive={setActiveMenu}>
-
-
-            {/* Solutions Dropdown */}
-            <div className="relative">
-              <MenuItem
-                setActive={setActiveMenu}
-                active={activeMenu}
-                item="Solutions"
-                icon={menuGroups.solutions.icon}
-                wideDropdown={true}
-                buttonClassName=""
-              >
-                <div className="flex gap-6">
-                  <div className="w-[160px]">
-                    <MenuSection>
-                      {menuGroups.solutions.items.slice(0, 4).map((item) => (
-                        <MenuLink
-                          key={item.name}
-                          href={item.url}
-                          icon={item.icon}
-                          description={item.description}
-                          onClick={() => handleLinkClick(item.name)}
-                        >
-                          {item.name}
-                        </MenuLink>
-                      ))}
-                    </MenuSection>
-                  </div>
-                  <div className="w-[160px]">
-                    <MenuSection>
-                      {menuGroups.solutions.items.slice(4).map((item) => (
-                        <MenuLink
-                          key={item.name}
-                          href={item.url}
-                          icon={item.icon}
-                          description={item.description}
-                          onClick={() => handleLinkClick(item.name)}
-                        >
-                          {item.name}
-                        </MenuLink>
-                      ))}
-                    </MenuSection>
-                  </div>
-                </div>
-              </MenuItem>
-              {activeNavElement === "Solutions" && <LampEffect />}
-            </div>
-
+        <nav className="flex items-center bg-black/60 border border-white/10 backdrop-blur-xl py-1.5 px-2 rounded-full shadow-lg">
             {/* Direct Links */}
             {directLinks.map((item) => {
               const Icon = item.icon
@@ -325,8 +246,7 @@ export function NavBar({ items, className }: NavBarProps) {
                 </a>
               )
             })}
-          </Menu>
-        </div>
+        </nav>
       </div>
     </div>
   )

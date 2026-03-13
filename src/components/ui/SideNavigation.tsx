@@ -12,7 +12,7 @@ interface Section {
 const sections: Section[] = [
     { id: "hero", label: "Home" },
     { id: "what-leadq-does", label: "What LeadQ.AI Does" },
-    { id: "features", label: "Solutions" },
+    { id: "agents", label: "Solutions" },
     { id: "pricing", label: "Pricing" },
     { id: "faq", label: "FAQ" },
     { id: "contact", label: "Contact" },

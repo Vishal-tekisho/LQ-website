@@ -20,6 +20,13 @@ const LegalPage = lazy(() => import('./pages/LegalPage'));
 const SupportPage = lazy(() => import('./pages/SupportPage'));
 const DownloadPage = lazy(() => import('./pages/DownloadPage'));
 
+// New Agent Pages
+const AgentContactCapturePage = lazy(() => import('./pages/AgentContactCapturePage'));
+const AgentResearchPage = lazy(() => import('./pages/AgentResearchPage'));
+const AgentMeetingsPage = lazy(() => import('./pages/AgentMeetingsPage'));
+const AgentEmailPage = lazy(() => import('./pages/AgentEmailPage'));
+const AgentVoicePage = lazy(() => import('./pages/AgentVoicePage'));
+
 function App() {
   return (
     <Router>
@@ -38,6 +45,31 @@ function App() {
         <Route path="/download" element={
           <Suspense fallback={<div className="min-h-screen" />}>
             <DownloadPage />
+          </Suspense>
+        } />
+        <Route path="/agents/contact-capture" element={
+          <Suspense fallback={<div className="min-h-screen" />}>
+            <AgentContactCapturePage />
+          </Suspense>
+        } />
+        <Route path="/agents/research" element={
+          <Suspense fallback={<div className="min-h-screen" />}>
+            <AgentResearchPage />
+          </Suspense>
+        } />
+        <Route path="/agents/meetings" element={
+          <Suspense fallback={<div className="min-h-screen" />}>
+            <AgentMeetingsPage />
+          </Suspense>
+        } />
+        <Route path="/agents/email" element={
+          <Suspense fallback={<div className="min-h-screen" />}>
+            <AgentEmailPage />
+          </Suspense>
+        } />
+        <Route path="/agents/voice" element={
+          <Suspense fallback={<div className="min-h-screen" />}>
+            <AgentVoicePage />
           </Suspense>
         } />
         <Route
