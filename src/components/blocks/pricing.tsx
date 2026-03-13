@@ -30,7 +30,7 @@ interface PricingProps {
 
 export function PricingBlock({
   plans,
-  title = "Simple, Transparent Pricing",
+  title = "Simple, Transparent Pricing (Not Finalized) ",
   description = "Choose the plan that works for you\nAll plans include access to our platform, lead generation tools, and dedicated support.",
 }: PricingProps) {
   const [isMonthly, setIsMonthly] = useState(true);
@@ -90,7 +90,7 @@ export function PricingBlock({
           >
             Monthly
           </button>
-          
+
           <button
             onClick={() => {
               if (isMonthly) handleToggle(true);
@@ -103,8 +103,8 @@ export function PricingBlock({
           >
             Annually <span className={cn("text-[10px] px-2 py-0.5 rounded-full font-bold transition-colors", !isMonthly ? "bg-white/20 text-white" : "bg-[#A89FE0]/20 text-[#A89FE0]")}>Save 20%</span>
           </button>
-          
-          <div 
+
+          <div
             className="absolute top-1.5 bottom-1.5 left-1.5 bg-[#7B6FD4] rounded-full shadow-[0_0_15px_rgba(123,111,212,0.4)] transition-transform duration-300 ease-out z-0 pointer-events-none"
             style={{
               width: isMonthly ? "128px" : "176px",
@@ -122,11 +122,11 @@ export function PricingBlock({
             whileInView={
               isDesktop
                 ? {
-                    y: plan.isPopular ? -20 : 0,
-                    opacity: 1,
-                    x: index === 2 ? -30 : index === 0 ? 30 : 0,
-                    scale: index === 0 || index === 2 ? 0.94 : 1.0,
-                  }
+                  y: plan.isPopular ? -20 : 0,
+                  opacity: 1,
+                  x: index === 2 ? -30 : index === 0 ? 30 : 0,
+                  scale: index === 0 || index === 2 ? 0.94 : 1.0,
+                }
                 : {}
             }
             viewport={{ once: true }}

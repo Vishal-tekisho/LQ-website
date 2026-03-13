@@ -141,9 +141,11 @@ export default function Agents() {
                       {agent.description}
                     </p>
 
-                    {/* Mobile/Tablet Indicator */}
-                    <div className="mt-5 lg:hidden inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#7B6FD4]/10 text-[#A89FE0] font-semibold text-sm animate-pulse border border-[#7B6FD4]/20">
-                      Tap to explore &rarr;
+                    {/* Explicit Button Indicator */}
+                    <div className="mt-8 lg:hidden">
+                      <span className="flex items-center justify-center w-full gap-2 px-6 py-3.5 rounded-xl bg-[#7B6FD4] text-white font-semibold text-base shadow-lg shadow-[#7B6FD4]/25">
+                        Explore Agent &rarr;
+                      </span>
                     </div>
 
                     {/* Hover Overlay (Desktop) */}
