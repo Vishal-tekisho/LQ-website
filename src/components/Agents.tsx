@@ -71,7 +71,7 @@ const agents: Agent[] = [
 
 export default function Agents() {
   return (
-    <section id="agents" className="relative z-10 min-h-[100svh] flex flex-col justify-center py-8 lg:py-12 px-4">
+    <section id="agents" className="relative z-10 py-16 lg:py-24 px-4 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <m.h2

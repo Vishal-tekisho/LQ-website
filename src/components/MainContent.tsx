@@ -1,14 +1,14 @@
 import { lazy, Suspense, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Sparkles, Bot, DollarSign, Mail, Briefcase, LayoutDashboard, HelpCircle } from 'lucide-react';
+import { Bot, DollarSign, Mail, Briefcase, LayoutDashboard, HelpCircle } from 'lucide-react';
 import { StandardNavbar } from './ui/StandardNavbar';
 
 import Hero from './Hero';
 
 // Lazy-load all below-the-fold sections for faster initial load
 const WhatLeadQDoes = lazy(() => import('./WhatLeadQDoes'));
-const Features = lazy(() => import('./Features'));
 const UseCases = lazy(() => import('./UseCases'));
+const DashboardPreview = lazy(() => import('./DashboardPreview'));
 const Agents = lazy(() => import('./Agents'));
 const Pricing = lazy(() => import('./Pricing'));
 const FAQ = lazy(() => import('./FAQ'));
@@ -50,7 +50,6 @@ const MainContent = () => {
     }, [location.state, location.pathname]);
 
     const navItems = [
-        { name: 'Features', url: '#features', icon: Sparkles },
         { name: 'Use Cases', url: '#use-cases', icon: Briefcase },
         { name: 'Dashboard', url: '#dashboard', icon: LayoutDashboard },
         { name: 'AI Agents', url: '#agents', icon: Bot },
@@ -75,8 +74,8 @@ const MainContent = () => {
                 {/* Use Cases - Real Teams, Real Results */}
                 <UseCases />
 
-                {/* Features */}
-                <Features />
+                {/* Dashboard */}
+                <DashboardPreview />
 
                 {/* AI Agents */}
                 <Agents />
