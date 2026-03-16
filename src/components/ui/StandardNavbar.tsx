@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react"
 import { m, AnimatePresence } from "framer-motion"
-import { LucideIcon, Briefcase, DollarSign, HelpCircle, Mail, Menu as MenuIcon, X } from "lucide-react"
+import { LucideIcon, Menu as MenuIcon, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Link } from "react-router-dom"
-import { SpotlightButton } from "./SpotlightButton"
 
 interface NavItem {
     name: string
     url: string
-    icon: LucideIcon
+    icon?: LucideIcon
     description?: string
 }
 
@@ -18,10 +17,10 @@ interface NavBarProps {
 }
 
 const directLinks = [
-    { name: "Solutions", url: "#agents", icon: Briefcase },
-    { name: "Pricing", url: "#pricing", icon: DollarSign },
-    { name: "FAQ", url: "#faq", icon: HelpCircle },
-    { name: "Contact", url: "#contact", icon: Mail },
+    { name: "AI Agents", url: "#agents" },
+    { name: "Features", url: "#what-leadq-does" },
+    { name: "Resources", url: "#resources" },
+    { name: "Pricing", url: "#pricing" },
 ]
 
 export function StandardNavbar({ items, className }: NavBarProps) {
@@ -113,8 +112,8 @@ export function StandardNavbar({ items, className }: NavBarProps) {
     return (
         <div
             className={cn(
-                "fixed top-0 left-0 w-full z-[100] transition-all duration-300 backdrop-blur-xl border-b border-white/10",
-                isScrolled || mobileMenuOpen ? "bg-black/30" : "bg-black/5",
+                "fixed top-0 left-0 w-full z-[100] transition-all duration-300 border-b border-white/10 backdrop-blur-xl",
+                isScrolled || mobileMenuOpen ? "bg-[#0e1117]/80" : "bg-[#0e1117]/58",
                 className
             )}
         >
@@ -126,12 +125,12 @@ export function StandardNavbar({ items, className }: NavBarProps) {
                         <img
                             src="/leadq-logo-main.png"
                             alt="LeadQ.AI"
-                            className="h-16 py-auto"
+                            className="h-[68px] md:h-[78px]"
                         />
                     </Link>
 
                     {/* Desktop Navigation */}
-                    <div className="hidden md:flex items-center gap-1">
+                    <div className="hidden md:flex flex-1 justify-center items-center gap-6">
                             {/* Direct Links */}
                             {directLinks.map((item) => {
                                 const isActive = activeTab === item.name
@@ -141,11 +140,10 @@ export function StandardNavbar({ items, className }: NavBarProps) {
                                         href={item.url}
                                         onClick={(e) => handleLinkClick(e, item.url, item.name)}
                                         className={cn(
-                                            "flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-full transition-colors",
-                                            isActive ? "text-white bg-white/10" : "text-leadq-silver hover:text-white hover:bg-white/5"
+                                            "flex items-center gap-2 px-4 py-2 text-sm font-medium transition-colors rounded-full [text-shadow:0_1px_2px_rgba(0,0,0,0.6)]",
+                                            isActive ? "text-white bg-white/12" : "text-white/90 hover:text-white hover:bg-white/8"
                                         )}
                                     >
-                                        {item.name === "Solutions" && <item.icon size={18} strokeWidth={2} />}
                                         {item.name}
                                     </a>
                                 )
@@ -153,13 +151,10 @@ export function StandardNavbar({ items, className }: NavBarProps) {
                     </div>
 
                     {/* Desktop Actions */}
-                    <div className="hidden md:flex items-center gap-4">
-                        <button className="px-6 py-2.5 text-sm rounded-lg font-semibold bg-gradient-to-r from-leadq-purple-dark to-leadq-purple text-white shadow-[0_0_20px_rgba(123,111,212,0.5)] hover:shadow-[0_0_30px_rgba(123,111,212,0.7)] hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-leadq-purple focus:ring-offset-2 focus:ring-offset-black whitespace-nowrap">
+                    <div className="hidden md:flex items-center">
+                        <button className="px-6 py-2 text-sm rounded-full font-medium bg-[#1a1d24]/95 text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.6)] hover:bg-[#2a2d34] transition-colors whitespace-nowrap">
                             Login
                         </button>
-                        <SpotlightButton>
-                            Sign Up
-                        </SpotlightButton>
                     </div>
 
                     {/* Mobile Toggle */}
@@ -192,7 +187,6 @@ export function StandardNavbar({ items, className }: NavBarProps) {
                                 <div className="space-y-2">
                                     <div className="text-xs font-semibold text-leadq-silver/50 uppercase tracking-wider mb-4">Navigation</div>
                                     {allNavItems.map((item) => {
-                                        const Icon = item.icon
                                         const isActive = activeTab === item.name
                                         return (
                                             <a
@@ -202,11 +196,10 @@ export function StandardNavbar({ items, className }: NavBarProps) {
                                                 className={cn(
                                                     "flex items-center gap-4 p-3 rounded-xl transition-all",
                                                     isActive
-                                                        ? "bg-leadq-purple/10 text-leadq-purple border border-leadq-purple/30"
-                                                        : "text-leadq-silver hover:bg-white/5 hover:text-white"
+                                                        ? "bg-white/10 text-white border border-white/20"
+                                                        : "text-white/70 hover:bg-white/5 hover:text-white"
                                                 )}
                                             >
-                                                <Icon size={20} strokeWidth={2} />
                                                 <span className="text-base font-medium">{item.name}</span>
                                             </a>
                                         )
@@ -214,11 +207,8 @@ export function StandardNavbar({ items, className }: NavBarProps) {
                                 </div>
 
                                 <div className="pt-6 border-t border-white/10 space-y-4">
-                                    <button className="w-full py-4 font-bold bg-gradient-to-r from-leadq-purple-dark to-leadq-purple text-white rounded-xl shadow-lg shadow-leadq-purple/20">
+                                    <button className="w-full py-4 font-bold bg-[#1a1d24] text-white hover:bg-[#2a2d34] transition-colors rounded-xl">
                                         Login
-                                    </button>
-                                    <button className="w-full py-4 font-bold bg-gradient-to-r from-leadq-purple-dark to-leadq-purple text-white rounded-xl shadow-lg shadow-leadq-purple/20">
-                                        Sign Up
                                     </button>
                                 </div>
                             </div>

@@ -114,14 +114,43 @@
 
 
 @layer base {
+  html,
+  body {
+    min-height: 100%;
+  }
+
   body {
     @apply bg-leadq-bg text-white antialiased;
-    background-image: url('/background.png');
+    background-color: #16063a;
+    background-image: linear-gradient(90deg,
+        #16063a 0%,
+        #2a0f55 26%,
+        #4d3378 56%,
+        #8f7aa8 80%,
+        #b8a7c8 100%);
     background-size: cover;
     background-position: center;
     background-origin: border-box;
     background-attachment: fixed;
+    background-repeat: no-repeat;
+    position: relative;
     font-family: 'DM Sans', system-ui, sans-serif;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(180deg,
+        rgba(6, 2, 20, 0.22) 0%,
+        rgba(8, 8, 42, 0.28) 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  #root {
+    position: relative;
+    z-index: 1;
   }
 
   h1,
@@ -422,7 +451,7 @@ a[role="button"] {
 .spotlight-btn {
   position: relative;
   overflow: hidden;
-  border-radius: 0.5rem;
+  border-radius: 9999px;
   padding: 0;
   border: none;
   background: transparent;
@@ -437,7 +466,7 @@ a[role="button"] {
   padding: 0.625rem 1.25rem;
   font-size: 0.875rem;
   font-weight: 600;
-  border-radius: 0.5rem;
+  border-radius: 9999px;
   color: #ffffff;
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -458,7 +487,7 @@ a[role="button"] {
   padding: 0.625rem 1.25rem;
   font-size: 0.875rem;
   font-weight: 600;
-  border-radius: 0.5rem;
+  border-radius: 9999px;
   color: #ffffff;
   background: linear-gradient(135deg, #0D0D2B 0%, #5B4FBE 50%, #7B6FD4 100%);
   text-shadow: 0 0 12px rgba(123, 111, 212, 0.6), 0 0 24px rgba(91, 79, 190, 0.4);

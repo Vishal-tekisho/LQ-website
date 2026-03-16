@@ -37,64 +37,37 @@ export default function Header() {
   };
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-white/10 backdrop-blur-2xl ${scrolled
-        ? 'bg-black/70 md:bg-white/10 shadow-lg shadow-black/10'
-        : 'bg-black/50 md:bg-white/5'
-        }`}
-    >
+    <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-[#0e1117]/80 backdrop-blur-md border-b border-white/5">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Main navigation">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20">
           <div className="flex-shrink-0">
-            <a href="#" className="flex items-center focus:outline-none focus:ring-2 focus:ring-leadq-silver focus:ring-offset-2 focus:ring-offset-leadq-bg rounded-lg px-2 py-1" aria-label="LeadQ.AI Home">
+            <a href="#" className="flex items-center focus:outline-none rounded-lg py-1" aria-label="LeadQ.AI Home">
               <img
                 src="/leadq-logo-main.png"
                 alt="LeadQ.AI - Where Leads Become Revenue"
-                className="h-20 w-auto bg-gradient-to-br from-slate-900 to-slate-950 p-2 rounded-lg shadow-[0_0_20px_rgba(96,165,250,0.3)] border border-blue-500/20"
+                className="h-10 w-auto"
               />
             </a>
           </div>
 
-          <div className="hidden md:flex items-center space-x-1">
-            <a
-              href="#features"
-              className="px-4 py-2 text-leadq-silver hover:text-leadq-silver transition-colors rounded-lg focus:outline-none focus:ring-2 focus:ring-leadq-silver focus:ring-offset-2 focus:ring-offset-leadq-bg"
-            >
-              Features
-            </a>
-            <a
-              href="#agents"
-              className="px-4 py-2 text-leadq-silver hover:text-leadq-silver transition-colors rounded-lg focus:outline-none focus:ring-2 focus:ring-leadq-silver focus:ring-offset-2 focus:ring-offset-leadq-bg"
-            >
-              AI Agents
-            </a>
-            <a
-              href="#pricing"
-              className="px-4 py-2 text-leadq-silver hover:text-leadq-silver transition-colors rounded-lg focus:outline-none focus:ring-2 focus:ring-leadq-silver focus:ring-offset-2 focus:ring-offset-leadq-bg"
-            >
-              Pricing
-            </a>
-            <a
-              href="#contact"
-              className="px-4 py-2 text-leadq-silver hover:text-leadq-silver transition-colors rounded-lg focus:outline-none focus:ring-2 focus:ring-leadq-silver focus:ring-offset-2 focus:ring-offset-leadq-bg"
-            >
-              Contact
-            </a>
+          <div className="hidden md:flex flex-1 items-center justify-center space-x-8 text-sm">
+            <a href="#about" className="text-white/70 hover:text-white transition-colors">About us</a>
+            <a href="#features" className="text-white/70 hover:text-white transition-colors">Features</a>
+            <a href="#resources" className="text-white/70 hover:text-white transition-colors">Resources</a>
+            <a href="#pricing" className="text-white/70 hover:text-white transition-colors">Pricing</a>
+            <a href="#blog" className="text-white/70 hover:text-white transition-colors">Blog</a>
           </div>
 
-          <div className="hidden md:flex items-center space-x-3">
-            <Button variant="gradient-blue" size="header-sm">
+          <div className="hidden md:flex items-center">
+            <button className="rounded-full bg-white/10 px-6 py-2 text-sm font-medium text-white transition-colors hover:bg-white/20">
               Login
-            </Button>
-            <Button variant="gradient-silver" size="header-sm">
-              Get Started
-            </Button>
+            </button>
           </div>
 
           <div className="md:hidden">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="text-leadq-silver hover:text-white p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-leadq-silver focus:ring-offset-2 focus:ring-offset-leadq-bg"
+              className="text-white/70 hover:text-white p-2 rounded-lg"
               aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-menu"
@@ -105,46 +78,18 @@ export default function Header() {
         </div>
 
         {mobileMenuOpen && (
-          <div
-            id="mobile-menu"
-            className="md:hidden glass-strong border-t border-white/10 py-4 animate-slideDown"
-          >
-            <div className="flex flex-col space-y-2 px-2">
-              <a
-                href="#features"
-                onClick={handleLinkClick}
-                className="px-4 py-3 text-leadq-silver hover:text-leadq-silver hover:bg-white/5 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-leadq-silver focus:ring-offset-2 focus:ring-offset-leadq-bg"
-              >
-                Features
-              </a>
-              <a
-                href="#agents"
-                onClick={handleLinkClick}
-                className="px-4 py-3 text-leadq-silver hover:text-leadq-silver hover:bg-white/5 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-leadq-silver focus:ring-offset-2 focus:ring-offset-leadq-bg"
-              >
-                AI Agents
-              </a>
-              <a
-                href="#pricing"
-                onClick={handleLinkClick}
-                className="px-4 py-3 text-leadq-silver hover:text-leadq-silver hover:bg-white/5 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-leadq-silver focus:ring-offset-2 focus:ring-offset-leadq-bg"
-              >
-                Pricing
-              </a>
-              <a
-                href="#contact"
-                onClick={handleLinkClick}
-                className="px-4 py-3 text-leadq-silver hover:text-leadq-silver hover:bg-white/5 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-leadq-silver focus:ring-offset-2 focus:ring-offset-leadq-bg"
-              >
-                Contact
-              </a>
-              <div className="pt-4 space-y-2 border-t border-white/10">
-                <Button variant="gradient-blue" size="header-md" className="w-full">
+          <div id="mobile-menu" className="md:hidden bg-[#0e1117] border-t border-white/10 py-4">
+            <div className="flex flex-col space-y-2 px-2 text-sm">
+              <a href="#about" onClick={handleLinkClick} className="block px-4 py-3 text-white/70 hover:text-white hover:bg-white/5 rounded-lg transition-colors">About us</a>
+              <a href="#features" onClick={handleLinkClick} className="block px-4 py-3 text-white/70 hover:text-white hover:bg-white/5 rounded-lg transition-colors">Features</a>
+              <a href="#resources" onClick={handleLinkClick} className="block px-4 py-3 text-white/70 hover:text-white hover:bg-white/5 rounded-lg transition-colors">Resources</a>
+              <a href="#pricing" onClick={handleLinkClick} className="block px-4 py-3 text-white/70 hover:text-white hover:bg-white/5 rounded-lg transition-colors">Pricing</a>
+              <a href="#blog" onClick={handleLinkClick} className="block px-4 py-3 text-white/70 hover:text-white hover:bg-white/5 rounded-lg transition-colors">Blog</a>
+              
+              <div className="pt-4 border-t border-white/10">
+                <button className="w-full rounded-full bg-white/10 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-white/20">
                   Login
-                </Button>
-                <Button variant="gradient-silver" size="header-md" className="w-full">
-                  Get Started
-                </Button>
+                </button>
               </div>
             </div>
           </div>

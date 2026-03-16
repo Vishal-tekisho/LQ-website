@@ -36,6 +36,9 @@ export function PricingBlock({
   const [isMonthly, setIsMonthly] = useState(true);
   const isDesktop = useMediaQuery("(min-width: 768px)");
   const switchRef = useRef<HTMLButtonElement>(null);
+  const titleWords = title.trim().split(/\s+/);
+  const highlightedWord = titleWords.pop() ?? "";
+  const leadingTitle = titleWords.join(" ");
 
   const handleToggle = (checked: boolean) => {
     setIsMonthly(!checked);
@@ -68,14 +71,21 @@ export function PricingBlock({
 
   return (
     <div className="container py-20">
-      <div className="text-center space-y-4 mb-12">
-        <h2 className="text-4xl font-display font-bold tracking-tight sm:text-5xl text-white">
-          {title}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="text-center mb-12 max-w-2xl mx-auto"
+      >
+        <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold mb-4 text-white">
+          {leadingTitle}{leadingTitle ? ' ' : ''}
+          <span className="text-[#A89FE0]">{highlightedWord}</span>
         </h2>
-        <p className="text-leadq-silver text-lg whitespace-pre-line max-w-2xl mx-auto">
+        <p className="text-lg sm:text-xl md:text-2xl text-leadq-silver whitespace-pre-line leading-relaxed">
           {description}
         </p>
-      </div>
+      </motion.div>
 
       <div className="flex justify-center mb-10">
         <div className="relative flex items-center p-1.5 bg-white/5 backdrop-blur-md rounded-full border border-white/10 shadow-inner">

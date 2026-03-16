@@ -567,7 +567,7 @@ export default function DashboardPreview() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="text-base sm:text-lg text-leadq-silver"
         >
-          Watch your pipeline fill up in real-time.
+          Your AI command center for pipeline health, team activity, and next-best actions in one view.
         </m.p>
       </div>
 
