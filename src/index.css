@@ -2,8 +2,50 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ========== GLOBAL PAGE BACKGROUND ========== */
 
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #0d0a1e;
+    color: #ffffff;
+}
 
+/* Vertical beam stripe effect — applied to the root wrapper */
+.page-bg {
+    background-color: #0d0a1e;
+    background-image:
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 80px,
+            rgba(120, 80, 200, 0.06) 80px,
+            rgba(120, 80, 200, 0.06) 82px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 160px,
+            rgba(140, 90, 220, 0.04) 160px,
+            rgba(140, 90, 220, 0.04) 162px
+        );
+    background-size: 100% 100%;
+    position: relative;
+}
+
+/* Subtle top-center radial glow */
+.page-bg::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 900px;
+    height: 600px;
+    background: radial-gradient(ellipse at 50% 0%, rgba(100, 60, 180, 0.18) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
 
 /* Word-by-word animation styles */
 @keyframes word-appear {
@@ -91,6 +133,185 @@
     transform: translateY(0) scale(1);
     filter: blur(0);
   }
+}
+
+/* ========== HERO SECTION STYLES ========== */
+
+.hero-section {
+    position: relative;
+    min-height: 100svh;
+    overflow: hidden;
+    padding-bottom: 0;
+}
+
+/* Heading */
+.hero-heading {
+    font-size: clamp(2.8rem, 6vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    color: #ffffff;
+}
+
+/* Infinity icon in heading */
+.hero-infinity-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 0.9em;
+    height: 0.9em;
+    background: linear-gradient(135deg, #a6d8e8 0%, #7db9ce 100%);
+    color: #ffffff;
+    border-radius: 0.25em;
+    vertical-align: middle;
+    position: relative;
+    top: -0.05em;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4),
+                0 0 15px rgba(125, 185, 206, 0.4);
+}
+
+/* CTA Buttons */
+.hero-btn-outline {
+    padding: 0.7rem 1.8rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border-radius: 9999px;
+    border: 1.5px solid rgba(255,255,255,0.5);
+    color: #ffffff;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.hero-btn-outline:hover {
+    border-color: rgba(255,255,255,0.8);
+    background: rgba(255,255,255,0.1);
+}
+
+.hero-btn-solid {
+    padding: 0.7rem 1.8rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border-radius: 9999px;
+    border: 1.5px solid #1f2937;
+    color: #ffffff;
+    background: #1f2937;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.hero-btn-solid:hover {
+    background: #111827;
+}
+
+/* Avatar stack */
+.hero-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid white;
+    object-fit: cover;
+}
+
+/* Floating cards - shared */
+.hero-floating-card {
+    position: absolute;
+    width: 260px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 1.25rem;
+    padding: 1rem;
+    box-shadow:
+        0 4px 24px rgba(0, 0, 0, 0.06),
+        0 1px 4px rgba(0, 0, 0, 0.04);
+    z-index: 5;
+    transition: transform 0.4s ease;
+}
+
+.hero-floating-card:hover {
+    transform: scale(1.03) !important;
+}
+
+/* Left card positioning */
+.hero-card-left {
+    left: 10%;
+    top: 35%;
+    transform: rotate(-6deg);
+}
+
+.hero-card-left:hover {
+    transform: rotate(-4deg) scale(1.03) !important;
+}
+
+/* Right card positioning */
+.hero-card-right {
+    right: 10%;
+    top: 30%;
+    transform: rotate(6deg);
+}
+
+.hero-card-right:hover {
+    transform: rotate(4deg) scale(1.03) !important;
+}
+
+/* Card inner mock content area */
+.hero-card-inner {
+    border-radius: 0.75rem;
+    overflow: hidden;
+}
+
+.hero-card-mock-bg {
+    background: #f8f9fa;
+    border-radius: 0.75rem;
+    padding: 0.875rem;
+    border: 1px solid #e5e7eb;
+}
+
+/* Bottom bar */
+.hero-bottom-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(8px);
+    z-index: 10;
+}
+
+/* Responsive adjustments for floating cards */
+@media (max-width: 1280px) {
+    .hero-card-left {
+        left: -2%;
+        width: 230px;
+    }
+    .hero-card-right {
+        right: -2%;
+        width: 230px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .hero-card-left,
+    .hero-card-right {
+        display: none;
+    }
+    .hero-bottom-bar {
+        padding: 1rem 1.25rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .hero-bottom-bar {
+        flex-direction: column;
+        gap: 0.75rem;
+        padding: 1rem;
+    }
 }
 
 :root {

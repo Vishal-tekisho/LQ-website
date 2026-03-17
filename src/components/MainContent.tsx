@@ -1,13 +1,12 @@
 import { lazy, Suspense, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Bot, DollarSign, Mail, Briefcase, LayoutDashboard, HelpCircle } from 'lucide-react';
+import { Bot, DollarSign, Mail, LayoutDashboard, HelpCircle } from 'lucide-react';
 import { StandardNavbar } from './ui/StandardNavbar';
 
 import Hero from './Hero';
 
 // Lazy-load all below-the-fold sections for faster initial load
 const WhatLeadQDoes = lazy(() => import('./WhatLeadQDoes'));
-const UseCases = lazy(() => import('./UseCases'));
 const DashboardPreview = lazy(() => import('./DashboardPreview'));
 const Agents = lazy(() => import('./Agents'));
 const Pricing = lazy(() => import('./Pricing'));
@@ -50,7 +49,6 @@ const MainContent = () => {
     }, [location.state, location.pathname]);
 
     const navItems = [
-        { name: 'Use Cases', url: '#use-cases', icon: Briefcase },
         { name: 'Dashboard', url: '#dashboard', icon: LayoutDashboard },
         { name: 'AI Agents', url: '#agents', icon: Bot },
         { name: 'Pricing', url: '#pricing', icon: DollarSign },
@@ -70,9 +68,6 @@ const MainContent = () => {
             <Suspense fallback={<div className="min-h-[400px]" />}>
                 {/* 2. What LeadQ.AI Does */}
                 <WhatLeadQDoes />
-
-                {/* Use Cases - Real Teams, Real Results */}
-                <UseCases />
 
                 {/* Dashboard */}
                 <DashboardPreview />

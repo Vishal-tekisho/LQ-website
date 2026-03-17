@@ -545,9 +545,9 @@ export default function DashboardPreview() {
   const { ref } = useInViewPause();
 
   return (
-    <section ref={ref} id="dashboard" className="relative z-10 py-12 md:py-16 px-4">
+    <section ref={ref} id="dashboard" className="relative z-10 pt-16 pb-16 px-4">
       {/* Section heading */}
-      <div className="max-w-7xl mx-auto mb-10 text-center">
+      <div className="max-w-7xl mx-auto mb-12 text-center">
         <m.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -580,11 +580,11 @@ export default function DashboardPreview() {
         className="max-w-7xl mx-auto"
       >
         {/* Responsive scaling wrapper */}
-        <div className="relative overflow-hidden h-[230px] sm:h-[460px] md:h-[550px] lg:h-[540px] xl:h-[580px] 2xl:h-[680px] flex justify-center">
-          <div className="min-w-[960px] lg:min-w-0 origin-top scale-[0.35] sm:scale-[0.675] md:scale-[0.82] lg:scale-[0.8] xl:scale-[0.85] 2xl:scale-100 lg:origin-top flex justify-center" style={{ width: 1100 }}>
+        <div className="relative overflow-hidden h-[220px] sm:h-[370px] md:h-[460px] lg:h-[460px] xl:h-[490px] 2xl:h-[560px] flex justify-center">
+          <div className="min-w-[960px] lg:min-w-0 origin-top scale-[0.35] sm:scale-[0.6] md:scale-[0.75] lg:scale-[0.75] xl:scale-[0.8] 2xl:scale-[0.9] lg:origin-top flex justify-center" style={{ width: 1100 }}>
 
             {/* Browser chrome */}
-            <div className="rounded-2xl overflow-hidden border border-gray-300 shadow-2xl flex flex-col bg-white" style={{ height: 660, width: 1100 }}>
+            <div className="rounded-2xl overflow-hidden border border-gray-300 shadow-2xl flex flex-col bg-white" style={{ height: 600, width: 1100 }}>
 
               {/* Title bar – dark */}
               <div className="bg-[#1a1d3a] shrink-0 border-b border-white/10 px-4 py-2.5 flex items-center gap-3">
@@ -656,9 +656,6 @@ export default function DashboardPreview() {
                         <div className="w-7 h-7 rounded-full border border-gray-200 flex items-center justify-center bg-gray-50">
                           <Bell size={13} className="text-gray-500" />
                         </div>
-                        <div className="w-7 h-7 rounded-full border border-gray-200 flex items-center justify-center bg-gray-50">
-                          <Bell size={13} className="text-gray-500" />
-                        </div>
                       </div>
                       <div className="flex items-center gap-2 ml-1">
                         <div className="text-right">
@@ -673,7 +670,7 @@ export default function DashboardPreview() {
                   </div>
 
                   {/* Content pane */}
-                  <div className="flex-1 min-w-0 min-h-0 p-5 overflow-y-scroll relative">
+                  <div className="flex-1 min-w-0 min-h-0 p-5 overflow-hidden relative">
                     <AnimatePresence mode="wait">
                       <m.div
                         key={activeNav}

@@ -147,11 +147,8 @@ export default function DownloadPage() {
                 <img
                   src="/leadq-logo-main.png"
                   alt="LeadQ.AI Logo"
-                  className="h-10 w-auto"
+                  className="h-8 md:h-10 w-auto"
                 />
-                <span className="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-leadq-platinum to-leadq-steel">
-                  LeadQ<span className="text-[#A89FE0]">.AI</span>
-                </span>
               </Link>
             </div>
           </nav>

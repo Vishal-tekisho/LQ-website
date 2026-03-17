@@ -63,7 +63,7 @@ const demoPlans = [
 
 const Pricing = () => {
   return (
-    <section id="pricing" className="relative z-10 w-full flex items-center justify-center py-12 px-4">
+    <section id="pricing" className="relative z-10 w-full flex items-center justify-center pt-16 pb-16 px-4">
       <div className="w-full max-w-7xl mx-auto rounded-lg">
         <PricingBlock 
           plans={demoPlans}

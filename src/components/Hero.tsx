@@ -1,149 +1,110 @@
-import type { ReactNode } from "react";
 import { m } from "framer-motion";
-import { CalendarDays, Contact, LogIn, Mail, Phone, RefreshCw, User } from "lucide-react";
-import { SpotlightButton } from "@/components/ui/SpotlightButton";
+import { Pen, Sparkles, Infinity as InfinityIcon, Phone } from "lucide-react";
 
-function VLine({ height = "h-6" }: { height?: string }) {
+/* ------------------------------------------------------------------ */
+/*  Tiny sub-components                                                */
+/* ------------------------------------------------------------------ */
+
+
+/** Left floating card — "AI-Powered Writing" */
+function AIPoweredWritingCard() {
     return (
-        <div className="flex justify-center">
-            <div className={`w-0 border-l-2 border-dashed border-white/20 ${height}`} />
-        </div>
-    );
-}
-
-function Dot() {
-    return (
-        <div className="flex justify-center">
-            <div className="h-2 w-2 rounded-full bg-blue-500 shadow-[0_0_8px_2px_rgba(59,130,246,0.45)]" />
-        </div>
-    );
-}
-
-function Card({ children, className = "" }: { children: ReactNode; className?: string }) {
-    return (
-        <div className={`rounded-2xl border border-white/10 bg-white/[0.04] p-4 backdrop-blur-sm ${className}`}>
-            {children}
-        </div>
-    );
-}
-
-function WorkflowDiagram() {
-    return (
-        <div className="mx-auto w-full max-w-[460px] select-none text-left text-sm lg:ml-auto flex flex-col items-center">
-
-            {/* User Arrives */}
-            <div className="flex flex-col items-center gap-1">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full border border-white/[0.12] bg-white/[0.05]">
-                    <User className="h-6 w-6 text-white/80" />
+        <m.div
+            initial={{ opacity: 0, x: -60, rotate: -8 }}
+            animate={{ opacity: 1, x: 0, rotate: -6 }}
+            transition={{ delay: 0.5, duration: 0.8, ease: "easeOut" }}
+            className="hero-floating-card hero-card-left"
+        >
+            {/* inner mock content */}
+            <div className="hero-card-inner">
+                <div className="hero-card-mock-bg">
+                    <div className="flex items-center gap-1.5 mb-2">
+                        <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
+                        <span className="text-[10px] font-bold tracking-wider text-gray-700 uppercase">Grow AI</span>
+                    </div>
+                    <div className="space-y-1.5">
+                        <div className="h-1.5 w-full rounded bg-gray-200" />
+                        <div className="h-1.5 w-4/5 rounded bg-gray-200" />
+                        <div className="h-1.5 w-3/5 rounded bg-gray-200" />
+                        <div className="h-1.5 w-full rounded bg-gray-200" />
+                        <div className="h-1.5 w-2/3 rounded bg-gray-200" />
+                    </div>
                 </div>
-                <span className="text-xs font-medium tracking-wide text-white/60">User Arrives</span>
             </div>
 
-            {/* Connector: vline + dot */}
-            <VLine />
-            <Dot />
+            {/* Label */}
+            <div className="mt-4 px-1">
+                <div className="flex items-center gap-2">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-gray-900">
+                        <Pen className="w-4 h-4 text-white" />
+                    </div>
+                    <h3 className="text-sm font-bold text-gray-900">AI-Powered Writing</h3>
+                </div>
+                <p className="mt-1.5 text-xs text-gray-500 leading-relaxed">
+                    Simplify communication with AI tools that write emails and proposals in seconds.
+                </p>
+            </div>
+        </m.div>
+    );
+}
 
-            {/* Login & Authentication */}
-            <div className="w-full mt-2 hover:-translate-y-1 transition-transform duration-300">
-                <Card className="px-4 py-3">
-                    <div className="flex items-center gap-3 font-medium text-white text-base">
-                        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-blue-600/[0.15] text-blue-400">
-                            <LogIn className="h-4 w-4" />
+/** Right floating card — "Voice Agents" */
+function VoiceAgentCard() {
+    return (
+        <m.div
+            initial={{ opacity: 0, x: 60, rotate: 8 }}
+            animate={{ opacity: 1, x: 0, rotate: 6 }}
+            transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}
+            className="hero-floating-card hero-card-right dark-card"
+        >
+            {/* Voice mock */}
+            <div className="hero-card-inner">
+                <div className="voice-card-mock relative p-4 rounded-xl bg-[#0f172a] border border-slate-800">
+                    <div className="flex items-center gap-3 mb-6">
+                        <div className="h-10 w-10 rounded-xl bg-[#10b981]/20 flex items-center justify-center border border-[#10b981]/30">
+                            <Phone className="w-5 h-5 text-[#10b981]" />
                         </div>
-                        Login &amp; Authentication
-                    </div>
-                </Card>
-            </div>
-
-            {/* Connector: vline (no dot) */}
-            <VLine />
-
-            {/* Dashed-border rectangle */}
-            <div className="w-full border border-dashed border-white/20 rounded-2xl p-3 flex flex-col">
-
-                {/* Row 1: Contact capture & Research | Meetings */}
-                <div className="grid grid-cols-2 gap-2">
-                    <div className="hover:-translate-y-1 transition-transform duration-300">
-                        <Card className="px-3 py-3">
-                            <div className="flex items-start gap-2 font-medium text-white text-sm">
-                                <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-teal-600/[0.15] text-teal-400 mt-0.5">
-                                    <Contact className="h-4 w-4" />
-                                </div>
-                                <span className="leading-snug">Contact capture &amp; Research</span>
-                            </div>
-                        </Card>
-                    </div>
-                    <div className="hover:-translate-y-1 transition-transform duration-300">
-                        <Card className="px-3 py-3">
-                            <div className="flex items-center gap-2 font-medium text-white text-sm">
-                                <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-indigo-600/[0.15] text-indigo-300">
-                                    <CalendarDays className="h-4 w-4" />
-                                </div>
-                                Meetings
-                            </div>
-                        </Card>
-                    </div>
-                </div>
-
-                {/* Inner connector: dashed horizontal bar + center vertical drop */}
-                <div className="relative my-2">
-                    <div
-                        className="w-full h-px"
-                        style={{ background: 'repeating-linear-gradient(90deg, rgba(255,255,255,0.2) 0, rgba(255,255,255,0.2) 5px, transparent 5px, transparent 10px)' }}
-                    />
-                    <div className="absolute top-0 left-1/2 -translate-x-px">
-                        <div className="h-2 w-0 border-l-2 border-dashed border-white/20" />
-                    </div>
-                </div>
-
-                {/* Row 2: Emails | Voice Calls */}
-                <div className="grid grid-cols-2 gap-2">
-                    <div className="hover:-translate-y-1 transition-transform duration-300">
-                        <Card className="px-3 py-3">
-                            <div className="flex items-center gap-2 font-medium text-white text-sm">
-                                <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-teal-600/[0.15] text-teal-400">
-                                    <Mail className="h-4 w-4" />
-                                </div>
-                                Emails
-                            </div>
-                        </Card>
-                    </div>
-                    <div className="hover:-translate-y-1 transition-transform duration-300">
-                        <Card className="px-3 py-3">
-                            <div className="flex items-center gap-2 font-medium text-white text-sm">
-                                <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-cyan-600/[0.15] text-cyan-400">
-                                    <Phone className="h-4 w-4" />
-                                </div>
-                                Voice Calls
-                            </div>
-                        </Card>
-                    </div>
-                </div>
-
-            </div>
-
-            {/* Connector: vline + dot */}
-            <VLine />
-            <Dot />
-
-            {/* Continuous Engagement Cycle */}
-            <div className="w-full mt-2 hover:-translate-y-1 transition-transform duration-300">
-                <Card className="rounded-[2rem] border-blue-400/20 bg-blue-500/[0.06] flex flex-col gap-3 px-4 py-4">
-                    <div className="flex items-center gap-3 text-base font-medium text-white">
-                        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-500/[0.15] text-blue-400">
-                            <RefreshCw className="h-4 w-4" />
+                        <div className="space-y-1.5 flex-1">
+                            <div className="h-2 w-24 rounded bg-slate-700/50" />
+                            <div className="h-2 w-16 rounded bg-slate-700/30" />
                         </div>
-                        Continuous Engagement Cycle
                     </div>
-                    <p className="text-sm text-white/60">
-                        Keep leads engaged through automated, recurring touchpoints across every channel.
-                    </p>
-                </Card>
+                    
+                    <div className="space-y-4 mb-4 relative">
+                        {[1, 2, 3].map((i) => (
+                            <div key={i} className="flex items-center gap-3">
+                                <div className={`h-2 w-2 rounded-full ${i === 1 ? 'bg-[#10b981] shadow-[0_0_8px_#10b981]' : i === 2 ? 'bg-[#10b981]/60' : 'bg-[#06b6d4] shadow-[0_0_8px_#06b6d4]'}`} />
+                                <div className="h-2 flex-1 rounded bg-slate-800/80" />
+                            </div>
+                        ))}
+                        
+                        {/* Live Call Button Overlay */}
+                        <div className="absolute right-0 top-1/2 -translate-y-1/2">
+                            <div className="flex items-center gap-2 bg-[#10b981] text-white text-[10px] font-bold px-3 py-2 rounded-full shadow-lg shadow-[#10b981]/20">
+                                <span className="h-2 w-2 rounded-full bg-white animate-pulse" />
+                                Live Call
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-        </div>
+            {/* Label */}
+            <div className="mt-4 px-1">
+                <div className="flex items-center gap-2">
+                    <h3 className="text-sm font-bold text-gray-900">Voice Agents</h3>
+                </div>
+                <p className="mt-1.5 text-[11px] text-gray-500 leading-relaxed font-medium">
+                    Automate follow-ups, reminders, rescheduling outreach while capturing transcripts and next actions
+                </p>
+            </div>
+        </m.div>
     );
 }
+
+/* ------------------------------------------------------------------ */
+/*  Main Hero component                                                */
+/* ------------------------------------------------------------------ */
 
 export default function Hero() {
     const scrollToSection = (sectionId: string) => {
@@ -154,52 +115,76 @@ export default function Hero() {
     };
 
     return (
-        <section id="hero" className="relative min-h-[100svh] overflow-hidden bg-leadq-dark px-4 pb-16 pt-20 sm:px-6 lg:px-8 lg:pb-20 lg:pt-24">
-            <div className="pointer-events-none absolute inset-0">
-                <div className="absolute inset-0 opacity-[0.06] noise" />
+        <section id="hero" className="hero-section pb-20">
+            {/* -------- Main content wrapper -------- */}
+            <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col items-center">
+
+                {/* Social proof badge */}
+                <m.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="mt-28 sm:mt-32 lg:mt-36 flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 px-6 py-2 shadow-sm"
+                >
+                    <span className="text-sm font-medium text-white/90">The Next Generation of AI CRM is Here</span>
+                </m.div>
+
+                {/* Heading */}
+                <m.div
+                    initial={{ opacity: 0, y: 24 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.15, duration: 0.7, ease: "easeOut" }}
+                    className="mt-8 text-center"
+                >
+                    <h1 className="hero-heading">
+                        <span className="block">One tool.</span>
+                        <span className="flex items-center justify-center gap-[0.2em]">
+                            Infinite
+                            <span className="hero-infinity-icon flex-shrink-0">
+                                <InfinityIcon style={{ width: "0.55em", height: "0.55em" }} strokeWidth={2.5} />
+                            </span>
+                            potential.
+                        </span>
+                    </h1>
+                </m.div>
+
+                {/* Subtitle */}
+                <m.p
+                    initial={{ opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3, duration: 0.6 }}
+                    className="mt-6 max-w-xl text-center text-base sm:text-lg text-white/60 leading-relaxed"
+                >
+                    Helping businesses of every size thrive with a smart, all-in-one CRM
+                    that boosts growth and deepens customer engagement.
+                </m.p>
+
+                {/* CTA Buttons */}
+                <m.div
+                    initial={{ opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.45, duration: 0.6 }}
+                    className="mt-8 flex items-center gap-4"
+                >
+                    <button
+                        onClick={() => scrollToSection("contact")}
+                        className="hero-btn-outline"
+                    >
+                        Book a Demo
+                    </button>
+                    <button
+                        onClick={() => scrollToSection("contact")}
+                        className="hero-btn-solid"
+                    >
+                        Launch Now
+                    </button>
+                </m.div>
             </div>
 
-            <div className="relative z-10 mx-auto flex min-h-[calc(100svh-8rem)] w-full max-w-7xl flex-col justify-center">
-                <div className="flex flex-col items-center gap-16 pt-6 lg:flex-row lg:items-center lg:justify-between lg:pt-8">
-                    {/* Left Column */}
-                    <m.div
-                        initial={{ opacity: 0, y: 24 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.7, ease: "easeOut" }}
-                        className="flex w-full max-w-2xl flex-col items-center text-center lg:w-1/2 lg:items-start lg:text-left"
-                    >
-                        <h1 className="text-[clamp(2.5rem,4.5vw,4.5rem)] font-display font-bold leading-[1.05] tracking-[-0.02em] text-white">
-                            The best automated <br className="hidden lg:block" />
-                            CRM for all <span className="bg-gradient-to-r from-indigo-400 via-blue-400 to-purple-400 bg-clip-text text-transparent"> businesses</span>
-                        </h1>
-
-                        <p className="mt-6 max-w-xl text-balance text-lg font-medium leading-relaxed text-leadq-silver/90 sm:text-xl">
-                            Manage contacts and interactions in one system, helping your team build stronger relationships and loyal customers.
-                        </p>
-
-                        <div className="mt-10 flex w-full flex-col items-center gap-4 sm:w-auto sm:flex-row lg:justify-start">
-                            <SpotlightButton
-                                className="w-full sm:w-auto"
-                                onClick={() => scrollToSection("contact")}
-                            >
-                                <span className="flex items-center justify-center gap-2 px-6 py-1 sm:px-4">
-                                    Get Started
-                                </span>
-                            </SpotlightButton>
-                        </div>
-                    </m.div>
-
-                    {/* Right Column */}
-                    <m.div
-                        initial={{ opacity: 0, x: 30 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.2, duration: 0.8, ease: "easeOut" }}
-                        className="flex w-full justify-center lg:w-1/2 lg:justify-end"
-                    >
-                        <WorkflowDiagram />
-                    </m.div>
-                </div>
-
+            {/* -------- Floating cards (absolute positioned) -------- */}
+            <div className="hidden lg:block">
+                <AIPoweredWritingCard />
+                <VoiceAgentCard />
             </div>
         </section>
     );

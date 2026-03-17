@@ -1,6 +1,6 @@
-import { m, AnimatePresence, useMotionValue, useTransform, animate } from 'framer-motion';
-import { Send, AlertCircle, User, Mail, Building2, MessageSquare, ArrowRight, Clock, Zap } from 'lucide-react';
-import { useState, FormEvent, useRef, useEffect, useId } from 'react';
+import { m, AnimatePresence } from 'framer-motion';
+import { AlertCircle, User, Mail, Building2, MessageSquare, ArrowRight, Clock, Zap } from 'lucide-react';
+import { useState, FormEvent, useId } from 'react';
 import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 
@@ -40,8 +40,8 @@ function FloatingField({
   const borderColor = error
     ? 'border-red-400'
     : focused
-    ? 'border-[#7B6FD4] shadow-[0_2px_0_0_#7B6FD4]'
-    : 'border-white/20';
+      ? 'border-[#7B6FD4] shadow-[0_2px_0_0_#7B6FD4]'
+      : 'border-white/20';
 
   const baseClass = cn(
     'w-full bg-transparent pt-6 pb-2 px-0 text-white text-base focus:outline-none transition-all resize-none',
@@ -342,7 +342,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="relative z-10 min-h-[100svh] flex flex-col justify-center py-16 lg:py-24 px-4 overflow-hidden"
+      className="relative z-10 flex flex-col justify-center pt-16 pb-16 px-4 overflow-hidden"
     >
       {/* Background radial glow */}
       <div
@@ -371,7 +371,7 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-14"
+          className="text-center mb-10"
         >
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold mb-4">
             Get in{' '}

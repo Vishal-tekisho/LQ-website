@@ -66,14 +66,14 @@ export default function FAQ() {
   };
 
   return (
-    <section id="faq" className="relative z-10 min-h-[100svh] flex flex-col justify-center py-8 lg:py-12 px-4">
+    <section id="faq" className="relative z-10 flex flex-col justify-center pt-16 pb-16 px-4">
       <div className="max-w-4xl mx-auto">
         <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-10"
         >
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold mb-4">
             Frequently Asked{' '}

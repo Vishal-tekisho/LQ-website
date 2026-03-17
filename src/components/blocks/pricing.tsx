@@ -70,13 +70,13 @@ export function PricingBlock({
   };
 
   return (
-    <div className="container py-20">
+    <div className="container pt-0 pb-0">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="text-center mb-12 max-w-2xl mx-auto"
+        className="text-center mb-10 max-w-2xl mx-auto"
       >
         <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold mb-4 text-white">
           {leadingTitle}{leadingTitle ? ' ' : ''}

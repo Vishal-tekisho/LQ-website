@@ -319,7 +319,7 @@ export default function Agents() {
   return (
     <section
       id="agents"
-      className="py-32 relative transition-colors duration-1000"
+      className="pb-16 pt-16 relative transition-colors duration-1000"
       style={{
         backgroundImage: `radial-gradient(circle at 30% 50%, rgba(${
           activeStep === 0 ? '34, 197, 94' :
@@ -338,7 +338,7 @@ export default function Agents() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center md:text-left flex flex-col items-center md:items-start relative z-10 w-full mb-20 lg:mb-32"
+          className="text-center flex flex-col items-center relative z-10 w-full mb-12"
         >
           <span className="text-xs sm:text-sm uppercase tracking-[0.28em] text-white/45 border border-white/10 rounded-full px-3 py-1 mt-4">
             AI agent system
@@ -353,7 +353,7 @@ export default function Agents() {
         </motion.div>
 
         {/* ── Desktop 2-Column Sticky Scroll ── */}
-        <div className="hidden lg:grid grid-cols-12 gap-20 relative items-start">
+        <div className="hidden lg:grid grid-cols-12 gap-20 relative">
 
           {/* Vertical Progress Track Line */}
           <div className="absolute left-[20px] top-0 bottom-[40vh] w-[2px] bg-gradient-to-b from-transparent via-[rgba(196,192,232,0.1)] to-transparent z-0"></div>
@@ -425,22 +425,24 @@ export default function Agents() {
           </div>
 
           {/* Right Column: Sticky Visual */}
-          <div className="hidden lg:block col-span-12 lg:col-span-6 sticky top-[15vh] h-[70vh]">
-            <div className="w-full h-full relative">
-              <div className="absolute inset-0 bg-[#7B6FD4]/5 blur-[100px] rounded-full scale-150 transform-gpu pointer-events-none transition-opacity duration-1000"></div>
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeStep}
-                  initial={{ opacity: 0, scale: 0.95, y: 15, rotateX: 5 }}
-                  animate={{ opacity: 1, scale: 1, y: 0, rotateX: 0 }}
-                  exit={{ opacity: 0, scale: 1.05, y: -15, rotateX: -5 }}
-                  transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                  className="w-full h-full"
-                  style={{ perspective: '1000px' }}
-                >
-                  {visuals[activeStep]}
-                </motion.div>
-              </AnimatePresence>
+          <div className="hidden lg:block col-span-12 lg:col-span-6 relative">
+            <div className="sticky top-[15vh] h-[70vh] w-full">
+              <div className="w-full h-full relative">
+                <div className="absolute inset-0 bg-[#7B6FD4]/5 blur-[100px] rounded-full scale-150 transform-gpu pointer-events-none transition-opacity duration-1000"></div>
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeStep}
+                    initial={{ opacity: 0, scale: 0.95, y: 15, rotateX: 5 }}
+                    animate={{ opacity: 1, scale: 1, y: 0, rotateX: 0 }}
+                    exit={{ opacity: 0, scale: 1.05, y: -15, rotateX: -5 }}
+                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                    className="w-full h-full"
+                    style={{ perspective: '1000px' }}
+                  >
+                    {visuals[activeStep]}
+                  </motion.div>
+                </AnimatePresence>
+              </div>
             </div>
           </div>
         </div>

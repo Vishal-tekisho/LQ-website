@@ -29,9 +29,6 @@ export default function AgentVoicePage() {
                   alt="LeadQ.AI Logo"
                   className="h-10 w-auto"
                 />
-                <span className="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-leadq-platinum to-leadq-steel">
-                  LeadQ<span className="text-[#A89FE0]">.AI</span>
-                </span>
               </div>
             </div>
           </nav>

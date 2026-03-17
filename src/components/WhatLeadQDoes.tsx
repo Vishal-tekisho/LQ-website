@@ -1,4 +1,5 @@
-﻿import React from 'react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
     CreditCard,
     StickyNote,
@@ -50,7 +51,7 @@ const steps: Step[] = [
 // Static preview: Card capture -> Contact details panel
 function CardCapture() {
     return (
-        <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 py-2.5">
+        <div className="w-full h-full flex flex-col md:flex-row items-center justify-center gap-3 sm:gap-4 py-2.5 transform scale-90 sm:scale-100">
             {/* Stacked business cards */}
             <div className="relative w-[210px] h-[145px] flex-shrink-0">
                 {/* Back card */}
@@ -96,7 +97,7 @@ function CardCapture() {
 // Static preview: Scanned data -> AI search -> Verified profile
 function ProfileResearch() {
     return (
-        <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5 py-3">
+        <div className="w-full h-full flex flex-col md:flex-row items-center justify-center gap-4 sm:gap-5 py-3 transform scale-90 sm:scale-100">
             {/* Scanned data */}
             <div className="flex-shrink-0 w-[180px] bg-gray-100 rounded-xl p-4 shadow-md">
                 <div className="text-xs text-gray-500 font-bold mb-3 uppercase tracking-wider">Scanned Data</div>
@@ -153,7 +154,7 @@ function ProfileResearch() {
 // Static preview: Raw notes -> Structured meeting summary
 function MeetingNotes() {
     return (
-        <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-5 sm:gap-6 py-3">
+        <div className="w-full h-full flex flex-col md:flex-row items-center justify-center gap-5 sm:gap-6 py-3 transform scale-90 sm:scale-100">
             {/* Raw voice / bullet notes */}
             <div className="flex-shrink-0 w-[180px] bg-gray-100 rounded-xl p-4 shadow-md">
                 <div className="text-sm text-gray-900 font-bold mb-2.5">My Notes</div>
@@ -189,7 +190,7 @@ function MeetingNotes() {
 // Static preview: Mini calendar + today's follow-up tasks
 function FollowUps() {
     return (
-        <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-5 py-3">
+        <div className="w-full h-full flex flex-col md:flex-row items-center justify-center gap-5 py-3 transform scale-90 sm:scale-100">
             {/* Mini calendar */}
             <div className="flex-shrink-0 w-[160px] bg-white rounded-xl p-4 shadow-md">
                 <div className="text-sm text-gray-900 mb-2.5 font-bold">February 2026</div>
@@ -241,14 +242,16 @@ function renderStepSnapshot(stepId: number) {
 }
 
 export default function WhatLeadQDoes() {
+    const [activeSection, setActiveSection] = useState(0);
+
     return (
         <section
             id="what-leadq-does"
-            className="relative z-10 min-h-[100svh] flex flex-col justify-center bg-leadq-dark py-8 lg:py-12 px-4"
+            className="relative z-10 flex flex-col justify-center bg-leadq-dark pt-16 pb-16 px-4"
         >
             <div className="max-w-7xl mx-auto">
                 {/* Heading */}
-                <div className="text-center max-w-3xl mx-auto mb-14">
+                <div className="text-center max-w-3xl mx-auto mb-12">
                     <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold text-white mb-6">
                         What LeadQ.AI Does{' '}
                         <span className="text-[#A89FE0]">for You</span>
@@ -260,29 +263,74 @@ export default function WhatLeadQDoes() {
                     </p>
                 </div>
 
-                {/* 2x2 feature card grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-6xl mx-auto">
-                    {steps.map((step) => (
-                        <div key={step.id} className="h-full">
-                            <div className="bg-white rounded-2xl p-6 lg:p-8 border border-gray-200 shadow-sm h-full flex flex-col hover:shadow-md transition-shadow">
-                                <div className="flex items-center gap-4 mb-4">
-                                    <div className="w-11 h-11 rounded-xl bg-purple-100 flex items-center justify-center text-purple-500 flex-shrink-0">
+                {/* Layout Container */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start max-w-6xl mx-auto">
+                    
+                    {/* Left Column: Scrolling Text Blocks */}
+                    <div className="flex flex-col gap-12 lg:gap-24 pb-[10vh] lg:pb-[20vh] pt-[10vh]">
+                        {steps.map((step, index) => (
+                            <motion.div
+                                key={step.id}
+                                whileInView="visible"
+                                viewport={{ amount: 0.3, margin: "-10% 0px -10% 0px" }}
+                                onViewportEnter={() => setActiveSection(index)}
+                                className="min-h-[40vh] lg:min-h-[50vh] flex flex-col justify-center transition-opacity duration-500"
+                                style={{ opacity: activeSection === index ? 1 : 0.3 }}
+                            >
+                                <div className="flex items-center gap-4 mb-6">
+                                    <div className={`w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center text-purple-500 flex-shrink-0 transition-all duration-500 ${activeSection === index ? 'shadow-[0_0_15px_rgba(168,85,247,0.4)] scale-110' : ''}`}>
                                         {step.icon}
                                     </div>
-                                    <h3 className="text-xl sm:text-2xl font-display font-semibold text-gray-900">
-                                        {step.title}
-                                    </h3>
+                                    <span className="text-xl font-medium text-gray-500 font-mono leading-none">
+                                        0{index + 1}
+                                    </span>
                                 </div>
-                                <p className="text-gray-500 text-sm sm:text-base mb-5 leading-relaxed">
+                                
+                                <h3 className="text-3xl sm:text-4xl font-display font-bold text-white mb-4">
+                                    {step.title}
+                                </h3>
+                                
+                                <p className="text-lg text-gray-400 leading-relaxed max-w-lg mb-8">
                                     {step.description}
                                 </p>
-                                {/* Static preview panel */}
-                                <div className="mt-auto flex items-center justify-center min-h-[280px] w-full bg-[#1a1f35] rounded-xl overflow-hidden border border-white/20 px-4 py-6">
+
+                                {/* Mobile preview (shows inline on small screens) */}
+                                <div className="block lg:hidden w-full bg-[#1a1f35] rounded-xl overflow-hidden border border-white/10 p-4 shadow-lg mb-8">
                                     {renderStepSnapshot(step.id)}
                                 </div>
+                            </motion.div>
+                        ))}
+                    </div>
+
+                    {/* Right Column: Sticky Visual Container (Desktop only) */}
+                    <div className="hidden lg:block relative w-full h-full">
+                        <div className="sticky top-24 w-full h-[calc(100vh-12rem)] min-h-[500px] flex items-center justify-center rounded-[2rem] border border-gray-800 bg-gray-900/50 p-1 backdrop-blur-sm overflow-hidden shadow-2xl">
+                            
+                            {/* Inner container */}
+                            <div className="relative w-full h-full rounded-[1.8rem] bg-[#0d071a] overflow-hidden flex flex-col items-center justify-center p-8">
+                                
+                                {/* Dynamic Background Blur */}
+                                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(168,85,247,0.15)_0%,_transparent_70%)] pointer-events-none"></div>
+                                <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle at center, white 1px, transparent 1px)', backgroundSize: '24px 24px' }}></div>
+
+                                {/* Animated content transition */}
+                                <AnimatePresence mode="wait">
+                                    <motion.div
+                                        key={activeSection}
+                                        initial={{ opacity: 0, y: 15 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -15 }}
+                                        transition={{ duration: 0.5, ease: "easeOut" }}
+                                        className="relative z-10 w-full h-full flex items-center justify-center"
+                                    >
+                                        {renderStepSnapshot(steps[activeSection].id)}
+                                    </motion.div>
+                                </AnimatePresence>
+                                
                             </div>
                         </div>
-                    ))}
+                    </div>
+
                 </div>
             </div>
         </section>

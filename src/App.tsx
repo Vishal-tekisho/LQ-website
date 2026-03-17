@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import MainContent from './components/MainContent';
 
@@ -12,6 +12,7 @@ function RouteScrollToTop() {
 }
 import SkipToContent from './components/SkipToContent';
 import ErrorBoundary from './components/ErrorBoundary';
+import InitialLoader from './components/ui/InitialLoader';
 
 // Lazy-load heavy/non-critical components
 const ScrollToTop = lazy(() => import('./components/ScrollToTop'));
@@ -28,6 +29,8 @@ const AgentEmailPage = lazy(() => import('./pages/AgentEmailPage'));
 const AgentVoicePage = lazy(() => import('./pages/AgentVoicePage'));
 
 function App() {
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
+
   return (
     <Router>
       <RouteScrollToTop />
@@ -76,11 +79,15 @@ function App() {
           path="/*"
           element={
             <ErrorBoundary>
-              <div className="min-h-screen relative overflow-hidden">
+              <div className="min-h-screen relative overflow-clip page-bg">
                 <SkipToContent />
 
                 <div className="relative z-10">
-                  <MainContent />
+                  {isInitialLoad ? (
+                    <InitialLoader onLoadingComplete={() => setIsInitialLoad(false)} />
+                  ) : (
+                    <MainContent />
+                  )}
                 </div>
 
                 <Suspense fallback={null}>
