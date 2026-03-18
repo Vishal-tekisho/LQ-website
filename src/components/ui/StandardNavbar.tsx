@@ -2,7 +2,6 @@ import { useEffect, useState } from "react"
 import { m, AnimatePresence } from "framer-motion"
 import { LucideIcon, Menu as MenuIcon, X } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { Link } from "react-router-dom"
 
 interface NavItem {
     name: string
@@ -19,7 +18,6 @@ interface NavBarProps {
 const directLinks = [
     { name: "AI Agents", url: "#agents" },
     { name: "Features", url: "#what-leadq-does" },
-    { name: "Resources", url: "#resources" },
     { name: "Pricing", url: "#pricing" },
 ]
 
@@ -121,13 +119,18 @@ export function StandardNavbar({ items, className }: NavBarProps) {
                 <div className="flex items-center justify-between h-16 md:h-20">
 
                     {/* Logo */}
-                    <Link to="/" className="flex items-center gap-0.2 z-[101]" aria-label="LeadQ.AI Home">
+                    <a 
+                        href="#hero" 
+                        onClick={(e) => handleLinkClick(e, "#hero", "Hero")}
+                        className="flex items-center gap-0.2 z-[101]" 
+                        aria-label="LeadQ.AI Home"
+                    >
                         <img
                             src="/leadq-logo-main.png"
                             alt="LeadQ.AI"
                             className="h-[68px] md:h-[78px]"
                         />
-                    </Link>
+                    </a>
 
                     {/* Desktop Navigation */}
                     <div className="hidden md:flex flex-1 justify-center items-center gap-6">

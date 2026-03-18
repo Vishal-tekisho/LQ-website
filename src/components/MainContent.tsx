@@ -6,6 +6,7 @@ import { StandardNavbar } from './ui/StandardNavbar';
 import Hero from './Hero';
 
 // Lazy-load all below-the-fold sections for faster initial load
+const FollowUpPainPoint = lazy(() => import('./FollowUpPainPoint'));
 const WhatLeadQDoes = lazy(() => import('./WhatLeadQDoes'));
 const DashboardPreview = lazy(() => import('./DashboardPreview'));
 const Agents = lazy(() => import('./Agents'));
@@ -66,6 +67,9 @@ const MainContent = () => {
 
             {/* Lazy-loaded sections with lightweight placeholders */}
             <Suspense fallback={<div className="min-h-[400px]" />}>
+                {/* Pain Point Section */}
+                <FollowUpPainPoint />
+
                 {/* 2. What LeadQ.AI Does */}
                 <WhatLeadQDoes />
 

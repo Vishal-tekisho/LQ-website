@@ -139,9 +139,6 @@ html, body {
 
 .hero-section {
     position: relative;
-    min-height: 100svh;
-    overflow: hidden;
-    padding-bottom: 0;
 }
 
 /* Heading */

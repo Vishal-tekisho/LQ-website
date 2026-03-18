@@ -115,7 +115,7 @@ export default function Hero() {
     };
 
     return (
-        <section id="hero" className="hero-section pb-20">
+        <section id="hero" className="hero-section pb-32">
             {/* -------- Main content wrapper -------- */}
             <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col items-center">
 

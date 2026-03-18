@@ -2,7 +2,6 @@ import { useEffect, useState } from "react"
 import { m, AnimatePresence } from "framer-motion"
 import { LucideIcon, Briefcase, DollarSign, HelpCircle, Mail, Menu as MenuIcon, X } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { Link } from "react-router-dom"
 
 interface NavItem {
   name: string
@@ -123,7 +122,12 @@ export function NavBar({ items, className }: NavBarProps) {
     >
       {/* Logo - Desktop (fixed top-left, same level as login/signup) */}
       <div className="hidden md:flex items-center gap-2 fixed top-4 left-4 z-[101]">
-        <Link to="/" className="flex items-center gap-2" aria-label="LeadQ.AI Home">
+        <a 
+          href="#hero" 
+          onClick={() => handleLinkClick("Hero")}
+          className="flex items-center gap-2" 
+          aria-label="LeadQ.AI Home"
+        >
           <img
             src="/leadq-logo-v2.jpg"
             alt="LeadQ.AI"
@@ -132,7 +136,7 @@ export function NavBar({ items, className }: NavBarProps) {
           <span className="text-base font-bold font-display bg-clip-text text-transparent bg-gradient-to-r from-leadq-platinum to-leadq-steel">
             LeadQ<span className="text-[#A89FE0]">.AI</span>
           </span>
-        </Link>
+        </a>
       </div>
 
       {/* Login & Sign Up Buttons - Desktop */}
@@ -146,9 +150,13 @@ export function NavBar({ items, className }: NavBarProps) {
         </button>
       </div>
 
-      {/* Mobile Header with Hamburger */}
       <div className="md:hidden flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-2" aria-label="LeadQ.AI Home">
+        <a 
+          href="#hero" 
+          onClick={() => handleLinkClick("Hero")}
+          className="flex items-center gap-2" 
+          aria-label="LeadQ.AI Home"
+        >
           <img
             src="/leadq-logo-v2.jpg"
             alt="LeadQ.AI"
@@ -157,7 +165,7 @@ export function NavBar({ items, className }: NavBarProps) {
           <span className="text-base font-bold font-display bg-clip-text text-transparent bg-gradient-to-r from-leadq-platinum to-leadq-steel">
             LeadQ<span className="text-[#A89FE0]">.AI</span>
           </span>
-        </Link>
+        </a>
         <button
           onClick={toggleMobileMenu}
           className="p-3 text-white hover:text-leadq-silver transition-colors rounded-lg focus:outline-none focus:ring-2 focus:ring-leadq-silver"

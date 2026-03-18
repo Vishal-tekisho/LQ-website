@@ -1,14 +1,12 @@
 import { Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
-import { Button } from './ui/button';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      // Logic for scrolling effect if needed
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -41,7 +39,7 @@ export default function Header() {
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Main navigation">
         <div className="flex items-center justify-between h-20">
           <div className="flex-shrink-0">
-            <a href="#" className="flex items-center focus:outline-none rounded-lg py-1" aria-label="LeadQ.AI Home">
+            <a href="#hero" className="flex items-center focus:outline-none rounded-lg py-1" aria-label="LeadQ.AI Home">
               <img
                 src="/leadq-logo-main.png"
                 alt="LeadQ.AI - Where Leads Become Revenue"
@@ -53,7 +51,6 @@ export default function Header() {
           <div className="hidden md:flex flex-1 items-center justify-center space-x-8 text-sm">
             <a href="#about" className="text-white/70 hover:text-white transition-colors">About us</a>
             <a href="#features" className="text-white/70 hover:text-white transition-colors">Features</a>
-            <a href="#resources" className="text-white/70 hover:text-white transition-colors">Resources</a>
             <a href="#pricing" className="text-white/70 hover:text-white transition-colors">Pricing</a>
             <a href="#blog" className="text-white/70 hover:text-white transition-colors">Blog</a>
           </div>
@@ -82,7 +79,6 @@ export default function Header() {
             <div className="flex flex-col space-y-2 px-2 text-sm">
               <a href="#about" onClick={handleLinkClick} className="block px-4 py-3 text-white/70 hover:text-white hover:bg-white/5 rounded-lg transition-colors">About us</a>
               <a href="#features" onClick={handleLinkClick} className="block px-4 py-3 text-white/70 hover:text-white hover:bg-white/5 rounded-lg transition-colors">Features</a>
-              <a href="#resources" onClick={handleLinkClick} className="block px-4 py-3 text-white/70 hover:text-white hover:bg-white/5 rounded-lg transition-colors">Resources</a>
               <a href="#pricing" onClick={handleLinkClick} className="block px-4 py-3 text-white/70 hover:text-white hover:bg-white/5 rounded-lg transition-colors">Pricing</a>
               <a href="#blog" onClick={handleLinkClick} className="block px-4 py-3 text-white/70 hover:text-white hover:bg-white/5 rounded-lg transition-colors">Blog</a>
               
